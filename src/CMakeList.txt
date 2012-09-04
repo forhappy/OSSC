@@ -1,0 +1,4 @@
+SET(SRC
+	oss_client.c
+	oss_bucket.c)
+
