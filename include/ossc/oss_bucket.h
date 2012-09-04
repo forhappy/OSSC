@@ -11,6 +11,11 @@
  *
  * =============================================================================
  */
+
+#ifndef _OSS_BUCKET_H
+# error Never include <ossc/oss_bucket.h> directly, use <ossc/client.h> instead.
+#endif
+
 #ifndef OSS_BUCKET_H
 #define OSS_BUCKET_H
 

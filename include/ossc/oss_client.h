@@ -11,6 +11,11 @@
  *
  * =============================================================================
  */
+
+#ifndef _OSS_CLIENT_H
+# error Never include <ossc/oss_client.h> directly, use <ossc/client.h> instead.
+#endif
+
 #ifndef OSS_CLIENT_H
 #define OSS_CLIENT_H
 
@@ -141,6 +146,21 @@ client_get_object_metadata(const char *bucket_name,
  * */
 extern oss_initiate_multipart_upload_result_t *
 client_initiate_multipart_upload(oss_initiate_multipart_upload_request_t *request);
+
+/* *
+ * 初始化 oss_client_t
+ * */
+extern bool
+client_initialize(const char *access_id,
+		const char *access_key);
+
+/* *
+ * 初始化 oss_client_t
+ * */
+extern bool
+client_initialize_with_endpoint(const char *access_id,
+		const char *access_key,
+		const char *endpoint);
 
 /* *
  * 判断给定 Bucket 是否存在
