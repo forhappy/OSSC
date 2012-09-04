@@ -7,7 +7,6 @@
  *
  *        Created:  09/03/2012 09:18:04 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
@@ -137,6 +136,13 @@ client_get_object_with_bucket_name(const char *bucket_name,
 oss_object_metadata_t *
 client_get_object_metadata(const char *bucket_name,
 		const char *key)
+{}
+
+/* *
+ * 初始化一个 Multipart 上传事件
+ * */
+oss_initiate_multipart_upload_result_t *
+client_initiate_multipart_upload(oss_initiate_multipart_upload_request_t *request)
 {}
 
 /* *

@@ -7,7 +7,6 @@
  *
  *        Created:  09/03/2012 09:16:21 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
@@ -28,14 +27,13 @@ typedef struct oss_client_s {
 	char *host;
 	char *access_id;
 	char *access_key;
-	void (*delete_bucket)(const char *bucket_name);
 }oss_client_t;
 
 /* *
  * 终止一个 Multipart 上传事件
  * */
 extern void
-client_abort_multipart_upload(oss_abort_multipart_request_t *request);
+client_abort_multipart_upload(oss_abort_multipart_upload_request_t *request);
 
 /* *
  * 完成一个 Multipart 上传事件
@@ -138,6 +136,11 @@ client_get_object_with_bucket_name(const char *bucket_name,
 extern oss_object_metadata_t *
 client_get_object_metadata(const char *bucket_name,
 		const char *key);
+/* *
+ * 初始化一个 Multipart 上传事件
+ * */
+extern oss_initiate_multipart_upload_result_t *
+client_initiate_multipart_upload(oss_initiate_multipart_upload_request_t *request);
 
 /* *
  * 判断给定 Bucket 是否存在
