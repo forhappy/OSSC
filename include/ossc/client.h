@@ -29,4 +29,9 @@
 #include "oss_bucket.h"
 #undef _OSS_BUCKET_H
 
+
+#define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
+#include "oss_abort_multipart_upload_request.h"
+#undef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
+
 #endif
