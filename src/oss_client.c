@@ -138,6 +138,24 @@ client_get_object_metadata(const char *bucket_name,
 		const char *key)
 {}
 
+
+/* *
+ * 初始化 oss_client_t
+ * */
+bool
+client_initialize(const char *access_id,
+		const char *access_key)
+{}
+
+/* *
+ * 初始化 oss_client_t
+ * */
+bool
+client_initialize_with_endpoint(const char *access_id,
+		const char *access_key,
+		const char *endpoint)
+{}
+
 /* *
  * 初始化一个 Multipart 上传事件
  * */

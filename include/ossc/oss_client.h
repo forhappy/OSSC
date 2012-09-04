@@ -148,6 +148,21 @@ extern oss_initiate_multipart_upload_result_t *
 client_initiate_multipart_upload(oss_initiate_multipart_upload_request_t *request);
 
 /* *
+ * 初始化 oss_client_t
+ * */
+extern bool
+client_initialize(const char *access_id,
+		const char *access_key);
+
+/* *
+ * 初始化 oss_client_t
+ * */
+extern bool
+client_initialize_with_endpoint(const char *access_id,
+		const char *access_key,
+		const char *endpoint);
+
+/* *
  * 判断给定 Bucket 是否存在
  * */
 extern bool
