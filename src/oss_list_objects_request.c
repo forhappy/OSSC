@@ -56,20 +56,20 @@ __list_objects_request_set_prefix(
 }
 
 static inline void
-__list_objects_request_set_maker(
+__list_objects_request_set_marker(
 		oss_list_objects_request_t *request,
-		const char *maker, size_t maker_len)
+		const char *marker, size_t marker_len)
 {
-	assert(maker != NULL);
-	assert(maker_len > 0);
-	if (request->maker!= NULL) {
-		free(request->maker);
-		request->maker = NULL;
+	assert(marker != NULL);
+	assert(marker_len > 0);
+	if (request->marker!= NULL) {
+		free(request->marker);
+		request->marker = NULL;
 	}
 
-	request->maker= (char *)malloc(sizeof(char) * maker_len+ 1);
-	strncpy(request->maker, maker, maker_len);
-	(request->maker)[maker_len] = '\0';
+	request->marker= (char *)malloc(sizeof(char) * marker_len+ 1);
+	strncpy(request->marker, marker, marker_len);
+	(request->marker)[marker_len] = '\0';
 }
 
 static inline void
@@ -105,10 +105,10 @@ _list_objects_request_get_prefix(
 }
 
 static inline const char *
-_list_objects_request_get_maker(
+_list_objects_request_get_marker(
 		oss_list_objects_request_t *request)
 {
-	return request->maker;
+	return request->marker;
 }
 
 static inline const char *
@@ -148,14 +148,14 @@ _list_objects_request_set_prefix(
 }
 
 static inline void
-_list_objects_request_set_maker(
+_list_objects_request_set_marker(
 		oss_list_objects_request_t *request,
-		const char *maker)
+		const char *marker)
 {
-	size_t maker_len = strlen(maker);
+	size_t marker_len = strlen(marker);
 
-	__list_objects_request_set_maker(request,
-			maker, maker_len);
+	__list_objects_request_set_marker(request,
+			marker, marker_len);
 }
 
 static inline void
@@ -184,7 +184,7 @@ static inline oss_list_objects_request_t *
 _list_objects_request_initialize(
 		const char *bucket_name, size_t bucket_name_len,
 		const char *prefix, size_t prefix_len,
-		const char *maker, size_t maker_len,
+		const char *marker, size_t marker_len,
 		const char *delimiter, size_t delimiter_len,
 		unsigned int max_keys)
 {
@@ -195,29 +195,29 @@ _list_objects_request_initialize(
 			sizeof(oss_list_objects_request_t));
 	request->bucket_name = (char *)malloc(byte_of_char * bucket_name_len + 1);
 	request->prefix = (char *)malloc(byte_of_char * prefix_len + 1);
-	request->maker = (char *)malloc(byte_of_char * maker_len + 1);
+	request->marker = (char *)malloc(byte_of_char * marker_len + 1);
 	request->delimiter = (char *)malloc(byte_of_char * delimiter_len + 1);
 	request->max_keys = max_keys;
 
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
 	strncpy(request->prefix, prefix, prefix_len);
-	strncpy(request->maker, maker, maker_len);
+	strncpy(request->marker, marker, marker_len);
 	strncpy(request->delimiter, delimiter, delimiter_len);
 
 	(request->bucket_name)[bucket_name_len] = '\0';
 	(request->prefix)[prefix_len] = '\0';
-	(request->maker)[maker_len] = '\0';
+	(request->marker)[marker_len] = '\0';
 	(request->delimiter)[delimiter_len] = '\0';
 
 	request->get_bucket_name = _list_objects_request_get_bucket_name;
 	request->get_prefix = _list_objects_request_get_prefix;
-	request->get_maker= _list_objects_request_get_maker;
+	request->get_marker= _list_objects_request_get_marker;
 	request->get_delimiter= _list_objects_request_get_delimiter;
 	request->get_max_keys= _list_objects_request_get_max_keys;
 
 	request->set_bucket_name = _list_objects_request_set_bucket_name;
 	request->set_prefix= _list_objects_request_set_prefix;
-	request->set_maker= _list_objects_request_set_maker;
+	request->set_marker= _list_objects_request_set_marker;
 	request->set_delimiter = _list_objects_request_set_delimiter;
 	request->set_max_keys= _list_objects_request_set_max_keys;
 
@@ -260,23 +260,23 @@ list_objects_request_initialize_with_bucket_name(const char *bucket_name)
 oss_list_objects_request_t *
 list_objects_request_initialize_with_args(const char *bucket_name,
 		const char *prefix,
-		const char *maker,
+		const char *marker,
 		const char *delimiter,
 		unsigned int max_keys)
 {
 	assert(bucket_name != NULL);
 	assert(prefix != NULL);
-	assert(maker != NULL);
+	assert(marker != NULL);
 	assert(delimiter != NULL);
 
 	size_t bucket_name_len = strlen(bucket_name);
 	size_t prefix_len = strlen(prefix);
-	size_t maker_len = strlen(maker);
+	size_t marker_len = strlen(marker);
 	size_t delimiter_len = strlen(delimiter);
 
 	return _list_objects_request_initialize(bucket_name, bucket_name_len,
 			prefix, prefix_len,
-			maker, maker_len,
+			marker, marker_len,
 			delimiter, delimiter_len,
 			max_keys);
 }
@@ -300,9 +300,9 @@ list_objects_request_finalize(
 		request->prefix= NULL;
 	}
 
-	if (request->maker!= NULL) {
-		free(request->maker);
-		request->maker= NULL;
+	if (request->marker!= NULL) {
+		free(request->marker);
+		request->marker= NULL;
 	}
 
 	if (request->delimiter!= NULL) {

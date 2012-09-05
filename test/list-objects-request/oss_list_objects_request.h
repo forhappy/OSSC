@@ -31,13 +31,13 @@ typedef struct oss_list_objects_request_s \
 struct oss_list_objects_request_s {
 	char *bucket_name;
 	char *delimiter;
-	char *maker;
+	char *marker;
 	unsigned int max_keys;
 	char *prefix;
 
 	const char * (*get_bucket_name)(oss_list_objects_request_t *request);
 	const char * (*get_delimiter)(oss_list_objects_request_t *request);
-	const char * (*get_maker)(oss_list_objects_request_t *request);
+	const char * (*get_marker)(oss_list_objects_request_t *request);
 	unsigned int (*get_max_keys)(oss_list_objects_request_t *request);
 	const char * (*get_prefix)(oss_list_objects_request_t *request);
 
@@ -45,8 +45,8 @@ struct oss_list_objects_request_s {
 			const char *bucket_name);
 	void (*set_delimiter)(oss_list_objects_request_t *request,
 			const char *delimiter);
-	void (*set_maker)(oss_list_objects_request_t *request,
-			const char *maker);
+	void (*set_marker)(oss_list_objects_request_t *request,
+			const char *marker);
 	void (*set_max_keys)(oss_list_objects_request_t *request,
 			unsigned int max_keys);
 	void (*set_prefix)(oss_list_objects_request_t *request,
@@ -71,7 +71,7 @@ list_objects_request_initialize_with_bucket_name(const char *bucket_name);
 extern oss_list_objects_request_t *
 list_objects_request_initialize_with_args(const char *bucket_name,
 		const char *prefix,
-		const char *maker,
+		const char *marker,
 		const char *delimiter,
 		unsigned int max_keys);
 /* *
