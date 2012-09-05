@@ -19,8 +19,12 @@
 #ifndef OSS_OBJECT_METADATA_H
 #define OSS_OBJECT_METADATA_H
 
+#define _OSS_CONSTANTS_H
 #include <ossc/oss_constants.h>
+#undef _OSS_CONSTANTS_H
+
 #include <ossc/oss_map.h>
+
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>

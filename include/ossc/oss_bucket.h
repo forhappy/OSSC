@@ -20,7 +20,7 @@
 #define OSS_BUCKET_H
 
 typedef struct oss_bucket_s {
-	char *creation_data;
+	char *creation_date;
 	char *name;
 	char *owner;
 }oss_bucket_t

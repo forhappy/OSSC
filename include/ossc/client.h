@@ -16,9 +16,9 @@
 #ifndef OSS_INCLUDE_CLIENT_H
 #define OSS_INCLUDE_CLIENT_H
 
-#define _OSS_CONSTANTS_H_
-#include "constants.h"
-#undef _OSS_CONSTANTS_H_
+#define _OSS_CONSTANTS_H
+#include "oss_constants.h"
+#undef _OSS_CONSTANTS_H
 
 #define _OSS_CLIENT_H
 #include "oss_client.h"

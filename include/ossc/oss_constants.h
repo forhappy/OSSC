@@ -12,7 +12,7 @@
  * =============================================================================
  */
 
-#ifndef _OSS_CONSTANTS_H_
+#ifndef _OSS_CONSTANTS_H
 # error Never include <ossc/oss_constants.h> directly, use <ossc/client.h> instead.
 #endif
 
@@ -114,6 +114,10 @@ constants_get_error_message(enum _OSS_ERROR_CODE error_code)
 			return "NoSuchCode";
 	}
 }
+typedef enum _OSS_PERMISSION {
+	FULLCONTROL,
+	READ
+}OSS_PERMISSION;
 
 #define DEFAULT_OSS_HOST            "storage.aliyun.com"
 #define VERSION                     "0.0.1"
