@@ -39,7 +39,7 @@ struct oss_abort_multipart_upload_request_s {
 	void (*set_key)(oss_abort_multipart_upload_request_t *request,
 			const char *key);
 	void (*set_upload_id)(oss_abort_multipart_upload_request_t *request,
-			const char *key);
+			const char *upload_id);
 };
 
 /* *
