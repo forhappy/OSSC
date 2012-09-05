@@ -38,5 +38,8 @@
 #include "oss_list_objects_request.h"
 #undef _OSS_LIST_OBJECTS_REQUEST_H
 
+#define _OSS_LIST_PARTS_REQUEST_H
+#include <ossc/oss_list_parts_request.h>
+#undef _OSS_LIST_PARTS_REQUEST_H
 
 #endif
