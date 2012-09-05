@@ -108,83 +108,92 @@ constants_get_error_message(enum _OSS_ERROR_CODE error_code)
 			return "RequestTimeout";
 		case SIGNATURE_DOES_NOT_MATCH:
 			return "SignatureDoesNotMatch";
-		case TooManyBuckets:
+		case TOO_MANY_BUCKETS:
 			return "TooManyBuckets";
 		default:
 			return "NoSuchCode";
 	}
 }
 
-const char *DEFAULT_OSS_HOST           = "storage.aliyun.com";
-const char *VERSION                    = "0.0.1";
-const char *NAME                       = "OSS-C-SDK";
+#define DEFAULT_OSS_HOST            "storage.aliyun.com"
+#define VERSION                     "0.0.1"
+#define NAME                        "OSS-C-SDK"
 
-const char *OSS_BUCKET                 = "bucket";
-const char *OSS_OBJECT                 = "object";
-const char *OSS_HEADERS                = "headers";
-const char *OSS_METHOD                 = "method";
-const char *OSS_QUERY                  = "query";
-const char *OSS_BASENAME               = "basename";
-const char *OSS_MAX_KEYS               = "max-keys";
-const char *OSS_UPLOAD_ID              = "uploadId";
-const char *OSS_MAX_KEYS_VALUE         = 100;
-const char *OSS_MAX_OBJECT_GROUP_VALUE = 1000;
-const char *OSS_FILE_SLICE_SIZE        = 8192;
-const char *OSS_PREFIX                 = "prefix";
-const char *OSS_DELIMITER              = "delimiter";
-const char *OSS_MARKER                 = "marker";
-const char *OSS_CONTENT_MD5            = "Content-Md5";
-const char *OSS_CONTENT_TYPE           = "Content-Type";
-const char *OSS_CONTENT_LENGTH         = "Content-Length";
-const char *OSS_IF_MODIFIED_SINCE      = "If-Modified-Since";
-const char *OSS_IF_UNMODIFIED_SINCE    = "If-Unmodified-Since";
-const char *OSS_IF_MATCH               = "If-Match";
-const char *OSS_IF_NONE_MATCH          = "If-None-Match";
-const char *OSS_CACHE_CONTROL          = "Cache-Control";
-const char *OSS_EXPIRES                = "Expires";
-const char *OSS_PREAUTH                = "preauth";
-const char *OSS_CONTENT_COING          = "Content-Coding";
-const char *OSS_CONTENT_DISPOSTION     = "Content-Disposition";
-const char *OSS_RANGE                  = "Range";
-const char *OS_CONTENT_RANGE           = "Content-Range";
-const char *OSS_CONTENT                = "content";
-const char *OSS_BODY                   = "body";
-const char *OSS_LENGTH                 = "length";
-const char *OSS_HOST                   = "Host";
-const char *OSS_DATE                   = "Date";
-const char *OSS_AUTHORIZATION          = "Authorization";
+#define OSS_BUCKET                  "bucket"
+#define OSS_OBJECT                  "object"
+#define OSS_HEADERS                 "headers"
+#define OSS_METHOD                  "method"
+#define OSS_QUERY                   "query"
+#define OSS_BASENAME                "basename"
+#define OSS_MAX_KEYS                "max-keys"
+#define OSS_UPLOAD_ID               "uploadId"
+#define OSS_MAX_KEYS_VALUE          100
+#define OSS_MAX_OBJECT_GROUP_VALUE  1000
+#define OSS_FILE_SLICE_SIZE         8192
+#define OSS_PREFIX                  "prefix"
+#define OSS_DELIMITER               "delimiter"
+#define OSS_MARKER                  "marker"
+#define OSS_CONTENT_MD5             "Content-Md5"
+#define OSS_CONTENT_TYPE            "Content-Type"
+#define OSS_CONTENT_LENGTH          "Content-Length"
+#define OSS_IF_MODIFIED_SINCE       "If-Modified-Since"
+#define OSS_IF_UNMODIFIED_SINCE     "If-Unmodified-Since"
+#define OSS_IF_MATCH                "If-Match"
+#define OSS_IF_NONE_MATCH           "If-None-Match"
+#define OSS_CACHE_CONTROL           "Cache-Control"
+#define OSS_EXPIRES                 "Expires"
+#define OSS_PREAUTH                 "preauth"
+#define OSS_CONTENT_COING           "Content-Coding"
+#define OSS_CONTENT_DISPOSTION      "Content-Disposition"
+#define OSS_RANGE                   "Range"
+#define OS_CONTENT_RANGE            "Content-Range"
+#define OSS_CONTENT                 "content"
+#define OSS_BODY                    "body"
+#define OSS_LENGTH                  "length"
+#define OSS_HOST                    "Host"
+#define OSS_DATE                    "Date"
+#define OSS_AUTHORIZATION           "Authorization"
 
-const char *OSS_FILE_DOWNLOAD          = "fileDownload";
-const char *OSS_FILE_UPLOAD            = "fileUpload";
-const char *OSS_PART_SIZE              = "partSize";
-const char *OSS_SEEK_TO                = "seekTo";
-const char *OSS_SIZE                   = "size";
-const char *OSS_QUERY_STRING           = "query_string";
-const char *OSS_SUB_RESOURCE           = "sub_resource";
-const char *OSS_DEFAULT_PREFIX         = "x-oss-";
+#define OSS_FILE_DOWNLOAD           "fileDownload"
+#define OSS_FILE_UPLOAD             "fileUpload"
+#define OSS_PART_SIZE               "partSize"
+#define OSS_SEEK_TO                 "seekTo"
+#define OSS_SIZE                    "size"
+#define OSS_QUERY_STRING            "query_string"
+#define OSS_SUB_RESOURCE            "sub_resource"
+#define OSS_DEFAULT_PREFIX          "x-oss-"
 
 
-const char *OSS_URL_ACCESS_KEY_ID = "OSSAccessKeyId";
-const char *OSS_URL_EXPIRES       = "Expires";
-const char *OSS_URL_SIGNATURE     = "Signature";
+#define OSS_URL_ACCESS_KEY_ID  "OSSAccessKeyId"
+#define OSS_URL_EXPIRES        "Expires"
+#define OSS_URL_SIGNATURE      "Signature"
 
 //HTTP方法
 
-const char *OSS_HTTP_GET    = "GET";
-const char *OSS_HTTP_PUT    = "PUT";
-const char *OSS_HTTP_HEAD   = "HEAD";
-const char *OSS_HTTP_POST   = "POST";
-const char *OSS_HTTP_DELETE = "DELETE";
+#define OSS_HTTP_GET     "GET"
+#define OSS_HTTP_PUT     "PUT"
+#define OSS_HTTP_HEAD    "HEAD"
+#define OSS_HTTP_POST    "POST"
+#define OSS_HTTP_DELETE  "DELETE"
 
 //其他常量
 
-const char *OSS_ACL                        = "x-oss-acl";
-const char *OSS_OBJECT_GROUP               = "x-oss-file-group";
-const char *OSS_MULTI_PART                 = "uploads";
-const char *OSS_MULTI_DELETE               = "delete";
-const char *OSS_OBJECT_COPY_SOURCE         = "x-oss-copy-source";
-const char *OSS_ACL_TYPE_PRIVATE           = "private";
-const char *OSS_ACL_TYPE_PUBLIC_READ       = "public-read";
-const char *OSS_ACL_TYPE_PUBLIC_READ_WRITE = "public-read-write";
+#define OSS_ACL                         "x-oss-acl"
+#define OSS_OBJECT_GROUP                "x-oss-file-group"
+#define OSS_MULTI_PART                  "uploads"
+#define OSS_MULTI_DELETE                "delete"
+#define OSS_OBJECT_COPY_SOURCE          "x-oss-copy-source"
+#define OSS_ACL_TYPE_PRIVATE            "private"
+#define OSS_ACL_TYPE_PUBLIC_READ        "public-read"
+#define OSS_ACL_TYPE_PUBLIC_READ_WRITE  "public-read-write"
+
+//ResponseHeaderOverrides
+#define RESPONSE_HEADER_CACHE_CONTROL        "RESPONSE_HEADER_CACHE_CONTROL"
+#define RESPONSE_HEADER_CONTENT_DISPOSITION  "RESPONSE_HEADER_CONTENT_DISPOSITION"
+#define RESPONSE_HEADER_CONTENT_ENCODING     "RESPONSE_HEADER_CONTENT_ENCODING"
+#define RESPONSE_HEADER_CONTENT_LANGUAGE     "RESPONSE_HEADER_CONTENT_LANGUAGE"
+#define RESPONSE_HEADER_CONTENT_TYPE         "RESPONSE_HEADER_CONTENT_TYPE"
+#define RESPONSE_HEADER_EXPIRES              "RESPONSE_HEADER_EXPIRES"
+
 
 #endif // OSS_CONSTANTS_H
