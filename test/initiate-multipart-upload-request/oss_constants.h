@@ -12,9 +12,9 @@
  * =============================================================================
  */
 
-#ifndef _OSS_CONSTANTS_H_
-# error Never include <ossc/oss_constants.h> directly, use <ossc/client.h> instead.
-#endif
+//#ifndef _OSS_CONSTANTS_H_
+//# error Never include <ossc/oss_constants.h> directly, use <ossc/client.h> instead.
+//#endif
 
 #ifndef OSS_CONSTANTS_H
 #define OSS_CONSTANTS_H
@@ -143,13 +143,8 @@ constants_get_error_message(enum _OSS_ERROR_CODE error_code)
 #define OSS_CACHE_CONTROL           "Cache-Control"
 #define OSS_EXPIRES                 "Expires"
 #define OSS_PREAUTH                 "preauth"
-<<<<<<< HEAD
-#define OSS_CONTENT_COING           "Content-Coding"
-#define OSS_CONTENT_DISPOSTION      "Content-Disposition"
-=======
 #define OSS_CONTENT_ENCOING         "Content-Encoding"
 #define OSS_CONTENT_DISPOSITION      "Content-Disposition"
->>>>>>> FETCH_HEAD
 #define OSS_RANGE                   "Range"
 #define OS_CONTENT_RANGE            "Content-Range"
 #define OSS_CONTENT                 "content"
@@ -158,10 +153,7 @@ constants_get_error_message(enum _OSS_ERROR_CODE error_code)
 #define OSS_HOST                    "Host"
 #define OSS_DATE                    "Date"
 #define OSS_AUTHORIZATION           "Authorization"
-<<<<<<< HEAD
-=======
 #define OSS_LAST_MODIFIED           "Last-Modified"
->>>>>>> FETCH_HEAD
 
 #define OSS_FILE_DOWNLOAD           "fileDownload"
 #define OSS_FILE_UPLOAD             "fileUpload"
@@ -195,14 +187,5 @@ constants_get_error_message(enum _OSS_ERROR_CODE error_code)
 #define OSS_ACL_TYPE_PRIVATE            "private"
 #define OSS_ACL_TYPE_PUBLIC_READ        "public-read"
 #define OSS_ACL_TYPE_PUBLIC_READ_WRITE  "public-read-write"
-
-//ResponseHeaderOverrides
-#define RESPONSE_HEADER_CACHE_CONTROL        "RESPONSE_HEADER_CACHE_CONTROL"
-#define RESPONSE_HEADER_CONTENT_DISPOSITION  "RESPONSE_HEADER_CONTENT_DISPOSITION"
-#define RESPONSE_HEADER_CONTENT_ENCODING     "RESPONSE_HEADER_CONTENT_ENCODING"
-#define RESPONSE_HEADER_CONTENT_LANGUAGE     "RESPONSE_HEADER_CONTENT_LANGUAGE"
-#define RESPONSE_HEADER_CONTENT_TYPE         "RESPONSE_HEADER_CONTENT_TYPE"
-#define RESPONSE_HEADER_EXPIRES              "RESPONSE_HEADER_EXPIRES"
-
 
 #endif // OSS_CONSTANTS_H
