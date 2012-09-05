@@ -46,4 +46,8 @@
 #include "oss_list_multipart_uploads_request.h"
 #undef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
 
+#define _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
+#include "oss_initiate_multipart_upload_result.h"
+#undef _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
+
 #endif
