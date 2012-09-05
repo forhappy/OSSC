@@ -42,4 +42,8 @@
 #include <ossc/oss_list_parts_request.h>
 #undef _OSS_LIST_PARTS_REQUEST_H
 
+#define _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
+#include "oss_list_multipart_uploads_request.h"
+#undef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
+
 #endif
