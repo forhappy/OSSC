@@ -39,9 +39,16 @@ int main(int argc, const char *argv[])
 	if (result == 0) {
 		/* Handle value not found... */
 	}
+	printf("application name: %d\n",oss_map_get(oss_map, "application name", NULL, 0));
 	printf("value: %s\n", buf);
+	printf("%d\n", atoi("10"));
+	sprintf(buf, "%d", 123456789);
+	printf("%s\n", buf);
 	/* When done, destroy the oss_map_t object */
 	oss_map_enum(oss_map, iter, NULL);
 	oss_map_delete(oss_map);
+	if (oss_map == NULL) {
+		printf("ooooooops, NULL\n");
+	}
 	return 0;
 }

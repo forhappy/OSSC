@@ -50,4 +50,12 @@
 #include "oss_initiate_multipart_upload_result.h"
 #undef _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
 
+#define _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
+#include "oss_initiate_multipart_upload_request.h"
+#undef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
+
+#define _OSS_OBJECT_METADATA_H
+#include "oss_object_metadata.h"
+#undef _OSS_OBJECT_METADATA_H
+
 #endif
