@@ -12,7 +12,7 @@
  * =============================================================================
  */
 #define _OSS_COPY_OBJECT_REQUEST_H
-#include "oss_copy_object_request.h"
+#include <modules/oss_copy_object_request.h>
 #undef _OSS_COPY_OBJECT_REQUEST_H
 
 
