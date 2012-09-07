@@ -12,8 +12,6 @@
  *
  * =============================================================================
  */
-#include <assert.h>
-#include <stdio.h>
 
 #include "oss_map.h"
 
@@ -223,41 +221,6 @@ int oss_map_put(oss_map_t *map, const char *key, const char *value)
 	strcpy(pair->key, key);
 	strcpy(pair->value, value);
 	return 1;
-}
-
-int oss_map_append(oss_map_t *map, const char *key, const char *value)
-{
-	assert(map != NULL);
-	assert(key != NULL);
-	assert(value != NULL);
-
-	size_t value_len = strlen(value);
-	size_t new_len = 0;
-
-	if (oss_map_exists(map, key) == 1) { // key exist!
-		size_t len = 0;
-		len  = oss_map_get(map, key, NULL, 0);
-		if (len > 0) {
-			new_len = value_len + len; // new buffer length.
-
-			/* *
-			 * buf: store the (old value + ',' + value);
-			 * */
-			char *buf = (char *)malloc(sizeof(char) * new_len + 1);
-			memset(buf, new_len + 1, '\0');
-			size_t old_len = len;
-			len = oss_map_get(map, key, buf, len);
-			if (len != 0) {
-				buf[old_len - 1] = ',';
-				sprintf(buf + old_len, "%s", value);
-				return oss_map_put(map, key, buf);
-			} else 
-				return 0;
-		} else 
-			return 0;
-	} else { // no such key found, put it into the map directly.
-		return oss_map_put(map, key, value);
-	}
 }
 
 int oss_map_get_count(const oss_map_t *map)

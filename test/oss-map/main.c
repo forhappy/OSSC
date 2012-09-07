@@ -33,6 +33,8 @@ int main(int argc, const char *argv[])
 	/* Insert a couple of string associations */
 	oss_map_put(oss_map, "application name", "Test Application");
 	oss_map_put(oss_map, "application version", "1.0.0");
+	oss_map_append(oss_map, "application version", ".0.0.1");
+	oss_map_append(oss_map, "application version", "this is only a test.");
 	
 	/* Retrieve a value */
 	result = oss_map_get(oss_map, "application name", buf, sizeof(buf));

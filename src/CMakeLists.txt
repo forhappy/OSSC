@@ -13,3 +13,5 @@ SET_PROPERTY(TARGET ${target}
 ENDMACRO(set_modules_properties target)
 
 ADD_SUBDIRECTORY(modules)
+ADD_SUBDIRECTORY(util)
+
