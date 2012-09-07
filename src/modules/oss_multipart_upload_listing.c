@@ -25,39 +25,40 @@
 void 
 multipart_upload_listing_finalize(oss_multipart_upload_listing_t *mul)
 {
-	if (mul->bucket_name) {
-		free(mul->bucket_name);
-		mul->bucket_name = NULL;
-	}
-	if (mul->key_marker) {
-		free(mul->key_marker);
-		mul->key_marker = NULL;
-	}
-	if (mul->upload_id_marker) {
-		free(mul->upload_id_marker);
-		mul->upload_id_marker = NULL;
-	}
-	if (mul->next_key_marker) {
-		free(mul->next_key_marker);
-		mul->next_key_marker = NULL;
-	}
-	if (mul->next_upload_id_marker) {
-		free(mul->next_upload_id_marker);
-		mul->next_upload_id_marker = NULL;
-	}
-	if (mul->max_uploads) {
-		free(mul->max_uploads);
-		mul->max_uploads = NULL;
-	}
-	if (mul->delimiter) {
-		free(mul->delimiter);
-		mul->delimiter = NULL;
-	}
-	if (mul->prefix) {
-		free(mul->prefix);
-		mul->prefix = NULL;
-	}
+
 	if (mul) {
+		if (mul->bucket_name) {
+			free(mul->bucket_name);
+			mul->bucket_name = NULL;
+		}
+		if (mul->key_marker) {
+			free(mul->key_marker);
+			mul->key_marker = NULL;
+		}
+		if (mul->upload_id_marker) {
+			free(mul->upload_id_marker);
+			mul->upload_id_marker = NULL;
+		}
+		if (mul->next_key_marker) {
+			free(mul->next_key_marker);
+			mul->next_key_marker = NULL;
+		}
+		if (mul->next_upload_id_marker) {
+			free(mul->next_upload_id_marker);
+			mul->next_upload_id_marker = NULL;
+		}
+		if (mul->max_uploads) {
+			free(mul->max_uploads);
+			mul->max_uploads = NULL;
+		}
+		if (mul->delimiter) {
+			free(mul->delimiter);
+			mul->delimiter = NULL;
+		}
+		if (mul->prefix) {
+			free(mul->prefix);
+			mul->prefix = NULL;
+		}
 		free(mul);
 		mul = NULL;
 	}

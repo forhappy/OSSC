@@ -21,27 +21,28 @@
 void 
 upload_part_request_finalize(oss_upload_part_request_t *upr)
 {
-	if (upr->bucket_name) {
-		free(upr->bucket_name);
-		upr->bucket_name = NULL;
-	}
-	if (upr->key) {
-		free(upr->key);
-		upr->key = NULL;
-	}
-	if (upr->input_stream) {
-		free(upr->input_stream);
-		upr->input_stream = NULL;
-	}
-	if (upr->md5_digest) {
-		free(upr->md5_digest);
-		upr->md5_digest = NULL;
-	}
-	if (upr->upload_id) {
-		free(upr->upload_id);
-		upr->upload_id = NULL;
-	}
+
 	if (upr) {
+		if (upr->bucket_name) {
+			free(upr->bucket_name);
+			upr->bucket_name = NULL;
+		}
+		if (upr->key) {
+			free(upr->key);
+			upr->key = NULL;
+		}
+		if (upr->input_stream) {
+			free(upr->input_stream);
+			upr->input_stream = NULL;
+		}
+		if (upr->md5_digest) {
+			free(upr->md5_digest);
+			upr->md5_digest = NULL;
+		}
+		if (upr->upload_id) {
+			free(upr->upload_id);
+			upr->upload_id = NULL;
+		}
 		free(upr);
 		upr = NULL;
 	}

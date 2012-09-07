@@ -21,29 +21,30 @@
 void 
 part_listing_finalize(oss_part_listing_t *pl)
 {
-	if (pl->bucket_name) {
-		free(pl->bucket_name);
-		pl->bucket_name = NULL;
-	}
-	if (pl->key) {
-		free(pl->key);
-		pl->key = NULL;
-	}
-	if (pl->upload_id) {
-		free(pl->upload_id);
-		pl->upload_id = NULL;
-	}
-	if (pl->storage_class) {
-		free(pl->storage_class);
-		pl->storage_class = NULL;
-	}
-	if (pl->initiator) {
-		owner_finalize(pl->initiator);
-	}
-	if (pl->owner) {
-		owner_finalize(pl->owner);
-	}
+
 	if (pl) {
+		if (pl->bucket_name) {
+			free(pl->bucket_name);
+			pl->bucket_name = NULL;
+		}
+		if (pl->key) {
+			free(pl->key);
+			pl->key = NULL;
+		}
+		if (pl->upload_id) {
+			free(pl->upload_id);
+			pl->upload_id = NULL;
+		}
+		if (pl->storage_class) {
+			free(pl->storage_class);
+			pl->storage_class = NULL;
+		}
+		if (pl->initiator) {
+			pl->initiator = NULL;
+		}
+		if (pl->owner) {
+			pl->owner = NULL;
+		}
 		free(pl);
 		pl = NULL;
 	}
@@ -186,19 +187,19 @@ _part_listing_set_initiator(
 		oss_owner_t *initiator)
 {
 	assert(initiator != NULL);
-	if(pl->initiator)
-		owner_finalize(pl->initiator);
+	//if(pl->initiator)
+	//	owner_finalize(pl->initiator);
+	pl->initiator = initiator;
+	//pl->initiator = owner_initialize();
+	//size_t display_name_len = strlen(initiator->display_name);
+	//pl->initiator->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
+	//strncpy(pl->initiator->display_name, initiator->display_name, display_name_len);
+	//(pl->initiator->display_name)[display_name_len] = '\0';
 
-	pl->initiator = owner_initialize();
-	size_t display_name_len = strlen(initiator->display_name);
-	pl->initiator->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
-	strncpy(pl->initiator->display_name, initiator->display_name, display_name_len);
-	(pl->initiator->display_name)[display_name_len] = '\0';
-
-	size_t id_len = strlen(initiator->id);
-	pl->initiator->id = (char *)malloc(sizeof(char) * id_len + 1);
-	strncpy(pl->initiator->id, initiator->id, id_len);
-	(pl->initiator->id)[id_len] = '\0';
+	//size_t id_len = strlen(initiator->id);
+	//pl->initiator->id = (char *)malloc(sizeof(char) * id_len + 1);
+	//strncpy(pl->initiator->id, initiator->id, id_len);
+	//(pl->initiator->id)[id_len] = '\0';
 }
 
 static int 
@@ -255,19 +256,19 @@ _part_listing_set_owner(
 		oss_owner_t *owner)
 {
 	assert(owner != NULL);
-	if(pl->owner)
-		owner_finalize(pl->owner);
+	//if(pl->owner)
+	//	owner_finalize(pl->owner);
+	pl->owner = owner;
+	//pl->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
+	//size_t display_name_len = strlen(owner->display_name);
+	//pl->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
+	//strncpy(pl->owner->display_name, owner->display_name, display_name_len);
+	//(pl->owner->display_name)[display_name_len] = '\0';
 
-	pl->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
-	size_t display_name_len = strlen(owner->display_name);
-	pl->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
-	strncpy(pl->owner->display_name, owner->display_name, display_name_len);
-	(pl->owner->display_name)[display_name_len] = '\0';
-
-	size_t id_len = strlen(owner->id);
-	pl->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
-	strncpy(pl->owner->id, owner->id, id_len);
-	(pl->owner->id)[id_len] = '\0';
+	//size_t id_len = strlen(owner->id);
+	//pl->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
+	//strncpy(pl->owner->id, owner->id, id_len);
+	//(pl->owner->id)[id_len] = '\0';
 
 }
 

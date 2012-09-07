@@ -21,11 +21,12 @@
 void 
 upload_part_result_finalize(oss_upload_part_result_t *upr)
 {
-	if (upr->etag) {
-		free(upr->etag);
-		upr->etag = NULL;
-	}
+
 	if (upr) {
+		if (upr->etag) {
+			free(upr->etag);
+			upr->etag = NULL;
+		}
 		free(upr);
 		upr = NULL;
 	}

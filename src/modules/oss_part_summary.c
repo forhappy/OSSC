@@ -21,15 +21,16 @@
 void 
 part_summary_finalize(oss_part_summary_t *ps)
 {
-	if (ps->etag) {
-		free(ps->etag);
-		ps->etag = NULL;
-	}
-	if (ps->last_modified) {
-		free(ps->last_modified);
-		ps->last_modified = NULL;
-	}
+
 	if (ps) {
+		if (ps->etag) {
+			free(ps->etag);
+			ps->etag = NULL;
+		}
+		if (ps->last_modified) {
+			free(ps->last_modified);
+			ps->last_modified = NULL;
+		}
 		free(ps);
 		ps = NULL;
 	}
