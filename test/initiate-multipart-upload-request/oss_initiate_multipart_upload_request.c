@@ -156,6 +156,7 @@ _initiate_multipart_upload_request_initialize(
 	request->get_bucket_name = _initiate_multipart_upload_request_get_bucket_name;
 	request->get_key = _initiate_multipart_upload_request_get_key;
 	request->get_object_metadata = _initiate_multipart_upload_request_get_object_metadata;
+	
 	request->set_bucket_name = _initiate_multipart_upload_request_set_bucket_name;
 	request->set_key = _initiate_multipart_upload_request_set_key;
 	request->set_object_metadata = _initiate_multipart_upload_request_set_object_metadata;

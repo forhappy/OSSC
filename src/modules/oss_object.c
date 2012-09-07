@@ -171,5 +171,6 @@ object_finalize(oss_object_t *object)
 		 * and free it;
 		 * */
 		object->object_metadata = NULL;
+		free(object);
 	}
 }
