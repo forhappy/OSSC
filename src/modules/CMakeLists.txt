@@ -10,6 +10,7 @@ SET(SRC
 	oss_list_parts_request.c
 	oss_multipart_upload.c
 	oss_multipart_upload_listing.c
+	oss_object.c
 	oss_object_listing.c
 	oss_object_metadata.c
 	oss_object_summary.c
@@ -23,7 +24,7 @@ SET(SRC
 	oss_upload_part_result.c
 )
 
-ADD_LIBRARY(modules STATIC ${SRC})
+ADD_LIBRARY(ossmodules STATIC ${SRC})
 
-set_modules_properties(modules)
+set_modules_properties(ossmodules)
 # ADD_DEPENDENCIES(modules ossutil)
