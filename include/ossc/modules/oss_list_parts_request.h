@@ -7,14 +7,13 @@
  *
  *        Created:  09/05/2012 10:41:00 AM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
  */
 
 #ifndef _OSS_LIST_PARTS_REQUEST_H
-# error Never include <ossc/oss_list_parts_request_h_> directly
+# error Never include <modules/oss_list_parts_request_h_> directly
 # error use <ossc/client.h> instead.
 #endif
 

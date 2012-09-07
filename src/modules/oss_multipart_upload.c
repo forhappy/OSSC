@@ -13,10 +13,8 @@
  * =============================================================================
  */
 #define _OSS_MULTIPART_UPLOAD_H
-#include "oss_multipart_upload.h"
+#include <modules/oss_multipart_upload.h>
 #undef _OSS_MULTIPART_UPLOAD_H
-
-
 
 void 
 multipart_upload_finalize(oss_multipart_upload_t *mu)

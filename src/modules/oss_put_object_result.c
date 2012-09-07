@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #define _OSS_PUT_OBJECT_RESULT_H
-#include "oss_put_object_result.h"
+#include <modules/oss_put_object_result.h>
 #undef _OSS_PUT_OBJECT_RESULT_H
 
 

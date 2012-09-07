@@ -13,7 +13,7 @@
  */
 
 #ifndef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
-# error Never include <ossc/oss_list_multipart_uploads_request_h_> directly
+# error Never include <modules/oss_list_multipart_uploads_request_h_> directly
 # error use <ossc/client.h> instead.
 #endif
 

@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #ifndef _OSS_PART_SUMMARY_H
-# error Never include <ossc/oss_part_summary.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_part_summary.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_PART_SUMMARY_H

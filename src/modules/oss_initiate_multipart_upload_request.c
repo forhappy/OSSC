@@ -7,7 +7,6 @@
  *
  *        Created:  09/05/2012 02:31:41 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
@@ -18,7 +17,7 @@
 //#undef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
 
 #define _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
-#include <ossc/oss_initiate_multipart_upload_request.h>
+#include <modules/oss_initiate_multipart_upload_request.h>
 #undef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
 
 static inline void

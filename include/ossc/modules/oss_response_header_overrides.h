@@ -13,7 +13,7 @@
  * =============================================================================
  */
 //#ifndef _OSS_RESPONSE_HEADER_OVERRIDES_H
-//# error Never include <ossc/oss_response_header_overrides.h> directly, use <ossc/client.h> instead.
+//# error Never include <modules/oss_response_header_overrides.h> directly, use <ossc/client.h> instead.
 //#endif
 
 #ifndef OSS_RESPONSE_HEADER_OVERRIDES_H
@@ -29,9 +29,9 @@
 #include <stdbool.h>
 #endif
 
-#define _OSS_CONSTANTS_H_
-#include "../../include/ossc/oss_constants.h"
-#undef _OSS_CONSTANTS_H_
+#define _OSS_CONSTANTS_H
+#include "ossc/oss_constants.h"
+#undef _OSS_CONSTANTS_H
 
 typedef struct oss_response_header_overrides_s oss_response_header_overrides_t;
 

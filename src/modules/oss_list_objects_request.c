@@ -17,7 +17,7 @@
 //#undef _OSS_LIST_OBJECTS_REQUEST_H
 
 #define _OSS_LIST_OBJECTS_REQUEST_H
-#include <ossc/oss_list_objects_request.h>
+#include <modules/oss_list_objects_request.h>
 #undef _OSS_LIST_OBJECTS_REQUEST_H
 
 static inline void

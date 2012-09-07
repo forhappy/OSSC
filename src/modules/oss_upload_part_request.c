@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #define _OSS_UPLOAD_PART_REQUEST_H
-#include "oss_upload_part_request.h"
+#include <modules/oss_upload_part_request.h>
 #undef _OSS_UPLOAD_PART_REQUEST_H
 
 

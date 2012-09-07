@@ -64,6 +64,7 @@ typedef enum _OSS_ERROR_CODE {
 	TOO_MANY_BUCKETS
 }OSS_ERROR_CODE;
 
+#if 0
 static inline const char *
 constants_get_error_message(enum _OSS_ERROR_CODE error_code)
 {
@@ -114,6 +115,8 @@ constants_get_error_message(enum _OSS_ERROR_CODE error_code)
 			return "NoSuchCode";
 	}
 }
+#endif
+
 typedef enum _OSS_PERMISSION {
 	FULLCONTROL,
 	READ
@@ -147,13 +150,8 @@ typedef enum _OSS_PERMISSION {
 #define OSS_CACHE_CONTROL           "Cache-Control"
 #define OSS_EXPIRES                 "Expires"
 #define OSS_PREAUTH                 "preauth"
-<<<<<<< HEAD
-#define OSS_CONTENT_COING           "Content-Coding"
-#define OSS_CONTENT_DISPOSTION      "Content-Disposition"
-=======
 #define OSS_CONTENT_ENCOING         "Content-Encoding"
 #define OSS_CONTENT_DISPOSITION      "Content-Disposition"
->>>>>>> FETCH_HEAD
 #define OSS_RANGE                   "Range"
 #define OS_CONTENT_RANGE            "Content-Range"
 #define OSS_CONTENT                 "content"
@@ -162,10 +160,7 @@ typedef enum _OSS_PERMISSION {
 #define OSS_HOST                    "Host"
 #define OSS_DATE                    "Date"
 #define OSS_AUTHORIZATION           "Authorization"
-<<<<<<< HEAD
-=======
 #define OSS_LAST_MODIFIED           "Last-Modified"
->>>>>>> FETCH_HEAD
 
 #define OSS_FILE_DOWNLOAD           "fileDownload"
 #define OSS_FILE_UPLOAD             "fileUpload"
@@ -207,6 +202,5 @@ typedef enum _OSS_PERMISSION {
 #define RESPONSE_HEADER_CONTENT_LANGUAGE     "RESPONSE_HEADER_CONTENT_LANGUAGE"
 #define RESPONSE_HEADER_CONTENT_TYPE         "RESPONSE_HEADER_CONTENT_TYPE"
 #define RESPONSE_HEADER_EXPIRES              "RESPONSE_HEADER_EXPIRES"
-
 
 #endif // OSS_CONSTANTS_H

@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #define _OSS_PART_SUMMARY_H
-#include "oss_part_summary.h"
+#include <modules/oss_part_summary.h>
 #undef _OSS_PART_SUMMARY_H
 
 

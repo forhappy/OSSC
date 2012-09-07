@@ -12,10 +12,14 @@
  *
  * =============================================================================
  */
-#define _OSS_MULTIPART_UPLOAD_LISTING_H
-#include "oss_multipart_upload_listing.h"
-#undef _OSS_MULTIPART_UPLOAD_LISTING_H
 
+//#define _OSS_MULTIPART_UPLOAD_LISTING_H
+//#include "oss_multipart_upload_listing.h"
+//#undef _OSS_MULTIPART_UPLOAD_LISTING_H
+
+#define _OSS_MULTIPART_UPLOAD_LISTING_H
+#include <modules/oss_multipart_upload_listing.h>
+#undef _OSS_MULTIPART_UPLOAD_LISTING_H
 
 
 void 

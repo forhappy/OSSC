@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #define _OSS_PART_ETAG_H
-#include "oss_part_etag.h"
+#include <modules/oss_part_etag.h>
 #undef _OSS_PART_ETAG_H
 
 

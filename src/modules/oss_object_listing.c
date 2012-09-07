@@ -12,11 +12,14 @@
  *
  * =============================================================================
  */
+//#define _OSS_OBJECT_LISTING_H
+//#include "oss_object_listing.h"
+//#undef _OSS_OBJECT_LISTING_H
+
+
 #define _OSS_OBJECT_LISTING_H
-#include "oss_object_listing.h"
+#include <modules/oss_object_listing.h>
 #undef _OSS_OBJECT_LISTING_H
-
-
 
 void 
 object_listing_finalize(oss_object_listing_t *ol)

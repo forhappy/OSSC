@@ -13,7 +13,7 @@
  */
 
 #ifndef _OSS_CLIENT_H
-# error Never include <ossc/oss_client.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_client.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_CLIENT_H
