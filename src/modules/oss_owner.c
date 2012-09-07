@@ -7,29 +7,28 @@
  *
  *        Created:  09/05/2012 09:54:59 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
  */
 #define _OSS_OWNER_H
-#include "../include/ossc/oss_owner.h"
+#include <modules/oss_owner.h>
 #undef _OSS_OWNER_H
 
 static inline const char *
-_get_id(oss_owner_t *owner)
+_owner_get_id(oss_owner_t *owner)
 {
 	return owner->id;
 }
 
 static inline const char *
-_get_dispaly_name(oss_owner_t *owner)
+_owner_get_display_name(oss_owner_t *owner)
 {
 	return owner->display_name;
 }
 
 static inline void
-__set_id(oss_owner_t *owner, const char *id, size_t id_len)
+__owner_set_id(oss_owner_t *owner, const char *id, size_t id_len)
 {
 	assert(id != NULL);
 	if (owner->id != NULL) {
@@ -40,10 +39,11 @@ __set_id(oss_owner_t *owner, const char *id, size_t id_len)
 	owner->id = (char *)malloc(sizeof(char) * id_len + 1);
 	memset(owner->id, id_len + 1, 0);
 	strncpy(owner->id, id, id_len);
+	(owner->id)[id_len] = '\0';
 }
 
 static inline void
-__set_display_name(oss_owner_t *owner, const char *name, size_t name_len)
+__owner_set_display_name(oss_owner_t *owner, const char *name, size_t name_len)
 {
 	assert(name != NULL);
 	if (owner->display_name != NULL) {
@@ -54,30 +54,31 @@ __set_display_name(oss_owner_t *owner, const char *name, size_t name_len)
 	owner->display_name = (char *)malloc(sizeof(char) * name_len + 1);
 	memset(owner->display_name, name_len + 1, 0);
 	strncpy(owner->display_name, name, name_len);
+	(owner->display_name)[name_len] = '\0';
 }
 
 
 static inline void
-_set_id(oss_owner_t *owner, const char *id)
+_owner_set_id(oss_owner_t *owner, const char *id)
 {
 	assert(owner != NULL);
 	assert(id != NULL);
 
 	size_t id_len = strlen(id);
 
-	__set_id(owner, id, id_len);
+	__owner_set_id(owner, id, id_len);
 }
 
 
 static inline void
-_set_display_name(oss_owner_t *owner, const char *name)
+_owner_set_display_name(oss_owner_t *owner, const char *name)
 {
 	assert(owner != NULL);
 	assert(name != NULL);
 
 	size_t name_len = strlen(name);
 
-	__set_id(owner, name, name_len);
+	__owner_set_display_name(owner, name, name_len);
 }
 
 static inline oss_owner_t *
@@ -95,7 +96,13 @@ _owner_initialize_with_id_and_name(const char *id, size_t id_len,
 
 	strncpy(owner->id, id, id_len);
 	strncpy(owner->display_name, name, name_len);
-
+	
+	owner->get_id = _owner_get_id;
+	owner->set_id = _owner_set_id;
+	owner->get_display_name = _owner_get_display_name;
+	owner->set_display_name = _owner_set_display_name;
+	
+	return owner;
 
 }
 oss_owner_t *

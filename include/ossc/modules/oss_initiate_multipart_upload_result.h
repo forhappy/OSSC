@@ -7,14 +7,13 @@
  *
  *        Created:  09/05/2012 12:09:28 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
  */
 
 #ifndef _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
-# error Never include <ossc/oss_initiate_multipart_upload_result.h> directly
+# error Never include <modules/oss_initiate_multipart_upload_result.h> directly
 # error use <ossc/client.h> instead.
 #endif
 

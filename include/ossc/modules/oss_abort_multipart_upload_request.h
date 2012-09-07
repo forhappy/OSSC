@@ -13,7 +13,7 @@
  */
 
 #ifndef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
-# error Never include <ossc/oss_abort_multipart_upload_request.h> directly
+# error Never include <modules/oss_abort_multipart_upload_request.h> directly
 # error use <ossc/client.h> instead.
 #endif
 

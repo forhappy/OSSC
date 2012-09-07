@@ -17,7 +17,7 @@
 //#undef _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
 
 #define _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
-#include <ossc/oss_initiate_multipart_upload_result.h>
+#include <modules/oss_initiate_multipart_upload_result.h>
 #undef _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
 
 static inline void

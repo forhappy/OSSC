@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #define _OSS_RESPONSE_HEADER_OVERRIDES_H
-#include "oss_response_header_overrides.h"
+#include <modules/oss_response_header_overrides.h>
 #undef _OSS_RESPONSE_HEADER_OVERRIDES_H
 
 

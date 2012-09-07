@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #ifndef _OSS_OBJECT_LISTING_H
-# error Never include <ossc/oss_object_listing.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_object_listing.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_OBJECT_LISTING_H

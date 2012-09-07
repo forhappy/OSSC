@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #ifndef _OSS_UPLOAD_PART_REQUEST_H
-# error Never include <ossc/oss_upload_part_request.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_upload_part_request.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_UPLOAD_PART_REQUEST_H

@@ -7,14 +7,13 @@
  *
  *        Created:  09/05/2012 09:55:06 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
  */
 
 #ifndef _OSS_OWNER_H
-# error Never include <ossc/oss_owner.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_owner.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_OWNER_H

@@ -1,0 +1,15 @@
+INCLUDE_DIRECTORIES(
+	${OSSC_BINARY_DIR}
+	${OSSC_SOURCE_DIR}/src
+	${OSSC_SOURCE_DIR}/include
+	${OSSC_SOURCE_DIR}/include/ossc/
+	)
+
+MACRO(set_modules_properties target)
+SET_PROPERTY(TARGET ${target}
+	PROPERTY COMPILE_FLAGS "${MODULES_COMPILE_FLAGS}")
+SET_PROPERTY(TARGET ${target}
+	PROPERTY LINK_FLAGS "${MODULES_LINK_FLAGS}")
+ENDMACRO(set_modules_properties target)
+
+ADD_SUBDIRECTORY(modules)

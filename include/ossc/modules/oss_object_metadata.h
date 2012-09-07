@@ -13,25 +13,22 @@
  */
 
 #ifndef _OSS_OBJECT_METADATA_H
-# error Never include <ossc/oss_object_metadata.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_object_metadata.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_OBJECT_METADATA_H
 #define OSS_OBJECT_METADATA_H
 
 #define _OSS_CONSTANTS_H
-#include <ossc/oss_constants.h>
+#include <oss_constants.h>
 #undef _OSS_CONSTANTS_H
 
-#include <ossc/oss_map.h>
+#include <oss_map.h>
 
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
-//#include "oss_constants.h"
-//#include "oss_map.h"
 
 typedef struct oss_object_metadata_s oss_object_metadata_t;
 struct oss_object_metadata_s {

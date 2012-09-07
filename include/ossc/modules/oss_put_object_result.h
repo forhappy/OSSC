@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #ifndef _OSS_PUT_OBJECT_RESULT_H
-# error Never include <ossc/oss_put_object_result.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_put_object_result.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_PUT_OBJECT_RESULT_H

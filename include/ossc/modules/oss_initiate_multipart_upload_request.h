@@ -7,14 +7,13 @@
  *
  *        Created:  09/05/2012 02:32:01 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
  */
 
 #ifndef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
-# error Never include <ossc/oss_initiate_multipart_upload_request.h> directly
+# error Never include <modules/oss_initiate_multipart_upload_request.h> directly
 # error use <ossc/client.h> instead.
 #endif
 
@@ -25,7 +24,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include <ossc/oss_object_metadata.h>
+#define _OSS_OBJECT_METADATA_H
+#include <modules/oss_object_metadata.h>
+#undef _OSS_OBJECT_METADATA_H
 
 typedef struct oss_initiate_multipart_upload_request_s \
 			oss_initiate_multipart_upload_request_t;
