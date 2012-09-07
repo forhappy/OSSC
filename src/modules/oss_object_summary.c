@@ -21,30 +21,30 @@
 void 
 object_summary_finalize(oss_object_summary_t *os)
 {
-	if (os->bucket_name) {
-		free(os->bucket_name);
-		os->bucket_name = NULL;
-	}
-	if (os->etag) {
-		free(os->etag);
-		os->etag = NULL;
-	}
-	if (os->key) {
-		free(os->key);
-		os->key = NULL;
-	}
-	if (os->last_modified) {
-		free(os->last_modified);
-		os->last_modified = NULL;
-	}
-	if (os->storage_class) {
-		free(os->storage_class);
-		os->storage_class = NULL;
-	}
-	if (os->owner) {
-		owner_finalize(os->owner);
-	}
 	if (os) {
+		if (os->bucket_name) {
+			free(os->bucket_name);
+			os->bucket_name = NULL;
+		}
+		if (os->etag) {
+			free(os->etag);
+			os->etag = NULL;
+		}
+		if (os->key) {
+			free(os->key);
+			os->key = NULL;
+		}
+		if (os->last_modified) {
+			free(os->last_modified);
+			os->last_modified = NULL;
+		}
+		if (os->storage_class) {
+			free(os->storage_class);
+			os->storage_class = NULL;
+		}
+		if (os->owner) {
+			os->owner = NULL;
+		}
 		free(os);
 		os = NULL;
 	}
@@ -233,19 +233,19 @@ _object_summary_set_owner(
 		oss_owner_t *owner)
 {
 	assert(owner != NULL);
-	if(os->owner)
-		owner_finalize(os->owner);
+	//if(os->owner)
+	//	owner_finalize(os->owner);
+	os->owner = owner;
+	//os->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
+	//size_t display_name_len = strlen(owner->display_name);
+	//os->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
+	//strncpy(os->owner->display_name, owner->display_name, display_name_len);
+	//(os->owner->display_name)[display_name_len] = '\0';
 
-	os->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
-	size_t display_name_len = strlen(owner->display_name);
-	os->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
-	strncpy(os->owner->display_name, owner->display_name, display_name_len);
-	(os->owner->display_name)[display_name_len] = '\0';
-
-	size_t id_len = strlen(owner->id);
-	os->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
-	strncpy(os->owner->id, owner->id, id_len);
-	(os->owner->id)[id_len] = '\0';
+	//size_t id_len = strlen(owner->id);
+	//os->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
+	//strncpy(os->owner->id, owner->id, id_len);
+	//(os->owner->id)[id_len] = '\0';
 
 }
 

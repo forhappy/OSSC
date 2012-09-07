@@ -24,31 +24,32 @@
 void 
 object_listing_finalize(oss_object_listing_t *ol)
 {
-	if (ol->bucket_name) {
-		free(ol->bucket_name);
-		ol->bucket_name = NULL;
-	}
-	if (ol->marker) {
-		free(ol->marker);
-		ol->marker = NULL;
-	}
-	if (ol->next_marker) {
-		free(ol->next_marker);
-		ol->next_marker = NULL;
-	}
-	if (ol->max_keys) {
-		free(ol->max_keys);
-		ol->max_keys = NULL;
-	}
-	if (ol->delimiter) {
-		free(ol->delimiter);
-		ol->delimiter = NULL;
-	}
-	if (ol->prefix) {
-		free(ol->prefix);
-		ol->prefix = NULL;
-	}
+
 	if (ol) {
+		if (ol->bucket_name) {
+			free(ol->bucket_name);
+			ol->bucket_name = NULL;
+		}
+		if (ol->marker) {
+			free(ol->marker);
+			ol->marker = NULL;
+		}
+		if (ol->next_marker) {
+			free(ol->next_marker);
+			ol->next_marker = NULL;
+		}
+		if (ol->max_keys) {
+			free(ol->max_keys);
+			ol->max_keys = NULL;
+		}
+		if (ol->delimiter) {
+			free(ol->delimiter);
+			ol->delimiter = NULL;
+		}
+		if (ol->prefix) {
+			free(ol->prefix);
+			ol->prefix = NULL;
+		}
 		free(ol);
 		ol = NULL;
 	}

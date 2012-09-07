@@ -21,31 +21,32 @@
 void 
 response_header_overrides_finalize(oss_response_header_overrides_t *rho)
 {
-	if (rho->cache_control) {
-		free(rho->cache_control);
-		rho->cache_control = NULL;
-	}
-	if (rho->content_disposition) {
-		free(rho->content_disposition);
-		rho->content_disposition = NULL;
-	}
-	if (rho->content_encoding) {
-		free(rho->content_encoding);
-		rho->content_encoding = NULL;
-	}
-	if (rho->content_language) {
-		free(rho->content_language);
-		rho->content_language = NULL;
-	}
-	if (rho->content_type) {
-		free(rho->content_type);
-		rho->content_type = NULL;
-	}
-	if (rho->expires) {
-		free(rho->expires);
-		rho->expires = NULL;
-	}
+
 	if (rho) {
+		if (rho->cache_control) {
+			free(rho->cache_control);
+			rho->cache_control = NULL;
+		}
+		if (rho->content_disposition) {
+			free(rho->content_disposition);
+			rho->content_disposition = NULL;
+		}
+		if (rho->content_encoding) {
+			free(rho->content_encoding);
+			rho->content_encoding = NULL;
+		}
+		if (rho->content_language) {
+			free(rho->content_language);
+			rho->content_language = NULL;
+		}
+		if (rho->content_type) {
+			free(rho->content_type);
+			rho->content_type = NULL;
+		}
+		if (rho->expires) {
+			free(rho->expires);
+			rho->expires = NULL;
+		}
 		free(rho);
 		rho = NULL;
 	}

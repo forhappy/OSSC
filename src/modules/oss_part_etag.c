@@ -21,11 +21,12 @@
 void 
 part_etag_finalize(oss_part_etag_t *pe)
 {
-	if (pe->etag) {
-		free(pe->etag);
-		pe->etag = NULL;
-	}
+
 	if (pe) {
+		if (pe->etag) {
+			free(pe->etag);
+			pe->etag = NULL;
+		}
 		free(pe);
 		pe = NULL;
 	}

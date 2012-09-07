@@ -21,11 +21,12 @@
 void 
 put_object_result_finalize(oss_put_object_result_t *por)
 {
-	if (por->etag) {
-		free(por->etag);
-		por->etag = NULL;
-	}
+
 	if (por) {
+		if (por->etag) {
+			free(por->etag);
+			por->etag = NULL;
+		}
 		free(por);
 		por = NULL;
 	}

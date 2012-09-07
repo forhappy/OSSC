@@ -19,23 +19,23 @@
 void 
 multipart_upload_finalize(oss_multipart_upload_t *mu)
 {
-	if (mu->initiated) {
-		free(mu->initiated);
-		mu->initiated = NULL;
-	}
-	if (mu->key) {
-		free(mu->key);
-		mu->key = NULL;
-	}
-	if (mu->storage_class) {
-		free(mu->storage_class);
-		mu->storage_class = NULL;
-	}
-	if (mu->upload_id) {
-		free(mu->upload_id);
-		mu->upload_id = NULL;
-	}
-	if (mu) {
+	if(mu) {
+		if (mu->initiated) {
+			free(mu->initiated);
+			mu->initiated = NULL;
+		}
+		if (mu->key) {
+			free(mu->key);
+			mu->key = NULL;
+		}
+		if (mu->storage_class) {
+			free(mu->storage_class);
+			mu->storage_class = NULL;
+		}
+		if (mu->upload_id) {
+			free(mu->upload_id);
+			mu->upload_id = NULL;
+		}
 		free(mu);
 		mu = NULL;
 	}
