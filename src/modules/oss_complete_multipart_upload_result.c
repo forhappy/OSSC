@@ -21,6 +21,8 @@
 void 
 complete_multipart_upload_result_finalize(oss_complete_multipart_upload_result_t *cmur)
 {
+	assert(cmur != NULL);
+
 	if (cmur->bucket_name) {
 		free(cmur->bucket_name);
 		cmur->bucket_name = NULL;

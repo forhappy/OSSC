@@ -21,6 +21,8 @@
 void 
 copy_object_result_finalize(oss_copy_object_result_t *cor)
 {
+	assert(cor != NULL);
+
 	if (cor->etag) {
 		free(cor->etag);
 		cor->etag = NULL;

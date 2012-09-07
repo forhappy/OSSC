@@ -21,18 +21,27 @@
 void 
 bucket_finalize(oss_bucket_t *bucket)
 {
-	if (bucket->create_date) {
+	assert(bucket != NULL);
+
+	if (bucket->create_date != NULL) {
 		free(bucket->create_date);
 		bucket->create_date = NULL;
 	}
-	if (bucket->name) {
+
+	if (bucket->name != NULL) {
 		free(bucket->name);
 		bucket->name = NULL;
 	}
-	//if (bucket->owner) {
-	//	owner_finalize(bucket->owner);
-	//}
-	if (bucket) {
+
+	if (bucket->owner != NULL) {
+		/* *
+		 * We did not free bucket->owner, it depends on 
+		 * the creator of owner who should frees it.
+		 * */
+		bucket->owner = NULL;
+	}
+
+	if (bucket != NULL) {
 		free(bucket);
 		bucket = NULL;
 	}
@@ -112,21 +121,26 @@ _bucket_set_owner(
 		oss_owner_t *owner)
 {
 	assert(owner != NULL);
-	if(bucket->owner)
-		owner_finalize(bucket->owner);
 
-	//bucket->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
-	bucket->owner = owner_initialize();
-	size_t display_name_len = strlen(owner->display_name);
-	bucket->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
-	strncpy(bucket->owner->display_name, owner->display_name, display_name_len);
-	(bucket->owner->display_name)[display_name_len] = '\0';
+	/* *
+	 * Here we only assign the owner pointer to bucket->owner.
+	 * */
+	bucket->owner = owner;
 
-	size_t id_len = strlen(owner->id);
-	bucket->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
-	strncpy(bucket->owner->id, owner->id, id_len);
-	(bucket->owner->id)[id_len] = '\0';
-
+	// bucket->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
+	//
+	/* 
+	 * bucket->owner = owner_initialize();
+	 * size_t display_name_len = strlen(owner->display_name);
+	 * bucket->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
+	 * strncpy(bucket->owner->display_name, owner->display_name, display_name_len);
+	 * (bucket->owner->display_name)[display_name_len] = '\0';
+	 *
+	 * size_t id_len = strlen(owner->id);
+	 * bucket->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
+	 * strncpy(bucket->owner->id, owner->id, id_len);
+	 * (bucket->owner->id)[id_len] = '\0';
+	 */
 }
 
 

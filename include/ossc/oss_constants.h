@@ -151,7 +151,7 @@ typedef enum _OSS_PERMISSION {
 #define OSS_EXPIRES                 "Expires"
 #define OSS_PREAUTH                 "preauth"
 #define OSS_CONTENT_ENCOING         "Content-Encoding"
-#define OSS_CONTENT_DISPOSITION      "Content-Disposition"
+#define OSS_CONTENT_DISPOSITION     "Content-Disposition"
 #define OSS_RANGE                   "Range"
 #define OS_CONTENT_RANGE            "Content-Range"
 #define OSS_CONTENT                 "content"

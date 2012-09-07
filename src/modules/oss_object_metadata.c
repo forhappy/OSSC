@@ -267,7 +267,7 @@ static inline void
 _object_metadata_set_content_length(oss_object_metadata_t *metadata,
 		long content_length)
 {
-	char content_len[32];
+	char content_len[32] = {0};
 	sprintf(content_len, "%ld", content_length);
 	oss_map_t *oss_map = metadata->metadata;
 	oss_map_put(oss_map, OSS_CONTENT_LENGTH, content_len);
@@ -327,7 +327,7 @@ _object_metadata_set_user_metadata(oss_object_metadata_t *metadata,
 {
 	oss_map_t *oss_map = metadata->user_metadata;
 	oss_map_delete(oss_map);
-	oss_map = user_metadata;
+	metadata->user_metadata = user_metadata;
 }
 
 /* *
@@ -338,8 +338,8 @@ object_metadata_initialize()
 {
 	oss_object_metadata_t *metadata;
 	metadata = (oss_object_metadata_t *)malloc(sizeof(oss_object_metadata_t));
-	metadata->metadata = oss_map_new(64);
-	metadata->user_metadata = oss_map_new(64);
+	metadata->metadata = oss_map_new(128);
+	metadata->user_metadata = oss_map_new(128);
 
 	metadata->add_user_metadata       = _object_metadata_add_user_metadata;
 	metadata->get_cache_control       = _object_metadata_get_cache_control;
