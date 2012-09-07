@@ -4,6 +4,8 @@ SET(SRC
 	oss_complete_multipart_upload_result.c
 	oss_copy_object_request.c
 	oss_copy_object_result.c
+	oss_get_object_request.c
+	oss_grant.c
 	oss_initiate_multipart_upload_request.c
 	oss_initiate_multipart_upload_result.c
 	oss_list_multipart_uploads_request.c
