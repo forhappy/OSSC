@@ -134,6 +134,24 @@ int oss_map_exists(const oss_map_t *map, const char *key);
 int oss_map_put(oss_map_t *map, const char *key, const char *value);
 
 /*
+ * Associates a value with the supplied key, if key exists, then value will be appended on the old one. 
+ *
+ * Parameters:
+ *
+ * map: A pointer to a string map. This parameter cannot be null.
+ *
+ * key: A pointer to a null-terminated C string. This parameter
+ * cannot be null. The string must have a string length > 0. The
+ * string will be copied.
+ *
+ * value: A pointer to a null-terminated C string. This parameter
+ * cannot be null. The string must have a string length > 0. The
+ * string will be copied.
+ *
+ * Return value: 1 if the association succeeded, 0 otherwise.
+ */
+int oss_map_append(oss_map_t *map, const char *key, const char *value);
+/*
  * Returns the number of associations between keys and values.
  *
  * Parameters:
