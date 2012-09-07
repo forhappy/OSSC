@@ -16,13 +16,13 @@
 #include "oss_owner.h"
 #undef _OSS_OWNER_H
 
-static const char *
+static inline const char *
 _owner_get_id(oss_owner_t *owner)
 {
 	return owner->id;
 }
 
-static const char *
+static inline const char *
 _owner_get_display_name(oss_owner_t *owner)
 {
 	return owner->display_name;

@@ -4,11 +4,11 @@ CC = gcc
 
 CFLAGS= -g -Wall
 
-main: main.o oss_object_summary.o oss_owner.o
+main: main.o oss_bucket.o oss_owner.o
 
 main.o: main.c
 
-oss_object_summary.o: oss_object_summary.c
+oss_bucket.o: oss_bucket.c
 
 oss_owner.o: oss_owner.c
 
