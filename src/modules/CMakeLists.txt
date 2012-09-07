@@ -1,5 +1,6 @@
 SET(SRC
 	oss_abort_multipart_upload_request.c
+	oss_bucket.c
 	oss_initiate_multipart_upload_request.c
 	oss_initiate_multipart_upload_result.c
 	oss_list_multipart_uploads_request.c

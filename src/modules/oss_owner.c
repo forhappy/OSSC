@@ -91,8 +91,8 @@ _owner_initialize_with_id_and_name(const char *id, size_t id_len,
 	owner->id = (char *)malloc(sizeof(char) * id_len + 1);
 	owner->display_name = (char *)malloc(sizeof(char) * name_len + 1);
 
-	memset(owner->id, id_len + 1, 0);
-	memset(owner->display_name, name_len + 1, 0);
+	memset(owner->id, id_len + 1, '\0');
+	memset(owner->display_name, name_len + 1, '\0');
 
 	strncpy(owner->id, id, id_len);
 	strncpy(owner->display_name, name, name_len);

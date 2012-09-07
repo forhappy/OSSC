@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #ifndef _OSS_UPLOAD_PART_RESULT_H
-# error Never include <ossc/oss_upload_part_result.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_upload_part_result.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_UPLOAD_PART_RESULT_H
@@ -30,7 +30,7 @@
 #endif
 
 #define _OSS_PART_ETAG_H
-#include "../../include/ossc/oss_part_etag.h"
+#include <modules/oss_part_etag.h>
 #undef _OSS_PART_ETAG_H
 
 
