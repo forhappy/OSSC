@@ -1,9 +1,12 @@
 SET(SRC
 	oss_abort_multipart_upload_request.c
+	oss_access_control_list.c
 	oss_bucket.c
+	oss_complete_multipart_upload_request.c
 	oss_complete_multipart_upload_result.c
 	oss_copy_object_request.c
 	oss_copy_object_result.c
+	oss_generate_presigned_url_request.c
 	oss_get_object_request.c
 	oss_grant.c
 	oss_initiate_multipart_upload_request.c
@@ -25,7 +28,7 @@ SET(SRC
 	oss_response_header_overrides.c
 	oss_upload_part_request.c
 	oss_upload_part_result.c
-)
+	)
 
 ADD_LIBRARY(ossmodules STATIC ${SRC})
 
