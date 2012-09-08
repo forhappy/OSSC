@@ -43,9 +43,12 @@ struct oss_get_object_request_s {
 	long length;
 	oss_response_header_overrides_t *response_headers;
 	char *unmodified_since_constraint;
-	/* 
-	 * MatchingETagConstraints and NonmatchingETagConstraints to be continued.
-	 * */
+	char **matching_etag_constraints;
+	char **no_matching_etag_constraints;
+
+	unsigned int _counts_matching_etag_constraints;
+	unsigned int _counts_no_matching_etag_constraints;
+
 	const char * (*get_bucket_name)(oss_get_object_request_t *gor);
 	void (*set_bucket_name)(oss_get_object_request_t *gor, const char *bucket_name);
 
@@ -63,14 +66,18 @@ struct oss_get_object_request_s {
 
 	const char * (*get_unmodified_since_constraint)(oss_get_object_request_t *gor);
 	void (*set_unmodified_since_constraint)(oss_get_object_request_t *gor, const char *unmodified_since_constraint);
-	/* 
-	 * get and set matchingETagConstraints to be continued.
-	 * */
 
-	/*
-	 * get and set NonmatchingETagConstraints to be continued.
-	 */
+	const char ** (*get_matching_etag_constraints)(oss_get_object_request_t *object,
+			unsigned int *counts);
+	void (*set_matching_etag_constraints)(oss_get_object_request_t *object,
+			const char **matching_etag_constraints, unsigned int counts);
 
+
+	const char ** (*get_no_matching_etag_constraints)(oss_get_object_request_t *object,
+			unsigned int *counts);
+
+	void (*set_no_matching_etag_constraints)(oss_get_object_request_t *object,
+			const char **no_matching_etag_constraints, unsigned counts);
 };
 
 extern oss_get_object_request_t *

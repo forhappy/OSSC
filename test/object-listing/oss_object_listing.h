@@ -41,6 +41,10 @@ struct oss_object_listing_s {
 	char * delimiter;
 	bool is_truncated;
 
+	char **common_prefixs;
+	/* * 内部计数器，记录common_prefixs数目 */
+	unsigned int _counts_common_prefixs;
+
 	const char * (*get_bucket_name)(oss_object_listing_t *ol);
 	void (*set_bucket_name)(oss_object_listing_t *ol, const char *bucket_name);
 	const char * (*get_next_marker)(oss_object_listing_t *ol);
@@ -55,10 +59,11 @@ struct oss_object_listing_s {
 	void (*set_delimiter)(oss_object_listing_t *ol, const char *delimiter);
 	bool (*get_is_truncated)(oss_object_listing_t *ol);
 	void (*set_is_truncated)(oss_object_listing_t *ol, bool is_truncated);
-	/* 
-	 *get_object_summaries, get_common_prefixes and set_common_prefixes to be continued.
-	 * */
-
+	const char ** (*get_common_prefixs)(oss_object_listing_t *ol,
+			unsigned int *counts);
+	void (*set_common_prefixs)(oss_object_listing_t *ol, 
+			const char **common_prefixs,
+			unsigned int counts);
 };
 
 extern oss_object_listing_t *

@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #define _OSS_GENERATE_PRESIGNED_URL_REQUEST_H
-#include "oss_generate_presigned_url_request.h"
+#include <modules/oss_generate_presigned_url_request.h>
 #undef _OSS_GENERATE_PRESIGNED_URL_REQUEST_H
 
 

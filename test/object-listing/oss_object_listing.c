@@ -21,6 +21,7 @@
 void 
 object_listing_finalize(oss_object_listing_t *ol)
 {
+	assert(ol != NULL);
 	if (ol->bucket_name) {
 		free(ol->bucket_name);
 		ol->bucket_name = NULL;
@@ -45,6 +46,20 @@ object_listing_finalize(oss_object_listing_t *ol)
 		free(ol->prefix);
 		ol->prefix = NULL;
 	}
+
+	if (ol->common_prefixs != NULL) {
+		size_t j = 0;
+		size_t total = ol->_counts_common_prefixs;
+		if (ol->common_prefixs != NULL) {
+			for (; j < total; j++) {
+				if (*(ol->common_prefixs + j) != NULL) {
+					free(*(ol->common_prefixs + j));
+					*(ol->common_prefixs + j) = NULL;
+				}
+			}
+		}
+	}
+
 	if (ol) {
 		free(ol);
 		ol = NULL;
@@ -251,6 +266,53 @@ _object_listing_set_prefix(
 	__object_listing_set_prefix(ol, prefix, prefix_len);
 }
 
+static inline const char **
+_object_listing_get_common_prefixs(oss_object_listing_t *ol, unsigned int *counts)
+{
+	assert(ol != NULL);
+	*counts = ol->_counts_common_prefixs;
+	return (const char **)(ol->common_prefixs);
+
+}
+
+void _object_listing_set_common_prefixs(
+		oss_object_listing_t *ol,
+		const char **common_prefixs, unsigned int counts)
+{
+
+	assert(ol != NULL);
+	assert(common_prefixs != NULL);
+
+	/* *
+	 * If ol->common_prefixs != NULL,
+	 * free it one by one.
+	 * */
+	size_t j = 0;
+	size_t total = ol->_counts_common_prefixs;
+	if (ol->common_prefixs != NULL) {
+
+		for (; j < total; j++) {
+			if (*(ol->common_prefixs + j) != NULL) {
+				free(*(ol->common_prefixs + j));
+				*(ol->common_prefixs + j) = NULL;
+			}
+		}
+	}
+
+	size_t i = 0;
+	const char **pnmec = common_prefixs;
+
+	ol->common_prefixs = (char **)malloc(sizeof(char *) * counts);
+	
+	for (; i < counts; i++) {
+		size_t len = strlen(*(pnmec + i));
+		*(ol->common_prefixs + i) = (char *)malloc(sizeof(char) * len + 1);
+		memset(*(ol->common_prefixs), len + 1, '\0');
+		strncpy(*(ol->common_prefixs + i), *(pnmec + i), len);
+	}
+	ol->_counts_common_prefixs = counts;
+}
+
 oss_object_listing_t *
 object_listing_initialize(void)
 {
@@ -263,6 +325,8 @@ object_listing_initialize(void)
 	ol->delimiter = NULL;
 	ol->prefix = NULL;
 	ol->is_truncated = false;
+	ol->common_prefixs = NULL;
+	ol->_counts_common_prefixs = 0;
 
 	ol->get_bucket_name = _object_listing_get_bucket_name;
 	ol->set_bucket_name = _object_listing_set_bucket_name;
@@ -278,6 +342,8 @@ object_listing_initialize(void)
 	ol->set_delimiter = _object_listing_set_delimiter;
 	ol->get_prefix = _object_listing_get_prefix;
 	ol->set_prefix = _object_listing_set_prefix;
+	ol->get_common_prefixs = _object_listing_get_common_prefixs;
+	ol->set_common_prefixs = _object_listing_set_common_prefixs;
 
 	return ol;
 }
