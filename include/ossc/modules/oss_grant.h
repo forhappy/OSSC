@@ -34,6 +34,7 @@ typedef struct oss_grant_s oss_grant_t;
 struct oss_grant_s {
 	char *identifier;
 	char *permission;
+	struct oss_grant_s *next;
 
 	const char * (*get_identifier)(oss_grant_t *grant);
 	void (*set_identifier)(oss_grant_t *grant, const char * identifier);

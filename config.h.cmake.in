@@ -157,7 +157,7 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #cmakedefine HAVE_UNISTD_H 1
 
-#define REPORT_BUGS_TO		"haipingf@gmail.com"
+#define REPORT_BUGS_TO		"haipingf@gmail.com && wangwei881116@gmail.com"
 
 #define PROJECT_VERSION		"OSSC 0.0.1"
 

@@ -120,6 +120,7 @@ _grant_initialize(const char *identifier, size_t identifier_len, const char *per
 	strncpy(grant->permission, permission, permission_len);
 	(grant->permission)[permission_len] = '\0';
 
+	grant->next = NULL;
 
 	grant->get_permission = _grant_get_permission;
 	grant->set_permission = _grant_set_permission;

@@ -13,11 +13,11 @@
  * =============================================================================
  */
 #ifndef _OSS_ACCESS_CONTROL_LIST_H
-# error Never include <modules/oss_access_control_list.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/oss_access_control_list.h> directly, use <ossc/client.h> instead.
 #endif
 
 #define _OSS_OWNER_H
-#include <modules/oss_owner.h>
+#include "oss_owner.h"
 #undef _OSS_OWNER_H
 
 #define _OSS_GRANT_H
