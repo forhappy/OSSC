@@ -45,6 +45,9 @@ part_listing_finalize(oss_part_listing_t *pl)
 		if (pl->owner) {
 			pl->owner = NULL;
 		}
+		if (pl->parts) {
+			pl->parts = NULL;
+		}
 		free(pl);
 		pl = NULL;
 	}
@@ -189,8 +192,8 @@ _part_listing_set_initiator(
 	assert(initiator != NULL);
 	//if(pl->initiator)
 	//	owner_finalize(pl->initiator);
+
 	pl->initiator = initiator;
-	//pl->initiator = owner_initialize();
 	//size_t display_name_len = strlen(initiator->display_name);
 	//pl->initiator->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
 	//strncpy(pl->initiator->display_name, initiator->display_name, display_name_len);
@@ -258,8 +261,8 @@ _part_listing_set_owner(
 	assert(owner != NULL);
 	//if(pl->owner)
 	//	owner_finalize(pl->owner);
+
 	pl->owner = owner;
-	//pl->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
 	//size_t display_name_len = strlen(owner->display_name);
 	//pl->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
 	//strncpy(pl->owner->display_name, owner->display_name, display_name_len);
@@ -286,6 +289,28 @@ _part_listing_set_part_number_marker(
 	pl->part_number_marker = part_number_marker;
 }
 
+
+static oss_part_summary_t ** 
+_part_listing_get_parts(oss_part_listing_t *pl, int *parts_number)
+{
+	*parts_number = pl->parts_number;
+	return pl->parts;
+}
+
+static void
+_part_listing_set_parts(
+		oss_part_listing_t *pl, 
+		oss_part_summary_t **parts,
+		int parts_number)
+{
+	assert(parts != NULL);
+	assert(pl != NULL);
+	pl->parts_number = parts_number;
+	pl->parts = parts;
+}
+
+
+
 oss_part_listing_t *
 part_listing_initialize(void)
 {
@@ -301,6 +326,8 @@ part_listing_initialize(void)
 	pl->owner = NULL;
 	pl->is_truncated = false;
 	pl->part_number_marker = 0;
+	pl->parts = NULL;
+	pl->parts_number = 0;
 
 	pl->get_bucket_name = _part_listing_get_bucket_name;
 	pl->set_bucket_name = _part_listing_set_bucket_name;
@@ -322,6 +349,8 @@ part_listing_initialize(void)
 	pl->set_owner = _part_listing_set_owner;
 	pl->get_part_number_marker = _part_listing_get_part_number_marker;
 	pl->set_part_number_marker = _part_listing_set_part_number_marker;
+	pl->get_parts = _part_listing_get_parts;
+	pl->set_parts = _part_listing_set_parts;
 
 	return pl;
 }
