@@ -37,6 +37,32 @@ get_object_request_finalize(oss_get_object_request_t *gor)
 		if (gor->response_headers) {
 			gor->response_headers = NULL;
 		}
+		if (gor->matching_etag_constraints != NULL) {
+			size_t j = 0;
+			size_t total = gor->_counts_matching_etag_constraints;
+			if (gor->matching_etag_constraints != NULL) {
+				for (; j < total; j++) {
+					if (*(gor->matching_etag_constraints + j) != NULL) {
+						free(*(gor->matching_etag_constraints + j));
+						*(gor->matching_etag_constraints + j) = NULL;
+					}
+				}
+			}
+		}
+
+		if (gor->no_matching_etag_constraints != NULL) {
+			size_t j = 0;
+			size_t total = gor->_counts_no_matching_etag_constraints;
+			if (gor->no_matching_etag_constraints != NULL) {
+				for (; j < total; j++) {
+					if (*(gor->no_matching_etag_constraints + j) != NULL) {
+						free(*(gor->no_matching_etag_constraints + j));
+						*(gor->no_matching_etag_constraints + j) = NULL;
+					}
+				}
+			}
+		}
+
 		free(gor);
 		gor = NULL;
 	}
@@ -207,6 +233,103 @@ _get_object_request_set_unmodified_since_constraint(
 
 }
 
+static inline const char **
+_get_object_request_get_matching_etag_constraints(
+		oss_get_object_request_t *gor,
+		unsigned int *counts)
+{
+	assert(gor!= NULL);
+	*counts = gor->_counts_matching_etag_constraints;
+	return (const char **)(gor->matching_etag_constraints);
+}
+
+static inline const char **
+_get_object_request_get_no_matching_etag_constraints(
+		oss_get_object_request_t *gor,
+		unsigned int *counts)
+{
+	assert(gor!= NULL);
+	*counts = gor->_counts_no_matching_etag_constraints;
+	return (const char **)(gor->no_matching_etag_constraints);
+}
+
+static inline void
+_get_object_request_set_matching_etag_constraints(
+		oss_get_object_request_t *gor,
+		const char **matching_etag_constraints, 
+		unsigned int counts)
+{
+	assert(gor != NULL);
+	assert(matching_etag_constraints != NULL);
+
+	/* *
+	 * If gor->no_matching_etag_constraints != NULL,
+	 * free it one by one.
+	 * */
+	size_t j = 0;
+	size_t total = gor->_counts_matching_etag_constraints;
+	if (gor->matching_etag_constraints != NULL) {
+
+		for (; j < total; j++) {
+			if (*(gor->matching_etag_constraints + j) != NULL) {
+				free(*(gor->matching_etag_constraints + j));
+				*(gor->matching_etag_constraints + j) = NULL;
+			}
+		}
+	}
+
+	size_t i = 0;
+	const char **pnmec = matching_etag_constraints;
+
+	gor->matching_etag_constraints = (char **)malloc(sizeof(char *) * counts);
+	
+	for (; i < counts; i++) {
+		size_t len = strlen(*(pnmec + i));
+		*(gor->matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
+		memset(*(gor->matching_etag_constraints), len + 1, '\0');
+		strncpy(*(gor->matching_etag_constraints + i), *(pnmec + i), len);
+	}
+	gor->_counts_matching_etag_constraints = counts;
+}
+
+static inline void
+_get_object_request_set_no_matching_etag_constraints(
+		oss_get_object_request_t *gor,
+		const char **no_matching_etag_constraints, 
+		unsigned counts)
+{
+	assert(gor != NULL);
+	assert(no_matching_etag_constraints != NULL);
+
+	/* *
+	 * If gor->no_matching_etag_constraints != NULL,
+	 * free it one by one.
+	 * */
+	size_t j = 0;
+	size_t total = gor->_counts_no_matching_etag_constraints;
+	if (gor->no_matching_etag_constraints != NULL) {
+
+		for (; j < total; j++) {
+			if (*(gor->no_matching_etag_constraints + j) != NULL) {
+				free(*(gor->no_matching_etag_constraints + j));
+				*(gor->no_matching_etag_constraints + j) = NULL;
+			}
+		}
+	}
+
+	size_t i = 0;
+	const char **pnmec = no_matching_etag_constraints;
+
+	gor->no_matching_etag_constraints = (char **)malloc(sizeof(char *) * counts);
+	
+	for (; i < counts; i++) {
+		size_t len = strlen(*(pnmec + i));
+		*(gor->no_matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
+		memset(*(gor->no_matching_etag_constraints), len + 1, '\0');
+		strncpy(*(gor->no_matching_etag_constraints + i), *(pnmec + i), len);
+	}
+	gor->_counts_no_matching_etag_constraints = counts;
+}
 
 oss_get_object_request_t *
 _get_object_request_initialize(const char *bucket_name, size_t bucket_name_len, const char *key, size_t key_len)
@@ -247,7 +370,10 @@ _get_object_request_initialize(const char *bucket_name, size_t bucket_name_len, 
 	gor->set_response_headers = _get_object_request_set_response_headers;
 	gor->get_unmodified_since_constraint = _get_object_request_get_unmodified_since_constraint;
 	gor->set_unmodified_since_constraint = _get_object_request_set_unmodified_since_constraint;
-
+	gor->get_matching_etag_constraints = _get_object_request_get_matching_etag_constraints;
+	gor->get_no_matching_etag_constraints = _get_object_request_get_no_matching_etag_constraints;
+	gor->set_matching_etag_constraints = _get_object_request_set_matching_etag_constraints;
+	gor->set_no_matching_etag_constraints = _get_object_request_set_no_matching_etag_constraints;
 	return gor;
 }
 

@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #ifndef _OSS_GENERATE_PRESIGNED_URL_REQUEST_H
-# error Never include <ossc/oss_generate_presigned_url_request.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_generate_presigned_url_request.h> directly, use <ossc/client.h> instead.
 #endif
 
 #define _OSS_RESPONSE_HEADER_OVERRIDES_H
@@ -33,7 +33,7 @@
 #include <stdbool.h>
 #endif
 
-#include "oss_map.h"
+#include <ossc/oss_map.h>
 
 typedef struct oss_generate_presigned_url_request_s oss_generate_presigned_url_request_t;
 
