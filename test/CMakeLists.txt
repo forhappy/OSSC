@@ -21,4 +21,10 @@ IF (BUILD_TESTS)
 ENDIF(BUILD_TESTS)
 ENDMACRO(build_modules_tests testlist libs)
 
-ADD_SUBDIRECTORY(abort-multipart-upload-request)
+#ADD_SUBDIRECTORY(bucket)
+set(tests
+	abort-multipart-upload-request-t
+	access_control_list-t
+	bucket-t)
+
+build_modules_tests("${tests}" "-lossmodules")
