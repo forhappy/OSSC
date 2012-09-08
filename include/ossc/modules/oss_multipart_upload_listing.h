@@ -13,7 +13,7 @@
  * =============================================================================
  */
 #ifndef _OSS_MULTIPART_UPLOAD_LISTING_H
-# error Never include <ossc/oss_multipart_upload_listing.h> directly, use <ossc/client.h> instead.
+# error Never include <modules/oss_multipart_upload_listing.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_MULTIPART_UPLOAD_LISTING_H
