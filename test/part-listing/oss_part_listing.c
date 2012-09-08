@@ -21,29 +21,33 @@
 void 
 part_listing_finalize(oss_part_listing_t *pl)
 {
-	if (pl->bucket_name) {
-		free(pl->bucket_name);
-		pl->bucket_name = NULL;
-	}
-	if (pl->key) {
-		free(pl->key);
-		pl->key = NULL;
-	}
-	if (pl->upload_id) {
-		free(pl->upload_id);
-		pl->upload_id = NULL;
-	}
-	if (pl->storage_class) {
-		free(pl->storage_class);
-		pl->storage_class = NULL;
-	}
-	if (pl->initiator) {
-		owner_finalize(pl->initiator);
-	}
-	if (pl->owner) {
-		owner_finalize(pl->owner);
-	}
+
 	if (pl) {
+		if (pl->bucket_name) {
+			free(pl->bucket_name);
+			pl->bucket_name = NULL;
+		}
+		if (pl->key) {
+			free(pl->key);
+			pl->key = NULL;
+		}
+		if (pl->upload_id) {
+			free(pl->upload_id);
+			pl->upload_id = NULL;
+		}
+		if (pl->storage_class) {
+			free(pl->storage_class);
+			pl->storage_class = NULL;
+		}
+		if (pl->initiator) {
+			pl->initiator = NULL;
+		}
+		if (pl->owner) {
+			pl->owner = NULL;
+		}
+		if (pl->parts) {
+			pl->parts = NULL;
+		}
 		free(pl);
 		pl = NULL;
 	}
@@ -186,19 +190,19 @@ _part_listing_set_initiator(
 		oss_owner_t *initiator)
 {
 	assert(initiator != NULL);
-	if(pl->initiator)
-		owner_finalize(pl->initiator);
+	//if(pl->initiator)
+	//	owner_finalize(pl->initiator);
 
-	pl->initiator = owner_initialize();
-	size_t display_name_len = strlen(initiator->display_name);
-	pl->initiator->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
-	strncpy(pl->initiator->display_name, initiator->display_name, display_name_len);
-	(pl->initiator->display_name)[display_name_len] = '\0';
+	pl->initiator = initiator;
+	//size_t display_name_len = strlen(initiator->display_name);
+	//pl->initiator->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
+	//strncpy(pl->initiator->display_name, initiator->display_name, display_name_len);
+	//(pl->initiator->display_name)[display_name_len] = '\0';
 
-	size_t id_len = strlen(initiator->id);
-	pl->initiator->id = (char *)malloc(sizeof(char) * id_len + 1);
-	strncpy(pl->initiator->id, initiator->id, id_len);
-	(pl->initiator->id)[id_len] = '\0';
+	//size_t id_len = strlen(initiator->id);
+	//pl->initiator->id = (char *)malloc(sizeof(char) * id_len + 1);
+	//strncpy(pl->initiator->id, initiator->id, id_len);
+	//(pl->initiator->id)[id_len] = '\0';
 }
 
 static int 
@@ -255,19 +259,19 @@ _part_listing_set_owner(
 		oss_owner_t *owner)
 {
 	assert(owner != NULL);
-	if(pl->owner)
-		owner_finalize(pl->owner);
+	//if(pl->owner)
+	//	owner_finalize(pl->owner);
 
-	pl->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
-	size_t display_name_len = strlen(owner->display_name);
-	pl->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
-	strncpy(pl->owner->display_name, owner->display_name, display_name_len);
-	(pl->owner->display_name)[display_name_len] = '\0';
+	pl->owner = owner;
+	//size_t display_name_len = strlen(owner->display_name);
+	//pl->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
+	//strncpy(pl->owner->display_name, owner->display_name, display_name_len);
+	//(pl->owner->display_name)[display_name_len] = '\0';
 
-	size_t id_len = strlen(owner->id);
-	pl->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
-	strncpy(pl->owner->id, owner->id, id_len);
-	(pl->owner->id)[id_len] = '\0';
+	//size_t id_len = strlen(owner->id);
+	//pl->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
+	//strncpy(pl->owner->id, owner->id, id_len);
+	//(pl->owner->id)[id_len] = '\0';
 
 }
 
@@ -285,6 +289,28 @@ _part_listing_set_part_number_marker(
 	pl->part_number_marker = part_number_marker;
 }
 
+
+static oss_part_summary_t ** 
+_part_listing_get_parts(oss_part_listing_t *pl, int *parts_number)
+{
+	*parts_number = pl->parts_number;
+	return pl->parts;
+}
+
+static void
+_part_listing_set_parts(
+		oss_part_listing_t *pl, 
+		oss_part_summary_t **parts,
+		int parts_number)
+{
+	assert(parts != NULL);
+	assert(pl != NULL);
+	pl->parts_number = parts_number;
+	pl->parts = parts;
+}
+
+
+
 oss_part_listing_t *
 part_listing_initialize(void)
 {
@@ -300,6 +326,8 @@ part_listing_initialize(void)
 	pl->owner = NULL;
 	pl->is_truncated = false;
 	pl->part_number_marker = 0;
+	pl->parts = NULL;
+	pl->parts_number = 0;
 
 	pl->get_bucket_name = _part_listing_get_bucket_name;
 	pl->set_bucket_name = _part_listing_set_bucket_name;
@@ -321,6 +349,8 @@ part_listing_initialize(void)
 	pl->set_owner = _part_listing_set_owner;
 	pl->get_part_number_marker = _part_listing_get_part_number_marker;
 	pl->set_part_number_marker = _part_listing_set_part_number_marker;
+	pl->get_parts = _part_listing_get_parts;
+	pl->set_parts = _part_listing_set_parts;
 
 	return pl;
 }

@@ -17,8 +17,12 @@
 #endif
 
 #define _OSS_OWNER_H
-#include  "../../include/ossc/oss_owner.h"
+#include  "oss_owner.h"
 #undef _OSS_OWNER_H
+
+#define _OSS_PART_SUMMARY_H
+#include "oss_part_summary.h"
+#undef _OSS_PART_SUMMARY_H
 
 #ifndef OSS_PART_LISTING_H
 #define OSS_PART_LISTING_H
@@ -44,7 +48,8 @@ struct oss_part_listing_s {
 	int next_part_number_marker;
 	oss_owner_t *owner;
 	int part_number_marker;
-	//list parts;
+	oss_part_summary_t **parts;
+	int parts_number;
 	char *storage_class;
 	char *upload_id;
 
@@ -68,9 +73,10 @@ struct oss_part_listing_s {
 
 	bool (*get_is_truncated)(oss_part_listing_t *pl);
 	void (*set_is_truncated)(oss_part_listing_t *pl, bool is_truncated);
-	/* 
-	 * get and set parts to be continued.
-	 * */
+
+	oss_part_summary_t ** (*get_parts)(oss_part_listing_t *pl, int *parts_number);
+	void (*set_parts)(oss_part_listing_t *pl, oss_part_summary_t **parts, int parts_number);
+
 
 
 	int (*get_next_part_number_marker)(oss_part_listing_t *pl);
