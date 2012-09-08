@@ -15,6 +15,7 @@
 #include "oss_part_listing.h"
 #undef _OSS_PART_LISTING_H
 
+
 #include <stdio.h>
 
 int main()
@@ -42,6 +43,18 @@ int main()
 
 	pl->set_owner(pl, owner);
 
+
+	int i, n = 3;
+	oss_part_summary_t **parts = (oss_part_summary_t **)malloc(sizeof(oss_part_summary_t *) * n);
+	for(i = 0; i < n; i++) {
+		parts[i] = part_summary_initialize();
+		parts[i]->set_etag(parts[i], "etag");
+		parts[i]->set_part_number(parts[i], i);
+		parts[i]->set_last_modified(parts[i], "last_modified");
+		parts[i]->set_size(parts[i], i);
+	}
+	pl->set_parts(pl, parts, n);
+	
 	printf("bucket_name = %s\nkey = %s\nupload_id = %s\nstorage_class = %s\nmax_parts = %d\nis_truncated = %d\nnext_part_number_marker = %d\npart_number_marker = %d\ninitiator->display_name = %s\ninitiator->id = %s\nowner->display_name = %s\nowner->id = %s\n", 
 			pl->get_bucket_name(pl), pl->get_key(pl), pl->get_upload_id(pl), pl->get_storage_class(pl), pl->get_max_parts(pl), pl->get_is_truncated(pl), pl->get_next_part_number_marker(pl), pl->get_part_number_marker(pl), pl->initiator->display_name, pl->initiator->id, pl->owner->display_name, pl->owner->id);
 
@@ -51,6 +64,19 @@ int main()
 	printf("initiator->display_name = %s\ninitator->id = %s\n", initiator->get_display_name(initiator), initiator->get_id(initiator));
 	owner = pl->get_owner(pl);
 	printf("owner->display_name = %s\nowner->id = %s\n", owner->display_name, owner->id);
+	
+	parts = pl->get_parts(pl, &n);
+
+	for(i = 0; i < n; i++) {
+		printf("parts[%d]->etag = %s\tparts[%d]->part_number = %d\nparts[%d]->last_modified = %s\nparts[%d]->size = %ld\n", i, parts[i]->get_etag(parts[i]), i, parts[i]->get_part_number(parts[i]), i, parts[i]->get_last_modified(parts[i]), i, parts[i]->get_size(parts[i]));
+	}
+
+	for(i = 0; i < n; i++) {
+		part_summary_finalize(parts[i]);
+	}
+	
+	owner_finalize(initiator);
+	owner_finalize(owner);
 	
 	part_listing_finalize(pl);
 	return 0;

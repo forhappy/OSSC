@@ -33,7 +33,7 @@ int main()
 	printf("bucket_name = %s\nkey = %s\nupload_id = %s\n", 
 			cmur->get_bucket_name(cmur), cmur->get_key(cmur), cmur->get_upload_id(cmur));
 
-	part_etags = cmur->get_part_etags(cmur);
+	part_etags = cmur->get_part_etags(cmur, &n);
 
 	for(i = 0; i < n; i++) {
 		printf("part_etags[%d]->etag = %s\tpart_etags[%d]->part_number = %d\n", i, part_etags[i]->get_etag(part_etags[i]), i, part_etags[i]->get_part_number(part_etags[i]));
