@@ -90,7 +90,7 @@ const char *
 client_generate_presigned_url_with_method(const char *bucket_name,
 		const char *key,
 		const char *expiration,
-		oss_http_method_t method)
+		const char *method)
 {}
 
 /* *
@@ -228,7 +228,7 @@ client_put_object(const char *bucket_name,
  * */
 void
 client_set_bucket_acl(const char *bucket_name,
-		oss_canned_access_control_list_t *acl)
+		const char *acl)
 {}
 
 /* *

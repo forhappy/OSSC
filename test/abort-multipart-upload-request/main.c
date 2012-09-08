@@ -13,9 +13,10 @@
  * =============================================================================
  */
 
-#define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
-#include "oss_abort_multipart_upload_request.h"
-#undef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
+//#define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
+//#include <modules/oss_abort_multipart_upload_request.h>
+//#undef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
+#include <ossc/client.h>
 
 int main(int argc, const char *argv[])
 {
