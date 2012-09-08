@@ -29,16 +29,18 @@ struct oss_object_s {
 	char *key;
 	char *object_content;
 	oss_object_metadata_t *object_metadata;
+	size_t object_content_len;
 
 	const char * (*get_bucket_name)(oss_object_t *object);
 	const char * (*get_key)(oss_object_t *object);
-	const char * (*get_object_content)(oss_object_t *object);
+	const char * (*get_object_content)(oss_object_t *object, size_t *object_content_len);
 	oss_object_metadata_t * (*get_object_metadata)(oss_object_t *object);
 
 	void (*set_bucket_name)(oss_object_t *object, const char *bucket_name);
 	void (*set_key)(oss_object_t *object, const char *key);
 	void (*set_object_content)(oss_object_t *object,
-			const char *object_content);
+			const char *object_content,
+			size_t object_content_len);
 	void (*set_object_metadata)(oss_object_t *object,
 			oss_object_metadata_t *object_metadata);
 };

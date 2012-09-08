@@ -29,8 +29,9 @@ _object_get_key(oss_object_t *object)
 }
 
 static inline const char *
-_object_get_object_content(oss_object_t *object)
+_object_get_object_content(oss_object_t *object, unsigned int *object_content_len)
 {
+	*object_content_len = object->object_content_len;
 	return object->object_content;
 }
 
@@ -97,19 +98,20 @@ __object_set_object_content(oss_object_t *object,
 		free(object->object_content);
 		object->object_content= NULL;
 	}
-	 object->object_content = (char *)malloc(sizeof(char) * object_content_len+ 1);
-	 memset(object->object_content, object_content_len + 1, '\0');
-	 strncpy(object->object_content, object_content, object_content_len);
+	object->object_content_len = object_content_len;
+	object->object_content = (char *)malloc(sizeof(char) * object_content_len+ 1);
+	memset(object->object_content, object_content_len + 1, '\0');
+	memcpy(object->object_content, object_content, object_content_len);
 }
 
 static inline void
 _object_set_object_content(oss_object_t *object,
-		const char *object_content)
+		const char *object_content,
+		size_t object_content_len)
 {
 	assert(object != NULL);
 	assert(object_content != NULL);
 
-	size_t object_content_len = strlen(object_content);
 	__object_set_object_content(object, object_content, object_content_len);
 }
 
