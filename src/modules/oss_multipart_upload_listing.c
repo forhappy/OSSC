@@ -12,53 +12,71 @@
  *
  * =============================================================================
  */
-
-//#define _OSS_MULTIPART_UPLOAD_LISTING_H
-//#include "oss_multipart_upload_listing.h"
-//#undef _OSS_MULTIPART_UPLOAD_LISTING_H
-
 #define _OSS_MULTIPART_UPLOAD_LISTING_H
 #include <modules/oss_multipart_upload_listing.h>
 #undef _OSS_MULTIPART_UPLOAD_LISTING_H
 
 
+
 void 
 multipart_upload_listing_finalize(oss_multipart_upload_listing_t *mul)
 {
+	assert(mul != NULL);
+	if (mul->bucket_name) {
+		free(mul->bucket_name);
+		mul->bucket_name = NULL;
+	}
 
+	if (mul->common_prefixs != NULL) {
+		size_t j = 0;
+		size_t total = mul->_counts_common_prefixs;
+		if (mul->common_prefixs != NULL) {
+			for (; j < total; j++) {
+				if (*(mul->common_prefixs + j) != NULL) {
+					free(*(mul->common_prefixs + j));
+					*(mul->common_prefixs + j) = NULL;
+				}
+			}
+		}
+	}
+	if (mul->key_marker) {
+		free(mul->key_marker);
+		mul->key_marker = NULL;
+	}
+	if (mul->upload_id_marker) {
+		free(mul->upload_id_marker);
+		mul->upload_id_marker = NULL;
+	}
+	if (mul->next_key_marker) {
+		free(mul->next_key_marker);
+		mul->next_key_marker = NULL;
+	}
+	if (mul->next_upload_id_marker) {
+		free(mul->next_upload_id_marker);
+		mul->next_upload_id_marker = NULL;
+	}
+	if (mul->max_uploads) {
+		free(mul->max_uploads);
+		mul->max_uploads = NULL;
+	}
+
+	/* *
+	 * Here we INTEND to leave it un-freed,
+	 * it's the creator's responsibility to free it.
+	 * */
+	if (mul->multipart_uploads != NULL) {
+		mul->multipart_uploads = NULL;
+	}
+
+	if (mul->delimiter) {
+		free(mul->delimiter);
+		mul->delimiter = NULL;
+	}
+	if (mul->prefix) {
+		free(mul->prefix);
+		mul->prefix = NULL;
+	}
 	if (mul) {
-		if (mul->bucket_name) {
-			free(mul->bucket_name);
-			mul->bucket_name = NULL;
-		}
-		if (mul->key_marker) {
-			free(mul->key_marker);
-			mul->key_marker = NULL;
-		}
-		if (mul->upload_id_marker) {
-			free(mul->upload_id_marker);
-			mul->upload_id_marker = NULL;
-		}
-		if (mul->next_key_marker) {
-			free(mul->next_key_marker);
-			mul->next_key_marker = NULL;
-		}
-		if (mul->next_upload_id_marker) {
-			free(mul->next_upload_id_marker);
-			mul->next_upload_id_marker = NULL;
-		}
-		if (mul->max_uploads) {
-			free(mul->max_uploads);
-			mul->max_uploads = NULL;
-		}
-		if (mul->delimiter) {
-			free(mul->delimiter);
-			mul->delimiter = NULL;
-		}
-		if (mul->prefix) {
-			free(mul->prefix);
-			mul->prefix = NULL;
-		}
 		free(mul);
 		mul = NULL;
 	}
@@ -83,6 +101,53 @@ __multipart_upload_listing_set_bucket_name(
 	mul->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
 	strncpy(mul->bucket_name, bucket_name, bucket_name_len);
 	(mul->bucket_name)[bucket_name_len] = '\0';
+}
+
+static inline const char **
+_multipart_upload_listing_get_common_prefixs(oss_multipart_upload_listing_t *mul, unsigned int *counts)
+{
+	assert(mul != NULL);
+	*counts = mul->_counts_common_prefixs;
+	return (const char **)(mul->common_prefixs);
+
+}
+
+void _multipart_upload_listing_set_common_prefixs(
+		oss_multipart_upload_listing_t *mul,
+		const char **common_prefixs, unsigned int counts)
+{
+
+	assert(mul != NULL);
+	assert(common_prefixs != NULL);
+
+	/* *
+	 * If mul->common_prefixs != NULL,
+	 * free it one by one.
+	 * */
+	size_t j = 0;
+	size_t total = mul->_counts_common_prefixs;
+	if (mul->common_prefixs != NULL) {
+
+		for (; j < total; j++) {
+			if (*(mul->common_prefixs + j) != NULL) {
+				free(*(mul->common_prefixs + j));
+				*(mul->common_prefixs + j) = NULL;
+			}
+		}
+	}
+
+	size_t i = 0;
+	const char **pnmec = common_prefixs;
+
+	mul->common_prefixs = (char **)malloc(sizeof(char *) * counts);
+	
+	for (; i < counts; i++) {
+		size_t len = strlen(*(pnmec + i));
+		*(mul->common_prefixs + i) = (char *)malloc(sizeof(char) * len + 1);
+		memset(*(mul->common_prefixs), len + 1, '\0');
+		strncpy(*(mul->common_prefixs + i), *(pnmec + i), len);
+	}
+	mul->_counts_common_prefixs = counts;
 }
 
 static void
@@ -256,6 +321,77 @@ _multipart_upload_listing_get_is_truncated(oss_multipart_upload_listing_t *mul)
 	return mul->is_truncated;
 }
 
+static inline const oss_multipart_upload_t ** 
+_multipart_upload_listing_get_multipart_uploads(
+		oss_multipart_upload_listing_t *mul,
+		unsigned int *counts)
+{
+	assert(mul != NULL);
+	*counts = mul->_counts_multipart_uploads;
+	return (const oss_multipart_upload_t **)(mul->multipart_uploads);
+}
+
+void _multipart_upload_listing_set_multipart_uploads(
+		oss_multipart_upload_listing_t *mul, 
+		oss_multipart_upload_t **multipart_uploads,
+		unsigned int counts)
+{
+
+	assert(mul != NULL);
+	assert(multipart_uploads != NULL);
+	mul->multipart_uploads = multipart_uploads;
+	mul->_counts_multipart_uploads = counts;
+}
+
+#if 0
+/* * This is an complex implementation of 
+ * _multipart_upload_listing_set_multipart_uploads().
+ * */
+void _multipart_upload_listing_set_multipart_uploads(
+		oss_multipart_upload_listing_t *mul, 
+		const oss_multipart_upload_t **multipart_uploads,
+		unsigned int counts)
+{
+
+	assert(mul != NULL);
+	assert(multipart_uploads != NULL);
+
+	/* *
+	 * If mul->multipart_uploads != NULL,
+	 * free it one by one.
+	 * */
+	size_t j = 0;
+	size_t total = mul->_counts_multipart_uploads;
+	if (mul->multipart_uploads != NULL) {
+
+		for (; j < total; j++) {
+			if (*(mul->multipart_uploads + j) != NULL) {
+				multipart_upload_finalize(*(mul->multipart_uploads + j));
+				*(mul->multipart_uploads + j) = NULL;
+			}
+		}
+	}
+
+	size_t i = 0;
+	const oss_multipart_upload_t **pmu = multipart_uploads;
+
+	mul->multipart_uploads = (char **)malloc(sizeof(oss_multipart_upload_t *) * counts);
+	
+	for (; i < counts; i++) {
+		*(mul->multipart_uploads + i) = multipart_upload_initialize();
+		(*(mul->multipart_uploads + i))->set_initiated(*(multipart_uploads + i),
+				(*(pmu + i))->get_initiated(*(pmu + i)));
+		(*(mul->multipart_uploads + i))->set_storage_class(*(multipart_uploads + i),
+				(*(pmu + i))->get_storage_class(*(pmu + i)));
+		(*(mul->multipart_uploads + i))->set_upload_id(*(multipart_uploads + i),
+				(*(pmu + i))->get_upload_id(*(pmu + i)));
+		(*(mul->multipart_uploads + i))->set_key(*(multipart_uploads + i),
+				(*(pmu + i))->get_key(*(pmu + i)));
+	}
+	mul->_counts_multipart_uploads = counts;
+}
+#endif
+
 static inline void
 _multipart_upload_listing_set_is_truncated(
 		oss_multipart_upload_listing_t *mul, 
@@ -332,6 +468,7 @@ multipart_upload_listing_initialize(void)
 	oss_multipart_upload_listing_t *mul;
 	mul = (oss_multipart_upload_listing_t *)malloc(sizeof(oss_multipart_upload_listing_t));
 	mul->bucket_name = NULL;
+	mul->common_prefixs = NULL;
 	mul->key_marker = NULL;
 	mul->upload_id_marker = NULL;
 	mul->next_key_marker = NULL;
@@ -343,6 +480,8 @@ multipart_upload_listing_initialize(void)
 
 	mul->get_bucket_name = _multipart_upload_listing_get_bucket_name;
 	mul->set_bucket_name = _multipart_upload_listing_set_bucket_name;
+	mul->get_common_prefixs = _multipart_upload_listing_get_common_prefixs;
+	mul->set_common_prefixs = _multipart_upload_listing_set_common_prefixs;
 	mul->get_key_marker = _multipart_upload_listing_get_key_marker;
 	mul->set_key_marker = _multipart_upload_listing_set_key_marker;
 	mul->get_upload_id_marker = _multipart_upload_listing_get_upload_id_marker;
@@ -353,6 +492,8 @@ multipart_upload_listing_initialize(void)
 	mul->set_next_upload_id_marker = _multipart_upload_listing_set_next_upload_id_marker;
 	mul->get_max_uploads = _multipart_upload_listing_get_max_uploads;
 	mul->set_max_uploads = _multipart_upload_listing_set_max_uploads;
+	mul->get_multipart_uploads = _multipart_upload_listing_get_multipart_uploads;
+	mul->set_multipart_uploads = _multipart_upload_listing_set_multipart_uploads;
 	mul->get_is_truncated = _multipart_upload_listing_get_is_truncated;
 	mul->set_is_truncated = _multipart_upload_listing_set_is_truncated;
 	mul->get_delimiter = _multipart_upload_listing_get_delimiter;
