@@ -498,7 +498,7 @@ copy_object_request_finalize(oss_copy_object_request_t *object)
 			object->modified_since_constraints= NULL;
 		}
 
-		if (object->no_matching_etag_constraints != NULL) {
+		if (object->matching_etag_constraints != NULL) {
 			size_t j = 0;
 			size_t total = object->_counts_matching_etag_constraints;
 			if (object->matching_etag_constraints != NULL) {
