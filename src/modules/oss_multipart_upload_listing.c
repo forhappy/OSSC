@@ -321,14 +321,14 @@ _multipart_upload_listing_get_is_truncated(oss_multipart_upload_listing_t *mul)
 	return mul->is_truncated;
 }
 
-static inline const oss_multipart_upload_t ** 
+static inline oss_multipart_upload_t ** 
 _multipart_upload_listing_get_multipart_uploads(
 		oss_multipart_upload_listing_t *mul,
 		unsigned int *counts)
 {
 	assert(mul != NULL);
 	*counts = mul->_counts_multipart_uploads;
-	return (const oss_multipart_upload_t **)(mul->multipart_uploads);
+	return (oss_multipart_upload_t **)(mul->multipart_uploads);
 }
 
 void _multipart_upload_listing_set_multipart_uploads(

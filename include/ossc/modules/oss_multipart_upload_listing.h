@@ -77,7 +77,7 @@ struct oss_multipart_upload_listing_s {
 	bool (*get_is_truncated)(oss_multipart_upload_listing_t *mul);
 	void (*set_is_truncated)(oss_multipart_upload_listing_t *mul, bool is_truncated);
 
-	const oss_multipart_upload_t ** (*get_multipart_uploads)(oss_multipart_upload_listing_t *mul,
+	oss_multipart_upload_t ** (*get_multipart_uploads)(oss_multipart_upload_listing_t *mul,
 			unsigned int *counts);
 	void (*set_multipart_uploads)(oss_multipart_upload_listing_t *mul, 
 			oss_multipart_upload_t **multipart_uploads,

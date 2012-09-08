@@ -53,7 +53,7 @@ int main()
 	access_control_list->revoke_all_permissions(access_control_list, "identifier4");
 	grant = access_control_list->get_grants(access_control_list);
 	while(grant) {
-		printf("grant->identifier = %s, %s\ngrant->permission = %s, %s\n", grant->identifier, grant->get_identifier(grant), grant->get_permission(grant));
+		printf("grant->identifier = %s, %s\ngrant->permission = %s, %s\n", grant->identifier, grant->get_identifier(grant), grant->permission, grant->get_permission(grant));
 		grant = grant->next;
 	}
 
