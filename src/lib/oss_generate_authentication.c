@@ -212,7 +212,7 @@ generate_authentication(const char *access_key, const char *method,
 	fill_canonicalized_headers();
 	key_iter = NULL;
 
-	// printf("canonicalized_headers: %s\n", canonicalized_headers);
+	printf("canonicalized_headers: %s", canonicalized_headers);
 
 	if (content_md5 != NULL && content_type != NULL) 
 		sprintf(string_to_sign, "%s\n%s\n%s\n%s\n%s%s", method,
@@ -225,7 +225,7 @@ generate_authentication(const char *access_key, const char *method,
 				date, canonicalized_headers, resource);
 
 
-	// printf("string to to signed:\n%s\n", string_to_sign);
+	printf("string to to signed:\n%s\n", string_to_sign);
 
 	size_t string_to_sign_len = strlen(string_to_sign);
 

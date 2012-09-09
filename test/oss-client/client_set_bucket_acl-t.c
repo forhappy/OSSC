@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  client-t.c
+ *       Filename:  client_put_bucket_acl-t.c
  *
- *    Description:  client testcase.
+ *    Description:  client_put_bucket_acl testcase.
  *
  *        Created:  09/09/2012 02:55:40 PM
  *
@@ -75,23 +75,26 @@ client_initialize(const char *access_id,
 }
 
 /* *
- * 返回请求者拥有的所有 Bucket 的列表
+ * 设置指定 Bucket 的 Access Control List(ACL)
  * */
-oss_bucket_t *
-client_list_buckets(oss_client_t *client)
+void
+client_set_bucket_acl(oss_client_t *client, const char *bucket_name,
+		const char *acl)
 {
-
 	assert(client != NULL);
+	assert(bucket_name != NULL);
 
-	char resource[256]     = {0};
-	char url[256]          = {0};
-	char header_host[256]  = {0};
-	char header_date[128]  = {0};
-	char now[128]          = {0};
+	size_t bucket_name_len = strlen(bucket_name);
+	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 20);
+	char *url = (char *)malloc(sizeof(char) * bucket_name_len + 40);
+	char header_host[25] = {0};
+	char header_date[50]  = {0};
+	char now[30]          = {0};
 	char header_auth[512]  = {0};
-	const char *bucket_name="";
+	char header_acl[30] = {0};
+	//const char *bucket_name="";
 
-	char headers[1024] = {0};
+	char headers[2048] = {0};
 
 	unsigned int sign_len = 0;
 
@@ -100,17 +103,20 @@ client_list_buckets(oss_client_t *client)
 
 
 	oss_map_t *default_headers = oss_map_new(16);
+	oss_map_t *user_headers = oss_map_new(16);
 
 	sprintf(resource, "/%s", bucket_name);
 	sprintf(url, "%s/%s", client->endpoint, bucket_name);
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
+	sprintf(header_acl, "x-oss-acl: %s", acl);
 
 	oss_map_put(default_headers, OSS_DATE, now);
+	oss_map_put(user_headers, OSS_ACL, acl);
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
-			default_headers, NULL, resource, &sign_len);
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_PUT,
+			default_headers, user_headers, resource, &sign_len);
 	printf("sign: %s\n", sign);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -119,6 +125,7 @@ client_list_buckets(oss_client_t *client)
 	if (curl != NULL) {
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
 		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
@@ -126,6 +133,7 @@ client_list_buckets(oss_client_t *client)
 		http_headers = curl_slist_append(http_headers, header_host);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
+		http_headers = curl_slist_append(http_headers, header_acl);
 
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
@@ -134,14 +142,14 @@ client_list_buckets(oss_client_t *client)
 		curl_easy_cleanup(curl);
 	}
 
-	return NULL;
 }
 
 int main()
 {
-	const char *access_id = "ACSGmv8fkV1TDO9L";
-	const char *access_key = "BedoWbsJe2";
+	const char *access_id = "ACSfLOiddaOzejOP";
+	const char *access_key = "MUltNpuYqE";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	//client_create_bucket(client, "bucketname002");
-	client_list_buckets(client);
+	//client_list_buckets(client);
+	client_set_bucket_acl(client, "bucketname1", "public-read");
 }
