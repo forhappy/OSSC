@@ -57,5 +57,5 @@ set(tests
 	)
 
 build_modules_tests("${tests}" "-lossmodules -lossutil -lossauth -lossc")
-ADD_EXECUTABLE(client-t client-t.c)
-TARGET_LINK_LIBRARIES(client-t ossmodules ossutil ossauth ossc curl)
+
+ADD_SUBDIRECTORY(oss-client)
