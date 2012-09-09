@@ -135,4 +135,5 @@
 #include <modules/oss_upload_part_result.h>
 #undef _OSS_UPLOAD_PART_RESULT_H
 
+#include <ossc/modules/oss_generate_authentication.h>
 #endif

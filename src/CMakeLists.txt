@@ -1,7 +1,7 @@
 INCLUDE_DIRECTORIES(
 	${OSSC_BINARY_DIR}
 	${OSSC_SOURCE_DIR}/src
-	${OSSC_SOURCE_DIR}/include
+	${OSSC_SOURCE_DIR}/include/
 	${OSSC_SOURCE_DIR}/include/ossc/
 	)
 
@@ -14,4 +14,5 @@ ENDMACRO(set_modules_properties target)
 
 ADD_SUBDIRECTORY(modules)
 ADD_SUBDIRECTORY(util)
+ADD_SUBDIRECTORY(lib)
 

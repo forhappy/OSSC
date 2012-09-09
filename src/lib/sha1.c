@@ -23,11 +23,10 @@
 
 #include "sha1.h"
 
-#include <stdalign.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <stddef.h>
 #if USE_UNLOCKED_IO
 # include "unlocked-io.h"
 #endif
@@ -43,6 +42,7 @@
 #if BLOCKSIZE % 64 != 0
 # error "invalid BLOCKSIZE"
 #endif
+#define alignof(type) offsetof (struct { char c; type member; }, member)
 
 /* This array contains the bytes used to pad the buffer to the next
    64-byte boundary.  (RFC 1321, 3.1: Step 1)  */

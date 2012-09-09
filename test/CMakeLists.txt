@@ -13,7 +13,7 @@ IF (BUILD_TESTS)
 		ADD_EXECUTABLE(${t} ${t}.c)
 		SET_PROPERTY(TARGET ${t}
 			APPEND
-			PROPERTY LINK_FLAGS "-L ${OSSC_BINARY_DIR}/src/modules/ -static -lossmodules -L${OSSC_BINARY_DIR}/src/util/ -lossutil"
+			PROPERTY LINK_FLAGS "-L ${OSSC_BINARY_DIR}/src/modules/ -static -lossmodules -L${OSSC_BINARY_DIR}/src/util/ -static -lossutil -L${OSSC_BINARY_DIR}/src/lib/ -static -lossauth"
 			)
 		FOREACH(l ${libs})
 			TARGET_LINK_LIBRARIES(${t} ${l})
@@ -52,6 +52,7 @@ set(tests
 	response-header-overrides-t
 	upload-part-request-t
 	upload-part-result-t
+	generate-authentication-t
 	)
 
-build_modules_tests("${tests}" "-lossmodules -lossutil")
+build_modules_tests("${tests}" "-lossmodules -lossutil -lossauth")
