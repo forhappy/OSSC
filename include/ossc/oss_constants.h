@@ -123,7 +123,7 @@ typedef enum _OSS_PERMISSION {
 }OSS_PERMISSION;
 
 #define DEFAULT_OSS_HOST            "storage.aliyun.com"
-#define VERSION                     "0.0.1"
+#define VERSION                     "0.0.3"
 #define NAME                        "OSS-C-SDK"
 
 #define OSS_BUCKET                  "bucket"

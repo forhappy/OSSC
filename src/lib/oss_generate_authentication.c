@@ -136,7 +136,7 @@ generate_authentication(const char *access_key, const char *method,
 		const char *resource, unsigned int *sign_len)
 {
 	assert(access_key != NULL);
-	assert(method);
+	assert(method != NULL);
 	assert(default_headers != NULL);
 	assert(resource != NULL);
 

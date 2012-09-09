@@ -13,7 +13,7 @@ IF (BUILD_TESTS)
 		ADD_EXECUTABLE(${t} ${t}.c)
 		SET_PROPERTY(TARGET ${t}
 			APPEND
-			PROPERTY LINK_FLAGS "-L ${OSSC_BINARY_DIR}/src/modules/ -static -lossmodules -L${OSSC_BINARY_DIR}/src/util/ -static -lossutil -L${OSSC_BINARY_DIR}/src/lib/ -static -lossauth"
+			PROPERTY LINK_FLAGS "-L ${OSSC_BINARY_DIR}/src/modules/ -static -lossmodules -L${OSSC_BINARY_DIR}/src/util/ -static -lossutil -L${OSSC_BINARY_DIR}/src/lib/ -static -lossauth -L${OSSC_BINARY_DIR}/src/ -lossc"
 			)
 		FOREACH(l ${libs})
 			TARGET_LINK_LIBRARIES(${t} ${l})
@@ -56,4 +56,6 @@ set(tests
 	time-t
 	)
 
-build_modules_tests("${tests}" "-lossmodules -lossutil -lossauth")
+build_modules_tests("${tests}" "-lossmodules -lossutil -lossauth -lossc")
+ADD_EXECUTABLE(client-t client-t.c)
+TARGET_LINK_LIBRARIES(client-t ossmodules ossutil ossauth ossc curl)

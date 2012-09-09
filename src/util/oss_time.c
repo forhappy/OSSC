@@ -36,6 +36,6 @@ const char * oss_get_gmt_time()
 	time_val = (char *)malloc(sizeof(char) * 65);
 	memset(time_val, '\0', 65);
 
-	strftime(time_val, 64, "%a, %d %b %G %H:%M:%S GMT", gmt);
+	strftime(time_val, 64, "%a, %d %b %Y %H:%M:%S GMT", gmt);
 	return time_val;
 }

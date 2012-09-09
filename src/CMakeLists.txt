@@ -16,6 +16,7 @@ SET(SRC
 	oss_client.c)
 ADD_LIBRARY(ossc STATIC ${SRC})
 ADD_DEPENDENCIES(ossc ossmodules ossutil ossauth)
+TARGET_LINK_LIBRARIES(ossc ossmodules ossutil ossauth)
 
 ADD_SUBDIRECTORY(modules)
 ADD_SUBDIRECTORY(util)

@@ -144,4 +144,12 @@
  * get the proper time format
  * */
 #include <ossc/modules/oss_time.h>
+
+/* *
+ * constants
+ * */
+#define _OSS_CONSTANTS_H
+#include <ossc/oss_constants.h>
+#undef _OSS_CONSTANTS_H
+
 #endif
