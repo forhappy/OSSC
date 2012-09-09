@@ -6,12 +6,24 @@ INCLUDE_DIRECTORIES(
 	${OSSC_SOURCE_DIR}/src/util/
 	)
 
-#ADD_EXECUTABLE(client_list_buckets-t client_list_buckets-t.c)
-#ARGET_LINK_LIBRARIES(client_list_buckets-t ossmodules ossutil ossauth ossc curl)
-
-
 ADD_EXECUTABLE(client_get_bucket_acl-t client_get_bucket_acl-t.c)
 TARGET_LINK_LIBRARIES(client_get_bucket_acl-t ossmodules ossutil ossauth ossc curl)
 
 ADD_EXECUTABLE(client_set_bucket_acl-t client_set_bucket_acl-t.c)
 TARGET_LINK_LIBRARIES(client_set_bucket_acl-t ossmodules ossutil ossauth ossc curl)
+
+ADD_EXECUTABLE(client_list_buckets-t client_list_buckets-t.c)
+TARGET_LINK_LIBRARIES(client_list_buckets-t ossmodules ossutil ossauth ossc curl)
+
+ADD_EXECUTABLE(client_create_bucket-t client_create_bucket-t.c)
+TARGET_LINK_LIBRARIES(client_create_bucket-t ossmodules ossutil ossauth ossc curl)
+
+ADD_EXECUTABLE(client_delete_bucket-t client_delete_bucket-t.c)
+TARGET_LINK_LIBRARIES(client_delete_bucket-t ossmodules ossutil ossauth ossc curl)
+
+ADD_EXECUTABLE(client_get_object-t client_get_object-t.c)
+TARGET_LINK_LIBRARIES(client_get_object-t ossmodules ossutil ossauth ossc curl)
+
+ADD_EXECUTABLE(client_list_object-t client_list_object-t.c)
+TARGET_LINK_LIBRARIES(client_list_object-t ossmodules ossutil ossauth ossc curl)
+
