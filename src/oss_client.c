@@ -19,7 +19,7 @@
 #include <curl/curl.h>
 
 #include <ossc/client.h>
-
+#if 0
 /* *
  * 初始化 oss_client_t，内部使用
  * */
@@ -539,3 +539,4 @@ void client_finalize(oss_client_t *client)
 	client = NULL;
 
 }
+#endif
