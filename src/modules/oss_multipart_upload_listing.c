@@ -144,7 +144,7 @@ void _multipart_upload_listing_set_common_prefixs(
 	for (; i < counts; i++) {
 		size_t len = strlen(*(pnmec + i));
 		*(mul->common_prefixs + i) = (char *)malloc(sizeof(char) * len + 1);
-		memset(*(mul->common_prefixs), len + 1, '\0');
+		memset(*(mul->common_prefixs), '\0', len + 1);
 		strncpy(*(mul->common_prefixs + i), *(pnmec + i), len);
 	}
 	mul->_counts_common_prefixs = counts;

@@ -244,7 +244,7 @@ int oss_map_append(oss_map_t *map, const char *key, const char *value)
 			 * buf: store the (old value + ',' + value);
 			 * */
 			char *buf = (char *)malloc(sizeof(char) * new_len + 1);
-			memset(buf, new_len + 1, '\0');
+			memset(buf, '\0', new_len + 1);
 			size_t old_len = len;
 			len = oss_map_get(map, key, buf, len);
 			if (len != 0) {

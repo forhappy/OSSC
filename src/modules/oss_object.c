@@ -51,7 +51,7 @@ __object_set_bucket_name(oss_object_t *object,
 		object->bucket_name = NULL;
 	}
 	 object->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
-	 memset(object->bucket_name, bucket_name_len + 1, '\0');
+	 memset(object->bucket_name, 0, bucket_name_len + 1);
 	 strncpy(object->bucket_name, bucket_name, bucket_name_len);
 }
 
@@ -75,7 +75,7 @@ __object_set_key(oss_object_t *object,
 		object->key= NULL;
 	}
 	 object->key= (char *)malloc(sizeof(char) * key_len + 1);
-	 memset(object->key, key_len+ 1, '\0');
+	 memset(object->key, 0, key_len+ 1);
 	 strncpy(object->key, key, key_len);
 }
 
@@ -100,7 +100,7 @@ __object_set_object_content(oss_object_t *object,
 	}
 	object->object_content_len = object_content_len;
 	object->object_content = (char *)malloc(sizeof(char) * object_content_len+ 1);
-	memset(object->object_content, object_content_len + 1, '\0');
+	memset(object->object_content, 0, object_content_len + 1);
 	memcpy(object->object_content, object_content, object_content_len);
 }
 

@@ -37,7 +37,7 @@ __owner_set_id(oss_owner_t *owner, const char *id, size_t id_len)
 	}
 
 	owner->id = (char *)malloc(sizeof(char) * id_len + 1);
-	memset(owner->id, id_len + 1, 0);
+	memset(owner->id, 0, id_len + 1);
 	strncpy(owner->id, id, id_len);
 	(owner->id)[id_len] = '\0';
 }
@@ -52,7 +52,7 @@ __owner_set_display_name(oss_owner_t *owner, const char *name, size_t name_len)
 	}
 
 	owner->display_name = (char *)malloc(sizeof(char) * name_len + 1);
-	memset(owner->display_name, name_len + 1, 0);
+	memset(owner->display_name, 0, name_len + 1);
 	strncpy(owner->display_name, name, name_len);
 	(owner->display_name)[name_len] = '\0';
 }
@@ -91,8 +91,8 @@ _owner_initialize_with_id_and_name(const char *id, size_t id_len,
 	owner->id = (char *)malloc(sizeof(char) * id_len + 1);
 	owner->display_name = (char *)malloc(sizeof(char) * name_len + 1);
 
-	memset(owner->id, id_len + 1, '\0');
-	memset(owner->display_name, name_len + 1, '\0');
+	memset(owner->id, 0, id_len + 1);
+	memset(owner->display_name, 0, name_len + 1);
 
 	strncpy(owner->id, id, id_len);
 	strncpy(owner->display_name, name, name_len);

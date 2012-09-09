@@ -82,8 +82,8 @@ static void oss_add_headers(const char *key, const char *value)
 	s->key = (char *)malloc(sizeof(char) * key_len + 1);
 	s->value = (char *)malloc(sizeof(char) * value_len + 1);
 
-	memset(s->key, key_len + 1, '\0');
-	memset(s->value, value_len + 1, '\0');
+	memset(s->key, '\0', key_len + 1);
+	memset(s->value, '\0', value_len + 1);
 
 	strncpy(s->key, key, key_len);
 	strncpy(s->value, value, value_len);
@@ -160,10 +160,10 @@ generate_authentication(const char *access_key, const char *method,
 	 * */
 	char *signed_value = (char *)malloc(sizeof(char) * SIGNED_VALUE_LEN);
 
-	memset(string_to_sign, CANONICALIZED_HEADERS_BUFFER_SIZE * 4, '\0');
-	memset(canonicalized_headers, CANONICALIZED_HEADERS_BUFFER_SIZE, '\0');
-	memset(hmac_sha1_out, HMAC_SHA1_OUT_LEN, '\0');
-	memset(signed_value, SIGNED_VALUE_LEN, '\0');
+	memset(string_to_sign, '\0', CANONICALIZED_HEADERS_BUFFER_SIZE * 4);
+	memset(canonicalized_headers, '\0', CANONICALIZED_HEADERS_BUFFER_SIZE);
+	memset(hmac_sha1_out, '\0', HMAC_SHA1_OUT_LEN);
+	memset(signed_value, '\0', SIGNED_VALUE_LEN);
 	/* *
 	 * 必须再次赋值为 NULL
 	 * */
@@ -172,21 +172,21 @@ generate_authentication(const char *access_key, const char *method,
 	unsigned int result_len = oss_map_get(default_headers, OSS_CONTENT_MD5, NULL, 0);
 	if (result_len != 0) {
 		content_md5 = (char *)malloc(sizeof(char) * result_len);
-		memset(content_md5, result_len, '\0');
+		memset(content_md5, '\0', result_len);
 		oss_map_get(default_headers, OSS_CONTENT_MD5, content_md5, result_len);
 	}
 
 	result_len = oss_map_get(default_headers, OSS_CONTENT_TYPE, NULL, 0);
 	if (result_len != 0) {
 		content_type = (char *)malloc(sizeof(char) * result_len);
-		memset(content_type, result_len, '\0');
+		memset(content_type, '\0', result_len);
 		oss_map_get(default_headers, OSS_CONTENT_TYPE, content_type, result_len);
 	}
 
 	result_len = oss_map_get(default_headers, OSS_DATE, NULL, 0);
 	if (result_len != 0) {
 		date = (char *)malloc(sizeof(char) * result_len);
-		memset(date, result_len, '\0');
+		memset(date, '\0', result_len);
 		oss_map_get(default_headers, OSS_DATE, date, result_len);
 	}
 

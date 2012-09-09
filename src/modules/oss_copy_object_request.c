@@ -116,7 +116,7 @@ __copy_object_request_set_destination_bucket_name(
 
 	object->destination_bucket_name = 
 		(char *)malloc(sizeof(char) * destination_bucket_name_len + 1);
-	memset(object->destination_bucket_name, destination_bucket_name_len + 1, '\0');
+	memset(object->destination_bucket_name, 0, destination_bucket_name_len + 1);
 	strncpy(object->destination_bucket_name,
 			destination_bucket_name, destination_bucket_name_len);
 }
@@ -150,7 +150,7 @@ __copy_object_request_set_destination_key(
 
 	object->destination_key = 
 		(char *)malloc(sizeof(char) * destination_key_len + 1);
-	memset(object->destination_key, destination_key_len + 1, '\0');
+	memset(object->destination_key, 0, destination_key_len + 1);
 	strncpy(object->destination_key,
 			destination_key, destination_key_len);
 }
@@ -201,7 +201,7 @@ _copy_object_request_set_matching_etag_constraints(
 	for (; i < counts; i++) {
 		size_t len = strlen(*(pnmec + i));
 		*(object->matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
-		memset(*(object->matching_etag_constraints), len + 1, '\0');
+		memset(*(object->matching_etag_constraints), 0, len + 1);
 		strncpy(*(object->matching_etag_constraints + i), *(pnmec + i), len);
 	}
 	object->_counts_matching_etag_constraints = counts;
@@ -222,8 +222,8 @@ __copy_object_request_set_modified_since_constraints(
 
 	object->modified_since_constraints = 
 		(char *)malloc(sizeof(char) * modified_since_constraints_len + 1);
-	memset(object->modified_since_constraints,
-		modified_since_constraints_len + 1, '\0');
+	memset(object->modified_since_constraints, 0,
+		modified_since_constraints_len + 1);
 	strncpy(object->modified_since_constraints,
 			modified_since_constraints, modified_since_constraints_len);
 }
@@ -284,7 +284,7 @@ _copy_object_request_set_no_matching_etag_constraints(
 	for (; i < counts; i++) {
 		size_t len = strlen(*(pnmec + i));
 		*(object->no_matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
-		memset(*(object->no_matching_etag_constraints), len + 1, '\0');
+		memset(*(object->no_matching_etag_constraints), 0, len + 1);
 		strncpy(*(object->no_matching_etag_constraints + i), *(pnmec + i), len);
 	}
 	object->_counts_no_matching_etag_constraints = counts;
@@ -305,8 +305,8 @@ __copy_object_request_set_source_bucket_name(
 
 	object->source_bucket_name = 
 		(char *)malloc(sizeof(char) * source_bucket_name_len + 1);
-	memset(object->source_bucket_name,
-		source_bucket_name_len + 1, '\0');
+	memset(object->source_bucket_name, 0,
+		source_bucket_name_len + 1);
 	strncpy(object->source_bucket_name,
 			source_bucket_name, source_bucket_name_len);
 }
@@ -339,8 +339,8 @@ __copy_object_request_set_source_key(
 
 	object->source_key = 
 		(char *)malloc(sizeof(char) * source_key_len + 1);
-	memset(object->source_key,
-		source_key_len + 1, '\0');
+	memset(object->source_key, 0,
+		source_key_len + 1);
 	strncpy(object->source_key,
 			source_key, source_key_len);
 }
@@ -373,8 +373,8 @@ __copy_object_request_set_unmodified_since_constraints(
 
 	object->unmodified_since_constraints = 
 		(char *)malloc(sizeof(char) * unmodified_since_constraints_len + 1);
-	memset(object->unmodified_since_constraints,
-		unmodified_since_constraints_len + 1, '\0');
+	memset(object->unmodified_since_constraints, 0,
+		unmodified_since_constraints_len + 1);
 	strncpy(object->unmodified_since_constraints,
 			unmodified_since_constraints, unmodified_since_constraints_len);
 }

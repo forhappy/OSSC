@@ -49,7 +49,7 @@ _object_metadata_get_cache_control(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return NULL;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_CACHE_CONTROL, buf, result);
 	if (result == 0)
 		return NULL;
@@ -70,7 +70,7 @@ _object_metadata_get_content_disposition(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return NULL;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_CONTENT_DISPOSITION, buf, result);
 	if (result == 0)
 		return NULL;
@@ -91,7 +91,7 @@ _object_metadata_get_content_encoding(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return NULL;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_CONTENT_ENCOING, buf, result);
 	if (result == 0)
 		return NULL;
@@ -113,7 +113,7 @@ _object_metadata_get_content_length(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return 0;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_CONTENT_LENGTH, buf, result);
 	if (result == 0)
 		return 0;
@@ -136,7 +136,7 @@ _object_metadata_get_content_type(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return NULL;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_CONTENT_TYPE, buf, result);
 	if (result == 0)
 		return NULL;
@@ -158,7 +158,7 @@ _object_metadata_get_etag(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return NULL;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_CONTENT_MD5, buf, result);
 	if (result == 0)
 		return NULL;
@@ -179,7 +179,7 @@ _object_metadata_get_expiration_time(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return NULL;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_EXPIRES, buf, result);
 	if (result == 0)
 		return NULL;
@@ -200,7 +200,7 @@ _object_metadata_get_last_modified(oss_object_metadata_t *metadata)
 	if (result == 0)
 		return NULL;
 	buf = (char *)malloc(sizeof(char) * result);
-	memset(buf, result, 0);
+	memset(buf, '\0', result);
 	result = oss_map_get(oss_map, OSS_LAST_MODIFIED, buf, result);
 	if (result == 0)
 		return NULL;
