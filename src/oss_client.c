@@ -179,8 +179,11 @@ client_create_bucket(oss_client_t *client, const char *bucket_name)
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURLOPT_PUT, 1L);
-		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 
+
+		curl_slist_free_all(http_headers);
 		http_headers = curl_slist_append(http_headers, header_host);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
