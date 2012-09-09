@@ -171,26 +171,20 @@ generate_authentication(const char *access_key, const char *method,
 
 	unsigned int result_len = oss_map_get(default_headers, OSS_CONTENT_MD5, NULL, 0);
 	if (result_len != 0) {
-		printf("content_md5 result_len: %d\n", result_len);
-		content_md5 = (char *)malloc(sizeof(char) * result_len + 1);
-		memset(content_md5, result_len + 1, '\0');
+		content_md5 = (char *)malloc(sizeof(char) * result_len);
+		memset(content_md5, result_len, '\0');
 		oss_map_get(default_headers, OSS_CONTENT_MD5, content_md5, result_len);
-		content_md5[result_len] = '\n';
-		printf("content_md5: %s", content_md5);
 	}
 
 	result_len = oss_map_get(default_headers, OSS_CONTENT_TYPE, NULL, 0);
 	if (result_len != 0) {
-		printf("content_type result_len: %d\n", result_len);
-		content_type = (char *)malloc(sizeof(char) * result_len + 1);
-		memset(content_type, result_len + 1, '\0');
+		content_type = (char *)malloc(sizeof(char) * result_len);
+		memset(content_type, result_len, '\0');
 		oss_map_get(default_headers, OSS_CONTENT_TYPE, content_type, result_len);
-		content_type[result_len] = '\n';
 	}
 
 	result_len = oss_map_get(default_headers, OSS_DATE, NULL, 0);
 	if (result_len != 0) {
-		printf("date result_len: %d\n", result_len);
 		date = (char *)malloc(sizeof(char) * result_len);
 		memset(date, result_len, '\0');
 		oss_map_get(default_headers, OSS_DATE, date, result_len);
@@ -217,10 +211,13 @@ generate_authentication(const char *access_key, const char *method,
 	fill_canonicalized_headers();
 	key_iter = NULL;
 
-	sprintf(string_to_sign, "%s\n%s%s%s\n%s%s", method,
-			content_md5, content_type, date, canonicalized_headers, resource);
-
-	printf("string to to signed:\n%s\n", string_to_sign);
+	if (content_md5 != NULL && content_type != NULL) 
+		sprintf(string_to_sign, "%s\n%s\n%s\n%s\n%s%s", method,
+				content_md5, content_type, date, canonicalized_headers, resource);
+	else 
+		sprintf(string_to_sign, "%s\n%s\n%s%s", method,
+				date, canonicalized_headers, resource);
+	// printf("string to to signed:\n%s\n", string_to_sign);
 
 	size_t string_to_sign_len = strlen(string_to_sign);
 

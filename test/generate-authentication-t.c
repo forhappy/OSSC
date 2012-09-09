@@ -30,8 +30,8 @@ int main(int argc, const char *argv[])
 
 	oss_map_t *default_headers = oss_map_new(16);
 	oss_map_t *user_headers = oss_map_new(16);
-	oss_map_put(default_headers, OSS_CONTENT_MD5, "123456789afeq34834957aafeib23");
-	oss_map_put(default_headers, OSS_CONTENT_TYPE, "text/html");
+	//oss_map_put(default_headers, OSS_CONTENT_MD5, "123456789afeq34834957aafeib23");
+	//oss_map_put(default_headers, OSS_CONTENT_TYPE, "text/html");
 	oss_map_put(default_headers, OSS_DATE, "2012-09-06 12:32:34 GMT");
 
 	oss_map_put(user_headers, "x-oss-magic-id1", "hello-world");
