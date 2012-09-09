@@ -53,6 +53,7 @@ set(tests
 	upload-part-request-t
 	upload-part-result-t
 	generate-authentication-t
+	time-t
 	)
 
 build_modules_tests("${tests}" "-lossmodules -lossutil -lossauth")

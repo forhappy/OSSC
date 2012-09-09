@@ -135,5 +135,13 @@
 #include <modules/oss_upload_part_result.h>
 #undef _OSS_UPLOAD_PART_RESULT_H
 
+/* *
+ * get generate authentication
+ * */
 #include <ossc/modules/oss_generate_authentication.h>
+
+/* *
+ * get the proper time format
+ * */
+#include <ossc/modules/oss_time.h>
 #endif

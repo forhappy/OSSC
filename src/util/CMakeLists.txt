@@ -1,5 +1,6 @@
 SET(SRC
 	oss_map.c
+	oss_time.c
 )
 
 ADD_LIBRARY(ossutil STATIC ${SRC})
