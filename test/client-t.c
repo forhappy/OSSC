@@ -25,5 +25,6 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_create_bucket(client, "test-bucket-name");
+	client_create_bucket(client, "bucketname002");
+	// client_list_buckets(client);
 }

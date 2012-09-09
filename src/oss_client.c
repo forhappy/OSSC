@@ -142,7 +142,6 @@ client_create_bucket(oss_client_t *client, const char *bucket_name)
 	assert(bucket_name != NULL);
 
 	char resource[256]     = {0};
-	//char request_line[256] = {0};
 	char url[256]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
@@ -160,15 +159,12 @@ client_create_bucket(oss_client_t *client, const char *bucket_name)
 	oss_map_t *default_headers = oss_map_new(16);
 
 	sprintf(resource, "/%s", bucket_name);
-	//sprintf(request_line, "%s /%s HTTP/1.1", OSS_HTTP_PUT, bucket_name);
-	//sprintf(url, "/%s", bucket_name);
 	sprintf(url, "%s/%s", client->endpoint, bucket_name);
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
-
 	oss_map_put(default_headers, OSS_DATE, now);
-	
+
 	const char *sign = generate_authentication(client->access_key, OSS_HTTP_PUT,
 			default_headers, NULL, resource, &sign_len);
 
@@ -178,7 +174,8 @@ client_create_bucket(oss_client_t *client, const char *bucket_name)
 	if (curl != NULL) {
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
-		curl_easy_setopt(curl, CURLOPT_PUT, 1L);
+		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 
 		http_headers = curl_slist_append(http_headers, header_host);
@@ -191,7 +188,6 @@ client_create_bucket(oss_client_t *client, const char *bucket_name)
 		curl_slist_free_all(http_headers);
 		curl_easy_cleanup(curl);
 	}
-
 
 	return NULL;
 }
@@ -271,6 +267,62 @@ client_get_endpoint(oss_client_t *client)
 oss_object_t *
 client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 {
+
+	assert(client != NULL);
+
+	char resource[256]     = {0};
+	//char request_line[256] = {0};
+	char url[256]          = {0};
+	char header_host[256]  = {0};
+	char header_date[128]  = {0};
+	char now[128]          = {0};
+	char header_auth[512]  = {0};
+	const char *bucket_name="";
+
+	char headers[1024] = {0};
+
+	unsigned int sign_len = 0;
+
+	CURL *curl = NULL;
+	CURLcode result;
+
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	sprintf(resource, "/%s", bucket_name);
+	sprintf(url, "%s/%s", client->endpoint, bucket_name);
+	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(now, "%s", oss_get_gmt_time());
+	sprintf(header_date, "Date: %s", now);
+
+	oss_map_put(default_headers, OSS_DATE, now);
+	
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+			default_headers, NULL, resource, &sign_len);
+	printf("sign: %s\n", sign);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	curl = curl_easy_init();
+	if (curl != NULL) {
+		struct curl_slist *http_headers = NULL;
+		curl_easy_setopt(curl, CURLOPT_URL, url);
+		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+
+		http_headers = curl_slist_append(http_headers, header_host);
+		http_headers = curl_slist_append(http_headers, header_date);
+		http_headers = curl_slist_append(http_headers, header_auth);
+
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
+		curl_easy_perform(curl);
+
+		curl_slist_free_all(http_headers);
+		curl_easy_cleanup(curl);
+	}
+
+	return NULL;
 	return NULL;
 }
 
@@ -328,6 +380,60 @@ client_is_bucket_exist(oss_client_t *client, const char *bucket_name)
 oss_bucket_t *
 client_list_buckets(oss_client_t *client)
 {
+
+	assert(client != NULL);
+
+	char resource[256]     = {0};
+	char url[256]          = {0};
+	char header_host[256]  = {0};
+	char header_date[128]  = {0};
+	char now[128]          = {0};
+	char header_auth[512]  = {0};
+	const char *bucket_name="";
+
+	char headers[1024] = {0};
+
+	unsigned int sign_len = 0;
+
+	CURL *curl = NULL;
+	CURLcode result;
+
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	sprintf(resource, "/%s", bucket_name);
+	sprintf(url, "%s/%s", client->endpoint, bucket_name);
+	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(now, "%s", oss_get_gmt_time());
+	sprintf(header_date, "Date: %s", now);
+
+	oss_map_put(default_headers, OSS_DATE, now);
+	
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+			default_headers, NULL, resource, &sign_len);
+	printf("sign: %s\n", sign);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	curl = curl_easy_init();
+	if (curl != NULL) {
+		struct curl_slist *http_headers = NULL;
+		curl_easy_setopt(curl, CURLOPT_URL, url);
+		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+
+		http_headers = curl_slist_append(http_headers, header_host);
+		http_headers = curl_slist_append(http_headers, header_date);
+		http_headers = curl_slist_append(http_headers, header_auth);
+
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
+		curl_easy_perform(curl);
+
+		curl_slist_free_all(http_headers);
+		curl_easy_cleanup(curl);
+	}
+
 	return NULL;
 }
 
