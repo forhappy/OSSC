@@ -356,7 +356,7 @@ extern oss_put_object_result_t *
 client_put_object(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
-		const char *input,
+		void *input,
 		oss_object_metadata_t *metadata);
 
 /* *

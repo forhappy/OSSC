@@ -76,7 +76,7 @@ client_initialize(const char *access_id,
 size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
-	fwrite(ptr, size, nmemb, stream);
+	strncpy(stream, ptr, r);
 	return r;
 }
 
@@ -84,7 +84,7 @@ size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *st
  * 获取 Object
  * */
 oss_object_t *
-client_get_object(oss_client_t *client, oss_get_object_request_t *request)
+client_head_object(oss_client_t *client, oss_get_object_request_t *request)
 {
 
 	assert(client != NULL);
@@ -102,6 +102,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 	char header_auth[512]  = {0};
 
 	char headers[1024] = {0};
+	char response[4096] = {0};
 
 	unsigned int sign_len = 0;
 
@@ -119,7 +120,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 
 	oss_map_put(default_headers, OSS_DATE, now);
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_HEAD,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -128,10 +129,11 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 	if (curl != NULL) {
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "HEAD");
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
-		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_head_object_callback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, response);
 
 
 		http_headers = curl_slist_append(http_headers, header_host);
@@ -145,7 +147,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		curl_easy_cleanup(curl);
 	}
 
-	fclose(file);
+	printf("%s", response);
 	return NULL;
 }
 
@@ -157,5 +159,5 @@ int main()
 	const char *key = "putxxx.pdf";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object(client, request);
+	client_head_object(client, request);
 }

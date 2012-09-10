@@ -14,7 +14,7 @@
  */
 
 
-#include <utilities/tstring.h>
+#include <lib/tstring.h>
 
 /*
  * _tstring_equal:

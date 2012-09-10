@@ -73,28 +73,23 @@ client_initialize(const char *access_id,
 			access_key, access_key_len,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
-size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_delete_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
-	fwrite(ptr, size, nmemb, stream);
+	strncpy(stream, ptr, r);
 	return r;
 }
 
 /* *
- * 获取 Object
+ *  删除 Object
  * */
-oss_object_t *
-client_get_object(oss_client_t *client, oss_get_object_request_t *request)
+void
+client_delete_object(oss_client_t *client, const char *bucket_name, const char *key)
 {
 
 	assert(client != NULL);
 
-	const char *bucket_name = request->get_bucket_name(request);
-	const char *key = request->get_key(request);
-	FILE *file = fopen(key, "wb");
-
 	char resource[256]     = {0};
-	//char request_line[256] = {0};
 	char url[256]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
@@ -102,6 +97,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 	char header_auth[512]  = {0};
 
 	char headers[1024] = {0};
+	char response[4096] = {0};
 
 	unsigned int sign_len = 0;
 
@@ -119,7 +115,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 
 	oss_map_put(default_headers, OSS_DATE, now);
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_DELETE,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -129,9 +125,10 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
 		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_delete_object_callback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, response);
 
 
 		http_headers = curl_slist_append(http_headers, header_host);
@@ -145,7 +142,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		curl_easy_cleanup(curl);
 	}
 
-	fclose(file);
+	printf("%s", response);
 	return NULL;
 }
 
@@ -154,8 +151,7 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
-	const char *key = "putxxx.pdf";
+	const char *key = "put.png";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object(client, request);
+	client_delete_object(client, bucket_name, key);
 }

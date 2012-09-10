@@ -4,6 +4,7 @@ INCLUDE_DIRECTORIES(
 	${OSSC_SOURCE_DIR}/include/ossc/
 	${OSSC_SOURCE_DIR}/include/ossc/modules/
 	${OSSC_SOURCE_DIR}/src/util/
+	${OSSC_SOURCE_DIR}/src/
 	)
 
 

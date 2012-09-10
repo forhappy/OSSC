@@ -14,6 +14,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <ossc/client.h>
 
 #define _OSS_CLIENT_H
@@ -73,53 +74,52 @@ client_initialize(const char *access_id,
 			access_key, access_key_len,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
-size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_upload_part_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
-	fwrite(ptr, size, nmemb, stream);
+	memcpy(ptr, stream, r);
 	return r;
 }
 
 /* *
- * 获取 Object
+ * 拷贝 Object
  * */
-oss_object_t *
-client_get_object(oss_client_t *client, oss_get_object_request_t *request)
+oss_upload_part_result_t *
+client_upload_part(oss_client_t *client, 
+		oss_upload_part_request_t *request)
 {
 
 	assert(client != NULL);
 
-	const char *bucket_name = request->get_bucket_name(request);
-	const char *key = request->get_key(request);
-	FILE *file = fopen(key, "wb");
-
 	char resource[256]     = {0};
-	//char request_line[256] = {0};
 	char url[256]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
-
-	char headers[1024] = {0};
+	char header_content_type[64] = {0};
+	//char header_content_length[64] = {0};
 
 	unsigned int sign_len = 0;
+	int input_stream_len = 0;
 
 	CURL *curl = NULL;
-	CURLcode result;
-
 
 	oss_map_t *default_headers = oss_map_new(16);
 
-	sprintf(resource, "/%s/%s", bucket_name, key);
-	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
+	sprintf(resource, "/%s/%s?partNumber=%d&uploadId=%s",
+			request->get_bucket_name(request), request->get_key(request),
+			request->get_part_number(request), request->get_upload_id(request));
+	sprintf(url, "%s/%s/%s?partNumber=%d&uploadId=%s", client->endpoint, 
+			request->get_bucket_name(request), request->get_key(request),
+			request->get_part_number(request), request->get_upload_id(request));
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_PUT,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -129,14 +129,20 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
-		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+		curl_easy_setopt(curl, CURLOPT_INFILESIZE, request->get_part_size(request));
+		curl_easy_setopt(curl, CURLOPT_READFUNCTION, client_upload_part_callback);
+		curl_easy_setopt(curl, CURLOPT_READDATA, request->get_input_stream(request, &input_stream_len));
 
-
+		//http_headers = curl_slist_append(http_headers, header_content_length);
+		http_headers = curl_slist_append(http_headers, header_content_type);
 		http_headers = curl_slist_append(http_headers, header_host);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
+
 
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
@@ -145,8 +151,22 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		curl_easy_cleanup(curl);
 	}
 
-	fclose(file);
 	return NULL;
+}
+
+long file_size( FILE *fp )
+{
+    long int save_pos;
+    long size_of_file;
+    /* Save the current position. */
+    save_pos = ftell(fp);
+    /* Jump to the end of the file. */
+    fseek(fp, 0L, SEEK_END);
+    /* Get the end position. */
+    size_of_file = ftell(fp);
+    /* Jump back to the original position. */
+    fseek(fp, save_pos, SEEK_SET);
+    return size_of_file;
 }
 
 int main()
@@ -154,8 +174,40 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
-	const char *key = "putxxx.pdf";
+	const char *upload_id = "0004C955A174CDE5054ABAF82B1F99A9";
+	const char *key = "a_very_large_file.dat";
+	FILE *file = fopen("eclim_1_7_9.jar", "r");
+	size_t file_len = file_size(file);
+	//int fd = fileno(file);
+	
+	char *buffer = (char *)malloc(sizeof(char) * file_len + 1);
+	memset(buffer, '\0', file_len + 1);
+	fread(buffer, file_len, 1, file);
+	const int single_request_len = 8 * 1024 * 1024;
+	int requests_num = file_len / single_request_len;
+	int current_part_number = 0;
+
 	oss_client_t *client = client_initialize(access_id, access_key);
-	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object(client, request);
+	oss_upload_part_request_t *request = upload_part_request_initialize();
+	request->set_bucket_name(request, bucket_name);
+	request->set_key(request, key);
+	request->set_upload_id(request, upload_id);
+
+	for (; current_part_number < requests_num + 1; current_part_number++) {
+		if (current_part_number < requests_num) {
+			request->set_part_number(request, current_part_number + 1);
+			request->set_input_stream(request,
+					buffer + current_part_number *single_request_len, single_request_len);
+			request->set_part_size(request, single_request_len);
+			client_upload_part(client, request);
+		} else {
+			request->set_part_number(request, current_part_number + 1);
+			request->set_input_stream(request,
+					buffer + current_part_number *single_request_len,
+					file_len - single_request_len * current_part_number);
+			request->set_part_size(request, file_len - single_request_len * current_part_number);
+			client_upload_part(client, request);
+		}
+	}
+
 }

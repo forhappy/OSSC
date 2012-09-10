@@ -4,6 +4,7 @@ SET(SRC
 	hmac-sha1.c
 	memxor.c
 	sha1.c
+	tstring.c
 	)
 
 ADD_LIBRARY(ossauth STATIC ${SRC})

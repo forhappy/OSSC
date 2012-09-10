@@ -14,6 +14,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <ossc/client.h>
 
 #define _OSS_CLIENT_H
@@ -73,41 +74,35 @@ client_initialize(const char *access_id,
 			access_key, access_key_len,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
-size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_put_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
-	fwrite(ptr, size, nmemb, stream);
+	read(*(int *)stream, ptr, r);
 	return r;
 }
 
 /* *
- * 获取 Object
+ * 拷贝 Object
  * */
-oss_object_t *
-client_get_object(oss_client_t *client, oss_get_object_request_t *request)
+oss_put_object_result_t *
+client_put_object(oss_client_t *client, const char *bucket_name, const char *key,
+		void *input, oss_object_metadata_t *metadata)
 {
 
 	assert(client != NULL);
 
-	const char *bucket_name = request->get_bucket_name(request);
-	const char *key = request->get_key(request);
-	FILE *file = fopen(key, "wb");
-
 	char resource[256]     = {0};
-	//char request_line[256] = {0};
 	char url[256]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
-
-	char headers[1024] = {0};
+	char header_content_type[64] = {0};
+	char header_content_length[64] = {0};
 
 	unsigned int sign_len = 0;
 
 	CURL *curl = NULL;
-	CURLcode result;
-
 
 	oss_map_t *default_headers = oss_map_new(16);
 
@@ -116,10 +111,13 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
+	//sprintf(header_content_length, "Content-Length: %ld", metadata->get_content_length(metadata));
+	sprintf(header_content_type, "Content-Type: %s", metadata->get_content_type(metadata));
 
 	oss_map_put(default_headers, OSS_DATE, now);
+	oss_map_put(default_headers, OSS_CONTENT_TYPE, metadata->get_content_type(metadata));
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_PUT,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -129,14 +127,21 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
-		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
+		curl_easy_setopt(curl, CURLOPT_INFILESIZE, metadata->get_content_length(metadata));
+		curl_easy_setopt(curl, CURLOPT_READFUNCTION, client_put_object_callback);
+		curl_easy_setopt(curl, CURLOPT_READDATA, (int *)input);
+		printf("fd: %d\n", *(int *)input);
 
-
+		//http_headers = curl_slist_append(http_headers, header_content_length);
+		http_headers = curl_slist_append(http_headers, header_content_type);
 		http_headers = curl_slist_append(http_headers, header_host);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
+
 
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
@@ -145,8 +150,21 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		curl_easy_cleanup(curl);
 	}
 
-	fclose(file);
 	return NULL;
+}
+long file_size( FILE *fp )
+{
+    long int save_pos;
+    long size_of_file;
+    /* Save the current position. */
+    save_pos = ftell(fp);
+    /* Jump to the end of the file. */
+    fseek(fp, 0L, SEEK_END);
+    /* Get the end position. */
+    size_of_file = ftell(fp);
+    /* Jump back to the original position. */
+    fseek(fp, save_pos, SEEK_SET);
+    return size_of_file;
 }
 
 int main()
@@ -155,7 +173,18 @@ int main()
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
 	const char *key = "putxxx.pdf";
+	FILE *file = fopen("proactor.pdf", "r");
+	size_t file_len = file_size(file);
+	int fd = fileno(file);
+	//char *buffer = (char *)malloc(sizeof(char) * file_len + 1);
+	//memset(buffer, '\0', file_len + 1);
+	//fread(buffer, file_len, 1, file);
+
 	oss_client_t *client = client_initialize(access_id, access_key);
-	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object(client, request);
+	oss_object_metadata_t *metadata = object_metadata_initialize();
+	metadata->set_content_length(metadata, file_len);
+	metadata->set_content_type(metadata, "application/octet-stream");
+
+	client_put_object(client, bucket_name, key,
+			&fd, metadata);
 }

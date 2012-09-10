@@ -73,35 +73,34 @@ client_initialize(const char *access_id,
 			access_key, access_key_len,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
-size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_copy_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
-	fwrite(ptr, size, nmemb, stream);
+	strncpy(stream, ptr, r);
 	return r;
 }
 
 /* *
- * 获取 Object
+ * 拷贝 Object
  * */
-oss_object_t *
-client_get_object(oss_client_t *client, oss_get_object_request_t *request)
+oss_copy_object_result_t *
+client_copy_object_ext(oss_client_t *client, const char *source_bucket_name, const char *source_key,
+		const char *destination_bucket_name, const char *destination_key)
 {
 
 	assert(client != NULL);
 
-	const char *bucket_name = request->get_bucket_name(request);
-	const char *key = request->get_key(request);
-	FILE *file = fopen(key, "wb");
-
 	char resource[256]     = {0};
-	//char request_line[256] = {0};
 	char url[256]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
+	char user_header_copy_source[128]  = {0};
+	char header_copy_source[128] = {0};
 
 	char headers[1024] = {0};
+	char response[4096] = {0};
 
 	unsigned int sign_len = 0;
 
@@ -110,17 +109,21 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 
 
 	oss_map_t *default_headers = oss_map_new(16);
+	oss_map_t *user_headers = oss_map_new(16);
 
-	sprintf(resource, "/%s/%s", bucket_name, key);
-	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
+	sprintf(resource, "/%s/%s", destination_bucket_name, destination_key);
+	sprintf(url, "%s/%s/%s", client->endpoint, destination_bucket_name, destination_key);
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
+	sprintf(user_header_copy_source, "/%s/%s", source_bucket_name, source_key);
+	sprintf(header_copy_source, "%s: %s", OSS_COPY_SOURCE, user_header_copy_source);
 
 	oss_map_put(default_headers, OSS_DATE, now);
+	oss_map_put(user_headers, OSS_COPY_SOURCE, user_header_copy_source);
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
-			default_headers, NULL, resource, &sign_len);
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_PUT,
+			default_headers, user_headers, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
 
@@ -129,14 +132,17 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
-		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		//curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_copy_object_callback);
+		//curl_easy_setopt(curl, CURLOPT_WRITEDATA, response);
 
 
 		http_headers = curl_slist_append(http_headers, header_host);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
+		http_headers = curl_slist_append(http_headers, header_copy_source);
 
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
@@ -144,8 +150,8 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		curl_slist_free_all(http_headers);
 		curl_easy_cleanup(curl);
 	}
+	//printf("%s", response);
 
-	fclose(file);
 	return NULL;
 }
 
@@ -153,9 +159,11 @@ int main()
 {
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
-	const char *bucket_name = "bucketname001";
-	const char *key = "putxxx.pdf";
+	const char *source_bucket_name = "bucketname001";
+	const char *destination_bucket_name = "bucketname002";
+	const char *source_key = "put.png";
+	const char *destination_key = "PUT.png";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object(client, request);
+	client_copy_object_ext(client, source_bucket_name, source_key,
+			destination_bucket_name, destination_key);
 }

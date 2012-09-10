@@ -188,6 +188,7 @@ typedef enum _OSS_PERMISSION {
 
 #define OSS_ACL                         "x-oss-acl"
 #define OSS_OBJECT_GROUP                "x-oss-file-group"
+#define OSS_COPY_SOURCE					"x-oss-copy-source"
 #define OSS_MULTI_PART                  "uploads"
 #define OSS_MULTI_DELETE                "delete"
 #define OSS_OBJECT_COPY_SOURCE          "x-oss-copy-source"

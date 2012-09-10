@@ -26,7 +26,34 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <lcdb/cdefs.h>
+#include <config.h>
+
+#ifdef HAVE_STDBOOL_H
+typedef	bool bool_t;
+# define TRUE true
+# define FALSE false
+#else
+typedef int bool_t;
+# define TRUE	(1)
+# define FALSE	(!TRUE)
+#endif
+
+/*
+ * min()/max()/clamp() macros that also do
+ * strict type-checking.. See the
+ * "unnecessary" pointer comparison.
+ */
+#define min(x, y) ({						\
+			typeof(x) _min1 = (x);			\
+			typeof(y) _min2 = (y);			\
+			(void) (&_min1 == &_min2);		\
+			_min1 < _min2 ? _min1 : _min2; })
+
+#define max(x, y) ({						\
+			typeof(x) _max1 = (x);			\
+			typeof(y) _max2 = (y);			\
+			(void) (&_max1 == &_max2);		\
+			_max1 > _max2 ? _max1 : _max2; })
 
 typedef struct _tstring_t tstring_t;
 struct _tstring_t {
