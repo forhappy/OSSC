@@ -74,13 +74,26 @@ client_initialize(const char *access_id,
 			access_key, access_key_len,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
-size_t client_put_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+
+size_t client_put_object_callback_write(void *ptr, size_t size, size_t nmemb, void *stream)
+{
+	size_t r = size * nmemb;
+	memcpy(stream, ptr, r);
+	return r;
+}
+
+size_t client_put_object_callback_read(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
 	read(*(int *)stream, ptr, r);
 	return r;
 }
 
+size_t client_put_object_callback_header(void *ptr, size_t size, size_t nmemb, void *stream)
+{
+	sscanf(ptr, "ETag: %s\n", stream);
+	return size * nmemb;
+}
 /* *
  * 拷贝 Object
  * */
@@ -99,6 +112,7 @@ client_put_object(oss_client_t *client, const char *bucket_name, const char *key
 	char header_auth[512]  = {0};
 	char header_content_type[64] = {0};
 	char header_content_length[64] = {0};
+	char response[4096] = {0};
 
 	unsigned int sign_len = 0;
 
@@ -129,12 +143,14 @@ client_put_object(oss_client_t *client, const char *bucket_name, const char *key
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "PUT");
 		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
 		curl_easy_setopt(curl, CURLOPT_INFILESIZE, metadata->get_content_length(metadata));
-		curl_easy_setopt(curl, CURLOPT_READFUNCTION, client_put_object_callback);
+		curl_easy_setopt(curl, CURLOPT_READFUNCTION, client_put_object_callback_read);
 		curl_easy_setopt(curl, CURLOPT_READDATA, (int *)input);
-		printf("fd: %d\n", *(int *)input);
+
+		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, client_put_object_callback_header);
+		curl_easy_setopt(curl, CURLOPT_HEADERDATA, response);
 
 		//http_headers = curl_slist_append(http_headers, header_content_length);
 		http_headers = curl_slist_append(http_headers, header_content_type);
@@ -149,6 +165,7 @@ client_put_object(oss_client_t *client, const char *bucket_name, const char *key
 		curl_slist_free_all(http_headers);
 		curl_easy_cleanup(curl);
 	}
+	printf("RESPONSE ETag:\n%s\n", response);
 
 	return NULL;
 }
@@ -187,4 +204,5 @@ int main()
 
 	client_put_object(client, bucket_name, key,
 			&fd, metadata);
+	fclose(file);
 }

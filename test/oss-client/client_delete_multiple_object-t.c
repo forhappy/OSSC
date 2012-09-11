@@ -20,16 +20,10 @@
 #define _OSS_CLIENT_H
 #include <modules/oss_client.h>
 #undef _OSS_CLIENT_H
+
 #include <lib/md5.h>
 
 #include <curl/curl.h>
-
-typedef struct _oss_upload_part_send_buffer_s _oss_upload_part_send_buffer_t;
-
-struct _oss_upload_part_send_buffer_s {
-	const char *ptr;
-	size_t left;
-};
 
 /* *
  * 初始化 oss_client_t，内部使用
@@ -99,24 +93,12 @@ void compute_md5_digest(void *ptr, size_t len)
 	printf("\n");
 }
 
-#if 0
-size_t client_upload_part_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_delete_multiple_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
-	size_t total = size * nmemb;
-	printf("size * nmemb: %d\n", total);
-	char * ret = mempcpy(ptr, stream, total);
-	compute_md5_digest(ptr, r);
-	return total;
-}
-#endif
-
-size_t client_upload_part_callback(void *ptr, size_t size, size_t nmemb, void *stream)
-{
-	_oss_upload_part_send_buffer_t *send_buffer = (_oss_upload_part_send_buffer_t *)stream;
+	_oss_delete_multiple_object_send_buffer_t *send_buffer = (_oss_delete_multiple_object_send_buffer_t *)stream;
  
 	size_t bytes_per_send = size * nmemb; 
 
-	printf("^^^^^^^^^^^^^^^^^^^^^^^size * nmemb: %d^^^^^^^^^^^^^^^^^^^^^^^^^^^\n", bytes_per_send);
 	if(bytes_per_send < 1)
 		return 0;
 	if(send_buffer->left > 0) {
@@ -126,27 +108,24 @@ size_t client_upload_part_callback(void *ptr, size_t size, size_t nmemb, void *s
 			send_buffer->ptr += bytes_per_send; /* advance pointer */
 			send_buffer->left -= bytes_per_send; /* less data left */
 			printf("buffer left: %d\n", send_buffer->left);
-			printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 			return bytes_per_send;
 		} else {
 			memcpy(ptr, send_buffer->ptr, send_buffer->left);
 			size_t last_sent_bytes = send_buffer->left;
 			send_buffer->left -= bytes_per_send; /* less data left */
 			compute_md5_digest(ptr, last_sent_bytes);
-			printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 			return last_sent_bytes;
 		}
 	} else 
 		return 0;
-	// return 0; /* *never execute here, just to depress compiler wanings */
 }
 
 /* *
  * 拷贝 Object
  * */
-oss_upload_part_result_t *
-client_upload_part(oss_client_t *client, 
-		oss_upload_part_request_t *request)
+oss_delete_multiple_object_result_t *
+client_delete_multiple_object(oss_client_t *client, 
+		oss_delete_multiple_object_request_t *request)
 {
 
 	assert(client != NULL);
@@ -157,7 +136,7 @@ client_upload_part(oss_client_t *client,
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
-	//char header_content_type[64] = {0};
+	char header_content_type[64] = {0};
 	//char header_content_length[64] = {0};
 
 	unsigned int sign_len = 0;
@@ -187,8 +166,8 @@ client_upload_part(oss_client_t *client,
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
 
-	_oss_upload_part_send_buffer_t *send_buffer = 
-		(_oss_upload_part_send_buffer_t *)malloc(sizeof(_oss_upload_part_send_buffer_t));
+	_oss_delete_multiple_object_send_buffer_t *send_buffer = 
+		(_oss_delete_multiple_object_send_buffer_t *)malloc(sizeof(_oss_delete_multiple_object_send_buffer_t));
 
 	send_buffer->ptr = request->get_input_stream(request, &input_stream_len);
 	send_buffer->left = request->get_part_size(request);
@@ -203,7 +182,7 @@ client_upload_part(oss_client_t *client,
 		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
 		curl_easy_setopt(curl, CURLOPT_INFILESIZE, request->get_part_size(request));
-		curl_easy_setopt(curl, CURLOPT_READFUNCTION, client_upload_part_callback);
+		curl_easy_setopt(curl, CURLOPT_READFUNCTION, client_delete_multiple_object_callback);
 		//curl_easy_setopt(curl, CURLOPT_READDATA, request->get_input_stream(request, &input_stream_len));
 		curl_easy_setopt(curl, CURLOPT_READDATA, send_buffer);
 
@@ -240,12 +219,12 @@ long file_size( FILE *fp )
 
 int main()
 {
-	const char *access_id = "ACSfLOiddaOzejOP";
-	const char *access_key = "MUltNpuYqE";
-	const char *bucket_name = "bucketname1";
-	const char *upload_id = "0004C96978130296AD8E152D1AAAB358";
-	const char *key = "YellowSubmarine.tar.gz";
-	FILE *file = fopen("yellow_submarine.tar.gz", "r");
+	const char *access_id = "ACSGmv8fkV1TDO9L";
+	const char *access_key = "BedoWbsJe2";
+	const char *bucket_name = "bucketname001";
+	const char *upload_id = "0004C9695DC778AA40BC870F1FFC4B1D";
+	const char *key = "a_very_large_file.tar.bz2";
+	FILE *file = fopen("ruby-1.9-stable.tar.gz", "r");
 	size_t file_len = file_size(file);
 	//int fd = fileno(file);
 	
@@ -257,7 +236,7 @@ int main()
 	int current_part_number = 0;
 
 	oss_client_t *client = client_initialize(access_id, access_key);
-	oss_upload_part_request_t *request = upload_part_request_initialize();
+	oss_delete_multiple_object_request_t *request = delete_multiple_object_request_initialize();
 	request->set_bucket_name(request, bucket_name);
 	request->set_key(request, key);
 	request->set_upload_id(request, upload_id);
@@ -268,7 +247,7 @@ int main()
 			request->set_input_stream(request,
 					buffer + current_part_number * single_request_len, single_request_len);
 			request->set_part_size(request, single_request_len);
-			client_upload_part(client, request);
+			client_delete_multiple_object(client, request);
 			compute_md5_digest(buffer + current_part_number * single_request_len,
 					single_request_len);
 		} else {
@@ -277,7 +256,7 @@ int main()
 					buffer + current_part_number *single_request_len,
 					file_len - single_request_len * current_part_number);
 			request->set_part_size(request, file_len - single_request_len * current_part_number);
-			client_upload_part(client, request);
+			client_delete_multiple_object(client, request);
 			compute_md5_digest(buffer + current_part_number * single_request_len,
 					file_len- current_part_number * single_request_len);
 		}
