@@ -151,10 +151,10 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 
 int main()
 {
-	const char *access_id = "ACSGmv8fkV1TDO9L";
-	const char *access_key = "BedoWbsJe2";
-	const char *bucket_name = "bucketname001";
-	const char *key = "putxxx.pdf";
+	const char *access_id = "ACSfLOiddaOzejOP";
+	const char *access_key = "MUltNpuYqE";
+	const char *bucket_name = "bucketname1";
+	const char *key = "oss_api.py";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
 	client_get_object(client, request);

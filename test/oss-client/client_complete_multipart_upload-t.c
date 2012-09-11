@@ -177,29 +177,33 @@ client_complete_multipart_upload(oss_client_t *client,
 }
 
 const char *etags[] = {
-	"AAE92ECB4974F96540B1D121869E5312",
-	"76640000ED91DCB8433AC965AD61A717",
-	"E6A2B713FB8F59918C634498138F50C7"
+	"B8F59046A9769805F6A3A2CDE3790ABD",
+	"AB568B530F7372F347D5B53A4128D5C0",
+	"DF804C719A89CF5E26C7E1FDFDAFD537",
+	"3C26B1150D0243C373D62FFCD88940F4",
+	"2AF6D3B3A2144FAE8787465EF486BAC9",
+	"EF1FB64E4B892604CDAE6D064F272A14",
+	"794F9188EE184EF9DE1AF36988193D40"
 };
 
 int main()
 {
-	const char *access_id = "ACSGmv8fkV1TDO9L";
-	const char *access_key = "BedoWbsJe2";
-	const char *bucket_name = "bucketname001";
-	const char *key = "a_very_large_file.dat";
-	const char *upload_id = "0004C955A174CDE5054ABAF82B1F99A9";
+	const char *access_id = "ACSfLOiddaOzejOP";
+	const char *access_key = "MUltNpuYqE";
+	const char *bucket_name = "bucketname1";
+	const char *key = "YellowSubmarine.tar.gz";
+	const char *upload_id = "0004C9670A8C020C9240E7335E1A5C7F";
 
-	oss_part_etag_t **part_etag = (oss_part_etag_t **)malloc(sizeof(oss_part_etag_t *) * 3);
+	oss_part_etag_t **part_etag = (oss_part_etag_t **)malloc(sizeof(oss_part_etag_t *) * 7);
 	int i = 0;
-	for (; i < 3; i++) {
+	for (; i < 7; i++) {
 		*(part_etag + i) = part_etag_initialize(i + 1, etags[i]);
 	}
 
 	oss_client_t *client = client_initialize(access_id, access_key);
 
 	oss_complete_multipart_upload_request_t *request = 
-		complete_multipart_upload_request_initialize(bucket_name, key, upload_id, part_etag, 3);
+		complete_multipart_upload_request_initialize(bucket_name, key, upload_id, part_etag, 7);
 
 	client_complete_multipart_upload(client, request);
 }

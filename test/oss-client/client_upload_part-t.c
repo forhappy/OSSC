@@ -97,7 +97,7 @@ client_upload_part(oss_client_t *client,
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
-	char header_content_type[64] = {0};
+	//char header_content_type[64] = {0};
 	//char header_content_length[64] = {0};
 
 	unsigned int sign_len = 0;
@@ -138,7 +138,7 @@ client_upload_part(oss_client_t *client,
 		curl_easy_setopt(curl, CURLOPT_READDATA, request->get_input_stream(request, &input_stream_len));
 
 		//http_headers = curl_slist_append(http_headers, header_content_length);
-		http_headers = curl_slist_append(http_headers, header_content_type);
+		//http_headers = curl_slist_append(http_headers, header_content_type);
 		http_headers = curl_slist_append(http_headers, header_host);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
@@ -171,12 +171,12 @@ long file_size( FILE *fp )
 
 int main()
 {
-	const char *access_id = "ACSGmv8fkV1TDO9L";
-	const char *access_key = "BedoWbsJe2";
-	const char *bucket_name = "bucketname001";
-	const char *upload_id = "0004C955A174CDE5054ABAF82B1F99A9";
-	const char *key = "a_very_large_file.dat";
-	FILE *file = fopen("eclim_1_7_9.jar", "r");
+	const char *access_id = "ACSfLOiddaOzejOP";
+	const char *access_key = "MUltNpuYqE";
+	const char *bucket_name = "bucketname1";
+	const char *upload_id = "0004C96978130296AD8E152D1AAAB358";
+	const char *key = "YellowSubmarine.tar.gz";
+	FILE *file = fopen("yellow_submarine.tar.gz", "r");
 	size_t file_len = file_size(file);
 	//int fd = fileno(file);
 	
