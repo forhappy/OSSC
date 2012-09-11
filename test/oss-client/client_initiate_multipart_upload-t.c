@@ -156,7 +156,7 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
-	const char *key = "a_very_large_file.dat";
+	const char *key = "a_very_large_file.tar.bz2";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	oss_initiate_multipart_upload_request_t *request = 
 		initiate_multipart_upload_request_initialize(bucket_name, key);

@@ -177,9 +177,8 @@ client_complete_multipart_upload(oss_client_t *client,
 }
 
 const char *etags[] = {
-	"AAE92ECB4974F96540B1D121869E5312",
-	"76640000ED91DCB8433AC965AD61A717",
-	"E6A2B713FB8F59918C634498138F50C7"
+	"F8FEE999102658F62725D8AEFC4128B4",
+	"A3A50391B9E79B85103C63CA1BDE1D22"
 };
 
 int main()
@@ -187,19 +186,19 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
-	const char *key = "a_very_large_file.dat";
-	const char *upload_id = "0004C955A174CDE5054ABAF82B1F99A9";
+	const char *key = "a_very_large_file.tar.bz2";
+	const char *upload_id = "0004C9695DC778AA40BC870F1FFC4B1D";
 
-	oss_part_etag_t **part_etag = (oss_part_etag_t **)malloc(sizeof(oss_part_etag_t *) * 3);
+	oss_part_etag_t **part_etag = (oss_part_etag_t **)malloc(sizeof(oss_part_etag_t *) * 2);
 	int i = 0;
-	for (; i < 3; i++) {
+	for (; i < 2; i++) {
 		*(part_etag + i) = part_etag_initialize(i + 1, etags[i]);
 	}
 
 	oss_client_t *client = client_initialize(access_id, access_key);
 
 	oss_complete_multipart_upload_request_t *request = 
-		complete_multipart_upload_request_initialize(bucket_name, key, upload_id, part_etag, 3);
+		complete_multipart_upload_request_initialize(bucket_name, key, upload_id, part_etag, 2);
 
 	client_complete_multipart_upload(client, request);
 }
