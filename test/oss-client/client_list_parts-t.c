@@ -75,16 +75,16 @@ client_initialize(const char *access_id,
 			access_key, access_key_len,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
-size_t client_list_multipart_upload_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_list_parts_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
 	strncpy(stream, ptr, r);
 	return r;
 }
 
-oss_multipart_upload_listing_t *
-client_list_multipart_uploads(oss_client_t *client,
-		oss_list_multipart_uploads_request_t *request)
+oss_part_listing_t *
+client_list_parts(oss_client_t *client,
+		oss_list_parts_request_t *request)
 {
 
 	assert(client != NULL);
@@ -112,8 +112,10 @@ client_list_multipart_uploads(oss_client_t *client,
 
 	oss_map_t *default_headers = oss_map_new(16);
 
-	sprintf(resource, "/%s?uploads", request->get_bucket_name(request));
-	sprintf(url, "%s/%s?uploads", client->endpoint, request->get_bucket_name(request));
+	sprintf(resource, "/%s/%s?uploadId=%s", request->get_bucket_name(request),
+			request->get_key(request), request->get_upload_id(request));
+	sprintf(url, "%s/%s/%s?uploadId=%s", client->endpoint, request->get_bucket_name(request),
+			request->get_key(request), request->get_upload_id(request));
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
@@ -127,22 +129,6 @@ client_list_multipart_uploads(oss_client_t *client,
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
 
-#if 0
-	oss_part_etag_t **part_etag = request->get_part_etags(request, &parts);
-	tstring_t *tstr_part_etag = 
-		tstring_new("<CompleteMultipartUpload>\n");
-	for (; i < parts; i++) {
-		sprintf(part, "\t<Part>\n\t\t<PartNumber>%d</PartNumber>\n\t\t<ETag>\"%s\"</ETag>\n\t</Part>\n",
-				(*(part_etag + i))->get_part_number(*(part_etag + i)),
-				(*(part_etag + i))->get_etag(*(part_etag + i)));
-		tstring_append(tstr_part_etag, part);
-	}
-	tstring_append(tstr_part_etag, "</CompleteMultipartUpload>\n");
-	printf("tstr_part_etag:\n%s\ntstr_part_etag_length: %d\n",
-			tstring_data(tstr_part_etag), tstring_size(tstr_part_etag));
-	
-
-#endif
 	curl = curl_easy_init();
 	if (curl != NULL) {
 		struct curl_slist *http_headers = NULL;
@@ -154,7 +140,7 @@ client_list_multipart_uploads(oss_client_t *client,
 		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		//curl_easy_setopt(curl, CURLOPT_INFILESIZE, tstring_size(tstr_part_etag));
 		//curl_easy_setopt(curl, CURLOPT_POSTFIELDS, tstring_data(tstr_part_etag));
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_list_multipart_upload_callback);
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_list_parts_callback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, response);
 
 
@@ -178,13 +164,13 @@ int main()
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
 	const char *bucket_name = "bucketname1";
-	//const char *key = "YellowSubmarine.tar.gz";
-	//const char *upload_id = "0004C96978130296AD8E152D1AAAB358";
+	const char *key = "";
+	const char *upload_id = "";
 
 	oss_client_t *client = client_initialize(access_id, access_key);
 
-	oss_list_multipart_uploads_request_t *request = 
-		list_multipart_uploads_request_initialize(bucket_name);
+	oss_list_parts_request_t *request = 
+		list_parts_request_initialize(bucket_name, key, upload_id);
 
-	client_list_multipart_uploads(client, request);
+	client_list_parts(client, request);
 }

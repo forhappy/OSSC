@@ -157,7 +157,7 @@ client_upload_part(oss_client_t *client,
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
-	//char header_content_type[64] = {0};
+	char header_content_type[64] = {0};
 	//char header_content_length[64] = {0};
 
 	unsigned int sign_len = 0;

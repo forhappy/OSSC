@@ -24,7 +24,7 @@
 #include <string.h>
 
 #define _OSS_MULTIPART_OBJECT_GROUP_H
-#include "oss_multipart_object_group.h"
+#include <ossc/modules/oss_multipart_object_group.h>
 #undef _OSS_MULTIPART_OBJECT_GROUP_H
 
 typedef struct oss_get_object_group_index_result_s oss_get_object_group_index_result_t;
