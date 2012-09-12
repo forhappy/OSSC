@@ -13,21 +13,17 @@
  * =============================================================================
  */
 #ifndef _OSS_UPLOAD_PART_REQUEST_H
-# error Never include <modules/oss_upload_part_request.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_upload_part_request.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_UPLOAD_PART_REQUEST_H
 #define OSS_UPLOAD_PART_REQUEST_H
+#include "ossc-config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-
-#define HAVE_STDBOOL_H
-
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
 
 typedef struct oss_upload_part_request_s oss_upload_part_request_t;
 
@@ -41,32 +37,32 @@ struct oss_upload_part_request_s {
 	long part_size;
 	char *upload_id;
 
-	const char * (*get_bucket_name)(oss_upload_part_request_t *upr);
-	void (*set_bucket_name)(oss_upload_part_request_t *upr, const char *bucket_name);
+	const char * (*get_bucket_name)(oss_upload_part_request_t *request);
+	void (*set_bucket_name)(oss_upload_part_request_t *request, const char *bucket_name);
 
-	const char * (*get_key)(oss_upload_part_request_t *upr);
-	void (*set_key)(oss_upload_part_request_t *upr, const char *key);
+	const char * (*get_key)(oss_upload_part_request_t *request);
+	void (*set_key)(oss_upload_part_request_t *request, const char *key);
 
-	const char * (*get_md5_digest)(oss_upload_part_request_t *upr);
-	void (*set_md5_digest)(oss_upload_part_request_t *upr, const char *md5_digest);
+	const char * (*get_md5_digest)(oss_upload_part_request_t *request);
+	void (*set_md5_digest)(oss_upload_part_request_t *request, const char *md5_digest);
 
-	const char * (*get_input_stream)(oss_upload_part_request_t *upr, int *input_stream_len);
-	void (*set_input_stream)(oss_upload_part_request_t *upr, const char *input_stream, size_t input_stream_len);
+	const char * (*get_input_stream)(oss_upload_part_request_t *request, int *input_stream_len);
+	void (*set_input_stream)(oss_upload_part_request_t *request, const char *input_stream, size_t input_stream_len);
 
-	const char * (*get_upload_id)(oss_upload_part_request_t *upr);
-	void (*set_upload_id)(oss_upload_part_request_t *upr, const char *upload_id);
+	const char * (*get_upload_id)(oss_upload_part_request_t *request);
+	void (*set_upload_id)(oss_upload_part_request_t *request, const char *upload_id);
 
-	int (*get_part_number)(oss_upload_part_request_t *upr);
-	void (*set_part_number)(oss_upload_part_request_t *upr, int part_number);
+	int (*get_part_number)(oss_upload_part_request_t *request);
+	void (*set_part_number)(oss_upload_part_request_t *request, int part_number);
 
-	long (*get_part_size)(oss_upload_part_request_t *upr);
-	void (*set_part_size)(oss_upload_part_request_t *upr, long part_size);
+	long (*get_part_size)(oss_upload_part_request_t *request);
+	void (*set_part_size)(oss_upload_part_request_t *request, long part_size);
 };
 
 extern oss_upload_part_request_t *
 upload_part_request_initialize(void);
 
 extern void 
-upload_part_request_finalize(oss_upload_part_request_t *upr);
+upload_part_request_finalize(oss_upload_part_request_t *request);
 
 #endif

@@ -12,12 +12,8 @@
  * =============================================================================
  */
 
-//#define _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
-//#include "oss_initiate_multipart_upload_request.h"
-//#undef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
-
 #define _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
-#include <modules/oss_initiate_multipart_upload_request.h>
+#include <ossc/modules/oss_initiate_multipart_upload_request.h>
 #undef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
 
 static inline void
@@ -27,6 +23,7 @@ __initiate_multipart_upload_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
+
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
 		request->bucket_name = NULL;
@@ -45,6 +42,7 @@ __initiate_multipart_upload_request_set_key(
 
 	assert(key != NULL);
 	assert(key_len > 0);
+
 	if (request->key != NULL) {
 		free(request->key);
 		request->key = NULL;
@@ -56,9 +54,9 @@ __initiate_multipart_upload_request_set_key(
 }
 
 
-/* *
+/**
  * 返回Bucket名称
- * */
+ */
 static inline const char *
 _initiate_multipart_upload_request_get_bucket_name(
 		oss_initiate_multipart_upload_request_t *request)
@@ -66,9 +64,9 @@ _initiate_multipart_upload_request_get_bucket_name(
 	return request->bucket_name;
 }
 
-/* *
+/**
  * 返回OSSObject key
- * */
+ */
 static inline const char *
 _initiate_multipart_upload_request_get_key(
 		oss_initiate_multipart_upload_request_t *request)
@@ -76,9 +74,9 @@ _initiate_multipart_upload_request_get_key(
 	return request->key;
 }
 
-/* *
+/**
  * 返回标识Multipart上传事件的Upload ID
- * */
+ */
 static inline oss_object_metadata_t *
 _initiate_multipart_upload_request_get_object_metadata(
 		oss_initiate_multipart_upload_request_t *request)
@@ -86,9 +84,9 @@ _initiate_multipart_upload_request_get_object_metadata(
 	return request->object_metadata;
 }
 
-/* *
+/**
  * 设置Bucket名称
- * */
+ */
 static inline void
 _initiate_multipart_upload_request_set_bucket_name(
 		oss_initiate_multipart_upload_request_t *request,
@@ -100,9 +98,9 @@ _initiate_multipart_upload_request_set_bucket_name(
 			bucket_name, bucket_name_len);
 }
 
-/* *
+/**
  * 设置OSSObject key
- * */
+ */
 static inline void
 _initiate_multipart_upload_request_set_key(
 		oss_initiate_multipart_upload_request_t *request,
@@ -128,9 +126,9 @@ _initiate_multipart_upload_request_set_object_metadata(
 	request->object_metadata = object_metadata;
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 static inline oss_initiate_multipart_upload_request_t *
 _initiate_multipart_upload_request_initialize(
 		const char *bucket_name, size_t bucket_name_len,
@@ -142,6 +140,7 @@ _initiate_multipart_upload_request_initialize(
 	oss_initiate_multipart_upload_request_t * request = NULL;
 	request = (oss_initiate_multipart_upload_request_t *)malloc(
 			sizeof(oss_initiate_multipart_upload_request_t));
+
 	request->bucket_name = (char *)malloc(byte_of_char * bucket_name_len + 1);
 	request->key = (char *)malloc(byte_of_char * key_len + 1);
 	request->object_metadata = object_metadata;
@@ -162,9 +161,9 @@ _initiate_multipart_upload_request_initialize(
 	return request;
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 oss_initiate_multipart_upload_request_t *
 initiate_multipart_upload_request_initialize(const char *bucket_name,
 		const char *key)
@@ -179,9 +178,9 @@ initiate_multipart_upload_request_initialize(const char *bucket_name,
 
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 oss_initiate_multipart_upload_request_t *
 initiate_multipart_upload_request_initialize_with_metadata(const char *bucket_name,
 		const char *key,
@@ -197,9 +196,9 @@ initiate_multipart_upload_request_initialize_with_metadata(const char *bucket_na
 
 }
 
-/* *
+/**
  * 析构函数
- * */
+ */
 void
 initiate_multipart_upload_request_finalize(
 		oss_initiate_multipart_upload_request_t *request)
@@ -222,5 +221,4 @@ initiate_multipart_upload_request_finalize(
 	}
 
 	free(request);
-	request = NULL;
 }

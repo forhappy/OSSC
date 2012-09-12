@@ -13,11 +13,12 @@
  */
 
 #ifndef _OSS_OWNER_H
-# error Never include <modules/oss_owner.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_owner.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_OWNER_H
 #define OSS_OWNER_H
+#include "config.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -29,24 +30,24 @@ typedef struct oss_owner_s oss_owner_t;
 struct oss_owner_s {
 	char *id;
 	char *display_name;
-	/* *
+	/**
 	 * 返回所有者的ID
-	 * */
+	 */
 	const char * (*get_id)(oss_owner_t *owner);
 
-	/* *
+	/**
 	 * 返回所有者的显示名称
-	 * */
+	 */
 	const char * (*get_display_name)(oss_owner_t *owner);
 
-	/* *
+	/**
 	 * 设置所有者的ID
-	 * */
+	 */
 	void (*set_id)(oss_owner_t *owner, const char *id);
 
-	/* *
+	/**
 	 * 设置所有者的显示名称
-	 * */
+	 */
 	void (*set_display_name)(oss_owner_t *owner, const char *name);
 };
 

@@ -1,3 +1,10 @@
+INCLUDE_DIRECTORIES(
+	${OSSC_BINARY_DIR}
+	${OSSC_SOURCE_DIR}/src
+	${OSSC_SOURCE_DIR}/include/
+	${OSSC_SOURCE_DIR}/include/ossc/
+	)
+	
 SET(SRC
 	base64.c
 	oss_generate_authentication.c

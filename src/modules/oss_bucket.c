@@ -13,39 +13,8 @@
  * =============================================================================
  */
 #define _OSS_BUCKET_H
-#include <modules/oss_bucket.h>
+#include <ossc/modules/oss_bucket.h>
 #undef _OSS_BUCKET_H
-
-
-
-void 
-bucket_finalize(oss_bucket_t *bucket)
-{
-	assert(bucket != NULL);
-
-	if (bucket->create_date != NULL) {
-		free(bucket->create_date);
-		bucket->create_date = NULL;
-	}
-
-	if (bucket->name != NULL) {
-		free(bucket->name);
-		bucket->name = NULL;
-	}
-
-	if (bucket->owner != NULL) {
-		/* *
-		 * We did not free bucket->owner, it depends on 
-		 * the creator of owner who should frees it.
-		 * */
-		bucket->owner = NULL;
-	}
-
-	if (bucket != NULL) {
-		free(bucket);
-		bucket = NULL;
-	}
-}
 
 static const char * 
 _bucket_get_create_date(oss_bucket_t *bucket)
@@ -59,10 +28,11 @@ __bucket_set_create_date(
 		const char *create_date,
 		size_t create_date_len)
 {
-	if (bucket->create_date) {
+	if (bucket->create_date != NULL) {
 		free(bucket->create_date);
 		bucket->create_date = NULL;
 	}
+
 	bucket->create_date = (char *)malloc(sizeof(char) * create_date_len + 1);
 	strncpy(bucket->create_date, create_date, create_date_len);
 	(bucket->create_date)[create_date_len] = '\0';
@@ -74,6 +44,7 @@ _bucket_set_create_date(
 		const char *create_date)
 {
 	assert(create_date != NULL);
+
 	size_t create_date_len = strlen(create_date);
 	__bucket_set_create_date(bucket, create_date, create_date_len);
 }
@@ -90,10 +61,11 @@ __bucket_set_name(
 		const char *name,
 		size_t name_len)
 {
-	if (bucket->name) {
+	if (bucket->name != NULL) {
 		free(bucket->name);
 		bucket->name = NULL;
 	}
+
 	bucket->name = (char *)malloc(sizeof(char) * name_len + 1);
 	strncpy(bucket->name, name, name_len);
 	(bucket->name)[name_len] = '\0';
@@ -105,6 +77,7 @@ _bucket_set_name(
 		const char *name)
 {
 	assert(name != NULL);
+
 	size_t name_len = strlen(name);
 	__bucket_set_name(bucket, name, name_len);
 }
@@ -155,8 +128,10 @@ bucket_initialize(void)
 
 	bucket->get_create_date = _bucket_get_create_date;
 	bucket->set_create_date = _bucket_set_create_date;
+
 	bucket->get_name = _bucket_get_name;
 	bucket->set_name = _bucket_set_name;
+
 	bucket->get_owner = _bucket_get_owner;
 	bucket->set_owner = _bucket_set_owner;
 
@@ -169,19 +144,24 @@ _bucket_initialize_with_name(const char *name, size_t name_len)
 	oss_bucket_t *bucket;
 	bucket = (oss_bucket_t *)malloc(sizeof(oss_bucket_t));
 	bucket->create_date = NULL;
+
 	if (bucket->name != NULL) {
 		free(bucket->name);
 		bucket->name = NULL;
 	}
+
 	bucket->name = (char *)malloc(sizeof(char) * name_len + 1);
 	strncpy(bucket->name, name, name_len);
 	(bucket->name)[name_len] = '\0';
+
 	bucket->owner = NULL;
 
 	bucket->get_create_date = _bucket_get_create_date;
 	bucket->set_create_date = _bucket_set_create_date;
+
 	bucket->get_name = _bucket_get_name;
 	bucket->set_name = _bucket_set_name;
+
 	bucket->get_owner = _bucket_get_owner;
 	bucket->set_owner = _bucket_set_owner;
 
@@ -192,7 +172,33 @@ oss_bucket_t *
 bucket_initialize_with_name(const char *name)
 {
 	assert(name != NULL);
+
 	size_t name_len = strlen(name);
 	return _bucket_initialize_with_name(name, name_len);
 }
 
+void
+bucket_finalize(oss_bucket_t *bucket)
+{
+	assert(bucket != NULL);
+
+	if (bucket->create_date != NULL) {
+		free(bucket->create_date);
+		bucket->create_date = NULL;
+	}
+
+	if (bucket->name != NULL) {
+		free(bucket->name);
+		bucket->name = NULL;
+	}
+
+	if (bucket->owner != NULL) {
+		/* *
+		 * We did not free bucket->owner, it depends on
+		 * the creator of owner who should frees it.
+		 * */
+		bucket->owner = NULL;
+	}
+
+	free(bucket);
+}

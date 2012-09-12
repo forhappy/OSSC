@@ -13,17 +13,17 @@
  * =============================================================================
  */
 #ifndef _OSS_OBJECT_LISTING_H
-# error Never include <modules/oss_object_listing.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_object_listing.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_OBJECT_LISTING_H
 #define OSS_OBJECT_LISTING_H
+#include "config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-
-#define HAVE_STDBOOL_H
 
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
@@ -42,26 +42,26 @@ struct oss_object_listing_s {
 	bool is_truncated;
 
 	char **common_prefixs;
-	/* * 内部计数器，记录common_prefixs数目 */
+	/** 内部计数器，记录common_prefixs数目 */
 	unsigned int _counts_common_prefixs;
 
-	const char * (*get_bucket_name)(oss_object_listing_t *ol);
-	void (*set_bucket_name)(oss_object_listing_t *ol, const char *bucket_name);
-	const char * (*get_next_marker)(oss_object_listing_t *ol);
-	void (*set_next_marker)(oss_object_listing_t *ol, const char *next_marker);
-	const char * (*get_prefix)(oss_object_listing_t *ol);
-	void (*set_prefix)(oss_object_listing_t *ol, const char *prefix);
-	const char * (*get_marker)(oss_object_listing_t *ol);
-	void (*set_marker)(oss_object_listing_t *ol, const char *marker);
-	const char * (*get_max_keys)(oss_object_listing_t *ol);
-	void (*set_max_keys)(oss_object_listing_t *ol, const char *max_keys);
-	const char * (*get_delimiter)(oss_object_listing_t *ol);
-	void (*set_delimiter)(oss_object_listing_t *ol, const char *delimiter);
-	bool (*get_is_truncated)(oss_object_listing_t *ol);
-	void (*set_is_truncated)(oss_object_listing_t *ol, bool is_truncated);
-	const char ** (*get_common_prefixs)(oss_object_listing_t *ol,
+	const char * (*get_bucket_name)(oss_object_listing_t *listing);
+	void (*set_bucket_name)(oss_object_listing_t *listing, const char *bucket_name);
+	const char * (*get_next_marker)(oss_object_listing_t *listing);
+	void (*set_next_marker)(oss_object_listing_t *listing, const char *next_marker);
+	const char * (*get_prefix)(oss_object_listing_t *listing);
+	void (*set_prefix)(oss_object_listing_t *listing, const char *prefix);
+	const char * (*get_marker)(oss_object_listing_t *listing);
+	void (*set_marker)(oss_object_listing_t *listing, const char *marker);
+	const char * (*get_max_keys)(oss_object_listing_t *listing);
+	void (*set_max_keys)(oss_object_listing_t *listing, const char *max_keys);
+	const char * (*get_delimiter)(oss_object_listing_t *listing);
+	void (*set_delimiter)(oss_object_listing_t *listing, const char *delimiter);
+	bool (*get_is_truncated)(oss_object_listing_t *listing);
+	void (*set_is_truncated)(oss_object_listing_t *listing, bool is_truncated);
+	const char ** (*get_common_prefixs)(oss_object_listing_t *listing,
 			unsigned int *counts);
-	void (*set_common_prefixs)(oss_object_listing_t *ol, 
+	void (*set_common_prefixs)(oss_object_listing_t *listing,
 			const char **common_prefixs,
 			unsigned int counts);
 };
@@ -70,6 +70,6 @@ extern oss_object_listing_t *
 object_listing_initialize(void);
 
 extern void 
-object_listing_finalize(oss_object_listing_t *ol);
+object_listing_finalize(oss_object_listing_t *listing);
 
 #endif

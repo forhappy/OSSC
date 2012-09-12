@@ -14,8 +14,18 @@
  */
 
 #define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
-#include <modules/oss_abort_multipart_upload_request.h>
+#include <ossc/modules/oss_abort_multipart_upload_request.h>
 #undef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
+
+/**
+ * 返回Bucket名称
+ */
+static inline const char *
+_abort_multipart_upload_request_get_bucket_name(
+		oss_abort_multipart_upload_request_t *request)
+{
+	return request->bucket_name;
+}
 
 static inline void
 __abort_multipart_upload_request_set_bucket_name(
@@ -24,6 +34,7 @@ __abort_multipart_upload_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
+
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
 		request->bucket_name = NULL;
@@ -32,71 +43,6 @@ __abort_multipart_upload_request_set_bucket_name(
 	request->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
 	(request->bucket_name)[bucket_name_len] = '\0';
-}
-
-static inline void
-__abort_multipart_upload_request_set_key(
-		oss_abort_multipart_upload_request_t *request,
-		const char *key, size_t key_len)
-{
-
-	assert(key != NULL);
-	assert(key_len > 0);
-	if (request->key != NULL) {
-		free(request->key);
-		request->key = NULL;
-	}
-
-	request->key= (char *)malloc(sizeof(char) * key_len + 1);
-	strncpy(request->key, key, key_len);
-	(request->key)[key_len] = '\0';
-}
-
-static inline void
-__abort_multipart_upload_request_set_upload_id(
-		oss_abort_multipart_upload_request_t *request,
-		const char *upload_id, size_t upload_id_len)
-{
-	assert(upload_id != NULL);
-	assert(upload_id_len > 0);
-	if (request->upload_id!= NULL) {
-		free(request->upload_id);
-		request->upload_id = NULL;
-	}
-
-	request->upload_id= (char *)malloc(sizeof(char) * upload_id_len+ 1);
-	strncpy(request->upload_id, upload_id, upload_id_len);
-	(request->upload_id)[upload_id_len] = '\0';
-}
-
-/* *
- * 返回Bucket名称
- * */
-static inline const char *
-_abort_multipart_upload_request_get_bucket_name(
-		oss_abort_multipart_upload_request_t *request)
-{
-	return request->bucket_name;
-}
-
-/* *
- * 返回OSSObject key
- * */
-static inline const char *
-_abort_multipart_upload_request_get_key(
-		oss_abort_multipart_upload_request_t *request)
-{
-	return request->key;
-}
-
-/* *
- * 返回标识Multipart上传事件的Upload ID
- * */
-static inline const char *
-_abort_multipart_upload_request_get_upload_id(
-		oss_abort_multipart_upload_request_t *request)
-{
-	return request->upload_id;
 }
 
 /* *
@@ -113,9 +59,37 @@ _abort_multipart_upload_request_set_bucket_name(
 			bucket_name, bucket_name_len);
 }
 
-/* *
+/**
+ * 返回OSSObject key
+ */
+static inline const char *
+_abort_multipart_upload_request_get_key(
+		oss_abort_multipart_upload_request_t *request)
+{
+	return request->key;
+}
+
+static inline void
+__abort_multipart_upload_request_set_key(
+		oss_abort_multipart_upload_request_t *request,
+		const char *key, size_t key_len)
+{
+	assert(key != NULL);
+	assert(key_len > 0);
+
+	if (request->key != NULL) {
+		free(request->key);
+		request->key = NULL;
+	}
+
+	request->key= (char *)malloc(sizeof(char) * key_len + 1);
+	strncpy(request->key, key, key_len);
+	(request->key)[key_len] = '\0';
+}
+
+/**
  * 设置OSSObject key
- * */
+ */
 static inline void
 _abort_multipart_upload_request_set_key(
 		oss_abort_multipart_upload_request_t *request,
@@ -127,9 +101,37 @@ _abort_multipart_upload_request_set_key(
 			key, key_len);
 }
 
-/* *
+/**
+ * 返回标识Multipart上传事件的Upload ID
+ */
+static inline const char *
+_abort_multipart_upload_request_get_upload_id(
+		oss_abort_multipart_upload_request_t *request)
+{
+	return request->upload_id;
+}
+
+static inline void
+__abort_multipart_upload_request_set_upload_id(
+		oss_abort_multipart_upload_request_t *request,
+		const char *upload_id, size_t upload_id_len)
+{
+	assert(upload_id != NULL);
+	assert(upload_id_len > 0);
+
+	if (request->upload_id!= NULL) {
+		free(request->upload_id);
+		request->upload_id = NULL;
+	}
+
+	request->upload_id= (char *)malloc(sizeof(char) * upload_id_len+ 1);
+	strncpy(request->upload_id, upload_id, upload_id_len);
+	(request->upload_id)[upload_id_len] = '\0';
+}
+
+/**
  * 设置标识Multipart上传事件的Upload ID
- * */
+ */
 static inline void
 _abort_multipart_upload_request_set_upload_id(
 		oss_abort_multipart_upload_request_t *request,
@@ -141,9 +143,9 @@ _abort_multipart_upload_request_set_upload_id(
 			upload_id, upload_id_len);
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 static inline oss_abort_multipart_upload_request_t *
 _abort_multipart_upload_request_initialize(
 		const char *bucket_name, size_t bucket_name_len,
@@ -151,10 +153,11 @@ _abort_multipart_upload_request_initialize(
 		const char *upload_id, size_t upload_id_len)
 {
 	size_t byte_of_char = sizeof(char);
-
 	oss_abort_multipart_upload_request_t * request = NULL;
+
 	request = (oss_abort_multipart_upload_request_t *)malloc(
 			sizeof(oss_abort_multipart_upload_request_t));
+
 	request->bucket_name = (char *)malloc(byte_of_char * bucket_name_len + 1);
 	request->key = (char *)malloc(byte_of_char * key_len + 1);
 	request->upload_id = (char *)malloc(byte_of_char * upload_id_len + 1);
@@ -177,9 +180,9 @@ _abort_multipart_upload_request_initialize(
 	return request;
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 oss_abort_multipart_upload_request_t *
 abort_multipart_upload_request_initialize(const char *bucket_name,
 		const char *key,
@@ -200,9 +203,9 @@ abort_multipart_upload_request_initialize(const char *bucket_name,
 
 }
 
-/* *
+/**
  * 析构函数
- * */
+ */
 void
 abort_multipart_upload_request_finalize(
 		oss_abort_multipart_upload_request_t *request)
@@ -225,5 +228,4 @@ abort_multipart_upload_request_finalize(
 	}
 
 	free(request);
-	request = NULL;
 }

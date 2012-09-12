@@ -13,12 +13,13 @@
  */
 
 #ifndef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
-# error Never include <modules/oss_list_multipart_uploads_request_h_> directly
+# error Never include <ossc/modules/oss_list_multipart_uploads_request_h> directly
 # error use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
 #define OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
+#include "config.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -57,15 +58,15 @@ struct oss_list_multipart_uploads_request_s {
 			const char *upload_id_marker);
 };
 
-/* *
+/**
  * 构造函数
- * */
+ */
 extern oss_list_multipart_uploads_request_t *
 list_multipart_uploads_request_initialize(const char *bucket_name);
 
-/* *
+/**
  * 析构函数
- * */
+ */
 extern void
 list_multipart_uploads_request_finalize(
 		oss_list_multipart_uploads_request_t *request);

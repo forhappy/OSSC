@@ -15,20 +15,19 @@
 
 #ifndef UTILITY_TSTRING_H
 #define UTILITY_TSTRING_H
+#include "ossc-config.h"
 
 #include <assert.h>
 #include <ctype.h>
 #include <stdarg.h>
-#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#include <config.h>
-
 #ifdef HAVE_STDBOOL_H
+#include <stdbool.h>
 typedef	bool bool_t;
 # define TRUE true
 # define FALSE false

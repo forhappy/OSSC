@@ -13,29 +13,26 @@
  * =============================================================================
  */
 #define _OSS_PART_ETAG_H
-#include <modules/oss_part_etag.h>
+#include <ossc/modules/oss_part_etag.h>
 #undef _OSS_PART_ETAG_H
 
 
 
-void 
-part_etag_finalize(oss_part_etag_t *pe)
+void part_etag_finalize(oss_part_etag_t *etag)
 {
-
-	if (pe) {
-		if (pe->etag) {
-			free(pe->etag);
-			pe->etag = NULL;
-		}
-		free(pe);
-		pe = NULL;
+	assert(etag != NULL);
+	if (etag->etag != NULL) {
+		free(etag->etag);
+		etag->etag = NULL;
 	}
+	free(etag);
+
 }
 
 static const char * 
-_part_etag_get_etag(oss_part_etag_t *pe)
+_part_etag_get_etag(oss_part_etag_t *etag)
 {
-	return pe->etag;
+	return etag->etag;
 }
 
 static inline void
@@ -44,10 +41,11 @@ __part_etag_set_etag(
 		const char *etag,
 		size_t etag_len)
 {
-	if (pe->etag) {
+	if (pe->etag != NULL) {
 		free(pe->etag);
 		pe->etag = NULL;
 	}
+
 	pe->etag = (char *)malloc(sizeof(char) * etag_len + 1);
 	strncpy(pe->etag, etag, etag_len);
 	(pe->etag)[etag_len] = '\0';
@@ -59,22 +57,23 @@ _part_etag_set_etag(
 		const char *etag)
 {
 	assert(etag != NULL);
+
 	size_t etag_len = strlen(etag);
 	__part_etag_set_etag(pe, etag, etag_len);
 }
 
 static int
-_part_etag_get_part_number(oss_part_etag_t *pe)
+_part_etag_get_part_number(oss_part_etag_t *part_etag)
 {
-	return pe->part_number;
+	return part_etag->part_number;
 }
 
 static inline void
 _part_etag_set_part_number(
-		oss_part_etag_t *pe, 
+		oss_part_etag_t *part_etag,
 		int part_number)
 {
-	pe->part_number = part_number;
+	part_etag->part_number = part_number;
 }
 
 oss_part_etag_t *
@@ -99,6 +98,7 @@ oss_part_etag_t *
 part_etag_initialize(int part_number, const char *etag)
 {
 	assert(etag != NULL);
+
 	size_t etag_len = strlen(etag);
 	return _part_etag_initialize(part_number, etag, etag_len);
 }

@@ -13,31 +13,29 @@
  * =============================================================================
  */
 #ifndef _OSS_PART_LISTING_H
-# error Never include <modules/oss_part_listing.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_part_listing.h> directly, use <ossc/client.h> instead.
 #endif
-
 
 #ifndef OSS_PART_LISTING_H
 #define OSS_PART_LISTING_H
-
-#define _OSS_OWNER_H
-#include  <modules/oss_owner.h>
-#undef _OSS_OWNER_H
-
-#define _OSS_PART_SUMMARY_H
-#include <modules/oss_part_summary.h>
-#undef _OSS_PART_SUMMARY_H
+#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 
-#define HAVE_STDBOOL_H
-
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
 #endif
+
+#define _OSS_OWNER_H
+#include  <ossc/modules/oss_owner.h>
+#undef _OSS_OWNER_H
+
+#define _OSS_PART_SUMMARY_H
+#include <ossc/modules/oss_part_summary.h>
+#undef _OSS_PART_SUMMARY_H
 
 typedef struct oss_part_listing_s oss_part_listing_t;
 
@@ -55,40 +53,40 @@ struct oss_part_listing_s {
 	char *storage_class;
 	char *upload_id;
 
-	const char * (*get_bucket_name)(oss_part_listing_t *pl);
-	void (*set_bucket_name)(oss_part_listing_t *pl, const char *bucket_name);
+	const char * (*get_bucket_name)(oss_part_listing_t *listing);
+	void (*set_bucket_name)(oss_part_listing_t *listing, const char *bucket_name);
 
-	const char * (*get_key)(oss_part_listing_t *pl);
-	void (*set_key)(oss_part_listing_t *pl, const char *key);
+	const char * (*get_key)(oss_part_listing_t *listing);
+	void (*set_key)(oss_part_listing_t *listing, const char *key);
 
-	const char * (*get_upload_id)(oss_part_listing_t *pl);
-	void (*set_upload_id)(oss_part_listing_t *pl, const char *upload_id);
+	const char * (*get_upload_id)(oss_part_listing_t *listing);
+	void (*set_upload_id)(oss_part_listing_t *listing, const char *upload_id);
 
-	const char * (*get_storage_class)(oss_part_listing_t *pl);
-	void (*set_storage_class)(oss_part_listing_t *pl, const char *storage_class);
+	const char * (*get_storage_class)(oss_part_listing_t *listing);
+	void (*set_storage_class)(oss_part_listing_t *listing, const char *storage_class);
 
-	oss_owner_t * (*get_initiator)(oss_part_listing_t *pl);
-	void (*set_initiator)(oss_part_listing_t *pl, oss_owner_t *initiator);
+	oss_owner_t * (*get_initiator)(oss_part_listing_t *listing);
+	void (*set_initiator)(oss_part_listing_t *listing, oss_owner_t *initiator);
 
-	int (*get_max_parts)(oss_part_listing_t *pl);
-	void (*set_max_parts)(oss_part_listing_t *pl, int max_parts);
+	int (*get_max_parts)(oss_part_listing_t *listing);
+	void (*set_max_parts)(oss_part_listing_t *listing, int max_parts);
 
-	bool (*get_is_truncated)(oss_part_listing_t *pl);
-	void (*set_is_truncated)(oss_part_listing_t *pl, bool is_truncated);
+	bool (*get_is_truncated)(oss_part_listing_t *listing);
+	void (*set_is_truncated)(oss_part_listing_t *listing, bool is_truncated);
 
-	oss_part_summary_t ** (*get_parts)(oss_part_listing_t *pl, int *parts_number);
-	void (*set_parts)(oss_part_listing_t *pl, oss_part_summary_t **parts, int parts_number);
+	oss_part_summary_t ** (*get_parts)(oss_part_listing_t *listing, int *parts_number);
+	void (*set_parts)(oss_part_listing_t *listing, oss_part_summary_t **parts, int parts_number);
 
 
 
-	int (*get_next_part_number_marker)(oss_part_listing_t *pl);
-	void (*set_next_part_number_marker)(oss_part_listing_t *pl, int next_part_number_marker);
+	int (*get_next_part_number_marker)(oss_part_listing_t *listing);
+	void (*set_next_part_number_marker)(oss_part_listing_t *listing, int next_part_number_marker);
 
-	oss_owner_t * (*get_owner)(oss_part_listing_t *pl);
-	void (*set_owner)(oss_part_listing_t *pl, oss_owner_t *owner);
+	oss_owner_t * (*get_owner)(oss_part_listing_t *listing);
+	void (*set_owner)(oss_part_listing_t *listing, oss_owner_t *owner);
 	
-	int (*get_part_number_marker)(oss_part_listing_t *pl);
-	void (*set_part_number_marker)(oss_part_listing_t *pl, int part_number_marker);
+	int (*get_part_number_marker)(oss_part_listing_t *listing);
+	void (*set_part_number_marker)(oss_part_listing_t *listing, int part_number_marker);
 
 
 
@@ -98,6 +96,6 @@ extern oss_part_listing_t *
 part_listing_initialize(void);
 
 extern void 
-part_listing_finalize(oss_part_listing_t *pl);
+part_listing_finalize(oss_part_listing_t *listing);
 
 #endif

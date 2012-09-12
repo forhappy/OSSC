@@ -13,28 +13,8 @@
  * =============================================================================
  */
 #define _OSS_ACCESS_CONTROL_LIST_H
-#include <modules/oss_access_control_list.h>
+#include <ossc/modules/oss_access_control_list.h>
 #undef _OSS_ACCESS_CONTROL_LIST_H
-
-
-
-void 
-access_control_list_finalize(oss_access_control_list_t *acl)
-{
-
-	if (acl) {
-		if (acl->owner) {
-			acl->owner = NULL;
-		}
-		while (acl->grants) {
-			oss_grant_t *tmp = acl->grants->next;
-			grant_finalize(acl->grants);
-			acl->grants = tmp;
-		}
-		free(acl);
-		acl = NULL;
-	}
-}
 
 static oss_owner_t * 
 _access_control_list_get_owner(oss_access_control_list_t *acl)
@@ -68,13 +48,16 @@ _access_control_list_revoke_all_permissions(oss_access_control_list_t* acl,
 {
 	assert(identifier != NULL);
 	assert(acl->grants != NULL);
+
 	while(!(strcmp(acl->grants->identifier, identifier))) {
 		oss_grant_t *tmp = acl->grants;
 		acl->grants = acl->grants->next; 
 		grant_finalize(tmp);
 	}
+
 	oss_grant_t *grant_tmp = acl->grants;
 	oss_grant_t *grant_tmp_next = grant_tmp->next;
+
 	while(grant_tmp_next) {
 		if(!(strcmp(grant_tmp_next->identifier, identifier))) {
 			grant_tmp->next = grant_tmp_next->next;
@@ -106,7 +89,6 @@ access_control_list_initialize(void)
 	acl->grants = NULL;
 	acl->grant_number_count = 0;
 
-
 	acl->grant_permission = _access_control_list_grant_permission;
 	acl->revoke_all_permissions = _access_control_list_revoke_all_permissions;
 	acl->get_grants = _access_control_list_get_grants;
@@ -114,4 +96,20 @@ access_control_list_initialize(void)
 	acl->set_owner = _access_control_list_set_owner;
 
 	return acl;
+}
+
+void
+access_control_list_finalize(oss_access_control_list_t *acl)
+{
+	if (acl != NULL) {
+		if (acl->owner) {
+			acl->owner = NULL;
+		}
+		while (acl->grants) {
+			oss_grant_t *tmp_grant = acl->grants->next;
+			grant_finalize(acl->grants);
+			acl->grants = tmp_grant;
+		}
+		free(acl);
+	}
 }

@@ -13,24 +13,20 @@
  * =============================================================================
  */
 #ifndef _OSS_UPLOAD_PART_RESULT_H
-# error Never include <modules/oss_upload_part_result.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_upload_part_result.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_UPLOAD_PART_RESULT_H
 #define OSS_UPLOAD_PART_RESULT_H
+#include "ossc-config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 
-#define HAVE_STDBOOL_H
-
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
-
 #define _OSS_PART_ETAG_H
-#include <modules/oss_part_etag.h>
+#include <ossc/modules/oss_part_etag.h>
 #undef _OSS_PART_ETAG_H
 
 
@@ -41,18 +37,18 @@ struct oss_upload_part_result_s {
 	char *etag;
 	int part_number;
 
-	const char * (*get_etag)(oss_upload_part_result_t *upr);
-	void (*set_etag)(oss_upload_part_result_t *upr, const char *etag);
-	int(*get_part_number)(oss_upload_part_result_t *upr);
-	void (*set_part_number)(oss_upload_part_result_t *upr, int part_number);
+	const char * (*get_etag)(oss_upload_part_result_t *result);
+	void (*set_etag)(oss_upload_part_result_t *result, const char *etag);
+	int(*get_part_number)(oss_upload_part_result_t *result);
+	void (*set_part_number)(oss_upload_part_result_t *result, int part_number);
 
-	oss_part_etag_t * (*get_part_etag)(oss_upload_part_result_t * upr);
+	oss_part_etag_t * (*get_part_etag)(oss_upload_part_result_t * result);
 };
 
 extern oss_upload_part_result_t *
 upload_part_result_initialize();
 
 extern void 
-upload_part_result_finalize(oss_upload_part_result_t *upr);
+upload_part_result_finalize(oss_upload_part_result_t *result);
 
 #endif

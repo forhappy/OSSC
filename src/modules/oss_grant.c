@@ -13,28 +13,8 @@
  * =============================================================================
  */
 #define _OSS_GRANT_H
-#include <modules/oss_grant.h>
+#include <ossc/modules/oss_grant.h>
 #undef _OSS_GRANT_H
-
-
-
-void 
-grant_finalize(oss_grant_t *grant)
-{
-
-	if (grant) {
-		if (grant->identifier) {
-			free(grant->identifier);
-			grant->identifier = NULL;
-		}
-		if (grant->permission) {
-			free(grant->permission);
-			grant->permission = NULL;
-		}
-		free(grant);
-		grant = NULL;
-	}
-}
 
 static const char * 
 _grant_get_identifier(oss_grant_t *grant)
@@ -48,7 +28,7 @@ __grant_set_identifier(
 		const char *identifier,
 		size_t identifier_len)
 {
-	if (grant->identifier) {
+	if (grant->identifier != NULL) {
 		free(grant->identifier);
 		grant->identifier = NULL;
 	}
@@ -63,6 +43,7 @@ _grant_set_identifier(
 		const char *identifier)
 {
 	assert(identifier != NULL);
+
 	size_t identifier_len = strlen(identifier);
 	__grant_set_identifier(grant, identifier, identifier_len);
 }
@@ -79,7 +60,7 @@ __grant_set_permission(
 		const char *permission,
 		size_t permission_len)
 {
-	if (grant->permission) {
+	if (grant->permission != NULL) {
 		free(grant->permission);
 		grant->permission = NULL;
 	}
@@ -94,17 +75,21 @@ _grant_set_permission(
 		const char *permission)
 {
 	assert(permission != NULL);
+
 	size_t permission_len = strlen(permission);
 	__grant_set_permission(grant, permission, permission_len);
 }
 
 oss_grant_t *
-_grant_initialize(const char *identifier, size_t identifier_len, const char *permission, size_t permission_len)
+_grant_initialize(const char *identifier,
+		size_t identifier_len,
+		const char *permission,
+		size_t permission_len)
 {
 	oss_grant_t *grant;
 	grant = (oss_grant_t *)malloc(sizeof(oss_grant_t));
 
-	if (grant->identifier) {
+	if (grant->identifier != NULL) {
 		free(grant->identifier);
 		grant->identifier = NULL;
 	}
@@ -112,7 +97,7 @@ _grant_initialize(const char *identifier, size_t identifier_len, const char *per
 	strncpy(grant->identifier, identifier, identifier_len);
 	(grant->identifier)[identifier_len] = '\0';
 
-	if (grant->permission) {
+	if (grant->permission != NULL) {
 		free(grant->permission);
 		grant->permission = NULL;
 	}
@@ -140,4 +125,21 @@ grant_initialize(const char *identifier, const char *permission)
 	size_t permission_len = strlen(permission);
 
 	return _grant_initialize(identifier, identifier_len, permission, permission_len);
+}
+
+void
+grant_finalize(oss_grant_t *grant)
+{
+
+	if (grant != NULL) {
+		if (grant->identifier != NULL) {
+			free(grant->identifier);
+			grant->identifier = NULL;
+		}
+		if (grant->permission != NULL) {
+			free(grant->permission);
+			grant->permission = NULL;
+		}
+		free(grant);
+	}
 }

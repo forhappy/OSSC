@@ -12,7 +12,7 @@
  * =============================================================================
  */
 #define _OSS_OWNER_H
-#include <modules/oss_owner.h>
+#include <ossc/modules/oss_owner.h>
 #undef _OSS_OWNER_H
 
 static inline const char *
@@ -31,6 +31,7 @@ static inline void
 __owner_set_id(oss_owner_t *owner, const char *id, size_t id_len)
 {
 	assert(id != NULL);
+
 	if (owner->id != NULL) {
 		free(owner->id);
 		owner->id = NULL;
@@ -46,6 +47,7 @@ static inline void
 __owner_set_display_name(oss_owner_t *owner, const char *name, size_t name_len)
 {
 	assert(name != NULL);
+
 	if (owner->display_name != NULL) {
 		free(owner->display_name);
 		owner->display_name = NULL;
@@ -141,6 +143,5 @@ owner_finalize(oss_owner_t *owner)
 	}
 
 	free(owner);
-	owner = NULL;
 }
 

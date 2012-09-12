@@ -13,19 +13,21 @@
  */
 
 #ifndef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
-# error Never include <modules/oss_initiate_multipart_upload_request.h> directly
+# error Never include <ossc/modules/oss_initiate_multipart_upload_request.h> directly
 # error use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H 
 #define OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
+#include "config.h"
+
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
 #define _OSS_OBJECT_METADATA_H
-#include <modules/oss_object_metadata.h>
+#include <ossc/modules/oss_object_metadata.h>
 #undef _OSS_OBJECT_METADATA_H
 
 typedef struct oss_initiate_multipart_upload_request_s \

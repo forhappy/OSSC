@@ -13,21 +13,17 @@
  * =============================================================================
  */
 #ifndef _OSS_GRANT_H
-# error Never include <modules/oss_grant.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_grant.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_GRANT_H
 #define OSS_GRANT_H
+#include "ossc-config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-
-#define HAVE_STDBOOL_H
-
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
 
 typedef struct oss_grant_s oss_grant_t;
 
