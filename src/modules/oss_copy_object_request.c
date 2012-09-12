@@ -213,7 +213,7 @@ _copy_object_request_set_matching_etag_constraints(
 	for (; i < counts; i++) {
 		size_t len = strlen(*(pnmec + i));
 		*(object->matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
-		memset(*(object->matching_etag_constraints), 0, len + 1);
+		memset(*(object->matching_etag_constraints + i), 0, len + 1);
 		strncpy(*(object->matching_etag_constraints + i), *(pnmec + i), len);
 	}
 
@@ -299,7 +299,7 @@ _copy_object_request_set_no_matching_etag_constraints(
 	for (; i < counts; i++) {
 		size_t len = strlen(*(pnmec + i));
 		*(object->no_matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
-		memset(*(object->no_matching_etag_constraints), 0, len + 1);
+		memset(*(object->no_matching_etag_constraints + i), 0, len + 1);
 		strncpy(*(object->no_matching_etag_constraints + i), *(pnmec + i), len);
 	}
 

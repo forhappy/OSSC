@@ -182,22 +182,22 @@ complete_multipart_upload_result_finalize(
 {
 	assert(result != NULL);
 
-	if (result->bucket_name) {
+	if (result->bucket_name != NULL) {
 		free(result->bucket_name);
 		result->bucket_name = NULL;
 	}
 
-	if (result->etag) {
+	if (result->etag != NULL) {
 		free(result->etag);
 		result->etag = NULL;
 	}
 
-	if (result->key) {
+	if (result->key != NULL) {
 		free(result->key);
 		result->key = NULL;
 	}
 
-	if (result->location) {
+	if (result->location != NULL) {
 		free(result->location);
 		result->location = NULL;
 	}

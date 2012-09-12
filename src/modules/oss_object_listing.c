@@ -265,7 +265,7 @@ void _object_listing_set_common_prefixs(
 	for (i = 0; i < counts; i++) {
 		size_t len = strlen(*(pnmec + i));
 		*(listing->common_prefixs + i) = (char *)malloc(sizeof(char) * len + 1);
-		memset(*(listing->common_prefixs), 0, len + 1);
+		memset(*(listing->common_prefixs + i), 0, len + 1);
 		strncpy(*(listing->common_prefixs + i), *(pnmec + i), len);
 	}
 
