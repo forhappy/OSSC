@@ -101,12 +101,12 @@ client_get_object_group_index(oss_client_t *client, const char *bucket_name, con
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
 	char header_group[128] = {0};
-	char headers[1024] = {0};
+	//char headers[1024] = {0};
 
 	unsigned int sign_len = 0;
 
 	CURL *curl = NULL;
-	CURLcode result;
+	//CURLcode result;
 
 
 	oss_map_t *default_headers = oss_map_new(16);

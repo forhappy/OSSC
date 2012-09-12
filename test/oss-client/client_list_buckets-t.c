@@ -98,13 +98,13 @@ client_list_bucket(oss_client_t *client, const char *bucket_name)
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
 
-	char headers[1024] = {0};
+	//char headers[1024] = {0};
 	char response[4096] = {0};
 
 	unsigned int sign_len = 0;
 
 	CURL *curl = NULL;
-	CURLcode result;
+	//CURLcode result;
 
 
 	oss_map_t *default_headers = oss_map_new(16);

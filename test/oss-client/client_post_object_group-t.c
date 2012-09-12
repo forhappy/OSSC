@@ -101,7 +101,7 @@ client_post_object_group(oss_client_t *client,
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
 
-	char headers[1024] = {0};
+	//char headers[1024] = {0};
 	char part[256] = {0};
 	char response[1024] = {0};
 
@@ -110,7 +110,7 @@ client_post_object_group(oss_client_t *client,
 	unsigned int i = 0;
 
 	CURL *curl = NULL;
-	CURLcode result;
+	//CURLcode result;
 
 
 	oss_map_t *default_headers = oss_map_new(16);

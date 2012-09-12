@@ -98,16 +98,16 @@ client_list_parts(oss_client_t *client,
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
 
-	char headers[1024] = {0};
+	//char headers[1024] = {0};
 	//char part[256] = {0};
 	char response[1024] = {0};
 
 	unsigned int sign_len = 0;
 	//int parts = 0;
-	unsigned int i = 0;
+	//unsigned int i = 0;
 
 	CURL *curl = NULL;
-	CURLcode result;
+	//CURLcode result;
 
 
 	oss_map_t *default_headers = oss_map_new(16);

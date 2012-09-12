@@ -21,9 +21,9 @@ int main(int argc, const char *argv[])
 {
 	const char *bucket_name = "test_bucket_name";
 	const char *upload_id         = "test_upload_id";
-	unsigned int max_part = 23;
+	//unsigned int max_part = 23;
 	const char *key= "test_key";
-	unsigned int part_number_marker = 32;
+	//unsigned int part_number_marker = 32;
 
 	oss_list_parts_request_t *request =
 		list_parts_request_initialize(

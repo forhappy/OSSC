@@ -128,17 +128,17 @@ client_delete_multiple_object(oss_client_t *client,
 	char header_auth[512]  = {0};
 	char header_md5[512]  = {0};
 
-	char headers[1024] = {0};
+	//char headers[1024] = {0};
 	char delete_key[256] = {0};
 	char response[1024] = {0};
-	char *content_md5 = NULL;
+	const char *content_md5 = NULL;
 
 	unsigned int sign_len = 0;
 	int keynums = 0;
 	unsigned int i = 0;
 
 	CURL *curl = NULL;
-	CURLcode result;
+	//CURLcode result;
 
 
 	oss_map_t *default_headers = oss_map_new(16);

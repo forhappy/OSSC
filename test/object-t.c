@@ -29,7 +29,7 @@ int main(int argc, const char *argv[])
 
 	object->set_object_metadata(object, metadata);
 
-	oss_object_metadata_t *result = object->get_object_metadata(object);
+	//oss_object_metadata_t *result = object->get_object_metadata(object);
 
 	size_t len = 0;
 	printf("bucket name: %s\n", object->get_bucket_name(object));

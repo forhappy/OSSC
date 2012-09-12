@@ -20,11 +20,11 @@
 int main(int argc, const char *argv[])
 {
 	const char *bucket_name = "test_bucket_name";
-	const char *prefix         = "test_prefix";
-	const char *key_marker   = "test_key_marker";
-	const char *delimiter= "test_delimiter";
-	const char *upload_id_marker = "test_upload_id_marker";
-	unsigned int max_uploads = 32;
+	//const char *prefix         = "test_prefix";
+	//const char *key_marker   = "test_key_marker";
+	//const char *delimiter= "test_delimiter";
+	//const char *upload_id_marker = "test_upload_id_marker";
+	//unsigned int max_uploads = 32;
 
 	oss_list_multipart_uploads_request_t *request =
 		list_multipart_uploads_request_initialize(

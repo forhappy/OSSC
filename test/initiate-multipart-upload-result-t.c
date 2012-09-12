@@ -19,9 +19,9 @@
 
 int main(int argc, const char *argv[])
 {
-	const char *bucket_name = "test_bucket_name";
-	const char *key         = "test_key";
-	const char *upload_id   = "test_upload_id";
+	//const char *bucket_name = "test_bucket_name";
+	//const char *key         = "test_key";
+	//const char *upload_id   = "test_upload_id";
 
 	oss_initiate_multipart_upload_result_t *result =
 		initiate_multipart_upload_result_initialize();
