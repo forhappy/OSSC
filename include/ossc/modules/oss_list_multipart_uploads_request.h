@@ -19,7 +19,7 @@
 
 #ifndef OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
 #define OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
-#include "config.h"
+#include "ossc-config.h"
 
 #include <assert.h>
 #include <stdio.h>

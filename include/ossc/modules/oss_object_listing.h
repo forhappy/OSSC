@@ -18,7 +18,7 @@
 
 #ifndef OSS_OBJECT_LISTING_H
 #define OSS_OBJECT_LISTING_H
-#include "config.h"
+#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

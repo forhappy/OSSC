@@ -18,7 +18,7 @@
 
 #ifndef OSS_CLIENT_H
 #define OSS_CLIENT_H
-#include "config.h"
+#include "ossc-config.h"
 
 #define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
 #include <ossc/modules/oss_abort_multipart_upload_request.h>
