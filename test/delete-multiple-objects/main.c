@@ -31,6 +31,7 @@ int main()
 	oss_delete_multiple_object_request_t *request = delete_multiple_object_request_initialize(bucket_name, keys, 4, mode);
 
 	printf("bucket_name: %s\n", request->get_bucket_name(request));
+	printf("mode: %d\n", request->get_mode(request));
 
 	const char **p = request->get_keys(request, &keynums);
 

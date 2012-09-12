@@ -47,3 +47,6 @@ TARGET_LINK_LIBRARIES(client_upload_part-t ossmodules ossutil ossauth ossc curl)
 ADD_EXECUTABLE(client_complete_multipart_upload-t client_complete_multipart_upload-t.c)
 TARGET_LINK_LIBRARIES(client_complete_multipart_upload-t ossmodules ossutil ossauth ossc curl)
 
+ADD_EXECUTABLE(client_delete_multiple_objectx-t client_delete_multiple_objectx-t.c)
+TARGET_LINK_LIBRARIES(client_delete_multiple_objectx-t ossmodules ossutil ossauth ossc curl)
+

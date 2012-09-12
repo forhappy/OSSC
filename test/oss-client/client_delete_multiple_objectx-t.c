@@ -16,6 +16,9 @@
 #include <stdlib.h>
 
 #include <lib/tstring.h>
+#include <lib/md5.h>
+#include <lib/base64.h>
+
 #include <ossc/client.h>
 
 #define _OSS_CLIENT_H
@@ -23,6 +26,28 @@
 #undef _OSS_CLIENT_H
 
 #include <curl/curl.h>
+
+const char *
+compute_md5_digest(void *ptr, size_t len)
+{
+	char md5_digest[17];
+	md5_state_t md5_state;
+
+	char *base64_md5 = NULL;
+
+	memset(md5_digest, '\0', 17);
+
+	md5_init(&md5_state);
+	md5_append(&md5_state, ptr, len);
+	md5_finish(&md5_state, md5_digest);
+
+	base64_md5 = (char *) malloc(sizeof(char) * 65);
+	memset(base64_md5, 0, 65);
+	base64_encode(md5_digest, 16, base64_md5, 65);
+
+	return base64_md5;
+
+}
 
 /* *
  * 初始化 oss_client_t，内部使用
@@ -75,7 +100,8 @@ client_initialize(const char *access_id,
 			access_key, access_key_len,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
-size_t client_complete_multipart_upload_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+
+size_t client_delete_multiple_object_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	size_t r = size * nmemb;
 	strncpy(stream, ptr, r);
@@ -83,11 +109,11 @@ size_t client_complete_multipart_upload_callback(void *ptr, size_t size, size_t 
 }
 
 /* *
- * 初始化complete_multipart_upload_request Object
+ * 初始化 oss_delete_multiple_object_request_t Object
  * */
-oss_complete_multipart_upload_result_t*
-client_complete_multipart_upload(oss_client_t *client,
-		oss_complete_multipart_upload_request_t *request)
+oss_delete_multiple_object_request_t*
+client_delete_multiple_object(oss_client_t *client,
+		oss_delete_multiple_object_request_t *request)
 {
 
 	assert(client != NULL);
@@ -100,13 +126,15 @@ client_complete_multipart_upload(oss_client_t *client,
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
+	char header_md5[512]  = {0};
 
 	char headers[1024] = {0};
-	char part[256] = {0};
+	char delete_key[256] = {0};
 	char response[1024] = {0};
+	char *content_md5 = NULL;
 
 	unsigned int sign_len = 0;
-	int parts = 0;
+	int keynums = 0;
 	unsigned int i = 0;
 
 	CURL *curl = NULL;
@@ -115,35 +143,43 @@ client_complete_multipart_upload(oss_client_t *client,
 
 	oss_map_t *default_headers = oss_map_new(16);
 
-	sprintf(resource, "/%s/%s?uploadId=%s", request->get_bucket_name(request),
-			request->get_key(request), request->get_upload_id(request));
-	sprintf(url, "%s/%s/%s?uploadId=%s", client->endpoint, request->get_bucket_name(request),
-			request->get_key(request), request->get_upload_id(request));
+	sprintf(resource, "/%s/?delete", request->get_bucket_name(request));
+	sprintf(url, "%s/%s/?delete", client->endpoint, request->get_bucket_name(request));
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
 
+	const char **p = request->get_keys(request, &keynums);
+
+	tstring_t *key_list = 
+		tstring_new("<Delete>");
+	if (request->get_mode(request) == true) {
+		sprintf(delete_key, "<Quiet>true</Quiet>");
+	} else 
+		sprintf(delete_key, "<Quiet>false</Quiet>");
+	tstring_append(key_list, delete_key);
+
+	for (i = 0; i < keynums; i++) {
+		sprintf(delete_key, "<Object><Key>%s</Key></Object>", *(p + i));
+		tstring_append(key_list, delete_key);
+	}
+	tstring_append(key_list, "</Delete>\n");
+
+	printf("delete_key_list:\n%s\nkey_list_length: %d\n",
+			tstring_data(key_list), tstring_size(key_list));
+
+
+	content_md5 = compute_md5_digest(tstring_data(key_list), tstring_size(key_list));
+	sprintf(header_md5, "Content-MD5: %s", content_md5);
+
 	oss_map_put(default_headers, OSS_DATE, now);
 	oss_map_put(default_headers, OSS_CONTENT_TYPE, "application/x-www-form-urlencoded");
+	oss_map_put(default_headers, OSS_CONTENT_MD5, content_md5);
 	
 	const char *sign = generate_authentication(client->access_key, OSS_HTTP_POST,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
-
-	oss_part_etag_t **part_etag = request->get_part_etags(request, &parts);
-	tstring_t *tstr_part_etag = 
-		tstring_new("<CompleteMultipartUpload>\n");
-	for (; i < parts; i++) {
-		sprintf(part, "\t<Part>\n\t\t<PartNumber>%d</PartNumber>\n\t\t<ETag>\"%s\"</ETag>\n\t</Part>\n",
-				(*(part_etag + i))->get_part_number(*(part_etag + i)),
-				(*(part_etag + i))->get_etag(*(part_etag + i)));
-		tstring_append(tstr_part_etag, part);
-	}
-	tstring_append(tstr_part_etag, "</CompleteMultipartUpload>\n");
-	printf("tstr_part_etag:\n%s\ntstr_part_etag_length: %d\n",
-			tstring_data(tstr_part_etag), tstring_size(tstr_part_etag));
-	
 
 
 	curl = curl_easy_init();
@@ -152,16 +188,17 @@ client_complete_multipart_upload(oss_client_t *client,
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
-		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 		//curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-		//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-		//curl_easy_setopt(curl, CURLOPT_INFILESIZE, tstring_size(tstr_part_etag));
-		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, tstring_data(tstr_part_etag));
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_complete_multipart_upload_callback);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		//curl_easy_setopt(curl, CURLOPT_INFILESIZE, tstring_size(key_list));
+		curl_easy_setopt(curl, CURLOPT_POSTFIELDS, tstring_data(key_list));
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_delete_multiple_object_callback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, response);
 
 
 		http_headers = curl_slist_append(http_headers, header_host);
+		http_headers = curl_slist_append(http_headers, header_md5);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
 
@@ -176,9 +213,11 @@ client_complete_multipart_upload(oss_client_t *client,
 	return NULL;
 }
 
-const char *etags[] = {
-	"F8FEE999102658F62725D8AEFC4128B4",
-	"A3A50391B9E79B85103C63CA1BDE1D22"
+const char *keys[] = {
+	"putxxx.pdf",
+	"put.png",
+	"a_very_large_file.dat",
+	"a_very_large_file.tar.bz2"
 };
 
 int main()
@@ -186,19 +225,12 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
-	const char *key = "a_very_large_file.tar.bz2";
-	const char *upload_id = "0004C9695DC778AA40BC870F1FFC4B1D";
 
-	oss_part_etag_t **part_etag = (oss_part_etag_t **)malloc(sizeof(oss_part_etag_t *) * 2);
-	int i = 0;
-	for (; i < 2; i++) {
-		*(part_etag + i) = part_etag_initialize(i + 1, etags[i]);
-	}
 
 	oss_client_t *client = client_initialize(access_id, access_key);
 
-	oss_complete_multipart_upload_request_t *request = 
-		complete_multipart_upload_request_initialize(bucket_name, key, upload_id, part_etag, 2);
+	oss_delete_multiple_object_request_t *request = 
+		delete_multiple_object_request_initialize(bucket_name, keys, 4, false);
 
-	client_complete_multipart_upload(client, request);
+	client_delete_multiple_object(client, request);
 }
