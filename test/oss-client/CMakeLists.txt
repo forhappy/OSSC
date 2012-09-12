@@ -62,3 +62,6 @@ TARGET_LINK_LIBRARIES(client_list_parts-t ossmodules ossutil ossauth ossc curl)
 ADD_EXECUTABLE(client_post_object_group-t client_post_object_group-t.c)
 TARGET_LINK_LIBRARIES(client_post_object_group-t ossmodules ossutil ossauth ossc curl)
 
+ADD_EXECUTABLE(client_get_object_group-t client_get_object_group-t.c)
+TARGET_LINK_LIBRARIES(client_get_object_group-t ossmodules ossutil ossauth ossc curl)
+
