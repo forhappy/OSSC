@@ -17,7 +17,7 @@
 
 #ifndef OSS_COPY_OBJECT_REQUEST_H
 #define OSS_COPY_OBJECT_REQUEST_H
-#include "config.h"
+#include "ossc-config.h"
 
 #include <stdio.h>
 #include <stdlib.h>

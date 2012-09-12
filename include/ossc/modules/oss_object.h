@@ -16,7 +16,7 @@
 #endif
 #ifndef OSS_OBJECT_H
 #define OSS_OBJECT_H
-#include "config.h"
+#include "ossc-config.h"
 
 #include <stdio.h>
 #include <stdlib.h>
