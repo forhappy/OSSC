@@ -12,8 +12,9 @@
  *
  * =============================================================================
  */
+#define _OSS_OBJECT_H
 #include "oss_object.h"
-
+#undef _OSS_OBJECT_H
 int main(int argc, const char *argv[])
 {
 	oss_object_t *object = object_initialize();

@@ -19,14 +19,14 @@
 #include <string.h>
 #include <time.h>
 
-/* *
+/**
  * 获取ANSI C格式时间
- * */
+ */
 extern const char * oss_get_asctime();
 
-/* *
+/**
  * 获取符合 HTTP/1.1 格式时间
- * */
+ */
 extern const char * oss_get_gmt_time();
 
 #endif

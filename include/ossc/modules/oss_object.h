@@ -11,15 +11,20 @@
  *
  * =============================================================================
  */
+#ifndef _OSS_OBJECT_H
+# error Never include <ossc/modules/oss_object.h> directly, use <ossc/client.h> instead.
+#endif
 #ifndef OSS_OBJECT_H
 #define OSS_OBJECT_H
+#include "config.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
 
 #define _OSS_OBJECT_METADATA_H
-#include <modules/oss_object_metadata.h>
+#include <ossc/modules/oss_object_metadata.h>
 #undef _OSS_OBJECT_METADATA_H
 
 typedef struct oss_object_s oss_object_t;

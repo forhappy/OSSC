@@ -13,12 +13,13 @@
  */
 
 #ifndef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
-# error Never include <modules/oss_abort_multipart_upload_request.h> directly
+# error Never include <ossc/modules/oss_abort_multipart_upload_request.h> directly
 # error use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H 
 #define OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
+#include "config.h"
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -34,6 +35,7 @@ struct oss_abort_multipart_upload_request_s {
 	const char * (*get_bucket_name)(oss_abort_multipart_upload_request_t *request);
 	const char * (*get_key)(oss_abort_multipart_upload_request_t *request);
 	const char * (*get_upload_id)(oss_abort_multipart_upload_request_t *request);
+
 	void (*set_bucket_name)(oss_abort_multipart_upload_request_t *request,
 			const char *bucket_name);
 	void (*set_key)(oss_abort_multipart_upload_request_t *request,
@@ -42,17 +44,17 @@ struct oss_abort_multipart_upload_request_s {
 			const char *upload_id);
 };
 
-/* *
+/**
  * 构造函数
- * */
+ */
 extern oss_abort_multipart_upload_request_t *
 abort_multipart_upload_request_initialize(const char *bucket_name,
 		const char *key,
 		const char *upload_id);
 
-/* *
+/**
  * 析构函数
- * */
+ */
 extern void
 abort_multipart_upload_request_finalize(
 		oss_abort_multipart_upload_request_t *request);

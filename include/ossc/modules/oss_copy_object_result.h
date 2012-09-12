@@ -18,16 +18,12 @@
 
 #ifndef OSS_COPY_OBJECT_RESULT_H
 #define OSS_COPY_OBJECT_RESULT_H
+#include "ossc-config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-
-#define HAVE_STDBOOL_H
-
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
 
 typedef struct oss_copy_object_result_s oss_copy_object_result_t;
 
@@ -35,11 +31,11 @@ struct oss_copy_object_result_s {
 	char *etag;
 	char *last_modified;
 
-	const char * (*get_etag)(oss_copy_object_result_t *cor);
-	void (*set_etag)(oss_copy_object_result_t *cor, const char * etag);
+	const char * (*get_etag)(oss_copy_object_result_t *result);
+	void (*set_etag)(oss_copy_object_result_t *result, const char * etag);
 
-	const char * (*get_last_modified)(oss_copy_object_result_t *cor);
-	void (*set_last_modified)(oss_copy_object_result_t *cor, const char *last_modified);
+	const char * (*get_last_modified)(oss_copy_object_result_t *result);
+	void (*set_last_modified)(oss_copy_object_result_t *result, const char *last_modified);
 
 };
 
@@ -47,6 +43,6 @@ extern oss_copy_object_result_t *
 copy_object_result_initialize(void);
 
 extern void 
-copy_object_result_finalize(oss_copy_object_result_t *cor);
+copy_object_result_finalize(oss_copy_object_result_t *result);
 
 #endif

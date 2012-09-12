@@ -13,25 +13,21 @@
  * =============================================================================
  */
 #ifndef _OSS_BUCKET_H
-# error Never include <modules/oss_bucket.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_bucket.h> directly, use <ossc/client.h> instead.
 #endif
-
-#define _OSS_OWNER_H
-#include  <modules/oss_owner.h>
-#undef _OSS_OWNER_H
 
 #ifndef OSS_BUCKET_H
 #define OSS_BUCKET_H
+#include "ossc-config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 
-#define HAVE_STDBOOL_H
-
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
+#define _OSS_OWNER_H
+#include  "ossc/modules/oss_owner.h"
+#undef _OSS_OWNER_H
 
 typedef struct oss_bucket_s oss_bucket_t;
 

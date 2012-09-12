@@ -12,12 +12,8 @@
  * =============================================================================
  */
 
-//#define _OSS_LIST_PARTS_REQUEST_H
-//#include "oss_list_parts_request.h"
-//#undef _OSS_LIST_PARTS_REQUEST_H
-
 #define _OSS_LIST_PARTS_REQUEST_H
-#include <modules/oss_list_parts_request.h>
+#include <ossc/modules/oss_list_parts_request.h>
 #undef _OSS_LIST_PARTS_REQUEST_H
 
 static inline void
@@ -27,6 +23,7 @@ __list_parts_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
+
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
 		request->bucket_name = NULL;
@@ -45,6 +42,7 @@ __list_parts_request_set_upload_id(
 
 	assert(upload_id != NULL);
 	assert(upload_id_len > 0);
+
 	if (request->upload_id != NULL) {
 		free(request->upload_id);
 		request->upload_id = NULL;
@@ -64,6 +62,7 @@ __list_parts_request_set_key(
 
 	assert(key!= NULL);
 	assert(key_len > 0);
+
 	if (request->key != NULL) {
 		free(request->key);
 		request->key = NULL;
@@ -158,9 +157,9 @@ _list_parts_request_set_part_number_marker(
 	request->part_number_marker = part_number_marker;
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 static inline oss_list_parts_request_t *
 _list_parts_request_initialize(
 		const char *bucket_name, size_t bucket_name_len,
@@ -173,6 +172,7 @@ _list_parts_request_initialize(
 
 	request = (oss_list_parts_request_t *)malloc(
 			sizeof(oss_list_parts_request_t));
+
 	request->bucket_name = (char *)malloc(byte_of_char * bucket_name_len + 1);
 	request->key = (char *)malloc(byte_of_char * key_len + 1);
 	request->upload_id = (char *)malloc(byte_of_char * upload_id_len + 1);
@@ -202,9 +202,9 @@ _list_parts_request_initialize(
 	return request;
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 oss_list_parts_request_t *
 list_parts_request_initialize(const char *bucket_name,
 		const char *key,
@@ -223,9 +223,9 @@ list_parts_request_initialize(const char *bucket_name,
 			upload_id, upload_id_len);
 }
 
-/* *
+/**
  * 析构函数
- * */
+ */
 void
 list_parts_request_finalize(
 		oss_list_parts_request_t *request)
@@ -248,5 +248,4 @@ list_parts_request_finalize(
 	}
 
 	free(request);
-	request = NULL;
 }

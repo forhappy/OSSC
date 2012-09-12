@@ -13,11 +13,13 @@
  * =============================================================================
  */
 #ifndef _OSS_MULTIPART_UPLOAD_H
-# error Never include <modules/oss_multipart_upload.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_multipart_upload.h> directly, use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_MULTIPART_UPLOAD_H
 #define OSS_MULTIPART_UPLOAD_H
+#include "config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -30,20 +32,20 @@ struct oss_multipart_upload_s {
 	char *storage_class;
 	char *upload_id;
 	char *key;
-	const char * (*get_initiated)(oss_multipart_upload_t *mu);
-	void (*set_initiated)(oss_multipart_upload_t *mu, const char *initiated);
-	const char * (*get_storage_class)(oss_multipart_upload_t *mu);
-	void (*set_storage_class)(oss_multipart_upload_t *mu, const char *storage_class);
-	const char * (*get_upload_id)(oss_multipart_upload_t *mu);
-	void (*set_upload_id)(oss_multipart_upload_t *mu, const char *upload_id);
-	const char * (*get_key)(oss_multipart_upload_t *mu);
-	void (*set_key)(oss_multipart_upload_t *mu, const char *key);
+	const char * (*get_initiated)(oss_multipart_upload_t *uploads);
+	void (*set_initiated)(oss_multipart_upload_t *uploads, const char *initiated);
+	const char * (*get_storage_class)(oss_multipart_upload_t *uploads);
+	void (*set_storage_class)(oss_multipart_upload_t *uploads, const char *storage_class);
+	const char * (*get_upload_id)(oss_multipart_upload_t *uploads);
+	void (*set_upload_id)(oss_multipart_upload_t *uploads, const char *upload_id);
+	const char * (*get_key)(oss_multipart_upload_t *uploads);
+	void (*set_key)(oss_multipart_upload_t *uploads, const char *key);
 };
 
 extern oss_multipart_upload_t *
 multipart_upload_initialize(void);
 
 extern void 
-multipart_upload_finalize(oss_multipart_upload_t *mu);
+multipart_upload_finalize(oss_multipart_upload_t *uploads);
 
 #endif

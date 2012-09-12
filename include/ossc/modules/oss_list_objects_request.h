@@ -13,12 +13,13 @@
  */
 
 #ifndef _OSS_LIST_OBJECTS_REQUEST_H
-# error Never include <modules/oss_list_objects_request_h_> directly
+# error Never include <ossc/modules/oss_list_objects_request_h> directly
 # error use <ossc/client.h> instead.
 #endif
 
 #ifndef OSS_LIST_OBJECTS_REQUEST_H
 #define OSS_LIST_OBJECTS_REQUEST_H
+#include "config.h"
 
 #include <assert.h>
 #include <stdio.h>
@@ -53,30 +54,30 @@ struct oss_list_objects_request_s {
 			const char *prefix);
 };
 
-/* *
+/**
  * 构造函数
- * */
+ */
 extern oss_list_objects_request_t *
 list_objects_request_initialize(void);
 
-/* *
+/**
  * 构造函数
- * */
+ */
 extern oss_list_objects_request_t *
 list_objects_request_initialize_with_bucket_name(const char *bucket_name);
 
-/* *
+/**
  * 构造函数
- * */
+ */
 extern oss_list_objects_request_t *
 list_objects_request_initialize_with_args(const char *bucket_name,
 		const char *prefix,
 		const char *marker,
 		const char *delimiter,
 		unsigned int max_keys);
-/* *
+/**
  * 析构函数
- * */
+ */
 extern void
 list_objects_request_finalize(
 		oss_list_objects_request_t *request);

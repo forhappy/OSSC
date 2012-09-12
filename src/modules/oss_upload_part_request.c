@@ -13,254 +13,260 @@
  * =============================================================================
  */
 #define _OSS_UPLOAD_PART_REQUEST_H
-#include <modules/oss_upload_part_request.h>
+#include <ossc/modules/oss_upload_part_request.h>
 #undef _OSS_UPLOAD_PART_REQUEST_H
 
-
-
-void 
-upload_part_request_finalize(oss_upload_part_request_t *upr)
-{
-
-	if (upr) {
-		if (upr->bucket_name) {
-			free(upr->bucket_name);
-			upr->bucket_name = NULL;
-		}
-		if (upr->key) {
-			free(upr->key);
-			upr->key = NULL;
-		}
-		if (upr->input_stream) {
-			free(upr->input_stream);
-			upr->input_stream = NULL;
-		}
-		if (upr->md5_digest) {
-			free(upr->md5_digest);
-			upr->md5_digest = NULL;
-		}
-		if (upr->upload_id) {
-			free(upr->upload_id);
-			upr->upload_id = NULL;
-		}
-		free(upr);
-		upr = NULL;
-	}
-}
-
 static const char * 
-_upload_part_request_get_bucket_name(oss_upload_part_request_t *upr)
+_upload_part_request_get_bucket_name(oss_upload_part_request_t *request)
 {
-	return upr->bucket_name;
+	return request->bucket_name;
 }
 
 static inline void
 __upload_part_request_set_bucket_name(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *bucket_name,
 		size_t bucket_name_len)
 {
-	if (upr->bucket_name) {
-		free(upr->bucket_name);
-		upr->bucket_name = NULL;
+	if (request->bucket_name != NULL) {
+		free(request->bucket_name);
+		request->bucket_name = NULL;
 	}
-	upr->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
-	strncpy(upr->bucket_name, bucket_name, bucket_name_len);
-	(upr->bucket_name)[bucket_name_len] = '\0';
+
+	request->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
+	strncpy(request->bucket_name, bucket_name, bucket_name_len);
+	(request->bucket_name)[bucket_name_len] = '\0';
 }
 
 static void
 _upload_part_request_set_bucket_name(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *bucket_name)
 {
 	assert(bucket_name != NULL);
+
 	size_t bucket_name_len = strlen(bucket_name);
-	__upload_part_request_set_bucket_name(upr, bucket_name, bucket_name_len);
+	__upload_part_request_set_bucket_name(request, bucket_name, bucket_name_len);
 }
 
 static const char * 
-_upload_part_request_get_key(oss_upload_part_request_t *upr)
+_upload_part_request_get_key(oss_upload_part_request_t *request)
 {
-	return upr->key;
+	return request->key;
 }
 
 static inline void
 __upload_part_request_set_key(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *key,
 		size_t key_len)
 {
-	if (upr->key) {
-		free(upr->key);
-		upr->key = NULL;
+	if (request->key != NULL) {
+		free(request->key);
+		request->key = NULL;
 	}
-	upr->key = (char *)malloc(sizeof(char) * key_len + 1);
-	strncpy(upr->key, key, key_len);
-	(upr->key)[key_len] = '\0';
+	request->key = (char *)malloc(sizeof(char) * key_len + 1);
+	strncpy(request->key, key, key_len);
+	(request->key)[key_len] = '\0';
 }
 
 static void
 _upload_part_request_set_key(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *key)
 {
 	assert(key != NULL);
+
 	size_t key_len = strlen(key);
-	__upload_part_request_set_key(upr, key, key_len);
+	__upload_part_request_set_key(request, key, key_len);
 }
 
 static const char * 
-_upload_part_request_get_input_stream(oss_upload_part_request_t *upr, int *input_stream_len)
+_upload_part_request_get_input_stream(oss_upload_part_request_t *request, int *input_stream_len)
 {
-	*input_stream_len = upr->input_stream_len;
-	return upr->input_stream;
+	*input_stream_len = request->input_stream_len;
+	return request->input_stream;
 }
 
 static inline void
 __upload_part_request_set_input_stream(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *input_stream,
 		size_t input_stream_len)
 {
-	if (upr->input_stream) {
-		free(upr->input_stream);
-		upr->input_stream = NULL;
+	if (request->input_stream != NULL) {
+		free(request->input_stream);
+		request->input_stream = NULL;
 	}
-	upr->input_stream_len = input_stream_len;
-	upr->input_stream = (char *)malloc(sizeof(char) * input_stream_len + 1);
-	memcpy(upr->input_stream, input_stream, input_stream_len);
-	(upr->input_stream)[input_stream_len] = '\0';
+
+	request->input_stream_len = input_stream_len;
+	request->input_stream = (char *)malloc(sizeof(char) * input_stream_len + 1);
+	memcpy(request->input_stream, input_stream, input_stream_len);
+	(request->input_stream)[input_stream_len] = '\0';
 }
 
 static void
 _upload_part_request_set_input_stream(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *input_stream, size_t input_stream_len)
 {
 	assert(input_stream != NULL);
+
 	assert(input_stream_len > 0);
-	__upload_part_request_set_input_stream(upr, input_stream, input_stream_len);
+	__upload_part_request_set_input_stream(request, input_stream, input_stream_len);
 }
 
 static const char * 
-_upload_part_request_get_md5_digest(oss_upload_part_request_t *upr)
+_upload_part_request_get_md5_digest(oss_upload_part_request_t *request)
 {
-	return upr->md5_digest;
+	return request->md5_digest;
 }
 
 static inline void
 __upload_part_request_set_md5_digest(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *md5_digest,
 		size_t md5_digest_len)
 {
-	if (upr->md5_digest) {
-		free(upr->md5_digest);
-		upr->md5_digest = NULL;
+	if (request->md5_digest != NULL) {
+		free(request->md5_digest);
+		request->md5_digest = NULL;
 	}
-	upr->md5_digest = (char *)malloc(sizeof(char) * md5_digest_len + 1);
-	strncpy(upr->md5_digest, md5_digest, md5_digest_len);
-	(upr->md5_digest)[md5_digest_len] = '\0';
+
+	request->md5_digest = (char *)malloc(sizeof(char) * md5_digest_len + 1);
+	strncpy(request->md5_digest, md5_digest, md5_digest_len);
+	(request->md5_digest)[md5_digest_len] = '\0';
 }
 
 static void
 _upload_part_request_set_md5_digest(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *md5_digest)
 {
 	assert(md5_digest != NULL);
+
 	size_t md5_digest_len = strlen(md5_digest);
-	__upload_part_request_set_md5_digest(upr, md5_digest, md5_digest_len);
+	__upload_part_request_set_md5_digest(request, md5_digest, md5_digest_len);
 }
 
 static const char * 
-_upload_part_request_get_upload_id(oss_upload_part_request_t *upr)
+_upload_part_request_get_upload_id(oss_upload_part_request_t *request)
 {
-	return upr->upload_id;
+	return request->upload_id;
 }
 
 static inline void
 __upload_part_request_set_upload_id(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *upload_id,
 		size_t upload_id_len)
 {
-	if (upr->upload_id) {
-		free(upr->upload_id);
-		upr->upload_id = NULL;
+	if (request->upload_id != NULL) {
+		free(request->upload_id);
+		request->upload_id = NULL;
 	}
-	upr->upload_id = (char *)malloc(sizeof(char) * upload_id_len + 1);
-	strncpy(upr->upload_id, upload_id, upload_id_len);
-	(upr->upload_id)[upload_id_len] = '\0';
+
+	request->upload_id = (char *)malloc(sizeof(char) * upload_id_len + 1);
+	strncpy(request->upload_id, upload_id, upload_id_len);
+	(request->upload_id)[upload_id_len] = '\0';
 }
 
 static void
 _upload_part_request_set_upload_id(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		const char *upload_id)
 {
 	assert(upload_id != NULL);
+
 	size_t upload_id_len = strlen(upload_id);
-	__upload_part_request_set_upload_id(upr, upload_id, upload_id_len);
+	__upload_part_request_set_upload_id(request, upload_id, upload_id_len);
 }
 
 static int 
-_upload_part_request_get_part_number(oss_upload_part_request_t *upr)
+_upload_part_request_get_part_number(oss_upload_part_request_t *request)
 {
-	return upr->part_number;
+	return request->part_number;
 }
 
 static void
 _upload_part_request_set_part_number(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		int part_number)
 {
-	upr->part_number = part_number;
+	request->part_number = part_number;
 }
 
 static long 
-_upload_part_request_get_part_size(oss_upload_part_request_t *upr)
+_upload_part_request_get_part_size(oss_upload_part_request_t *request)
 {
-	return upr->part_size;
+	return request->part_size;
 }
 
 static void
 _upload_part_request_set_part_size(
-		oss_upload_part_request_t *upr, 
+		oss_upload_part_request_t *request,
 		long part_size)
 {
-	upr->part_size = part_size;
+	request->part_size = part_size;
 }
 
 oss_upload_part_request_t *
 upload_part_request_initialize(void)
 {
-	oss_upload_part_request_t *upr;
-	upr = (oss_upload_part_request_t *)malloc(sizeof(oss_upload_part_request_t));
-	upr->bucket_name = NULL;
-	upr->key = NULL;
-	upr->input_stream = NULL;
-	upr->md5_digest = NULL;
-	upr->upload_id = NULL;
-	upr->part_number = 0;
-	upr->part_size = 0;
-	upr->input_stream_len = 0;
+	oss_upload_part_request_t *request;
+	request = (oss_upload_part_request_t *)malloc(sizeof(oss_upload_part_request_t));
+	request->bucket_name = NULL;
+	request->key = NULL;
+	request->input_stream = NULL;
+	request->md5_digest = NULL;
+	request->upload_id = NULL;
+	request->part_number = 0;
+	request->part_size = 0;
+	request->input_stream_len = 0;
 
-	upr->get_bucket_name = _upload_part_request_get_bucket_name;
-	upr->set_bucket_name = _upload_part_request_set_bucket_name;
-	upr->get_key = _upload_part_request_get_key;
-	upr->set_key = _upload_part_request_set_key;
-	upr->get_input_stream = _upload_part_request_get_input_stream;
-	upr->set_input_stream = _upload_part_request_set_input_stream;
-	upr->get_md5_digest = _upload_part_request_get_md5_digest;
-	upr->set_md5_digest = _upload_part_request_set_md5_digest;
-	upr->get_upload_id = _upload_part_request_get_upload_id;
-	upr->set_upload_id = _upload_part_request_set_upload_id;
-	upr->get_part_number = _upload_part_request_get_part_number;
-	upr->set_part_number = _upload_part_request_set_part_number;
-	upr->get_part_size = _upload_part_request_get_part_size;
-	upr->set_part_size = _upload_part_request_set_part_size;
+	request->get_bucket_name = _upload_part_request_get_bucket_name;
+	request->set_bucket_name = _upload_part_request_set_bucket_name;
+	request->get_key = _upload_part_request_get_key;
+	request->set_key = _upload_part_request_set_key;
+	request->get_input_stream = _upload_part_request_get_input_stream;
+	request->set_input_stream = _upload_part_request_set_input_stream;
+	request->get_md5_digest = _upload_part_request_get_md5_digest;
+	request->set_md5_digest = _upload_part_request_set_md5_digest;
+	request->get_upload_id = _upload_part_request_get_upload_id;
+	request->set_upload_id = _upload_part_request_set_upload_id;
+	request->get_part_number = _upload_part_request_get_part_number;
+	request->set_part_number = _upload_part_request_set_part_number;
+	request->get_part_size = _upload_part_request_get_part_size;
+	request->set_part_size = _upload_part_request_set_part_size;
 
-	return upr;
+	return request;
+}
+
+void
+upload_part_request_finalize(oss_upload_part_request_t *request)
+{
+
+	if (request != NULL) {
+		if (request->bucket_name != NULL) {
+			free(request->bucket_name);
+			request->bucket_name = NULL;
+		}
+		if (request->key != NULL) {
+			free(request->key);
+			request->key = NULL;
+		}
+		if (request->input_stream != NULL) {
+			free(request->input_stream);
+			request->input_stream = NULL;
+		}
+		if (request->md5_digest != NULL) {
+			free(request->md5_digest);
+			request->md5_digest = NULL;
+		}
+		if (request->upload_id != NULL) {
+			free(request->upload_id);
+			request->upload_id = NULL;
+		}
+		free(request);
+	}
 }

@@ -13,7 +13,7 @@
  */
 
 #define _OSS_OBJECT_H
-#include <modules/oss_object.h>
+#include <ossc/modules/oss_object.h>
 #undef _OSS_OBJECT_H
 
 static inline const char *
@@ -46,6 +46,7 @@ __object_set_bucket_name(oss_object_t *object,
 		const char *bucket_name, size_t bucket_name_len)
 {
 	assert(object != NULL);
+
 	if (object->bucket_name != NULL) {
 		free(object->bucket_name);
 		object->bucket_name = NULL;
@@ -70,10 +71,12 @@ __object_set_key(oss_object_t *object,
 		const char *key, size_t key_len)
 {
 	assert(object != NULL);
+
 	if (object->key!= NULL) {
 		free(object->key);
 		object->key= NULL;
 	}
+
 	 object->key= (char *)malloc(sizeof(char) * key_len + 1);
 	 memset(object->key, 0, key_len+ 1);
 	 strncpy(object->key, key, key_len);
@@ -121,6 +124,7 @@ _object_set_object_metadata(oss_object_t *object,
 {
 	assert(object != NULL);
 	assert(object_metadata != NULL);
+
 	object->object_metadata = object_metadata;
 }
 

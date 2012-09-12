@@ -13,29 +13,25 @@
  * =============================================================================
  */
 #ifndef _OSS_ACCESS_CONTROL_LIST_H
-# error Never include <ossc/oss_access_control_list.h> directly, use <ossc/client.h> instead.
+# error Never include <ossc/modules/oss_access_control_list.h> directly, use <ossc/client.h> instead.
 #endif
-
-#define _OSS_OWNER_H
-#include "oss_owner.h"
-#undef _OSS_OWNER_H
-
-#define _OSS_GRANT_H
-#include "oss_grant.h"
-#undef _OSS_GRANT_H
 
 #ifndef OSS_ACCESS_CONTROL_LIST_H
 #define OSS_ACCESS_CONTROL_LIST_H
+#include "ossc-config.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 
-#define HAVE_STDBOOL_H
+#define _OSS_OWNER_H
+#include "ossc/modules/oss_owner.h"
+#undef _OSS_OWNER_H
 
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
+#define _OSS_GRANT_H
+#include "ossc/modules/oss_grant.h"
+#undef _OSS_GRANT_H
 
 typedef struct oss_access_control_list_s oss_access_control_list_t;
 

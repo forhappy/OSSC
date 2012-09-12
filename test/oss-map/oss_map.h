@@ -16,8 +16,6 @@
 #ifndef OSS_MAP_H
 #define OSS_MAP_H
 
-#define HAVE_STDBOOL_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -25,6 +23,7 @@ extern "C" {
 #include <stdlib.h>
 #include <string.h>
 
+#define HAVE_STDBOOL_H
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
 #endif

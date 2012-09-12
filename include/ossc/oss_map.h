@@ -15,8 +15,7 @@
 
 #ifndef OSS_MAP_H
 #define OSS_MAP_H
-
-#define HAVE_STDBOOL_H
+#include "ossc-config.h"
 
 #ifdef __cplusplus
 extern "C" {

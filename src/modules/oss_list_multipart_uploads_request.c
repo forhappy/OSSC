@@ -11,13 +11,8 @@
  *
  * =============================================================================
  */
-
-//#define _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
-//#include "oss_list_multipart_uploads_request.h"
-//#undef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
-
 #define _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
-#include <modules/oss_list_multipart_uploads_request.h>
+#include <ossc/modules/oss_list_multipart_uploads_request.h>
 #undef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H
 
 static inline void
@@ -27,6 +22,7 @@ __list_multipart_uploads_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
+
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
 		request->bucket_name = NULL;
@@ -45,6 +41,7 @@ __list_multipart_uploads_request_set_prefix(
 
 	assert(prefix != NULL);
 	assert(prefix_len > 0);
+
 	if (request->prefix != NULL) {
 		free(request->prefix);
 		request->prefix = NULL;
@@ -62,6 +59,7 @@ __list_multipart_uploads_request_set_key_marker(
 {
 	assert(key_marker != NULL);
 	assert(key_marker_len > 0);
+
 	if (request->key_marker!= NULL) {
 		free(request->key_marker);
 		request->key_marker = NULL;
@@ -80,6 +78,7 @@ __list_multipart_uploads_request_set_delimiter(
 
 	assert(delimiter!= NULL);
 	assert(delimiter_len > 0);
+
 	if (request->delimiter != NULL) {
 		free(request->delimiter);
 		request->delimiter = NULL;
@@ -98,6 +97,7 @@ __list_multipart_uploads_request_set_upload_id_marker(
 
 	assert(upload_id_marker!= NULL);
 	assert(upload_id_marker_len > 0);
+
 	if (request->upload_id_marker != NULL) {
 		free(request->upload_id_marker);
 		request->upload_id_marker= NULL;
@@ -201,7 +201,7 @@ _list_multipart_uploads_request_set_upload_id_marker(
 {
 	size_t upload_id_marker_len = strlen(upload_id_marker);
 
-	__list_multipart_uploads_request_set_delimiter(request,
+	__list_multipart_uploads_request_set_upload_id_marker(request,
 			upload_id_marker, upload_id_marker_len);
 }
 static inline void
@@ -212,9 +212,9 @@ _list_multipart_uploads_request_set_max_uploads(
 	request->max_uploads = max_uploads;
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 static inline oss_list_multipart_uploads_request_t *
 _list_multipart_uploads_request_initialize(
 		const char *bucket_name, size_t bucket_name_len,
@@ -229,6 +229,7 @@ _list_multipart_uploads_request_initialize(
 	oss_list_multipart_uploads_request_t * request = NULL;
 	request = (oss_list_multipart_uploads_request_t *)malloc(
 			sizeof(oss_list_multipart_uploads_request_t));
+
 	request->bucket_name = (char *)malloc(byte_of_char * bucket_name_len + 1);
 	request->prefix = (char *)malloc(byte_of_char * prefix_len + 1);
 	request->key_marker = (char *)malloc(byte_of_char * key_marker_len + 1);
@@ -265,9 +266,9 @@ _list_multipart_uploads_request_initialize(
 	return request;
 }
 
-/* *
+/**
  * 初始化
- * */
+ */
 oss_list_multipart_uploads_request_t *
 list_multipart_uploads_request_initialize(const char *bucket_name)
 {
@@ -283,9 +284,9 @@ list_multipart_uploads_request_initialize(const char *bucket_name)
 			0);
 }
 
-/* *
+/**
  * 析构函数
- * */
+ */
 void
 list_multipart_uploads_request_finalize(
 		oss_list_multipart_uploads_request_t *request)
@@ -313,6 +314,5 @@ list_multipart_uploads_request_finalize(
 	}
 
 	free(request);
-	request = NULL;
 }
 

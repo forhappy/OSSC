@@ -13,137 +13,137 @@
  * =============================================================================
  */
 #define _OSS_PART_SUMMARY_H
-#include <modules/oss_part_summary.h>
+#include <ossc/modules/oss_part_summary.h>
 #undef _OSS_PART_SUMMARY_H
 
-
-
-void 
-part_summary_finalize(oss_part_summary_t *ps)
-{
-
-	if (ps) {
-		if (ps->etag) {
-			free(ps->etag);
-			ps->etag = NULL;
-		}
-		if (ps->last_modified) {
-			free(ps->last_modified);
-			ps->last_modified = NULL;
-		}
-		free(ps);
-		ps = NULL;
-	}
-}
-
 static const char * 
-_part_summary_get_etag(oss_part_summary_t *ps)
+_part_summary_get_etag(oss_part_summary_t *summary)
 {
-	return ps->etag;
+	return summary->etag;
 }
 
 static inline void
 __part_summary_set_etag(
-		oss_part_summary_t *ps, 
+		oss_part_summary_t *summary,
 		const char *etag,
 		size_t etag_len)
 {
-	if (ps->etag) {
-		free(ps->etag);
-		ps->etag = NULL;
+	if (summary->etag != NULL) {
+		free(summary->etag);
+		summary->etag = NULL;
 	}
-	ps->etag = (char *)malloc(sizeof(char) * etag_len + 1);
-	strncpy(ps->etag, etag, etag_len);
-	(ps->etag)[etag_len] = '\0';
+
+	summary->etag = (char *)malloc(sizeof(char) * etag_len + 1);
+	strncpy(summary->etag, etag, etag_len);
+	(summary->etag)[etag_len] = '\0';
 }
 
 static void
 _part_summary_set_etag(
-		oss_part_summary_t *ps, 
+		oss_part_summary_t *summary,
 		const char *etag)
 {
 	assert(etag != NULL);
+
 	size_t etag_len = strlen(etag);
-	__part_summary_set_etag(ps, etag, etag_len);
+	__part_summary_set_etag(summary, etag, etag_len);
 }
 
 static const char * 
-_part_summary_get_last_modified(oss_part_summary_t *ps)
+_part_summary_get_last_modified(oss_part_summary_t *summary)
 {
-	return ps->last_modified;
+	return summary->last_modified;
 }
 
 static inline void
 __part_summary_set_last_modified(
-		oss_part_summary_t *ps, 
+		oss_part_summary_t *summary,
 		const char *last_modified,
 		size_t last_modified_len)
 {
-	if (ps->last_modified) {
-		free(ps->last_modified);
-		ps->last_modified = NULL;
+	if (summary->last_modified != NULL) {
+		free(summary->last_modified);
+		summary->last_modified = NULL;
 	}
-	ps->last_modified = (char *)malloc(sizeof(char) * last_modified_len + 1);
-	strncpy(ps->last_modified, last_modified, last_modified_len);
-	(ps->last_modified)[last_modified_len] = '\0';
+	summary->last_modified = (char *)malloc(sizeof(char) * last_modified_len + 1);
+	strncpy(summary->last_modified, last_modified, last_modified_len);
+	(summary->last_modified)[last_modified_len] = '\0';
 }
 
 static void
 _part_summary_set_last_modified(
-		oss_part_summary_t *ps, 
+		oss_part_summary_t *summary,
 		const char *last_modified)
 {
 	assert(last_modified != NULL);
+
 	size_t last_modified_len = strlen(last_modified);
-	__part_summary_set_last_modified(ps, last_modified, last_modified_len);
+	__part_summary_set_last_modified(summary, last_modified, last_modified_len);
 }
 
 static int 
-_part_summary_get_part_number(oss_part_summary_t *ps)
+_part_summary_get_part_number(oss_part_summary_t *summary)
 {
-	return ps->part_number;
+	return summary->part_number;
 }
 
 static void
 _part_summary_set_part_number(
-		oss_part_summary_t *ps, 
+		oss_part_summary_t *summary,
 		int part_number)
 {
-	ps->part_number = part_number;
+	summary->part_number = part_number;
 }
 
 static long 
-_part_summary_get_size(oss_part_summary_t *ps)
+_part_summary_get_size(oss_part_summary_t *summary)
 {
-	return ps->size;
+	return summary->size;
 }
 
 static void
 _part_summary_set_size(
-		oss_part_summary_t *ps, 
+		oss_part_summary_t *summary,
 		long size)
 {
-	ps->size = size;
+	summary->size = size;
 }
 
 oss_part_summary_t *
 part_summary_initialize(void)
 {
-	oss_part_summary_t *ps;
-	ps = (oss_part_summary_t *)malloc(sizeof(oss_part_summary_t));
-	ps->etag = NULL;
-	ps->last_modified = NULL;
-	ps->part_number = 0;
-	ps->size = 0;
+	oss_part_summary_t *summary;
+	summary = (oss_part_summary_t *)malloc(sizeof(oss_part_summary_t));
+	summary->etag = NULL;
+	summary->last_modified = NULL;
+	summary->part_number = 0;
+	summary->size = 0;
 
-	ps->get_etag = _part_summary_get_etag;
-	ps->set_etag = _part_summary_set_etag;
-	ps->get_last_modified = _part_summary_get_last_modified;
-	ps->set_last_modified = _part_summary_set_last_modified;
-	ps->get_part_number = _part_summary_get_part_number;
-	ps->set_part_number = _part_summary_set_part_number;
-	ps->get_size = _part_summary_get_size;
-	ps->set_size = _part_summary_set_size;
+	summary->get_etag = _part_summary_get_etag;
+	summary->set_etag = _part_summary_set_etag;
+	summary->get_last_modified = _part_summary_get_last_modified;
+	summary->set_last_modified = _part_summary_set_last_modified;
+	summary->get_part_number = _part_summary_get_part_number;
+	summary->set_part_number = _part_summary_set_part_number;
+	summary->get_size = _part_summary_get_size;
+	summary->set_size = _part_summary_set_size;
 
-	return ps;
+	return summary;
+}
+
+
+void
+part_summary_finalize(oss_part_summary_t *summary)
+{
+	if (summary != NULL) {
+		if (summary->etag != NULL) {
+			free(summary->etag);
+			summary->etag = NULL;
+		}
+		if (summary->last_modified != NULL) {
+			free(summary->last_modified);
+			summary->last_modified = NULL;
+		}
+		free(summary);
+	}
 }
