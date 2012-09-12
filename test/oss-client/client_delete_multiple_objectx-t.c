@@ -39,7 +39,7 @@ compute_md5_digest(void *ptr, size_t len)
 
 	md5_init(&md5_state);
 	md5_append(&md5_state, ptr, len);
-	md5_finish(&md5_state, md5_digest);
+	md5_finish(&md5_state, (md5_byte_t *)md5_digest);
 
 	base64_md5 = (char *) malloc(sizeof(char) * 65);
 	memset(base64_md5, 0, 65);
