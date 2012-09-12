@@ -84,14 +84,14 @@ size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *st
  * 获取 Object
  * */
 oss_object_t *
-client_get_object(oss_client_t *client, oss_get_object_request_t *request)
+client_get_object_group_index(oss_client_t *client, const char *bucket_name, const char * key)
 {
 
 	assert(client != NULL);
+	assert(bucket_name != NULL);
+	assert(key != NULL);
 
-	const char *bucket_name = request->get_bucket_name(request);
-	const char *key = request->get_key(request);
-	FILE *file = fopen(key, "wb");
+	//FILE *file = fopen(key, "wb");
 
 	char resource[256]     = {0};
 	//char request_line[256] = {0};
@@ -100,7 +100,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 	char header_date[128]  = {0};
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
-
+	char header_group[128] = {0};
 	char headers[1024] = {0};
 
 	unsigned int sign_len = 0;
@@ -110,17 +110,20 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 
 
 	oss_map_t *default_headers = oss_map_new(16);
+	oss_map_t *user_headers = oss_map_new(16);
 
 	sprintf(resource, "/%s/%s", bucket_name, key);
 	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
+	sprintf(header_group, "%s:%s", OSS_OBJECT_GROUP, "I'm NULL."); 
 
 	oss_map_put(default_headers, OSS_DATE, now);
+	oss_map_put(user_headers, OSS_OBJECT_GROUP, "I'm NULL.");
 	
 	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
-			default_headers, NULL, resource, &sign_len);
+			default_headers, user_headers, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
 
@@ -130,13 +133,14 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
 		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
+		//curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
+		//curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
 
 
 		http_headers = curl_slist_append(http_headers, header_host);
 		http_headers = curl_slist_append(http_headers, header_date);
 		http_headers = curl_slist_append(http_headers, header_auth);
+		http_headers = curl_slist_append(http_headers, header_group);
 
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
@@ -145,7 +149,7 @@ client_get_object(oss_client_t *client, oss_get_object_request_t *request)
 		curl_easy_cleanup(curl);
 	}
 
-	fclose(file);
+	//fclose(file);
 	return NULL;
 }
 
@@ -153,9 +157,8 @@ int main()
 {
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
-	const char *bucket_name = "bucketname1";
-	const char *key = "";
+	const char *bucket_name = "bucketname2";
+	const char *key = "a_group_file.dat";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object_group_index(client, request);
+	client_get_object_group_index(client, bucket_name, key);
 }

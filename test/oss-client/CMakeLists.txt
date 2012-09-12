@@ -64,4 +64,12 @@ TARGET_LINK_LIBRARIES(client_post_object_group-t ossmodules ossutil ossauth ossc
 
 ADD_EXECUTABLE(client_get_object_group-t client_get_object_group-t.c)
 TARGET_LINK_LIBRARIES(client_get_object_group-t ossmodules ossutil ossauth ossc curl)
+ADD_EXECUTABLE(client_get_object_group_index-t client_get_object_group_index-t.c)
+TARGET_LINK_LIBRARIES(client_get_object_group_index-t ossmodules ossutil ossauth ossc curl)
+
+ADD_EXECUTABLE(client_head_object_group-t client_head_object_group-t.c)
+TARGET_LINK_LIBRARIES(client_head_object_group-t ossmodules ossutil ossauth ossc curl)
+
+ADD_EXECUTABLE(client_delete_object_group-t client_delete_object_group-t.c)
+TARGET_LINK_LIBRARIES(client_delete_object_group-t ossmodules ossutil ossauth ossc curl)
 
