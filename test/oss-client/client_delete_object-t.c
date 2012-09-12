@@ -126,7 +126,8 @@ client_delete_object(oss_client_t *client, const char *bucket_name, const char *
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
 		curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELETE");
-		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_delete_object_callback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, response);
 
@@ -148,10 +149,10 @@ client_delete_object(oss_client_t *client, const char *bucket_name, const char *
 
 int main()
 {
-	const char *access_id = "ACSGmv8fkV1TDO9L";
-	const char *access_key = "BedoWbsJe2";
-	const char *bucket_name = "bucketname001";
-	const char *key = "put.png";
+	const char *access_id = "ACSfLOiddaOzejOP";
+	const char *access_key = "MUltNpuYqE";
+	const char *bucket_name = "bucketname2";
+	const char *key = "a_file_group.dat";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	client_delete_object(client, bucket_name, key);
 }
