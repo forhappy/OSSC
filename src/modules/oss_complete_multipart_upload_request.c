@@ -28,7 +28,7 @@ __complete_multipart_upload_request_set_bucket_name(
 		const char *bucket_name,
 		size_t bucket_name_len)
 {
-	if (request->bucket_name) {
+	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
 		request->bucket_name = NULL;
 	}
@@ -82,7 +82,7 @@ __complete_multipart_upload_request_set_key(
 		const char *key,
 		size_t key_len)
 {
-	if (request->key) {
+	if (request->key != NULL) {
 		free(request->key);
 		request->key = NULL;
 	}
@@ -116,7 +116,7 @@ __complete_multipart_upload_request_set_upload_id(
 		const char *upload_id,
 		size_t upload_id_len)
 {
-	if (request->upload_id) {
+	if (request->upload_id != NULL) {
 		free(request->upload_id);
 		request->upload_id = NULL;
 	}
@@ -148,7 +148,7 @@ complete_multipart_upload_request_initialize(
 	oss_complete_multipart_upload_request_t *request;
 	request = (oss_complete_multipart_upload_request_t *)malloc(sizeof(oss_complete_multipart_upload_request_t));
 
-	if (request->bucket_name) {
+	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
 		request->bucket_name = NULL;
 	}
@@ -158,7 +158,7 @@ complete_multipart_upload_request_initialize(
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
 	(request->bucket_name)[bucket_name_len] = '\0';
 
-	if (request->key) {
+	if (request->key != NULL) {
 		free(request->key);
 		request->key = NULL;
 	}
@@ -168,7 +168,7 @@ complete_multipart_upload_request_initialize(
 	strncpy(request->key, key, key_len);
 	(request->key)[key_len] = '\0';
 	
-	if (request->upload_id) {
+	if (request->upload_id != NULL) {
 		free(request->upload_id);
 		request->upload_id = NULL;
 	}
@@ -202,16 +202,16 @@ complete_multipart_upload_request_finalize(
 			request->bucket_name = NULL;
 		}
 
-		if (request->part_etags) {
+		if (request->part_etags != NULL) {
 			request->part_etags = NULL;
 		}
 
-		if (request->key) {
+		if (request->key != NULL) {
 			free(request->key);
 			request->key = NULL;
 		}
 
-		if (request->upload_id) {
+		if (request->upload_id != NULL) {
 			free(request->upload_id);
 			request->upload_id = NULL;
 		}

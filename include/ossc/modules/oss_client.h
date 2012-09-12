@@ -52,6 +52,10 @@
 #include <ossc/modules/oss_copy_object_result.h>
 #undef _OSS_COPY_OBJECT_RESULT_H
 
+#define _OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H
+#include <ossc/modules/oss_delete_multiple_object_request.h>
+#undef _OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H
+
 #define _OSS_GENERATE_PRESIGNED_URL_REQUEST_H
 #include <ossc/modules/oss_generate_presigned_url_request.h>
 #undef _OSS_GENERATE_PRESIGNED_URL_REQUEST_H

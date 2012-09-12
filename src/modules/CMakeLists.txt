@@ -6,6 +6,7 @@ SET(SRC
 	oss_complete_multipart_upload_result.c
 	oss_copy_object_request.c
 	oss_copy_object_result.c
+	oss_delete_multiple_object_request.c
 	oss_generate_presigned_url_request.c
 	oss_get_object_request.c
 	oss_grant.c
