@@ -143,12 +143,12 @@
 /* *
  * get generate authentication
  * */
-#include <ossc/modules/oss_generate_authentication.h>
+#include <ossc/util/oss_auth.h>
 
 /* *
  * get the proper time format
  * */
-#include <ossc/modules/oss_time.h>
+#include <ossc/util/oss_time.h>
 
 /* *
  * constants

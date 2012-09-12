@@ -11,7 +11,7 @@
  *
  * =============================================================================
  */
-#include <ossc/modules/oss_time.h>
+#include <ossc/util/oss_time.h>
 
 const char * oss_get_asctime()
 {

@@ -25,7 +25,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include <ossc/oss_map.h>
+#include <ossc/util/oss_map.h>
 
 #define _OSS_CONSTANTS_H
 #include <ossc/oss_constants.h>

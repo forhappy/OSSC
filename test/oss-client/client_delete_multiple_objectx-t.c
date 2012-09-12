@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <lib/tstring.h>
+#include <util/oss_tstring.h>
 #include <lib/md5.h>
 #include <lib/base64.h>
 

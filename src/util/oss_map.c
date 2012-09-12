@@ -15,7 +15,7 @@
 #include <assert.h>
 #include <stdio.h>
 
-#include "ossc/oss_map.h"
+#include <ossc/util/oss_map.h>
 
 typedef struct oss_pair_s oss_pair_t;
 

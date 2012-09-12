@@ -29,7 +29,7 @@
 #include "ossc/modules/oss_response_header_overrides.h"
 #undef _OSS_RESPONSE_HEADER_OVERRIDES_H
 
-#include <ossc/oss_map.h>
+#include <ossc/util/oss_map.h>
 
 typedef struct oss_generate_presigned_url_request_s oss_generate_presigned_url_request_t;
 

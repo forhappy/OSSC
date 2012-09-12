@@ -91,7 +91,7 @@ size_t client_put_object_callback_read(void *ptr, size_t size, size_t nmemb, voi
 
 size_t client_put_object_callback_header(void *ptr, size_t size, size_t nmemb, void *stream)
 {
-	sscanf(ptr, "ETag: %s\n", stream);
+	sscanf(ptr, "ETag: %s\n", (char *)stream);
 	return size * nmemb;
 }
 /* *
@@ -111,7 +111,7 @@ client_put_object(oss_client_t *client, const char *bucket_name, const char *key
 	char now[128]          = {0};
 	char header_auth[512]  = {0};
 	char header_content_type[64] = {0};
-	char header_content_length[64] = {0};
+	//char header_content_length[64] = {0};
 	char response[4096] = {0};
 
 	unsigned int sign_len = 0;

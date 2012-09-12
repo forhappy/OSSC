@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <lib/tstring.h>
+#include <util/oss_tstring.h>
 #include <ossc/client.h>
 
 #define _OSS_CLIENT_H

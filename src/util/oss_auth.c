@@ -20,13 +20,13 @@
 #include <ossc/oss_constants.h>
 #undef _OSS_CONSTANTS_H
 
-#include <ossc/oss_map.h>
-#include <ossc/uthash.h>
+#include <ossc/util/oss_map.h>
+#include <ossc/util/uthash.h>
 
-#include "base64.h"
-#include "sha1.h"
-#include "hmac.h"
-#include "memxor.h"
+#include <src/lib/base64.h>
+#include <src/lib/hmac.h>
+#include <src/lib/memxor.h>
+#include <src/lib/sha1.h>
 
 #define CANONICALIZED_HEADERS_BUFFER_SIZE 4096
 #define HMAC_SHA1_OUT_LEN 21
