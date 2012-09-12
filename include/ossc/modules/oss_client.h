@@ -60,6 +60,10 @@
 #include <ossc/modules/oss_generate_presigned_url_request.h>
 #undef _OSS_GENERATE_PRESIGNED_URL_REQUEST_H
 
+#define _OSS_GET_OBJECT_GROUP_INDEX_RESULT_H
+#include <ossc/modules/oss_get_object_group_index_result.h>
+#undef _OSS_GET_OBJECT_GROUP_INDEX_RESULT_H
+
 #define _OSS_GET_OBJECT_REQUEST_H
 #include <ossc/modules/oss_get_object_request.h>
 #undef _OSS_GET_OBJECT_REQUEST_H
@@ -88,6 +92,10 @@
 #include <ossc/modules/oss_list_parts_request.h>
 #undef _OSS_LIST_OBJECTS_REQUEST_H
 
+#define _OSS_MULTIPART_OBJECT_GROUP_H
+#include <ossc/modules/oss_multipart_object_group.h>
+#undef _OSS_MULTIPART_OBJECT_GROUP_H
+
 #define _OSS_MULTIPART_UPLOAD_H
 #include <ossc/modules/oss_multipart_upload.h>
 #undef _OSS_MULTIPART_UPLOAD_H
@@ -99,6 +107,10 @@
 #define _OSS_OBJECT_H
 #include <ossc/modules/oss_object.h>
 #define _OSS_OBJECT_H
+
+#define _OSS_OBJECT_GROUP_ITEM_H
+#include <ossc/modules/oss_object_group_item.h>
+#undef _OSS_OBJECT_GROUP_ITEM_H
 
 #define _OSS_OBJECT_LISTING_H
 #include <ossc/modules/oss_object_listing.h>
@@ -127,6 +139,10 @@
 #define _OSS_PART_SUMMARY_H
 #include <ossc/modules/oss_part_summary.h>
 #undef _OSS_PART_SUMMARY_H
+
+#define _OSS_POST_OBJECT_GROUP_REQUEST_H
+#include <ossc/modules/oss_post_object_group_request.h>
+#undef _OSS_POST_OBJECT_GROUP_REQUEST_H
 
 #define _OSS_PUT_OBJECT_RESULT_H
 #include <ossc/modules/oss_put_object_result.h>

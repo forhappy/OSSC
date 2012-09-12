@@ -59,3 +59,6 @@ TARGET_LINK_LIBRARIES(client_delete_multiple_objectx-t ossmodules ossutil ossaut
 ADD_EXECUTABLE(client_list_parts-t client_list_parts-t.c)
 TARGET_LINK_LIBRARIES(client_list_parts-t ossmodules ossutil ossauth ossc curl)
 
+ADD_EXECUTABLE(client_post_object_group-t client_post_object_group-t.c)
+TARGET_LINK_LIBRARIES(client_post_object_group-t ossmodules ossutil ossauth ossc curl)
+
