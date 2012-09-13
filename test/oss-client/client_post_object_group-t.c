@@ -186,7 +186,8 @@ const char *etags[] = {
 	"E0CA28D194BC790EF3C6236231D033A7"
 };
 
-const char *partname[] = {"a.txt",
+const char *partname[] = {
+	"a.txt",
 	"b.txt",
 	"c.txt",
 	"d.txt",

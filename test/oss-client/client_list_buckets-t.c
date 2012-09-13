@@ -84,7 +84,7 @@ size_t client_list_bucket_callback(void *ptr, size_t size, size_t nmemb, void *s
  * 获取 Object
  * */
 oss_object_t *
-client_list_bucket(oss_client_t *client, const char *bucket_name)
+client_list_bucket(oss_client_t *client)//, const char *bucket_name)
 {
 
 	assert(client != NULL);
@@ -108,9 +108,11 @@ client_list_bucket(oss_client_t *client, const char *bucket_name)
 
 
 	oss_map_t *default_headers = oss_map_new(16);
-
-	sprintf(resource, "/%s", bucket_name);
-	sprintf(url, "%s/%s", client->endpoint, bucket_name);
+	
+	sprintf(resource, "/");
+	//sprintf(resource, "/%s", bucket_name);
+	sprintf(url, "%s", client->endpoint);
+	//sprintf(url, "%s/%s", client->endpoint, bucket_name);
 	sprintf(header_host,"Host: %s", client->endpoint);
 	sprintf(now, "%s", oss_get_gmt_time());
 	sprintf(header_date, "Date: %s", now);
@@ -149,9 +151,10 @@ client_list_bucket(oss_client_t *client, const char *bucket_name)
 
 int main()
 {
-	const char *access_id = "ACSGmv8fkV1TDO9L";
-	const char *access_key = "BedoWbsJe2";
-	const char *bucket_name = "bucketname001";
+	const char *access_id = "ACSfLOiddaOzejOP";
+	const char *access_key = "MUltNpuYqE";
+	//const char *bucket_name = "bucketname001";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_list_bucket(client, bucket_name);
+	//client_list_bucket(client, bucket_name);
+	client_list_bucket(client);
 }
