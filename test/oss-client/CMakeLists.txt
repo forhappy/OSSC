@@ -76,3 +76,6 @@ TARGET_LINK_LIBRARIES(client_delete_object_group-t ossmodules ossutil ossauth os
 ADD_EXECUTABLE(client_set_bucket_acl-x-t client_set_bucket_acl-x-t.c)
 TARGET_LINK_LIBRARIES(client_set_bucket_acl-x-t ossmodules ossutil ossauth ossc curl)
 
+ADD_EXECUTABLE(client_bucket_operation-t client_bucket_operation-t.c)
+TARGET_LINK_LIBRARIES(client_bucket_operation-t ossmodules ossutil ossauth ossc curl)
+
