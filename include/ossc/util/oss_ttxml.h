@@ -54,4 +54,10 @@ void xml_free(XmlNode *target);
 char* xml_attr(XmlNode *x, const char *name);
 XmlNode * xml_find(XmlNode *xml, const char *name);
 
+/* we add another function:
+ *        XmlNode *xml_parse(const char *buffer),
+ * to fit our need.
+ * */
+XmlNode *xml_load_buffer(const char *buffer, size_t buffer_len);
+
 #endif /* CCAN_TTXML_H */

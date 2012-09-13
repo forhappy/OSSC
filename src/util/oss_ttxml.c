@@ -4,10 +4,10 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "ttxml.h"
+#include <ossc/util/oss_ttxml.h>
 
 #ifndef BUFFER
-#define BUFFER 3264
+#define BUFFER 2 * 1024 * 1024 
 #endif
 
 
@@ -278,7 +278,7 @@ xml_read_attr_malloc:
  */
 static XmlNode* xml_parse(struct XMLBUF *xml)
 {
-	int offset;
+	// int offset;
 	int toff;
 	char **tmp;
 	char *stmp;
@@ -287,7 +287,7 @@ static XmlNode* xml_parse(struct XMLBUF *xml)
 	this = &ret;
 
 	xml_skip(xml, XML_SPACE);	// skip whitespace
-	offset=0;
+	// offset=0;
 	while( (xml->read_index < xml->len) || !xml->eof )
 	{
 		switch(is_special(xml_peek(xml)))
@@ -418,4 +418,38 @@ char* xml_attr(XmlNode *x, const char *name)
 			if(!strcmp(x->attrib[i*2], name))
 				return x->attrib[i*2+1];
 	return 0;
+}
+
+/* we add another function:
+ *        XmlNode *xml_load_buffer(const char *buffer) to fit our need. */
+XmlNode* xml_load_buffer(const char * buffer, size_t buffer_len)
+{
+	struct XMLBUF xml;
+	XmlNode *ret = NULL;
+
+	xml.error = 0;
+	xml.eof = 1;
+	xml.read_index = 0;
+	xml.fptr = NULL;
+
+	xml.buf = (char *)malloc(sizeof(char) * buffer_len + 1);
+	if(!xml.buf)
+		goto xml_load_fail_malloc_buf;
+	memset(xml.buf, 0, buffer_len + 1);
+
+	xml.len = buffer_len;
+
+	memcpy(xml.buf, buffer, buffer_len);
+
+	ret = xml_parse(&xml);
+
+	if(xml.error)
+	{
+		xml_free(ret);
+		ret = NULL;
+	}
+
+	free(xml.buf);
+xml_load_fail_malloc_buf:
+	return ret;
 }

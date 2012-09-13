@@ -160,6 +160,8 @@
 #include <ossc/modules/oss_upload_part_result.h>
 #undef _OSS_UPLOAD_PART_RESULT_H
 
+#include <ossc/util/oss_ttxml.h>
+
 /**
  * 访问阿里云开放存储服务（Open Storage Service， OSS）的入口。
  * 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量，

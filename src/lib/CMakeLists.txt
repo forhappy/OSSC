@@ -16,4 +16,3 @@ SET(SRC
 ADD_LIBRARY(ossauth STATIC ${SRC})
 
 set_modules_properties(ossauth)
-# ADD_DEPENDENCIES(modules ossutil)

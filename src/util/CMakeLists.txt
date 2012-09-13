@@ -3,6 +3,7 @@ SET(SRC
 	oss_map.c
 	oss_time.c
 	oss_tstring.c
+	oss_ttxml.c
 )
 
 ADD_LIBRARY(ossutil STATIC ${SRC})
