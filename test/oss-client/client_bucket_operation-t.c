@@ -161,6 +161,7 @@ bucket_curl_operation(const char *method,
 
 	curl_request_param_t *params = (curl_request_param_t *)user_data;
 
+	//param_buffer_t *send_buffer = params->send_buffer;
 	param_buffer_t *recv_buffer = params->recv_buffer;
 	param_buffer_t *header_buffer = params->header_buffer;
 
@@ -169,11 +170,15 @@ bucket_curl_operation(const char *method,
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
 
-		if (strcmp(method, OSS_HTTP_PUT) == 0 || strcmp(method, OSS_HTTP_DELETE))
+		if (strcmp(method, OSS_HTTP_PUT) == 0 || strcmp(method, OSS_HTTP_DELETE) == 0) {
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
-		
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, bucket_curl_operation_recv_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
+
+		}
+		else if (strcmp(method, OSS_HTTP_GET) == 0) {
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, bucket_curl_operation_recv_callback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
+		}
+
 		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, bucket_curl_operation_header_callback);
 		curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
 
@@ -203,13 +208,14 @@ client_set_bucket_acl(oss_client_t *client,
 	curl_request_param_t *user_data = (curl_request_param_t *)malloc(sizeof(curl_request_param_t));
 
 	user_data->send_buffer = NULL;
-
+	user_data->recv_buffer = NULL;
+#if 0
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 128 * 1024);
 	user_data->recv_buffer->fp = NULL;
 	user_data->recv_buffer->left = 128 * 1024;
 	user_data->recv_buffer->allocated = 128 * 1024;
-
+#endif
 	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 16 * 1024);
 	user_data->header_buffer->fp = NULL;
@@ -284,12 +290,52 @@ client_set_bucket_acl(oss_client_t *client,
 	curl_slist_free_all(http_headers);
 
 	printf("%u\n", user_data->header_buffer->code);
-	printf("%s\n", user_data->recv_buffer->ptr);
+	printf("%s", user_data->recv_buffer->ptr);
 
 }
 
-oss_bucket_t *
-client_list_buckets(oss_client_t *client)
+
+static oss_bucket_t **
+construct_list_buckets_response(const char *response, int *buckets_number)
+{
+	assert(response != NULL);
+	XmlNode *xml, *buckets_tag, *bucket_tag, *owner_tag;
+	int i;
+	size_t response_len = strlen(response); 
+	xml = xml_load_buffer(response, response_len);
+
+	*buckets_number = 0;
+ 	if(!xml) {
+		printf("parse xml error.\n");
+		return NULL;
+	}
+	
+	owner_tag = xml_find(xml, "Owner");
+	oss_owner_t *owner = owner_initialize_with_id(*owner_tag->child->child->attrib, *owner_tag->child->next->child->attrib);
+
+ 	buckets_tag = xml_find(xml, "Buckets");
+	bucket_tag = buckets_tag->child;
+	for(; bucket_tag != NULL; bucket_tag = bucket_tag->next) {
+		(*buckets_number)++;
+	}
+
+	oss_bucket_t **buckets = (oss_bucket_t **)malloc(sizeof(oss_bucket_t *) * (*buckets_number));
+	for(i = 0, bucket_tag = buckets_tag->child; i < *buckets_number; i++, bucket_tag = bucket_tag->next) {
+		buckets[i] = bucket_initialize();
+		buckets[i]->set_name(buckets[i], *bucket_tag->child->child->attrib);
+		buckets[i]->set_create_date(buckets[i], *bucket_tag->child->next->child->attrib);
+		buckets[i]->set_owner(buckets[i], owner);
+	}
+ 
+ 	xml_free(xml);
+
+	return buckets;
+	
+}
+
+
+oss_bucket_t **
+client_list_buckets(oss_client_t *client, int *buckets_number)
 {
 	assert(client != NULL);
 
@@ -304,10 +350,10 @@ client_list_buckets(oss_client_t *client)
 	user_data->recv_buffer->allocated = 128 * 1024;
 
 	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
-	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 16 * 1024);
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 4 * 1024);
 	user_data->header_buffer->fp = NULL;
-	user_data->header_buffer->left = 16 * 1024;
-	user_data->header_buffer->allocated = 16 * 1024;
+	user_data->header_buffer->left = 4 * 1024;
+	user_data->header_buffer->allocated = 4 * 1024;
 
 	/** 
 	 * Resource: "/"
@@ -323,7 +369,6 @@ client_list_buckets(oss_client_t *client)
 	char header_date[48]  = {0};
 	char now[32]          = {0}; /**< Fri, 24 Feb 2012 02:58:28 GMT */
 	char header_auth[128] = {0};
-	char header_acl[32]   = {0};
 
 	unsigned int sign_len = 0;
 
@@ -359,7 +404,6 @@ client_list_buckets(oss_client_t *client)
 	http_headers = curl_slist_append(http_headers, header_host);
 	http_headers = curl_slist_append(http_headers, header_date);
 	http_headers = curl_slist_append(http_headers, header_auth);
-	http_headers = curl_slist_append(http_headers, header_acl);
 
 	/**
 	 * 发送请求
@@ -371,18 +415,129 @@ client_list_buckets(oss_client_t *client)
 	 */
 	curl_slist_free_all(http_headers);
 
-	printf("%u\n", user_data->header_buffer->code);
-	printf("%s\n", user_data->recv_buffer->ptr);
-
-	return NULL;
+	//printf("%u\n", user_data->header_buffer->code);
+	//printf("%s\n", user_data->recv_buffer->ptr);
+	if (user_data->header_buffer->code != 200) {
+		buckets_number = 0;
+		return NULL;
+	} else {
+		return construct_list_buckets_response(user_data->recv_buffer->ptr, buckets_number);
+	}
 }
+
+int
+client_create_bucket(oss_client_t *client, const char *bucket_name)
+{
+
+	assert(client != NULL);
+	assert(bucket_name != NULL);
+
+	curl_request_param_t *user_data = (curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+	user_data->send_buffer = NULL;
+	user_data->recv_buffer = NULL;
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 4 * 1024);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = 4 * 1024;
+	user_data->header_buffer->allocated = 4 * 1024;
+
+	size_t bucket_name_len = strlen(bucket_name);
+
+	/** 
+	 * Resource: "/"
+	 */
+	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
+
+	/**
+	 * URL: "aliyun.storage.com" + resource
+	 */
+	char *url = (char *)malloc(sizeof(char) * bucket_name_len +64);
+
+	char header_host[64]  = {0};
+	char header_date[48]  = {0};
+	char now[32]          = {0}; /**< Fri, 24 Feb 2012 02:58:28 GMT */
+	char header_auth[128] = {0};
+
+	unsigned int sign_len = 0;
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值，
+	 * */
+	sprintf(resource, "/%s", bucket_name);
+	sprintf(url, "%s/%s", client->endpoint, bucket_name);
+	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(now, "%s", oss_get_gmt_time());
+	sprintf(header_date, "Date: %s", now);
+
+	/**
+	 * 请求头部构造
+	 */
+	oss_map_put(default_headers, OSS_DATE, now);
+	
+	/**
+	 * 生成签名值
+	 */
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_PUT,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	/**
+	 * 自定义 HTTP 请求头部
+	 */
+	struct curl_slist *http_headers = NULL;
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	bucket_curl_operation(OSS_HTTP_PUT, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+
+	//printf("%u\n", user_data->header_buffer->code);
+	//printf("%s\n", user_data->recv_buffer->ptr);
+	if (user_data->header_buffer->code != 200) {
+		return -1;
+	} else {
+		return user_data->header_buffer->code;
+	}
+
+}
+ 
 
 int main()
 {
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	//client_create_bucket(client, "bucketname002");
-	client_list_buckets(client);
+/* *
+ * test list_buckets
+ */
+	int buckets_number, i;
+	oss_owner_t *owner;
+	oss_bucket_t **buckets = client_list_buckets(client, &buckets_number);
+	for(i = 0; i < buckets_number; i++) {
+		printf("name = %s\tcreate_date = %s\n", buckets[i]->get_name(buckets[i]), buckets[i]->get_create_date(buckets[i]));
+		owner = buckets[i]->get_owner(buckets[i]);
+		printf("id = %s\tdisplay_name = %s\n", owner->get_id(owner), owner->get_display_name(owner));
+	}
+
+/* *
+ * test put_bucket
+ */
+	const char *create_bucket_name = "create_bucket_name";
+	int ret = client_create_bucket(client, create_bucket_name);
+	printf("ret = %d\n", ret);
+	return 0;
 	//client_set_bucket_acl(client, "bucketname1", "public-read");
 }

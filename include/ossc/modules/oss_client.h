@@ -227,14 +227,14 @@ client_copy_object_ext(oss_client_t *client,
 /**
  * 创建 Bucket
  */
-extern oss_bucket_t *
+extern int
 client_create_bucket(oss_client_t *client,
 		const char *bucket_name);
 
 /**
  * 删除 Bucket
  */
-extern void
+extern int
 client_delete_bucket(oss_client_t *client,
 		const char *bucket_name);
 
@@ -333,8 +333,8 @@ client_is_bucket_exist(oss_client_t *client,
 /**
  * 返回请求者拥有的所有 Bucket 的列表
  */
-extern oss_bucket_t *
-client_list_buckets(oss_client_t *client);
+extern oss_bucket_t **
+client_list_buckets(oss_client_t *client, int *buckets_number);
 
 /**
  * 列出所有执行中的 Multipart 上传事件

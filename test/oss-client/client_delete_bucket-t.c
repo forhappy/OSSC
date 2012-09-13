@@ -83,8 +83,8 @@ size_t client_delete_bucket_callback(void *ptr, size_t size, size_t nmemb, void 
 /* *
  * 创建 Bucket
  * */
-oss_bucket_t *
-client_create_bucket(oss_client_t *client, const char *bucket_name)
+int
+client_delete_bucket(oss_client_t *client, const char *bucket_name)
 {
 	assert(client != NULL);
 	assert(bucket_name != NULL);
@@ -140,7 +140,7 @@ client_create_bucket(oss_client_t *client, const char *bucket_name)
 		curl_easy_cleanup(curl);
 	}
 	printf("response: %s\n", response);
-	return NULL;
+	return 0;
 }
 
 
@@ -149,5 +149,5 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_create_bucket(client, "bucket-name002");
+	client_delete_bucket(client, "bucket-name002");
 }
