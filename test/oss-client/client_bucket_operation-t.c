@@ -169,7 +169,7 @@ bucket_curl_operation(const char *method,
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
 
-		if (strcmp(method, OSS_HTTP_PUT) == 0 || strcmp(method, OSS_HTTP_DELETE))
+		if (strcmp(method, OSS_HTTP_PUT) == 0 || strcmp(method, OSS_HTTP_DELETE) == 0)
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
 		
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, bucket_curl_operation_recv_callback);
