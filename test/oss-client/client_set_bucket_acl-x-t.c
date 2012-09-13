@@ -25,9 +25,11 @@ typedef struct curl_request_param_s curl_request_param_t;
 typedef struct param_buffer_s param_buffer_t;
 
 struct param_buffer_s {
-	char *ptr;
-	size_t left;
-	size_t allocated;
+	char *ptr; /**< 缓冲区首指针 */
+	FILE *fp; /**< 文件指针 */
+	size_t left; /** 缓冲区剩余大小 */
+	size_t allocated; /** 缓冲区总大小 */
+	unsigned short code; /**返回码 */
 };
 
 struct curl_request_param_s {
@@ -90,16 +92,46 @@ client_initialize(const char *access_id,
 
 size_t bucket_curl_operation_send_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
-	return size * nmemb;
+	param_buffer_t *send_buffer = (param_buffer_t *)stream;
+	size_t bytes_per_send = size * nmemb; 
+
+	if(bytes_per_send < 1)
+		return 0;
+	if(send_buffer->left > 0) {
+		if (send_buffer->left > bytes_per_send) {
+			memcpy(ptr, send_buffer->ptr, bytes_per_send);
+			send_buffer->ptr += bytes_per_send; /* advance pointer */
+			send_buffer->left -= bytes_per_send; /* less data left */
+			return bytes_per_send;
+		} else {
+			memcpy(ptr, send_buffer->ptr, send_buffer->left);
+			size_t last_sent_bytes = send_buffer->left;
+			send_buffer->left -= bytes_per_send; /* less data left */
+			return last_sent_bytes;
+		}
+	} else return 0;
 }
 
 size_t bucket_curl_operation_recv_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	param_buffer_t *recv_buffer = (param_buffer_t *)stream;
-
-	strncpy(recv_buffer->ptr, ptr, size * nmemb);
-
-	return size * nmemb;
+	size_t bytes_per_recv = size * nmemb;
+	if (recv_buffer->left > 0) {
+		size_t offset = recv_buffer->allocated - recv_buffer->left;
+		if (recv_buffer->left > bytes_per_recv) {
+			strncpy(recv_buffer->ptr + offset, ptr, size * nmemb);
+			recv_buffer->left -= bytes_per_recv;
+			return bytes_per_recv;
+		} else {
+			strncpy(recv_buffer->ptr + offset, ptr, recv_buffer->left);
+			size_t last_recv_bytes = recv_buffer->left;
+			recv_buffer->left -= bytes_per_recv;
+			return last_recv_bytes;
+		}
+	} else {
+		fprintf(stderr, "%s\n", "Receive buffer overflow!");
+		return 0;
+	}
 }
 
 size_t bucket_curl_operation_header_callback(void *ptr, size_t size, size_t nmemb, void *stream)
@@ -107,9 +139,9 @@ size_t bucket_curl_operation_header_callback(void *ptr, size_t size, size_t nmem
 	param_buffer_t *header_buffer = (param_buffer_t *)stream;
 	int r;
 	size_t code = 0;
-	r = sscanf(ptr, "HTTP/1.1 %u %s\n", &code, header_buffer->ptr);
+	r = sscanf(ptr, "HTTP/1.1 %u\n", &code);
 	if (r != 0) {
-		header_buffer->allocated = code;
+		header_buffer->code= code;
 	}
 	return size * nmemb;
 }
@@ -129,7 +161,6 @@ bucket_curl_operation(const char *method,
 
 	curl_request_param_t *params = (curl_request_param_t *)user_data;
 
-	//param_buffer_t *send_buffer = params->send_buffer;
 	param_buffer_t *recv_buffer = params->recv_buffer;
 	param_buffer_t *header_buffer = params->header_buffer;
 
@@ -137,18 +168,14 @@ bucket_curl_operation(const char *method,
 	if (curl != NULL) {
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
-		if (strcmp(method, OSS_HTTP_PUT) == 0) {
+
+		if (strcmp(method, OSS_HTTP_PUT) == 0 || strcmp(method, OSS_HTTP_DELETE))
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
-			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, bucket_curl_operation_recv_callback);
-			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
-			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, bucket_curl_operation_header_callback);
-			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
-			//curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-			//curl_easy_setopt(curl, CURLOPT_INFILESIZE, request->get_part_size(request));
-			//curl_easy_setopt(curl, CURLOPT_READFUNCTION, client_upload_part_callback);
-			//curl_easy_setopt(curl, CURLOPT_READDATA, request->get_input_stream(request, &input_stream_len));
-			//curl_easy_setopt(curl, CURLOPT_READDATA, send_buffer);
-		}
+		
+		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, bucket_curl_operation_recv_callback);
+		curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
+		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, bucket_curl_operation_header_callback);
+		curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
 
 		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
@@ -178,12 +205,14 @@ client_set_bucket_acl(oss_client_t *client,
 	user_data->send_buffer = NULL;
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
-	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 16 * 1024);
-	user_data->recv_buffer->left = 16 * 1024;
-	user_data->recv_buffer->allocated = 16 * 1024;
+	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 128 * 1024);
+	user_data->recv_buffer->fp = NULL;
+	user_data->recv_buffer->left = 128 * 1024;
+	user_data->recv_buffer->allocated = 128 * 1024;
 
 	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 16 * 1024);
+	user_data->header_buffer->fp = NULL;
 	user_data->header_buffer->left = 16 * 1024;
 	user_data->header_buffer->allocated = 16 * 1024;
 
@@ -254,9 +283,8 @@ client_set_bucket_acl(oss_client_t *client,
 	 */
 	curl_slist_free_all(http_headers);
 
-	printf("%s\n", user_data->header_buffer->ptr);
-	printf("%u\n", user_data->header_buffer->allocated);
-	//printf("%s\n", user_data->recv_buffer->ptr);
+	printf("%u\n", user_data->header_buffer->code);
+	printf("%s\n", user_data->recv_buffer->ptr);
 
 }
 
