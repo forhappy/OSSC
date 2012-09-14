@@ -84,7 +84,9 @@ size_t client_list_object_callback(void *ptr, size_t size, size_t nmemb, void *s
  * 获取 Object
  * */
 oss_object_t *
-client_list_object(oss_client_t *client, const char *bucket_name)
+client_list_object(oss_client_t *client,
+		const char *bucket_name,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);

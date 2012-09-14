@@ -83,7 +83,7 @@ size_t client_create_bucket_callback(void *ptr, size_t size, size_t nmemb, void 
 /* *
  * 创建 Bucket
  * */
-int
+void
 client_create_bucket(oss_client_t *client,
 		const char *bucket_name,
 		unsigned short *retcode)

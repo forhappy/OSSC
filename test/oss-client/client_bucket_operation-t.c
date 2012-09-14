@@ -200,7 +200,8 @@ bucket_curl_operation(const char *method,
 void
 client_set_bucket_acl(oss_client_t *client,
 		const char *bucket_name,
-		const char *acl)
+		const char *acl,
+		unsigned short *retcode)
 {
 	assert(client != NULL);
 	assert(bucket_name != NULL);
@@ -296,7 +297,8 @@ client_set_bucket_acl(oss_client_t *client,
 
 
 static oss_bucket_t **
-construct_list_buckets_response(const char *response, int *buckets_number)
+construct_list_buckets_response(const char *response,
+		int *buckets_number)
 {
 	assert(response != NULL);
 	XmlNode *xml, *buckets_tag, *bucket_tag, *owner_tag;
@@ -335,7 +337,9 @@ construct_list_buckets_response(const char *response, int *buckets_number)
 
 
 oss_bucket_t **
-client_list_buckets(oss_client_t *client, int *buckets_number)
+client_list_buckets(oss_client_t *client,
+		int *buckets_number,
+		unsigned short *retcode)
 {
 	assert(client != NULL);
 
@@ -425,8 +429,10 @@ client_list_buckets(oss_client_t *client, int *buckets_number)
 	}
 }
 
-int
-client_create_bucket(oss_client_t *client, const char *bucket_name)
+void
+client_create_bucket(oss_client_t *client,
+		const char *bucket_name,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -535,7 +541,7 @@ int main()
 			printf("id = %s\tdisplay_name = %s\n", owner->get_id(owner), owner->get_display_name(owner));
 		}
 	} else {
-		retinfo = get_retinfo_from_retcode(retcode);
+		//retinfo = get_retinfo_from_retcode(retcode);
 		printf("error: %s\n", retinfo);
 	}
 
@@ -546,8 +552,8 @@ int main()
 	client_create_bucket(client, create_bucket_name, &retcode);
 	if(retcode == 0) {
 		printf("create bucket succeed.\n");
-	} esle {
-		retinfo = get_retinfo_from_retcode(retcode);
+	} else {
+		//retinfo = get_retinfo_from_retcode(retcode);
 		printf("error = %s\n", retinfo);
 	}
 

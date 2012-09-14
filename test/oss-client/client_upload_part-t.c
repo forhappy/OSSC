@@ -149,7 +149,8 @@ size_t client_upload_part_callback(void *ptr,
  * */
 oss_upload_part_result_t *
 client_upload_part(oss_client_t *client, 
-		oss_upload_part_request_t *request)
+		oss_upload_part_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -271,7 +272,7 @@ int main()
 			request->set_input_stream(request,
 					buffer + current_part_number * single_request_len, single_request_len);
 			request->set_part_size(request, single_request_len);
-			client_upload_part(client, request);
+			client_upload_part(client, request, NULL);
 			compute_md5_digest(buffer + current_part_number * single_request_len,
 					single_request_len);
 		} else {

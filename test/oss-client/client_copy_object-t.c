@@ -89,7 +89,7 @@ client_copy_object_ext(oss_client_t *client,
 		const char *source_key,
 		const char *destination_bucket_name,
 		const char *destination_key,
-		unsigned int *retcode)
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
