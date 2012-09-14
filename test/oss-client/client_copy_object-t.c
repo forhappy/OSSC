@@ -84,8 +84,12 @@ size_t client_copy_object_callback(void *ptr, size_t size, size_t nmemb, void *s
  * 拷贝 Object
  * */
 oss_copy_object_result_t *
-client_copy_object_ext(oss_client_t *client, const char *source_bucket_name, const char *source_key,
-		const char *destination_bucket_name, const char *destination_key)
+client_copy_object_ext(oss_client_t *client,
+		const char *source_bucket_name,
+		const char *source_key,
+		const char *destination_bucket_name,
+		const char *destination_key,
+		unsigned int *retcode)
 {
 
 	assert(client != NULL);
@@ -165,5 +169,5 @@ int main()
 	const char *destination_key = "PUT.png";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	client_copy_object_ext(client, source_bucket_name, source_key,
-			destination_bucket_name, destination_key);
+			destination_bucket_name, destination_key, NULL);
 }

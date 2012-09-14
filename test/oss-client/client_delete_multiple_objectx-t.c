@@ -113,7 +113,8 @@ size_t client_delete_multiple_object_callback(void *ptr, size_t size, size_t nme
  * */
 oss_delete_multiple_object_request_t*
 client_delete_multiple_object(oss_client_t *client,
-		oss_delete_multiple_object_request_t *request)
+		oss_delete_multiple_object_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -232,5 +233,5 @@ int main()
 	oss_delete_multiple_object_request_t *request = 
 		delete_multiple_object_request_initialize(bucket_name, keys, 4, false);
 
-	client_delete_multiple_object(client, request);
+	client_delete_multiple_object(client, request, NULL);
 }

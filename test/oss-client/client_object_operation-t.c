@@ -284,7 +284,8 @@ client_put_object_from_file(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
 		void *input, /**< 文件指针*/
-		oss_object_metadata_t *metadata)
+		oss_object_metadata_t *metadata,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -417,7 +418,8 @@ client_put_object_from_buffer(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
 		void *input, /**< 缓冲区首地址 */
-		oss_object_metadata_t *metadata)
+		oss_object_metadata_t *metadata,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -549,7 +551,8 @@ client_put_object_from_buffer(oss_client_t *client,
 oss_object_metadata_t *
 client_get_object_to_file(oss_client_t *client,
 		oss_get_object_request_t *request,
-		FILE *file)
+		FILE *file,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -703,16 +706,16 @@ int main()
 	//metadata->set_expiration_time(metadata, "Thu, 13 Sep 2012 21:08:42 GMT");
 
 	//oss_put_object_result_t *result01 = client_put_object_from_file(client, bucket_name, key,
-	//		file, metadata);
+	//		file, metadata, NULL);
 
 	///oss_put_object_result_t *result02 = client_put_object_from_buffer(client, bucket_name, key,
-	//		buffer, metadata);
+	//		buffer, metadata, NULL);
 	//printf("ETag:\n%s\n", result02->get_etag(result02));
 	//put_object_result_finalize(result02);
 
 	//oss_client_t *client = client_initialize(access_id, access_key);
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object_to_file(client, request, local_file);
+	client_get_object_to_file(client, request, local_file, NULL);
 	fclose(file);
 	fclose(local_file);
 

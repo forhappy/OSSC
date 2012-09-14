@@ -78,7 +78,9 @@ client_initialize(const char *access_id,
  * 返回给定 Bucket 的 Access Control List(ACL)
  * */
 oss_access_control_list_t *
-client_get_bucket_acl(oss_client_t *client, const char *bucket_name)
+client_get_bucket_acl(oss_client_t *client,
+		const char *bucket_name,
+		unsigned short *retcode)
 {
 	assert(client != NULL);
 	assert(bucket_name != NULL);
@@ -145,5 +147,5 @@ int main()
 	oss_client_t *client = client_initialize(access_id, access_key);
 	//client_create_bucket(client, "bucketname002");
 	//client_list_buckets(client);
-	client_get_bucket_acl(client, "bucketname1");
+	client_get_bucket_acl(client, "bucketname1", NULL);
 }

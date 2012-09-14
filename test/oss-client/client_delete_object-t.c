@@ -84,7 +84,10 @@ size_t client_delete_object_callback(void *ptr, size_t size, size_t nmemb, void 
  *  删除 Object
  * */
 void
-client_delete_object(oss_client_t *client, const char *bucket_name, const char *key)
+client_delete_object(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -154,5 +157,5 @@ int main()
 	const char *bucket_name = "bucketname2";
 	const char *key = "a_file_group.dat";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_delete_object(client, bucket_name, key);
+	client_delete_object(client, bucket_name, key, NULL);
 }

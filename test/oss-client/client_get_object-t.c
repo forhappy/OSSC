@@ -84,7 +84,9 @@ size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *st
  * 获取 Object
  * */
 oss_object_t *
-client_get_object(oss_client_t *client, oss_get_object_request_t *request)
+client_get_object(oss_client_t *client,
+		oss_get_object_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -157,5 +159,5 @@ int main()
 	const char *key = "oss_api.py";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	client_get_object(client, request);
+	client_get_object(client, request, NULL);
 }

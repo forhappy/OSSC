@@ -84,7 +84,8 @@ size_t client_complete_multipart_upload_callback(void *ptr, size_t size, size_t 
 
 void 
 client_abort_multipart_upload(oss_client_t *client,
-		oss_abort_multipart_upload_request_t *request)
+		oss_abort_multipart_upload_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -188,5 +189,5 @@ int main()
 	oss_abort_multipart_upload_request_t *request = 
 		abort_multipart_upload_request_initialize(bucket_name, key, upload_id);
 
-	client_abort_multipart_upload(client, request);
+	client_abort_multipart_upload(client, request, NULL);
 }

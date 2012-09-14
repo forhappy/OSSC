@@ -20,6 +20,8 @@
 #define OSS_CONSTANTS_H
 
 typedef enum _OSS_ERROR_CODE {
+	/* 0 返回成功 */
+	OK,
 	/* 拒绝访问 */
 	ACCESS_DENIED,
 	/* Bucket 已经存在 */

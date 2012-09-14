@@ -84,7 +84,10 @@ size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *st
  * 获取 Object
  * */
 oss_object_t *
-client_get_object_group_index(oss_client_t *client, const char *bucket_name, const char * key)
+client_get_object_group_index(oss_client_t *client,
+		const char *bucket_name,
+		const char * key,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -160,5 +163,5 @@ int main()
 	const char *bucket_name = "bucketname2";
 	const char *key = "a_group_file.dat";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_get_object_group_index(client, bucket_name, key);
+	client_get_object_group_index(client, bucket_name, key, NULL);
 }

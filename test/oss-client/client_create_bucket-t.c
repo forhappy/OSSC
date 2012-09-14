@@ -84,7 +84,9 @@ size_t client_create_bucket_callback(void *ptr, size_t size, size_t nmemb, void 
  * 创建 Bucket
  * */
 int
-client_create_bucket(oss_client_t *client, const char *bucket_name)
+client_create_bucket(oss_client_t *client,
+		const char *bucket_name,
+		unsigned short *retcode)
 {
 	assert(client != NULL);
 	assert(bucket_name != NULL);
@@ -150,5 +152,5 @@ int main()
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_create_bucket(client, "sinacosa");
+	client_create_bucket(client, "sinacosa", NULL);
 }
