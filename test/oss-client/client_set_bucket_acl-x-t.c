@@ -204,7 +204,8 @@ bucket_curl_operation(const char *method,
 void
 client_set_bucket_acl(oss_client_t *client,
 		const char *bucket_name,
-		const char *acl)
+		const char *acl,
+		unsigned short *retcode)
 {
 	assert(client != NULL);
 	assert(bucket_name != NULL);

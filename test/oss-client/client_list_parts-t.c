@@ -84,7 +84,8 @@ size_t client_list_parts_callback(void *ptr, size_t size, size_t nmemb, void *st
 
 oss_part_listing_t *
 client_list_parts(oss_client_t *client,
-		oss_list_parts_request_t *request)
+		oss_list_parts_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);

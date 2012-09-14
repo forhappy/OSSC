@@ -87,7 +87,8 @@ size_t client_post_object_group_callback(void *ptr, size_t size, size_t nmemb, v
  * */
 const char *
 client_post_object_group(oss_client_t *client,
-		oss_post_object_group_request_t *request)
+		oss_post_object_group_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);

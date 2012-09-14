@@ -297,7 +297,8 @@ client_set_bucket_acl(oss_client_t *client,
 
 
 static oss_bucket_t **
-construct_list_buckets_response(const char *response, int *buckets_number)
+construct_list_buckets_response(const char *response,
+		int *buckets_number)
 {
 	assert(response != NULL);
 	XmlNode *xml, *buckets_tag, *bucket_tag, *owner_tag;
@@ -429,8 +430,8 @@ client_list_buckets(oss_client_t *client,
 }
 
 void
-client_create_bucket(oss_client_t *client, 
-		const char *bucket_name;
+client_create_bucket(oss_client_t *client,
+		const char *bucket_name,
 		unsigned short *retcode)
 {
 
@@ -551,7 +552,7 @@ int main()
 	client_create_bucket(client, create_bucket_name, NULL);
 	if(retcode == 0) {
 		printf("create bucket succeed.\n");
-	} esle {
+	} else {
 		//retinfo = get_retinfo_from_retcode(retcode);
 		printf("error = %s\n", retinfo);
 	}

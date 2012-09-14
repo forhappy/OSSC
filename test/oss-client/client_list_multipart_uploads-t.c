@@ -84,7 +84,8 @@ size_t client_list_multipart_upload_callback(void *ptr, size_t size, size_t nmem
 
 oss_multipart_upload_listing_t *
 client_list_multipart_uploads(oss_client_t *client,
-		oss_list_multipart_uploads_request_t *request)
+		oss_list_multipart_uploads_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);

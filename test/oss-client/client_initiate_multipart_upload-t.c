@@ -85,7 +85,8 @@ size_t client_initiate_multipart_upload_callback(void *ptr, size_t size, size_t 
  * */
 oss_initiate_multipart_upload_result_t*
 client_initiate_multipart_upload(oss_client_t *client,
-		oss_initiate_multipart_upload_request_t *request)
+		oss_initiate_multipart_upload_request_t *request,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);

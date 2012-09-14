@@ -111,7 +111,8 @@ client_put_object(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
 		void *input,
-		oss_object_metadata_t *metadata)
+		oss_object_metadata_t *metadata,
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);

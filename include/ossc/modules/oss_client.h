@@ -239,10 +239,10 @@ client_create_bucket(oss_client_t *client,
 /**
  * 删除 Bucket
  */
-extern void
+extern void 
 client_delete_bucket(oss_client_t *client,
 		const char *bucket_name,
-		unsigned short code);
+		unsigned short *retcode);
 
 /**
  * 删除指定的 OSSObject
