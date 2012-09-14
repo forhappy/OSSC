@@ -200,7 +200,8 @@ bucket_curl_operation(const char *method,
 void
 client_set_bucket_acl(oss_client_t *client,
 		const char *bucket_name,
-		const char *acl)
+		const char *acl,
+		unsigned short *retcode)
 {
 	assert(client != NULL);
 	assert(bucket_name != NULL);
@@ -335,7 +336,9 @@ construct_list_buckets_response(const char *response, int *buckets_number)
 
 
 oss_bucket_t **
-client_list_buckets(oss_client_t *client, int *buckets_number)
+client_list_buckets(oss_client_t *client,
+		int *buckets_number,
+		unsigned short *retcode)
 {
 	assert(client != NULL);
 
@@ -425,8 +428,10 @@ client_list_buckets(oss_client_t *client, int *buckets_number)
 	}
 }
 
-int
-client_create_bucket(oss_client_t *client, const char *bucket_name)
+void
+client_create_bucket(oss_client_t *client, 
+		const char *bucket_name;
+		unsigned short *retcode)
 {
 
 	assert(client != NULL);
@@ -527,7 +532,7 @@ int main()
 	 */
 	int buckets_number, i;
 	oss_owner_t *owner;
-	oss_bucket_t **buckets = client_list_buckets(client, &buckets_number, &retcode);
+	oss_bucket_t **buckets = client_list_buckets(client, &buckets_number, NULL);
 	if(buckets != NULL) {
 		for(i = 0; i < buckets_number; i++) {
 			printf("name = %s\tcreate_date = %s\n", buckets[i]->get_name(buckets[i]), buckets[i]->get_create_date(buckets[i]));
@@ -535,7 +540,7 @@ int main()
 			printf("id = %s\tdisplay_name = %s\n", owner->get_id(owner), owner->get_display_name(owner));
 		}
 	} else {
-		retinfo = get_retinfo_from_retcode(retcode);
+		//retinfo = get_retinfo_from_retcode(retcode);
 		printf("error: %s\n", retinfo);
 	}
 
@@ -543,11 +548,11 @@ int main()
 	 * test create_bucket
 	 */
 	const char *create_bucket_name = "create_bucket_name";
-	client_create_bucket(client, create_bucket_name, &retcode);
+	client_create_bucket(client, create_bucket_name, NULL);
 	if(retcode == 0) {
 		printf("create bucket succeed.\n");
 	} esle {
-		retinfo = get_retinfo_from_retcode(retcode);
+		//retinfo = get_retinfo_from_retcode(retcode);
 		printf("error = %s\n", retinfo);
 	}
 
