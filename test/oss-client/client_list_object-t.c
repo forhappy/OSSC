@@ -153,5 +153,5 @@ int main()
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_list_object(client, bucket_name);
+	client_list_object(client, bucket_name, NULL);
 }

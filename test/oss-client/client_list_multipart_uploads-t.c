@@ -186,5 +186,5 @@ int main()
 	oss_list_multipart_uploads_request_t *request = 
 		list_multipart_uploads_request_initialize(bucket_name);
 
-	client_list_multipart_uploads(client, request);
+	client_list_multipart_uploads(client, request, NULL);
 }

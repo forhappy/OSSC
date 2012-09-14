@@ -520,24 +520,43 @@ int main()
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
 	oss_client_t *client = client_initialize(access_id, access_key);
-/* *
- * test list_buckets
- */
+	unsigned short retcode;
+	char *retinfo;
+	/* *
+	 * test list_buckets
+	 */
 	int buckets_number, i;
 	oss_owner_t *owner;
-	oss_bucket_t **buckets = client_list_buckets(client, &buckets_number);
-	for(i = 0; i < buckets_number; i++) {
-		printf("name = %s\tcreate_date = %s\n", buckets[i]->get_name(buckets[i]), buckets[i]->get_create_date(buckets[i]));
-		owner = buckets[i]->get_owner(buckets[i]);
-		printf("id = %s\tdisplay_name = %s\n", owner->get_id(owner), owner->get_display_name(owner));
+	oss_bucket_t **buckets = client_list_buckets(client, &buckets_number, &retcode);
+	if(buckets != NULL) {
+		for(i = 0; i < buckets_number; i++) {
+			printf("name = %s\tcreate_date = %s\n", buckets[i]->get_name(buckets[i]), buckets[i]->get_create_date(buckets[i]));
+			owner = buckets[i]->get_owner(buckets[i]);
+			printf("id = %s\tdisplay_name = %s\n", owner->get_id(owner), owner->get_display_name(owner));
+		}
+	} else {
+		retinfo = get_retinfo_from_retcode(retcode);
+		printf("error: %s\n", retinfo);
 	}
 
-/* *
- * test put_bucket
- */
+	/* *
+	 * test create_bucket
+	 */
 	const char *create_bucket_name = "create_bucket_name";
-	int ret = client_create_bucket(client, create_bucket_name);
-	printf("ret = %d\n", ret);
-	return 0;
+	client_create_bucket(client, create_bucket_name, &retcode);
+	if(retcode == 0) {
+		printf("create bucket succeed.\n");
+	} esle {
+		retinfo = get_retinfo_from_retcode(retcode);
+		printf("error = %s\n", retinfo);
+	}
+
+	/* *
+	 * test _bucket
+	 */
+	
+
 	//client_set_bucket_acl(client, "bucketname1", "public-read");
+	
+	return 0;
 }

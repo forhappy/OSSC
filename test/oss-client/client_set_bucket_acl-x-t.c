@@ -90,7 +90,10 @@ client_initialize(const char *access_id,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
 
-size_t bucket_curl_operation_send_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t bucket_curl_operation_send_callback(void *ptr,
+		size_t size,
+		size_t nmemb,
+		void *stream)
 {
 	param_buffer_t *send_buffer = (param_buffer_t *)stream;
 	size_t bytes_per_send = size * nmemb; 
@@ -112,7 +115,10 @@ size_t bucket_curl_operation_send_callback(void *ptr, size_t size, size_t nmemb,
 	} else return 0;
 }
 
-size_t bucket_curl_operation_recv_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t bucket_curl_operation_recv_callback(void *ptr,
+		size_t size,
+		size_t nmemb,
+		void *stream)
 {
 	param_buffer_t *recv_buffer = (param_buffer_t *)stream;
 	size_t bytes_per_recv = size * nmemb;
@@ -134,7 +140,10 @@ size_t bucket_curl_operation_recv_callback(void *ptr, size_t size, size_t nmemb,
 	}
 }
 
-size_t bucket_curl_operation_header_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t bucket_curl_operation_header_callback(void *ptr,
+		size_t size,
+		size_t nmemb,
+		void *stream)
 {
 	param_buffer_t *header_buffer = (param_buffer_t *)stream;
 	int r;
@@ -295,5 +304,5 @@ int main()
 	oss_client_t *client = client_initialize(access_id, access_key);
 	//client_create_bucket(client, "bucketname002");
 	//client_list_buckets(client);
-	client_set_bucket_acl(client, "bucketname1", "public-read");
+	client_set_bucket_acl(client, "bucketname1", "public-read", NULL);
 }

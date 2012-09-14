@@ -160,5 +160,5 @@ int main()
 	oss_client_t *client = client_initialize(access_id, access_key);
 	oss_initiate_multipart_upload_request_t *request = 
 		initiate_multipart_upload_request_initialize(bucket_name, key);
-	client_initiate_multipart_upload(client, request);
+	client_initiate_multipart_upload(client, request, NULL);
 }

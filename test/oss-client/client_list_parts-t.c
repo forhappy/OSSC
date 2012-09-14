@@ -172,5 +172,5 @@ int main()
 	oss_list_parts_request_t *request = 
 		list_parts_request_initialize(bucket_name, key, upload_id);
 
-	client_list_parts(client, request);
+	client_list_parts(client, request, NULL);
 }

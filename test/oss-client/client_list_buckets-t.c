@@ -156,5 +156,5 @@ int main()
 	//const char *bucket_name = "bucketname001";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	//client_list_bucket(client, bucket_name);
-	client_list_bucket(client);
+	client_list_bucket(client, NULL);
 }

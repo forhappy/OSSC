@@ -75,21 +75,30 @@ client_initialize(const char *access_id,
 			DEFAULT_OSS_HOST, endpoint_len);
 }
 
-size_t client_put_object_callback_write(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_put_object_callback_write(void *ptr,
+		size_t size,
+		size_t nmemb,
+		void *stream)
 {
 	size_t r = size * nmemb;
 	memcpy(stream, ptr, r);
 	return r;
 }
 
-size_t client_put_object_callback_read(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_put_object_callback_read(void *ptr,
+		size_t size,
+		size_t nmemb,
+		void *stream)
 {
 	size_t r = size * nmemb;
 	read(*(int *)stream, ptr, r);
 	return r;
 }
 
-size_t client_put_object_callback_header(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_put_object_callback_header(void *ptr,
+		size_t size,
+		size_t nmemb,
+		void *stream)
 {
 	sscanf(ptr, "ETag: %s\n", (char *)stream);
 	return size * nmemb;
@@ -98,8 +107,11 @@ size_t client_put_object_callback_header(void *ptr, size_t size, size_t nmemb, v
  * 拷贝 Object
  * */
 oss_put_object_result_t *
-client_put_object(oss_client_t *client, const char *bucket_name, const char *key,
-		void *input, oss_object_metadata_t *metadata)
+client_put_object(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		void *input,
+		oss_object_metadata_t *metadata)
 {
 
 	assert(client != NULL);
@@ -203,6 +215,6 @@ int main()
 	metadata->set_content_type(metadata, "application/octet-stream");
 
 	client_put_object(client, bucket_name, key,
-			&fd, metadata);
+			&fd, metadata, NULL);
 	fclose(file);
 }

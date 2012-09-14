@@ -215,5 +215,5 @@ int main()
 	oss_post_object_group_request_t *request = 
 		post_object_group_request_initialize(bucket_name, key, part_item, 5);
 
-	client_post_object_group(client, request);
+	client_post_object_group(client, request, NULL);
 }

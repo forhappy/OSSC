@@ -84,7 +84,8 @@ size_t client_get_object_callback(void *ptr, size_t size, size_t nmemb, void *st
  * 获取 Object
  * */
 oss_object_t *
-client_head_object(oss_client_t *client, oss_get_object_request_t *request)
+client_head_object(oss_client_t *client,
+		oss_get_object_request_t *request)
 {
 
 	assert(client != NULL);
@@ -158,6 +159,6 @@ int main()
 	const char *bucket_name = "bucketname001";
 	const char *key = "putxxx.pdf";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
+	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key, NULL);
 	client_head_object(client, request);
 }

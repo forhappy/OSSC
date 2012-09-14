@@ -110,7 +110,10 @@ size_t client_upload_part_callback(void *ptr, size_t size, size_t nmemb, void *s
 }
 #endif
 
-size_t client_upload_part_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t client_upload_part_callback(void *ptr,
+		size_t size,
+		size_t nmemb,
+		void *stream)
 {
 	_oss_upload_part_send_buffer_t *send_buffer = (_oss_upload_part_send_buffer_t *)stream;
  
@@ -277,7 +280,7 @@ int main()
 					buffer + current_part_number *single_request_len,
 					file_len - single_request_len * current_part_number);
 			request->set_part_size(request, file_len - single_request_len * current_part_number);
-			client_upload_part(client, request);
+			client_upload_part(client, request, NULL);
 			compute_md5_digest(buffer + current_part_number * single_request_len,
 					file_len- current_part_number * single_request_len);
 		}
