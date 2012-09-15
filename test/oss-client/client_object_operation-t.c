@@ -239,7 +239,7 @@ size_t object_curl_operation_header_callback_2nd(void *ptr, size_t size, size_t 
 	retag = sscanf(ptr, "ETag: %s", etag);
 	if (retag != 0) {
 		size_t offset = header_buffer->allocated - header_buffer->left;
-		retag = sprintf(header_buffer->ptr + offset, "ETag#%s#", etag);
+		retag = sprintf(header_buffer->ptr + offset, "Content-Md5#%s#", etag);
 		header_buffer->left -= retag;
 	}
 	
