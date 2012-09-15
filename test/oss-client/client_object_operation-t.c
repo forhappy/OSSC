@@ -174,10 +174,27 @@ size_t object_curl_operation_recv_to_buffer_callback(void *ptr, size_t size, siz
 	}
 }
 
+size_t object_curl_operation_recv_to_buffer_2nd_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+{
+
+  size_t recv_size = size * nmemb;
+  param_buffer_t *recv_buffer = (param_buffer_t *)stream;
+ 
+  recv_buffer->ptr = realloc(recv_buffer->ptr, recv_buffer->allocated + recv_size + 1);
+  if (recv_buffer->ptr == NULL) {
+    /* out of memory! */ 
+    exit(EXIT_FAILURE);
+  }
+  memcpy(&(recv_buffer->ptr[recv_buffer->allocated]), ptr, recv_size);
+  recv_buffer->allocated += recv_size;
+  recv_buffer->ptr[recv_buffer->allocated] = 0;
+  return recv_size;
+}
+
 size_t object_curl_operation_header_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	param_buffer_t *header_buffer = (param_buffer_t *)stream;
-	char etag[33] = {0};
+	char etag[48] = {0};
 	int rcode = 0;
 	int retag = 0;
 	size_t code = 0;
@@ -189,7 +206,8 @@ size_t object_curl_operation_header_callback(void *ptr, size_t size, size_t nmem
 
 	retag = sscanf(ptr, "ETag: \"%s\"", etag);
 	if (retag != 0) {
-		strncpy(header_buffer->ptr, etag, 32);
+		memset(header_buffer->ptr, 0, header_buffer->allocated);
+		strncpy(header_buffer->ptr, etag, 48);
 	}
 	return size * nmemb;
 }
@@ -268,7 +286,7 @@ object_curl_operation(const char *method,
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
 		} else if (strcmp(method, OSS_HTTP_GET) == 0) {
 			
-			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_curl_operation_recv_to_buffer_callback);
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_curl_operation_recv_to_buffer_2nd_callback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
 			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback);
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
@@ -811,9 +829,9 @@ client_get_object_to_buffer(oss_client_t *client,
 	
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
-	user_data->recv_buffer->ptr = output;
-	user_data->recv_buffer->left = *output_len;
-	user_data->recv_buffer->allocated = *output_len;
+	user_data->recv_buffer->ptr = NULL;
+	user_data->recv_buffer->left = 0;
+	user_data->recv_buffer->allocated = 0;
 
 	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 2 * 1024);
@@ -908,6 +926,132 @@ client_get_object_to_buffer(oss_client_t *client,
 	 * 如果缓冲区应设置合理的大小
 	 * */
 	*output_len = user_data->recv_buffer->allocated - user_data->recv_buffer->left;
+
+	return NULL;
+}
+
+/* 
+ * client_get_object_to_buffer 不建议使用该函数。
+ * */
+oss_object_metadata_t *
+client_get_object_to_buffer_2nd(oss_client_t *client,
+		oss_get_object_request_t *request,
+		void **output,
+		size_t *output_len,
+		unsigned short *retcode)
+{
+
+	assert(client != NULL);
+	assert(request != NULL);
+	//assert(output != NULL);
+	//assert(output_len > 0);
+
+	curl_request_param_t *user_data = 
+		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+
+	user_data->send_buffer = NULL; /** 发送缓冲区设置为NULL*/
+	
+
+	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->recv_buffer->ptr = NULL;
+	user_data->recv_buffer->left = 0;
+	user_data->recv_buffer->allocated = 0;
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 2 * 1024);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = 2 * 1024;
+	user_data->header_buffer->allocated = 2 * 1024;
+
+	size_t bucket_name_len = strlen(request->get_bucket_name(request));
+	size_t key_len = strlen(request->get_key(request));
+	size_t sign_len = 0;
+	long start = 0; /**< Range 起始字节位置*/
+	long length = 0; /**< Range 长度*/
+	/** 
+	 * Resource: "/" + bucket_name
+	 */
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
+
+	/**
+	 * URL: "aliyun.storage.com" + resource
+	 */
+	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 64));
+
+	char header_host[64]  = {0};
+	char header_date[48]  = {0};
+	char now[32]          = {0}; /**< Fri, 24 Feb 2012 02:58:28 GMT */
+	char header_auth[128] = {0};
+	
+	char header_if_modified_since[64] = {0};
+	char header_if_unmodified_since[64] = {0};
+	char header_range[32] = {0};	
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值
+	 * */
+	sprintf(resource, "/%s/%s", request->get_bucket_name(request),
+			request->get_key(request));
+	sprintf(url, "%s/%s/%s", client->endpoint, request->get_bucket_name(request),
+			request->get_key(request));
+	sprintf(now, "%s", oss_get_gmt_time());
+
+	/** 构造请求头部 */
+	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_date, "Date: %s", now);
+
+	oss_map_put(default_headers, OSS_DATE, now);
+
+	/**
+	 * 生成签名值
+	 */
+	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	/**
+	 * 自定义 HTTP 请求头部，
+	 * TODO：后续版本应支持If-Matching,If-None-Matching
+	 */
+	struct curl_slist *http_headers = NULL;
+	
+	if (request->get_modified_since_constraint(request) != NULL) {
+		sprintf(header_if_modified_since, "If-Modified-Since: %s", request->get_modified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_modified_since);
+	}
+	if (request->get_unmodified_since_constraint(request) != NULL) {
+		sprintf(header_if_unmodified_since, "If-Unmodified-Since: %s", request->get_unmodified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_unmodified_since);
+	}
+	request->get_range(request, &start, &length);
+	if (start > 0 && length > 0) {
+		sprintf(header_range, "Range: %ld-%ld", start, start + length);
+		http_headers = curl_slist_append(http_headers, header_range);
+	}
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	object_curl_operation(OSS_HTTP_GET, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+	
+	/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
+	 * 如果缓冲区应设置合理的大小
+	 * */
+	*output = user_data->recv_buffer->ptr;
+	*output_len = user_data->recv_buffer->allocated;
+	//*output_len = user_data->recv_buffer->allocated - user_data->recv_buffer->left;
 
 	return NULL;
 }
@@ -1528,17 +1672,18 @@ int main()
 	const char *access_id = "ACSGmv8fkV1TDO9L";
 	const char *access_key = "BedoWbsJe2";
 	unsigned short retcode = 0;
-	//const char *bucket_name = "bucketname001";
-	//const char *key = "put.png";
+	const char *bucket_name = "bucketname001";
+	const char *key = "glib-2.32.4.tar.xz";
 	//FILE *file = fopen("proactor.pdf", "r");
-	//FILE *local_file = fopen(key, "w");
-	//size_t file_len = 2 * 1024 * 1024;//oss_get_file_size(file);
+	FILE *local_file = fopen(key, "w");
+	size_t file_len = 0;//2 * 1024 * 1024;//oss_get_file_size(file);
+	void *buffer = NULL;
 
 	//char *buffer = (char *)malloc(sizeof(char) * file_len + 1);
 	//memset(buffer, '\0', file_len + 1);
 	//fread(buffer, file_len, 1, file);
 
-	//oss_client_t *client = client_initialize(access_id, access_key);
+	oss_client_t *client = client_initialize(access_id, access_key);
 
 	//oss_object_metadata_t *metadata = object_metadata_initialize();
 
@@ -1558,20 +1703,20 @@ int main()
 	//put_object_result_finalize(result02);
 
 	//oss_client_t *client = client_initialize(access_id, access_key);
-	//oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
+	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
 	//client_get_object_to_file(client, request, local_file, NULL);
-	//client_get_object_to_buffer(client, request, buffer, &file_len, NULL);
+	client_get_object_to_buffer_2nd(client, request, &buffer, &file_len, NULL);
 
-	//fwrite(buffer, file_len, 1, local_file);
-	//printf("length: %d\n", file_len);
+	fwrite(buffer, file_len, 1, local_file);
+	printf("length: %d\n", file_len);
 	//fclose(file);
-	//fclose(local_file);
+	fclose(local_file);
 
-	const char *source_bucket_name = "bucketname001";
-	const char *destination_bucket_name = "bucketname002";
-	const char *source_key = "put.png";
-	const char *destination_key = "PUT.png";
-	oss_client_t *client = client_initialize(access_id, access_key);
+	//const char *source_bucket_name = "bucketname001";
+	//const char *destination_bucket_name = "bucketname002";
+	//const char *source_key = "put.png";
+	//const char *destination_key = "PUT.png";
+	//oss_client_t *client = client_initialize(access_id, access_key);
 
 	//oss_copy_object_result_t *result = client_copy_object_ext(client, source_bucket_name, source_key,
 	//		destination_bucket_name, destination_key, NULL);
@@ -1586,8 +1731,8 @@ int main()
 	//client_get_object_metadata(client, source_bucket_name, source_key, NULL);
 	//client_delete_object(client, source_bucket_name, source_key, &retcode);
 	//printf("%d\n", retcode);
-		oss_delete_multiple_object_request_t *request = 
-		delete_multiple_object_request_initialize(source_bucket_name, keys, 4, false);
+	//	oss_delete_multiple_object_request_t *request = 
+	//	delete_multiple_object_request_initialize(source_bucket_name, keys, 4, false);
 
-	client_delete_multiple_object(client, request, &retcode);
+	//client_delete_multiple_object(client, request, &retcode);
 }
