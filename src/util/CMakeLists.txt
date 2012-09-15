@@ -1,5 +1,6 @@
 SET(SRC
 	oss_auth.c
+	oss_common.c
 	oss_map.c
 	oss_time.c
 	oss_tstring.c
