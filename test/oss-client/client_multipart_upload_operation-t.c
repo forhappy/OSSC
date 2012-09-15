@@ -21,46 +21,9 @@
 #define _OSS_CLIENT_H
 #include <modules/oss_client.h>
 #undef _OSS_CLIENT_H
+#include <ossc/util/oss_common.h>
 
 #include <curl/curl.h>
-typedef struct curl_request_param_s curl_request_param_t;
-typedef struct param_buffer_s param_buffer_t;
-
-struct param_buffer_s {
-	char *ptr; /**< 缓冲区首指针 */
-	FILE *fp; /**< 文件指针 */
-	size_t left; /** 缓冲区剩余大小 */
-	size_t allocated; /** 缓冲区总大小 */
-	unsigned short code; /**返回码 */
-};
-
-struct curl_request_param_s {
-	param_buffer_t *send_buffer; /**< send buffer */
-	param_buffer_t *recv_buffer; /**< receive buffer */
-	param_buffer_t *header_buffer; /**< header buffer */
-};
-const char *
-oss_compute_md5_digest(void *ptr, size_t len)
-{
-	char md5_digest[17];
-	md5_state_t md5_state;
-
-	char *base64_md5 = NULL;
-
-	memset(md5_digest, '\0', 17);
-
-	md5_init(&md5_state);
-	md5_append(&md5_state, ptr, len);
-	md5_finish(&md5_state, (md5_byte_t *)md5_digest);
-
-	base64_md5 = (char *) malloc(sizeof(char) * 65);
-	memset(base64_md5, 0, 65);
-	base64_encode(md5_digest, 16, base64_md5, 65);
-
-	return base64_md5;
-
-}
-
 /* *
  * 初始化 oss_client_t，内部使用
  * */

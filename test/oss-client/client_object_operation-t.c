@@ -21,45 +21,8 @@
 #define _OSS_CLIENT_H
 #include <modules/oss_client.h>
 #undef _OSS_CLIENT_H
-
+#include <ossc/util/oss_common.h>
 #include <curl/curl.h>
-typedef struct curl_request_param_s curl_request_param_t;
-typedef struct param_buffer_s param_buffer_t;
-
-struct param_buffer_s {
-	char *ptr; /**< 缓冲区首指针 */
-	FILE *fp; /**< 文件指针 */
-	size_t left; /** 缓冲区剩余大小 */
-	size_t allocated; /** 缓冲区总大小 */
-	unsigned short code; /**返回码 */
-};
-
-struct curl_request_param_s {
-	param_buffer_t *send_buffer; /**< send buffer */
-	param_buffer_t *recv_buffer; /**< receive buffer */
-	param_buffer_t *header_buffer; /**< header buffer */
-};
-const char *
-oss_compute_md5_digest(void *ptr, size_t len)
-{
-	char md5_digest[17];
-	md5_state_t md5_state;
-
-	char *base64_md5 = NULL;
-
-	memset(md5_digest, '\0', 17);
-
-	md5_init(&md5_state);
-	md5_append(&md5_state, ptr, len);
-	md5_finish(&md5_state, (md5_byte_t *)md5_digest);
-
-	base64_md5 = (char *) malloc(sizeof(char) * 65);
-	memset(base64_md5, 0, 65);
-	base64_encode(md5_digest, 16, base64_md5, 65);
-
-	return base64_md5;
-
-}
 
 /* *
  * 初始化 oss_client_t，内部使用
@@ -265,6 +228,27 @@ size_t object_curl_operation_header_callback_2nd(void *ptr, size_t size, size_t 
 		header_buffer->left -= rlastmodified;
 	}
 	return size * nmemb;
+}
+
+static oss_put_object_result_t *
+construct_get_object_metadata_response_on_success(const char *headers)
+{
+	oss_object_metadata_t *metadata = object_metadata_initialize();
+	char tmpbuf[64] = {0};
+	char *iter = NULL;
+	iter = strtok(headers, "#");
+	int flag = 0;
+	while (iter != NULL) {
+		if (flag % 2 == 0) {
+			memset(tmpbuf, 0, 64);
+			strncpy(tmpbuf, iter, 64);
+		} else {
+			metadata->add_default_metadata(metadata, tmpbuf, iter);
+		}
+		iter = strtok(NULL, "#");
+		flag++;
+	}
+	return metadata;
 }
 
 static oss_put_object_result_t *
@@ -1485,8 +1469,11 @@ client_get_object_metadata(oss_client_t *client,
 	 * 释放 http_headers资源
 	 */
 	curl_slist_free_all(http_headers);
-	printf("%u\n", user_data->header_buffer->code);
-	printf("%s\n", user_data->header_buffer->ptr);
+
+	if (user_data->header_buffer->code == 200) {
+		return construct_get_object_metadata_response_on_success(
+				user_data->header_buffer->ptr);
+	}
 	return NULL;
 }
 
@@ -1581,20 +1568,6 @@ client_delete_object(oss_client_t *client,
 	//printf("%s\n", user_data->recv_buffer->ptr);
 }
 
-long oss_get_file_size( FILE *fp )
-{
-    long int save_pos;
-    long size_of_file;
-    /* Save the current position. */
-    save_pos = ftell(fp);
-    /* Jump to the end of the file. */
-    fseek(fp, 0L, SEEK_END);
-    /* Get the end position. */
-    size_of_file = ftell(fp);
-    /* Jump back to the original position. */
-    fseek(fp, save_pos, SEEK_SET);
-    return size_of_file;
-}
 
 /* *********************************************************************************** */
 
@@ -1783,7 +1756,11 @@ int main()
 	//	printf("ETag: %s", result->get_etag(result));
 	//	printf("LastModified: %s\n", result->get_last_modified(result));
 	//}
-	client_get_object_metadata(client, bucket_name, key, NULL);
+	oss_object_metadata_t *metadata = client_get_object_metadata(client, bucket_name, key, NULL);
+	printf("ETag: %s\n", metadata->get_etag(metadata));
+	printf("Content-Type: %s\n", metadata->get_content_type(metadata));
+	printf("Content-Length: %d\n", metadata->get_content_length(metadata));
+
 	//client_delete_object(client, source_bucket_name, source_key, &retcode);
 	//printf("%d\n", retcode);
 	//	oss_delete_multiple_object_request_t *request = 

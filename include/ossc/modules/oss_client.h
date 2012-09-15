@@ -186,6 +186,23 @@ typedef struct oss_client_s {
 	char *access_key;
 }oss_client_t;
 
+typedef struct curl_request_param_s curl_request_param_t;
+typedef struct param_buffer_s param_buffer_t;
+
+struct param_buffer_s {
+	char *ptr; /**< 缓冲区首指针 */
+	FILE *fp; /**< 文件指针 */
+	size_t left; /** 缓冲区剩余大小 */
+	size_t allocated; /** 缓冲区总大小 */
+	unsigned short code; /**返回码 */
+};
+
+struct curl_request_param_s {
+	param_buffer_t *send_buffer; /**< send buffer */
+	param_buffer_t *recv_buffer; /**< receive buffer */
+	param_buffer_t *header_buffer; /**< header buffer */
+};
+
 /**
  * 初始化 oss_client_t
  */
