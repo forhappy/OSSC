@@ -215,10 +215,10 @@ client_delete_multiple_object(oss_client_t *client,
 }
 
 const char *keys[] = {
-	"putxxx.pdf",
-	"put.png",
-	"a_very_large_file.dat",
-	"a_very_large_file.tar.bz2"
+	"putxxx-test.pdf",
+	"ccan.tar.bz2",
+	"ncurses-5.9.tar.gz",
+	"nmon_linux_14g.tar.gz"
 };
 
 int main()
