@@ -64,7 +64,11 @@
 #include <ossc/modules/oss_get_object_group_index_result.h>
 #undef _OSS_GET_OBJECT_GROUP_INDEX_RESULT_H
 
-#define _OSS_GET_OBJECT_REQUEST_H
+#define _OSS_GET_OBJECT_GROUP_REQUEST_H
+#include<ossc/modules/oss_get_object_group_request.h>
+#undef _OSS_GET_OBJECT_GROUP_REQUEST_H
+
+#define  _OSS_GET_OBJECT_REQUEST_H
 #include <ossc/modules/oss_get_object_request.h>
 #undef _OSS_GET_OBJECT_REQUEST_H
 

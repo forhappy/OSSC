@@ -56,6 +56,10 @@
 #include <ossc/modules/oss_generate_presigned_url_request.h>
 #undef _OSS_GENERATE_PRESIGNED_URL_REQUEST_H
 
+#define _OSS_GET_OBJECT_GROUP_REQUEST_H
+#include<ossc/modules/oss_get_object_group_request.h>
+#undef _OSS_GET_OBJECT_GROUP_REQUEST_H
+
 #define _OSS_GET_OBJECT_REQUEST_H
 #include <ossc/modules/oss_get_object_request.h>
 #undef _OSS_GET_OBJECT_REQUEST_H

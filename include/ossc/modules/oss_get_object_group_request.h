@@ -12,13 +12,13 @@
  *
  * =============================================================================
  */
-#ifndef _OSS_GET_OBJECT_REQUEST_H
-# error Never include <ossc/modules/oss_get_object_group_group_request.h> directly,
+#ifndef _OSS_GET_OBJECT_GROUP_REQUEST_H
+# error Never include <ossc/modules/oss_get_object_group_request.h> directly,
 # error use <ossc/client.h> instead.
 #endif
 
-#ifndef OSS_GET_OBJECT_REQUEST_H
-#define OSS_GET_OBJECT_REQUEST_H
+#ifndef OSS_GET_OBJECT_GROUP_REQUEST_H
+#define OSS_GET_OBJECT_GROUP_REQUEST_H
 #include "ossc-config.h"
 
 #include <stdio.h>

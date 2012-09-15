@@ -818,7 +818,7 @@ client_complete_multipart_upload(oss_client_t *client,
 
 	curl_request_param_t *user_data = 
 		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
-	user_data->send_buffer->ptr = NULL;
+	user_data->send_buffer = NULL;
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 2 * 1024);
