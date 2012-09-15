@@ -84,4 +84,6 @@ TARGET_LINK_LIBRARIES(client_object_operation-t ossmodules ossutil ossauth ossc 
 
 ADD_EXECUTABLE(client_object_group_operation-t client_object_group_operation-t.c)
 TARGET_LINK_LIBRARIES(client_object_group_operation-t ossmodules ossutil ossauth ossc curl)
+ADD_EXECUTABLE(client_multipart_upload_operation-t client_multipart_upload_operation-t.c)
+TARGET_LINK_LIBRARIES(client_multipart_upload_operation-t ossmodules ossutil ossauth ossc curl)
 

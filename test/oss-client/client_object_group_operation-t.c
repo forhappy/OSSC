@@ -163,7 +163,6 @@ object_group_curl_operation(const char *method,
 
 	curl_request_param_t *params = (curl_request_param_t *)user_data;
 
-	//param_buffer_t *send_buffer = params->send_buffer;
 	param_buffer_t *recv_buffer = params->recv_buffer;
 	param_buffer_t *header_buffer = params->header_buffer;
 
@@ -719,7 +718,7 @@ client_set_bucket_acl(oss_client_t *client,
 	user_data->header_buffer->allocated = 4 * 1024;
 
 	size_t bucket_name_len = strlen(bucket_name);
-
+	
 	/** 
 	 * Resource: "/" + bucket_name
 	 */
@@ -901,7 +900,6 @@ client_create_bucket(oss_client_t *client,
 	http_headers = curl_slist_append(http_headers, header_host);
 	http_headers = curl_slist_append(http_headers, header_date);
 	http_headers = curl_slist_append(http_headers, header_auth);
-
 	/**
 	 * 发送请求
 	 */
