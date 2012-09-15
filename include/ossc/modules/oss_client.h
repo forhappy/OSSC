@@ -144,6 +144,10 @@
 #include <ossc/modules/oss_post_object_group_request.h>
 #undef _OSS_POST_OBJECT_GROUP_REQUEST_H
 
+#define _OSS_POST_OBJECT_GROUP_RESULT_H
+#include <ossc/modules/oss_post_object_group_result.h>
+#undef _OSS_POST_OBJECT_GROUP_RESULT_H
+
 #define _OSS_PUT_OBJECT_RESULT_H
 #include <ossc/modules/oss_put_object_result.h>
 #undef _OSS_PUT_OBJECT_RESULT_H
@@ -161,6 +165,7 @@
 #undef _OSS_UPLOAD_PART_RESULT_H
 
 #include <ossc/util/oss_ttxml.h>
+#include <ossc/util/oss_tstring.h>
 
 /**
  * 访问阿里云开放存储服务（Open Storage Service， OSS）的入口。
@@ -193,6 +198,27 @@ client_initialize_with_endpoint(
 		const char *access_id,
 		const char *access_key,
 		const char *endpoint);
+
+extern void 
+client_finalize(oss_client_t *client) 
+{
+	if(client != NULL) {
+		if(client->endpoint != NULL) {
+			free(client->endpoint);
+			client->endpoint = NULL;
+		}
+		if(client->access_id != NULL){
+			free(client->access_id);
+			client->access_id = NULL;
+		}
+		if(client->access_key != NULL){
+			free(client->access_key);
+			client->access_key = NULL;
+		}
+		free(client);
+		client = NULL;
+	}
+}
 /**
  * 终止一个 Multipart 上传事件
  */

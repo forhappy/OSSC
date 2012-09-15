@@ -158,7 +158,7 @@ int main()
 	const char *access_key = "BedoWbsJe2";
 	const char *bucket_name = "bucketname001";
 	const char *key = "a_group_file.dat";
-		oss_client_t *client = client_initialize(access_id, access_key);
+	oss_client_t *client = client_initialize(access_id, access_key);
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
 	client_get_object_group(client, request, NULL);
 }

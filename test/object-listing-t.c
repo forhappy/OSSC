@@ -23,11 +23,11 @@ int main()
 	ol->set_bucket_name(ol, "bucket_name");
 	ol->set_marker(ol, "marker");
 	ol->set_next_marker(ol, "next_marker");
-	ol->set_max_keys(ol, "max_keys");
+	ol->set_max_keys(ol, 2);
 	ol->set_prefix(ol, "prefix");
 	ol->set_delimiter(ol, "delimiter");
 	ol->set_is_truncated(ol, 1);
-	printf("bucket_name = %s\nmarker = %s\nnext_marker = %s\nmax_keys = %s\nis_truncated = %d\ndelimiter = %s\nprefix = %s\n", 
+	printf("bucket_name = %s\nmarker = %s\nnext_marker = %s\nmax_keys = %d\nis_truncated = %d\ndelimiter = %s\nprefix = %s\n", 
 			ol->get_bucket_name(ol), ol->get_marker(ol), ol->get_next_marker(ol), ol->get_max_keys(ol), ol->get_is_truncated(ol), ol->get_delimiter(ol), ol->get_prefix(ol));
 
 

@@ -37,15 +37,20 @@ typedef struct oss_access_control_list_s oss_access_control_list_t;
 
 struct oss_access_control_list_s {
 	oss_owner_t *owner;
-	oss_grant_t *grants;
-	int grant_number_count;
+	//oss_grant_t *grants;
+	//int grant_number_count;
+	char *grant;
+
 
 	oss_owner_t * (*get_owner)(oss_access_control_list_t *acl);
 	void (*set_owner)(oss_access_control_list_t *acl, oss_owner_t * owner);
 
-	void (*grant_permission)(oss_access_control_list_t *acl, const char *identifier, const char *permission);
-	void (*revoke_all_permissions)(oss_access_control_list_t* acl, const char *identifier);
-	oss_grant_t * (*get_grants)(oss_access_control_list_t *acl);
+	const char * (*get_grant)(oss_access_control_list_t *acl);
+	void (*set_grant)(oss_access_control_list_t *acl, const char *grant);
+
+	//void (*grant_permission)(oss_access_control_list_t *acl, const char *identifier, const char *permission);
+	//void (*revoke_all_permissions)(oss_access_control_list_t* acl, const char *identifier);
+	//oss_grant_t * (*get_grants)(oss_access_control_list_t *acl);
 
 };
 

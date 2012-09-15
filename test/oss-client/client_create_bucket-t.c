@@ -143,7 +143,7 @@ client_create_bucket(oss_client_t *client,
 		curl_easy_cleanup(curl);
 	}
 	printf("response: %s\n", response);
-	return 0;
+	return ;
 }
 
 
@@ -152,5 +152,5 @@ int main()
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
 	oss_client_t *client = client_initialize(access_id, access_key);
-	client_create_bucket(client, "sinacosa", NULL);
+	client_create_bucket(client, "&sinacosa", NULL);
 }

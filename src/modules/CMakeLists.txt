@@ -29,6 +29,7 @@ SET(SRC
 	oss_part_listing.c
 	oss_part_summary.c
 	oss_post_object_group_request.c
+	oss_post_object_group_result.c
 	oss_put_object_result.c
 	oss_response_header_overrides.c
 	oss_upload_part_request.c

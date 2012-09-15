@@ -17,36 +17,36 @@
 #undef _OSS_OBJECT_SUMMARY_H
 
 static const char * 
-_object_summary_get_bucket_name(oss_object_summary_t *summary)
+_object_summary_get_type(oss_object_summary_t *summary)
 {
-	return summary->bucket_name;
+	return summary->type;
 }
 
 static inline void
-__object_summary_set_bucket_name(
+__object_summary_set_type(
 		oss_object_summary_t *summary,
-		const char *bucket_name,
-		size_t bucket_name_len)
+		const char *type,
+		size_t type_len)
 {
-	if (summary->bucket_name != NULL) {
-		free(summary->bucket_name);
-		summary->bucket_name = NULL;
+	if (summary->type != NULL) {
+		free(summary->type);
+		summary->type = NULL;
 	}
 
-	summary->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
-	strncpy(summary->bucket_name, bucket_name, bucket_name_len);
-	(summary->bucket_name)[bucket_name_len] = '\0';
+	summary->type = (char *)malloc(sizeof(char) * type_len + 1);
+	strncpy(summary->type, type, type_len);
+	(summary->type)[type_len] = '\0';
 }
 
 static void
-_object_summary_set_bucket_name(
+_object_summary_set_type(
 		oss_object_summary_t *summary,
-		const char *bucket_name)
+		const char *type)
 {
-	assert(bucket_name != NULL);
+	assert(type != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	__object_summary_set_bucket_name(summary, bucket_name, bucket_name_len);
+	size_t type_len = strlen(type);
+	__object_summary_set_type(summary, type, type_len);
 }
 
 static const char * 
@@ -229,7 +229,7 @@ object_summary_initialize(void)
 	oss_object_summary_t *summary;
 	summary = (oss_object_summary_t *)malloc(sizeof(oss_object_summary_t));
 
-	summary->bucket_name = NULL;
+	summary->type = NULL;
 	summary->etag = NULL;
 	summary->key = NULL;
 	summary->last_modified = NULL;
@@ -237,8 +237,8 @@ object_summary_initialize(void)
 	summary->size = 0;
 	summary->owner = NULL;
 
-	summary->get_bucket_name = _object_summary_get_bucket_name;
-	summary->set_bucket_name = _object_summary_set_bucket_name;
+	summary->get_type = _object_summary_get_type;
+	summary->set_type = _object_summary_set_type;
 	summary->get_key = _object_summary_get_key;
 	summary->set_key = _object_summary_set_key;
 	summary->get_last_modified = _object_summary_get_last_modified;
@@ -258,9 +258,9 @@ object_summary_initialize(void)
 void object_summary_finalize(oss_object_summary_t *summary)
 {
 	assert(summary != NULL);
-	if (summary->bucket_name != NULL) {
-		free(summary->bucket_name);
-		summary->bucket_name = NULL;
+	if (summary->type != NULL) {
+		free(summary->type);
+		summary->type = NULL;
 	}
 
 	if (summary->etag != NULL) {

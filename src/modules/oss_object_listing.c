@@ -112,36 +112,18 @@ _object_listing_set_next_marker(
 	__object_listing_set_next_marker(listing, next_marker, next_marker_len);
 }
 
-static const char * 
+static int 
 _object_listing_get_max_keys(oss_object_listing_t *listing)
 {
 	return listing->max_keys;
 }
 
-static inline void
-__object_listing_set_max_keys(
-		oss_object_listing_t *listing,
-		const char *max_keys,
-		size_t max_keys_len)
-{
-	if (listing->max_keys != NULL) {
-		free(listing->max_keys);
-		listing->max_keys = NULL;
-	}
-	listing->max_keys = (char *)malloc(sizeof(char) * max_keys_len + 1);
-	strncpy(listing->max_keys, max_keys, max_keys_len);
-	(listing->max_keys)[max_keys_len] = '\0';
-}
-
 static void
 _object_listing_set_max_keys(
 		oss_object_listing_t *listing,
-		const char *max_keys)
+		int max_keys)
 {
-	assert(max_keys != NULL);
-
-	size_t max_keys_len = strlen(max_keys);
-	__object_listing_set_max_keys(listing, max_keys, max_keys_len);
+	listing->max_keys = max_keys;
 }
 
 static bool
@@ -224,52 +206,60 @@ _object_listing_set_prefix(
 }
 
 static inline const char **
-_object_listing_get_common_prefixs(oss_object_listing_t *listing, unsigned int *counts)
+_object_listing_get_common_prefixes(oss_object_listing_t *listing, unsigned int *counts)
 {
 	assert(listing != NULL);
 
-	*counts = listing->_counts_common_prefixs;
-	return (const char **)(listing->common_prefixs);
+	*counts = listing->_counts_common_prefixes;
+	return (const char **)(listing->common_prefixes);
 
 }
 
-void _object_listing_set_common_prefixs(
+void _object_listing_set_common_prefixes(
 		oss_object_listing_t *listing,
-		const char **common_prefixs, unsigned int counts)
+		const char **common_prefixes, unsigned int counts)
 {
 
 	assert(listing != NULL);
-	assert(common_prefixs != NULL);
+	assert(common_prefixes != NULL);
 
 	/* *
-	 * If listing->common_prefixs != NULL,
+	 * If listing->common_prefixes != NULL,
 	 * free it one by one.
 	 * */
 	size_t j = 0;
-	size_t total = listing->_counts_common_prefixs;
-	if (listing->common_prefixs != NULL) {
+	size_t total = listing->_counts_common_prefixes;
+	if (listing->common_prefixes != NULL) {
 
 		for (j = 0; j < total; j++) {
-			if (*(listing->common_prefixs + j) != NULL) {
-				free(*(listing->common_prefixs + j));
-				*(listing->common_prefixs + j) = NULL;
+			if (*(listing->common_prefixes + j) != NULL) {
+				free(*(listing->common_prefixes + j));
+				*(listing->common_prefixes + j) = NULL;
 			}
 		}
 	}
 
 	size_t i = 0;
-	const char **pnmec = common_prefixs;
+	const char **pnmec = common_prefixes;
 
-	listing->common_prefixs = (char **)malloc(sizeof(char *) * counts);
+	listing->common_prefixes = (char **)malloc(sizeof(char *) * counts);
 	
 	for (i = 0; i < counts; i++) {
 		size_t len = strlen(*(pnmec + i));
-		*(listing->common_prefixs + i) = (char *)malloc(sizeof(char) * len + 1);
-		memset(*(listing->common_prefixs + i), 0, len + 1);
-		strncpy(*(listing->common_prefixs + i), *(pnmec + i), len);
+		*(listing->common_prefixes + i) = (char *)malloc(sizeof(char) * len + 1);
+		memset(*(listing->common_prefixes + i), 0, len + 1);
+		strncpy(*(listing->common_prefixes + i), *(pnmec + i), len);
 	}
 
-	listing->_counts_common_prefixs = counts;
+	listing->_counts_common_prefixes = counts;
+}
+
+
+oss_object_summary_t **
+_object_listing_get_summaries(oss_object_listing_t *listing,
+		unsigned int *counts){
+	*counts = listing->_counts_summaries;
+	return listing->summaries;
 }
 
 oss_object_listing_t *
@@ -281,12 +271,14 @@ object_listing_initialize(void)
 	listing->bucket_name = NULL;
 	listing->marker = NULL;
 	listing->next_marker = NULL;
-	listing->max_keys = NULL;
+	listing->max_keys = 0;
 	listing->delimiter = NULL;
 	listing->prefix = NULL;
 	listing->is_truncated = false;
-	listing->common_prefixs = NULL;
-	listing->_counts_common_prefixs = 0;
+	listing->common_prefixes = NULL;
+	listing->_counts_common_prefixes = 0;
+	listing->summaries = NULL;
+	listing->_counts_summaries = 0;
 
 	listing->get_bucket_name = _object_listing_get_bucket_name;
 	listing->set_bucket_name = _object_listing_set_bucket_name;
@@ -302,8 +294,8 @@ object_listing_initialize(void)
 	listing->set_delimiter = _object_listing_set_delimiter;
 	listing->get_prefix = _object_listing_get_prefix;
 	listing->set_prefix = _object_listing_set_prefix;
-	listing->get_common_prefixs = _object_listing_get_common_prefixs;
-	listing->set_common_prefixs = _object_listing_set_common_prefixs;
+	listing->get_common_prefixes = _object_listing_get_common_prefixes;
+	listing->set_common_prefixes = _object_listing_set_common_prefixes;
 
 	return listing;
 }
@@ -325,10 +317,6 @@ object_listing_finalize(oss_object_listing_t *listing)
 		free(listing->next_marker);
 		listing->next_marker = NULL;
 	}
-	if (listing->max_keys != NULL) {
-		free(listing->max_keys);
-		listing->max_keys = NULL;
-	}
 	if (listing->delimiter != NULL) {
 		free(listing->delimiter);
 		listing->delimiter = NULL;
@@ -337,15 +325,18 @@ object_listing_finalize(oss_object_listing_t *listing)
 		free(listing->prefix);
 		listing->prefix = NULL;
 	}
+	if(listing->summaries != NULL) {
+		listing->summaries = NULL;
+	}
 
-	if (listing->common_prefixs != NULL) {
+	if (listing->common_prefixes != NULL) {
 		size_t j = 0;
-		size_t total = listing->_counts_common_prefixs;
-		if (listing->common_prefixs != NULL) {
+		size_t total = listing->_counts_common_prefixes;
+		if (listing->common_prefixes != NULL) {
 			for (; j < total; j++) {
-				if (*(listing->common_prefixs + j) != NULL) {
-					free(*(listing->common_prefixs + j));
-					*(listing->common_prefixs + j) = NULL;
+				if (*(listing->common_prefixes + j) != NULL) {
+					free(*(listing->common_prefixes + j));
+					*(listing->common_prefixes + j) = NULL;
 				}
 			}
 		}

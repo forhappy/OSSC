@@ -21,7 +21,7 @@ int main()
 {
 	oss_object_summary_t *os;
 	os = object_summary_initialize();
-	os->set_bucket_name(os, "bucket_name");
+	os->set_type(os, "type");
 	os->set_key(os, "key");
 	os->set_last_modified(os, "last_modified");
 	os->set_storage_class(os, "storage_class");
@@ -34,8 +34,8 @@ int main()
 
 	os->set_owner(os, owner);
 
-	printf("bucket_name = %s\nkey = %s\nlast_modified = %s\nstorage_class = %s\nsize = %ld\netag = %s\nowner->display_name = %s\nowner->id = %s\n", 
-			os->get_bucket_name(os), os->get_key(os), os->get_last_modified(os), os->get_storage_class(os), os->get_size(os), os->get_etag(os), os->owner->display_name, os->owner->id);
+	printf("type = %s\nkey = %s\nlast_modified = %s\nstorage_class = %s\nsize = %ld\netag = %s\nowner->display_name = %s\nowner->id = %s\n", 
+			os->get_type(os), os->get_key(os), os->get_last_modified(os), os->get_storage_class(os), os->get_size(os), os->get_etag(os), os->owner->display_name, os->owner->id);
 
 	owner = os->get_owner(os);
 	printf("owner->display_name = %s\nowner->id = %s\n", owner->display_name, owner->id);
