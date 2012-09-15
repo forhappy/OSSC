@@ -1544,9 +1544,9 @@ int main()
 	 * test head_object_group
 	 */
 
-	oss_object_metadata_t *head_result = object_metadata_initialize();
-	oss_get_object_group_request_t *request = get_object_group_request_initialize(bucket_name, key);
-	head_result = client_head_object_group(client, request, &retcode);
+	//oss_object_metadata_t *head_result = object_metadata_initialize();
+	//oss_get_object_group_request_t *request = get_object_group_request_initialize(bucket_name, key);
+	//head_result = client_head_object_group(client, request, &retcode);
 
 	
 
