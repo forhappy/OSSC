@@ -48,7 +48,7 @@ oss_map_t * oss_map_new(unsigned int capacity)
 		return NULL;
 	}
 	map->count = capacity;
-	map->buckets = malloc(map->count * sizeof(oss_bucket_t));
+	map->buckets = malloc((map->count) * sizeof(oss_bucket_t));
 	if (map->buckets == NULL) {
 		free(map);
 		return NULL;

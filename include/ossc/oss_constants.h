@@ -22,14 +22,22 @@
 typedef enum _OSS_ERROR_CODE {
 	/* 0 返回成功 */
 	OK,
+	/* 1 删除成功 */
+	NO_CONTENT,
 	/* 拒绝访问 */
 	ACCESS_DENIED,
 	/* Bucket 已经存在 */
-	BUCKES_ALREADY_EXISTS,
+	BUCKET_ALREADY_EXISTS,
 	/* Bucket 不为空 */
-	BUCKETS_NOT_EMPTY,
+	BUCKET_NOT_EMPTY,
+	/* 实体过大 */
+	ENTITY_TOO_LARGE,
+	/* 实体过小 */
+	ENTITY_TOO_SMALL,
 	/* 文件组过大 */
 	FILE_GROUP_TOO_LARGE,
+	/* 文件part不存在 */
+	FILE_PART_NOT_EXIST,
 	/* 文件Part过时 */
 	FILE_PART_STALE,
 	/* OSS 内部发生错误 */
@@ -40,18 +48,28 @@ typedef enum _OSS_ERROR_CODE {
 	INVALID_ARGUMENT,
 	/* 无效的 Bucket 名字 */
 	INVALID_BUCKET_NAME,
+	/* 无效的摘要 */
+	INVALID_DIGEST,
 	/* 无效的 Object 名字 */
 	INVALID_OBJECT_NAME,
 	/* 无效的 Part */
 	INVALID_PART,
 	/* 无效的 Part顺序 */
 	INVALID_PART_ORDER,
+	/* XML格式非法 */
+	MALFORMED_XML,
+	/* 不支持的方法 */
+	METHOD_NOT_ALLOWED,
+	/* 缺少参数 */
+	MISSING_ARGUMENT,
 	/* 缺少内容长度 */
 	MISSING_CONTENT_LENGTH,
 	/* Bucket 不存在 */
 	NO_SUCH_BUCKET,
 	/* 文件不存在 */
 	NO_SUCH_KEY,
+	/* Multipart Upload ID 不存在 */
+	NO_SUCH_UPLOAD,
 	/* 无法处理的方法 */
 	NOT_IMPLEMENTED,
 	/* 预处理错误 */

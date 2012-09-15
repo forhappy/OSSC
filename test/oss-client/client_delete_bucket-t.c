@@ -142,7 +142,7 @@ client_delete_bucket(oss_client_t *client,
 		curl_easy_cleanup(curl);
 	}
 	printf("response: %s\n", response);
-	return 0;
+	return;
 }
 
 

@@ -32,7 +32,7 @@
 typedef struct oss_object_summary_s oss_object_summary_t;
 
 struct oss_object_summary_s {
-	char *bucket_name;
+	char *type;
 	char *etag;
 	char *key;
 	char *last_modified;
@@ -40,8 +40,8 @@ struct oss_object_summary_s {
 	long size;
 	char *storage_class;
 
-	const char * (*get_bucket_name)(oss_object_summary_t *summary);
-	void (*set_bucket_name)(oss_object_summary_t *summary, const char *bucket_name);
+	const char * (*get_type)(oss_object_summary_t *summary);
+	void (*set_type)(oss_object_summary_t *summary, const char *type);
 
 	const char * (*get_etag)(oss_object_summary_t *summary);
 	void (*set_etag)(oss_object_summary_t *summary, const char * etag);

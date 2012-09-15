@@ -18,6 +18,10 @@
 
 #ifndef OSS_OBJECT_LISTING_H
 #define OSS_OBJECT_LISTING_H
+#define _OSS_OBJECT_SUMMARY_H
+#include <modules/oss_object_summary.h>
+#undef _OSS_OBJECT_SUMMARY_H
+
 #include "ossc-config.h"
 
 #include <stdio.h>
@@ -37,13 +41,16 @@ struct oss_object_listing_s {
 	char *next_marker;
 	char *prefix;
 	char *marker;
-	char *max_keys;
+	int max_keys;
 	char * delimiter;
 	bool is_truncated;
+	oss_object_summary_t **summaries;
+	/** 内部计数器，记录summaries数目 */
+	unsigned int _counts_summaries;
 
-	char **common_prefixs;
-	/** 内部计数器，记录common_prefixs数目 */
-	unsigned int _counts_common_prefixs;
+	char **common_prefixes;
+	/** 内部计数器，记录common_prefixes数目 */
+	unsigned int _counts_common_prefixes;
 
 	const char * (*get_bucket_name)(oss_object_listing_t *listing);
 	void (*set_bucket_name)(oss_object_listing_t *listing, const char *bucket_name);
@@ -53,17 +60,19 @@ struct oss_object_listing_s {
 	void (*set_prefix)(oss_object_listing_t *listing, const char *prefix);
 	const char * (*get_marker)(oss_object_listing_t *listing);
 	void (*set_marker)(oss_object_listing_t *listing, const char *marker);
-	const char * (*get_max_keys)(oss_object_listing_t *listing);
-	void (*set_max_keys)(oss_object_listing_t *listing, const char *max_keys);
+	int (*get_max_keys)(oss_object_listing_t *listing);
+	void (*set_max_keys)(oss_object_listing_t *listing, int max_keys);
 	const char * (*get_delimiter)(oss_object_listing_t *listing);
 	void (*set_delimiter)(oss_object_listing_t *listing, const char *delimiter);
 	bool (*get_is_truncated)(oss_object_listing_t *listing);
 	void (*set_is_truncated)(oss_object_listing_t *listing, bool is_truncated);
-	const char ** (*get_common_prefixs)(oss_object_listing_t *listing,
+	const char ** (*get_common_prefixes)(oss_object_listing_t *listing,
 			unsigned int *counts);
-	void (*set_common_prefixs)(oss_object_listing_t *listing,
-			const char **common_prefixs,
+	void (*set_common_prefixes)(oss_object_listing_t *listing,
+			const char **common_prefixes,
 			unsigned int counts);
+	oss_object_summary_t ** (*get_summaries)(oss_object_listing_t *listing,
+			unsigned int *counts);
 };
 
 extern oss_object_listing_t *

@@ -5,7 +5,7 @@
  *
  *    Description:  oss_get_object_group_request.
  *
- *        Created:  09/15/2012 08:57:48 PM
+ *        Created:  09/04/2012 08:57:48 PM
  *
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
@@ -64,16 +64,16 @@ struct oss_get_object_group_request_s {
 	const char * (*get_unmodified_since_constraint)(oss_get_object_group_request_t *request);
 	void (*set_unmodified_since_constraint)(oss_get_object_group_request_t *request, const char *unmodified_since_constraint);
 
-	const char ** (*get_matching_etag_constraints)(oss_get_object_group_request_t *object,
+	const char ** (*get_matching_etag_constraints)(oss_get_object_group_request_t *request,
 			unsigned int *counts);
-	void (*set_matching_etag_constraints)(oss_get_object_group_request_t *object,
+	void (*set_matching_etag_constraints)(oss_get_object_group_request_t *request,
 			const char **matching_etag_constraints, unsigned int counts);
 
 
-	const char ** (*get_no_matching_etag_constraints)(oss_get_object_group_request_t *object,
+	const char ** (*get_no_matching_etag_constraints)(oss_get_object_group_request_t *request,
 			unsigned int *counts);
 
-	void (*set_no_matching_etag_constraints)(oss_get_object_group_request_t *object,
+	void (*set_no_matching_etag_constraints)(oss_get_object_group_request_t *request,
 			const char **no_matching_etag_constraints, unsigned counts);
 };
 

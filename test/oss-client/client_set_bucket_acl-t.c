@@ -153,5 +153,5 @@ int main()
 	oss_client_t *client = client_initialize(access_id, access_key);
 	//client_create_bucket(client, "bucketname002");
 	//client_list_buckets(client);
-	client_set_bucket_acl(client, "bucketname1", "public-read", NULL);
+	client_set_bucket_acl(client, "$bucketname1", "public-read", NULL);
 }
