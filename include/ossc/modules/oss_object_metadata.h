@@ -42,6 +42,12 @@ struct oss_object_metadata_s {
 	void (*add_user_metadata)(oss_object_metadata_t *metadata,
 			const char *key,
 			const char *value);
+	/**
+	 * 添加一个HTTP标准的元数据
+	 */
+	void (*add_default_metadata)(oss_object_metadata_t *metadata,
+			const char *key,
+			const char *value);
 
 	/**
 	 * 获取Cache-Control请求头，表示用户指定的HTTP请求/回复链的缓存行为

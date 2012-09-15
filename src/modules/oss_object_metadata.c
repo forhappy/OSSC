@@ -31,6 +31,18 @@ _object_metadata_add_user_metadata(oss_object_metadata_t *metadata,
 }
 
 /**
+ * 添加一个HTTP标准的元数据
+ */
+static inline void 
+_object_metadata_add_default_metadata(oss_object_metadata_t *metadata,
+		const char *key,
+		const char *value)
+{
+	oss_map_t *oss_map = metadata->metadata;
+	oss_map_put(oss_map, key, value);
+}
+
+/**
  * 获取Cache-Control请求头，表示用户指定的HTTP请求/回复链的缓存行为
  */
 static inline const char *
@@ -354,6 +366,7 @@ object_metadata_initialize()
 	metadata->user_metadata = oss_map_new(128);
 
 	metadata->add_user_metadata       = _object_metadata_add_user_metadata;
+	metadata->add_default_metadata    = _object_metadata_add_default_metadata;
 	metadata->get_cache_control       = _object_metadata_get_cache_control;
 	metadata->get_content_disposition = _object_metadata_get_content_disposition;
 	metadata->get_content_encoding    = _object_metadata_get_content_encoding;
