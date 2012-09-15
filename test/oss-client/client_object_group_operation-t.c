@@ -140,19 +140,57 @@ size_t object_group_curl_operation_header_callback(void *ptr, size_t size, size_
 {
 	param_buffer_t *header_buffer = (param_buffer_t *)stream;
 	char etag[48] = {0};
-	int retag = 0;
+	char type[64] = {0};
+	char length[16] = {0};
+	char week[5] = {0};
+	char day[3] = {0};
+	char mon[4] = {0};
+	char year[5] = {0};
+	char time[9] = {0};
+	char gmt[4] = {0};
 	int rcode = 0;
+	int retag = 0;
+	int rtype = 0;
+	int rlength = 0;
+	int rlastmodified = 0;
 	size_t code = 0;
+
 	rcode = sscanf(ptr, "HTTP/1.1 %u\n", &code);
 	if (rcode != 0) {
 		header_buffer->code= code;
 	}
-	retag = sscanf(ptr, "ETag: \"%s\"", etag);
+
+	retag = sscanf(ptr, "ETag: %s", etag);
 	if (retag != 0) {
-		memset(header_buffer->ptr, 0, header_buffer->allocated);
-		strncpy(header_buffer->ptr, etag, 48);
+		printf("INFO: %s\n", etag);
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		retag = sprintf(header_buffer->ptr + offset, "Content-Md5#%s#", etag);
+		header_buffer->left -= retag;
+	}
+	
+	rtype = sscanf(ptr, "Content-Type: %s", type);
+	if (rtype != 0) {
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		rtype = sprintf(header_buffer->ptr + offset, "Content-Type#%s#", type);
+		header_buffer->left -= rtype;
+	}
+	
+	rlength = sscanf(ptr, "Content-Length: %s", length);
+	if (rlength != 0) {
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		rlength = sprintf(header_buffer->ptr + offset, "Content-Length#%s#", length);
+		header_buffer->left -= rlength;
+	}
+
+	rlastmodified = sscanf(ptr, "Last-Modified: %s %s %s %s %s %s", week, day, mon, year, time, gmt);
+	if (rlastmodified != 0) {
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		rlastmodified = sprintf(header_buffer->ptr + offset, "Last-Modified#%s %s %s %s %s %s#", week,
+				day, mon, year, time, gmt);
+		header_buffer->left -= rlastmodified;
 	}
 	return size * nmemb;
+
 }
 
 static void
@@ -181,7 +219,7 @@ object_group_curl_operation(const char *method,
 		if (strcmp(method, OSS_HTTP_POST) == 0) {
 			curl_easy_setopt(curl, CURLOPT_POSTFIELDS, params->send_buffer->ptr);
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
-		} else if (strcmp(method, OSS_HTTP_DELETE) == 0) {
+		} else if (strcmp(method, OSS_HTTP_DELETE) == 0 || strcmp(method, OSS_HTTP_HEAD) == 0) {
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
 		}
 		else if (strcmp(method, OSS_HTTP_GET) == 0) {
@@ -554,9 +592,25 @@ construct_head_object_group_response(curl_request_param_t *user_data)
 {
 
 	oss_object_metadata_t *result = object_metadata_initialize();
-	result->set_etag(result, user_data->header_buffer->ptr);
- 
-	free_user_data(user_data);
+	const char *key, *value;
+	int flag = 1;
+	char *ptr = user_data->header_buffer->ptr;
+	while(*ptr != '\0') {
+		char *tmp = strchr(ptr, '#');
+		*tmp = '\0';
+		if(flag % 2) {
+			key = ptr;
+		} else {
+			value = ptr;
+			//if(!strcmp(key, "Content-Length")) {
+			//	long length = atol(value);
+			//	result->set_content_length(result, length);
+			//}
+			result->add_default_metadata(result, key, value);
+		}
+		ptr = tmp + 1;
+		flag ++;
+	}
 
 	return result;
 	
@@ -1197,6 +1251,7 @@ client_head_object_group(oss_client_t *client,
 		free(url);
 		url = NULL;
 	}
+	printf("header = \n%s\n", user_data->header_buffer->ptr);
 	if (user_data->header_buffer->code != 200) {
 		*retcode = get_retcode(user_data->recv_buffer->ptr);
 		free_user_data(user_data);
@@ -1544,10 +1599,10 @@ int main()
 	 * test head_object_group
 	 */
 
-	//oss_object_metadata_t *head_result = object_metadata_initialize();
-	//oss_get_object_group_request_t *request = get_object_group_request_initialize(bucket_name, key);
-	//head_result = client_head_object_group(client, request, &retcode);
-
+	oss_object_metadata_t *head_result = object_metadata_initialize();
+	oss_get_object_group_request_t *head_request = get_object_group_request_initialize(bucket_name, key);
+	head_result = client_head_object_group(client, head_request, &retcode);
+	printf("content-length = %ld\ncontent-type = %s\nlast-modified = %s\n", head_result->get_content_length(head_result), head_result->get_content_type(head_result), head_result->get_last_modified(head_result));
 	
 
 	/* *
