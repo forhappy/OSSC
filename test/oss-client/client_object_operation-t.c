@@ -212,6 +212,61 @@ size_t object_curl_operation_header_callback(void *ptr, size_t size, size_t nmem
 	return size * nmemb;
 }
 
+size_t object_curl_operation_header_callback_2nd(void *ptr, size_t size, size_t nmemb, void *stream)
+{
+	param_buffer_t *header_buffer = (param_buffer_t *)stream;
+	char etag[48] = {0};
+	char type[64] = {0};
+	char length[16] = {0};
+	char week[5] = {0};
+	char day[3] = {0};
+	char mon[4] = {0};
+	char year[5] = {0};
+	char time[9] = {0};
+	char gmt[4] = {0};
+	int rcode = 0;
+	int retag = 0;
+	int rtype = 0;
+	int rlength = 0;
+	int rlastmodified = 0;
+	size_t code = 0;
+
+	rcode = sscanf(ptr, "HTTP/1.1 %u\n", &code);
+	if (rcode != 0) {
+		header_buffer->code= code;
+	}
+
+	retag = sscanf(ptr, "ETag: %s", etag);
+	if (retag != 0) {
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		retag = sprintf(header_buffer->ptr + offset, "ETag#%s#", etag);
+		header_buffer->left -= retag;
+	}
+	
+	rtype = sscanf(ptr, "Content-Type: %s", type);
+	if (rtype != 0) {
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		rtype = sprintf(header_buffer->ptr + offset, "Content-Type#%s#", type);
+		header_buffer->left -= rtype;
+	}
+	
+	rlength = sscanf(ptr, "Content-Length: %s", length);
+	if (rlength != 0) {
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		rlength = sprintf(header_buffer->ptr + offset, "Content-Length#%s#", length);
+		header_buffer->left -= rlength;
+	}
+
+	rlastmodified = sscanf(ptr, "Last-Modified: %s %s %s %s %s %s", week, day, mon, year, time, gmt);
+	if (rlastmodified != 0) {
+		size_t offset = header_buffer->allocated - header_buffer->left;
+		rlastmodified = sprintf(header_buffer->ptr + offset, "Last-Modified#%s %s %s %s %s %s#", week,
+				day, mon, year, time, gmt);
+		header_buffer->left -= rlastmodified;
+	}
+	return size * nmemb;
+}
+
 static oss_put_object_result_t *
 construct_put_object_response_on_success(const char *etag)
 {
@@ -295,7 +350,7 @@ object_curl_operation(const char *method,
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_curl_operation_recv_to_buffer_callback);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
-			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback);
+			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback_2nd);
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);	
 		} else if (strcmp(method, OSS_HTTP_DELETE) == 0) {
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
@@ -1431,7 +1486,7 @@ client_get_object_metadata(oss_client_t *client,
 	 */
 	curl_slist_free_all(http_headers);
 	printf("%u\n", user_data->header_buffer->code);
-	printf("%s\n", user_data->recv_buffer->ptr);
+	printf("%s\n", user_data->header_buffer->ptr);
 	return NULL;
 }
 
@@ -1703,14 +1758,14 @@ int main()
 	//put_object_result_finalize(result02);
 
 	//oss_client_t *client = client_initialize(access_id, access_key);
-	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
+	//oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
 	//client_get_object_to_file(client, request, local_file, NULL);
-	client_get_object_to_buffer_2nd(client, request, &buffer, &file_len, NULL);
+	//client_get_object_to_buffer_2nd(client, request, &buffer, &file_len, NULL);
 
-	fwrite(buffer, file_len, 1, local_file);
-	printf("length: %d\n", file_len);
+	//fwrite(buffer, file_len, 1, local_file);
+	//printf("length: %d\n", file_len);
 	//fclose(file);
-	fclose(local_file);
+	//fclose(local_file);
 
 	//const char *source_bucket_name = "bucketname001";
 	//const char *destination_bucket_name = "bucketname002";
@@ -1728,7 +1783,7 @@ int main()
 	//	printf("ETag: %s", result->get_etag(result));
 	//	printf("LastModified: %s\n", result->get_last_modified(result));
 	//}
-	//client_get_object_metadata(client, source_bucket_name, source_key, NULL);
+	client_get_object_metadata(client, bucket_name, key, NULL);
 	//client_delete_object(client, source_bucket_name, source_key, &retcode);
 	//printf("%d\n", retcode);
 	//	oss_delete_multiple_object_request_t *request = 

@@ -131,6 +131,11 @@ struct oss_object_metadata_s {
 			const char *expiration_time);
 
 	/**
+	 * 设置MD5
+	 */
+	void (*set_etag)(oss_object_metadata_t *metadata, const char *etag);
+
+	/**
 	 *  设置请求头（内部使用）
 	 */
 	void (*set_header)(oss_object_metadata_t *metadata,

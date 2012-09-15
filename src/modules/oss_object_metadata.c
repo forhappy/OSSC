@@ -253,6 +253,13 @@ _object_metadata_set_content_disposition(oss_object_metadata_t *metadata,
 	oss_map_put(oss_map, OSS_CONTENT_DISPOSITION, disposition);
 }
 
+static inline void
+_object_metadata_set_etag(oss_object_metadata_t *metadata,
+		const char *etag)
+{
+	oss_map_t *oss_map = metadata->metadata;
+	oss_map_put(oss_map, OSS_CONTENT_MD5, etag);
+}
 /**
  * 设置Content-Encoding请求头，表示Object内容的编码方式
  */
@@ -363,6 +370,7 @@ object_metadata_initialize()
 	metadata->set_content_length      = _object_metadata_set_content_length;
 	metadata->set_content_type        = _object_metadata_set_content_type;
 	metadata->set_expiration_time     = _object_metadata_set_expiration_time;
+	metadata->set_etag                = _object_metadata_set_etag;
 	metadata->set_header              = _object_metadata_set_header;
 	metadata->set_last_modified       = _object_metadata_set_last_modified;
 	metadata->set_user_metadata       = _object_metadata_set_user_metadata;
