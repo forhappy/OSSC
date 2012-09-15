@@ -12,9 +12,9 @@
  *
  * =============================================================================
  */
-#define _OSS_GET_OBJECT_REQUEST_H
+#define _OSS_GET_OBJECT_GROUP_REQUEST_H
 #include <ossc/modules/oss_get_object_group_request.h>
-#undef _OSS_GET_OBJECT_REQUEST_H
+#undef _OSS_GET_OBJECT_GROUP_REQUEST_H
 
 static const char * 
 _get_object_group_request_get_bucket_name(oss_get_object_group_request_t *request)

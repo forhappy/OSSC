@@ -139,14 +139,22 @@ size_t object_group_curl_operation_recv_callback(void *ptr, size_t size, size_t 
 size_t object_group_curl_operation_header_callback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	param_buffer_t *header_buffer = (param_buffer_t *)stream;
-	int r;
+	char etag[48] = {0};
+	int retag = 0;
+	int rcode = 0;
 	size_t code = 0;
-	r = sscanf(ptr, "HTTP/1.1 %u\n", &code);
-	if (r != 0) {
+	rcode = sscanf(ptr, "HTTP/1.1 %u\n", &code);
+	if (rcode != 0) {
 		header_buffer->code= code;
+	}
+	retag = sscanf(ptr, "ETag: \"%s\"", etag);
+	if (retag != 0) {
+		memset(header_buffer->ptr, 0, header_buffer->allocated);
+		strncpy(header_buffer->ptr, etag, 48);
 	}
 	return size * nmemb;
 }
+
 static void
 object_group_curl_operation(const char *method,
 		const char *resource,
@@ -466,12 +474,12 @@ construct_get_object_group_index_response(curl_request_param_t *user_data)
 		oss_multipart_object_group_t **group = (oss_multipart_object_group_t **)malloc(sizeof(oss_multipart_object_group_t *) * (result->part_number));
 		for(i = 0; part_tag != NULL; i++, part_tag = part_tag->next) {
 			group[i] = multipart_object_group_initialize();
-			int part_number = atoi(*part_tag->child->child->attrib);
-			group[i]->set_part_number(group[i], part_number);
+			group[i]->set_etag(group[i], *part_tag->child->child->attrib);
 			group[i]->set_part_name(group[i], *part_tag->child->next->child->attrib);
-			size_t part_size = (size_t)(atoi(*part_tag->child->next->next->child->attrib));
+			int part_number = atoi(*part_tag->child->next->next->child->attrib);
+			group[i]->set_part_number(group[i], part_number);
+			size_t part_size = (size_t)(atoi(*part_tag->child->next->next->next->child->attrib));
 			group[i]->set_part_size(group[i], part_size);
-			group[i]->set_etag(group[i], *part_tag->child->next->next->next->child->attrib);
 		}
 		result->group = group;
 	}
@@ -540,6 +548,19 @@ construct_post_object_group_response(curl_request_param_t *user_data)
 	
 }
 
+
+static oss_object_metadata_t *
+construct_head_object_group_response(curl_request_param_t *user_data)
+{
+
+	oss_object_metadata_t *result = object_metadata_initialize();
+	result->set_etag(result, user_data->header_buffer->ptr);
+ 
+	free_user_data(user_data);
+
+	return result;
+	
+}
 
 
 oss_post_object_group_result_t *
@@ -820,123 +841,6 @@ client_set_bucket_acl(oss_client_t *client,
 }
 
 
-
-
-void
-client_create_bucket(oss_client_t *client,
-		const char *bucket_name,
-		unsigned short *retcode)
-{
-
-	assert(client != NULL);
-	assert(bucket_name != NULL);
-
-	curl_request_param_t *user_data = (curl_request_param_t *)malloc(sizeof(curl_request_param_t));
-	user_data->send_buffer = NULL;
-
-	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
-	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 128 * 1024);
-	user_data->recv_buffer->fp = NULL;
-	user_data->recv_buffer->left = 128 * 1024;
-	user_data->recv_buffer->allocated = 128 * 1024;
-
-	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
-	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 4 * 1024);
-	user_data->header_buffer->fp = NULL;
-	user_data->header_buffer->left = 4 * 1024;
-	user_data->header_buffer->allocated = 4 * 1024;
-
-	size_t bucket_name_len = strlen(bucket_name);
-
-	/** 
-	 * Resource: "/"
-	 */
-	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
-
-	/**
-	 * URL: "aliyun.storage.com" + resource
-	 */
-	char *url = (char *)malloc(sizeof(char) * bucket_name_len +64);
-
-	char header_host[64]  = {0};
-	char header_date[48]  = {0};
-	//char now[32]          = {0}; /**< Fri, 24 Feb 2012 02:58:28 GMT */
-	char header_auth[128] = {0};
-	char *now;
-	//char *header_auth;
-
-	unsigned int sign_len = 0;
-
-	oss_map_t *default_headers = oss_map_new(16);
-
-	/**
-	 * 构造参数，resource,url 赋值，
-	 * */
-	sprintf(resource, "/%s", bucket_name);
-	sprintf(url, "%s/%s", client->endpoint, bucket_name);
-	sprintf(header_host,"Host: %s", client->endpoint);
-	//sprintf(now, "%s", oss_get_gmt_time());
-	now = (char *)oss_get_gmt_time();
-	sprintf(header_date, "Date: %s", now);
-
-	/**
-	 * 请求头部构造
-	 */
-	oss_map_put(default_headers, OSS_DATE, now);
-	
-	/**
-	 * 生成签名值
-	 */
-	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_PUT,
-			default_headers, NULL, resource, &sign_len);
-
-	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
-
-	/**
-	 * 自定义 HTTP 请求头部
-	 */
-	struct curl_slist *http_headers = NULL;
-
-	http_headers = curl_slist_append(http_headers, header_host);
-	http_headers = curl_slist_append(http_headers, header_date);
-	http_headers = curl_slist_append(http_headers, header_auth);
-	/**
-	 * 发送请求
-	 */
-	bucket_curl_operation(OSS_HTTP_PUT, resource, url, http_headers, user_data);
-
-	/**
-	 * 释放 http_headers资源
-	 */
-	curl_slist_free_all(http_headers);
-
-	//printf("%u\n", user_data->header_buffer->code);
-	//printf("%s\n", user_data->recv_buffer->ptr);
-	oss_map_delete(default_headers);
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
-	if (user_data->header_buffer->code != 200) {
-		*retcode = get_retcode(user_data->recv_buffer->ptr);
-	} else {
-		*retcode = 0;
-	}
-	free_user_data(user_data);
-}
-
 #endif
 oss_get_object_group_index_result_t *
 client_get_object_group_index(
@@ -966,16 +870,16 @@ client_get_object_group_index(
 	user_data->header_buffer->allocated = 4 * 1024;
 
 	size_t bucket_name_len = strlen(bucket_name);
-
+	size_t key_len = strlen(key);
 	/** 
 	 * Resource: "/"
 	 */
-	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 16 );
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16 );
 
 	/**
 	 * URL: "aliyun.storage.com" + resource
 	 */
-	char *url = (char *)malloc(sizeof(char) * bucket_name_len +64);
+	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 64);
 
 	char header_host[64]  = {0};
 	char header_date[48]  = {0};
@@ -1035,8 +939,8 @@ client_get_object_group_index(
 
 	//printf("%u\n", user_data->header_buffer->code);
 	//printf("%s\n", user_data->recv_buffer->ptr);
-	//oss_map_delete(default_headers);
-	//oss_map_delete(user_headers);
+	oss_map_delete(default_headers);
+	oss_map_delete(user_headers);
 	if(now != NULL) {
 		free(now);
 		now = NULL;
@@ -1063,6 +967,247 @@ client_get_object_group_index(
 	}
 	
 }
+
+void 
+client_delete_object_group(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		unsigned short *retcode)
+{
+	assert(client != NULL);
+	assert(bucket_name != NULL);
+	assert(key != NULL);
+
+	curl_request_param_t *user_data = (curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+	user_data->send_buffer = NULL;
+
+
+	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 128 * 1024);
+	user_data->recv_buffer->fp = NULL;
+	user_data->recv_buffer->left = 128 * 1024;
+	user_data->recv_buffer->allocated = 128 * 1024;
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 4 * 1024);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = 4 * 1024;
+	user_data->header_buffer->allocated = 4 * 1024;
+
+	size_t bucket_name_len = strlen(bucket_name);
+	size_t key_len = strlen(key);
+
+	/** 
+	 * Resource: "/"
+	 */
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16);
+
+	/**
+	 * URL: "aliyun.storage.com" + resource
+	 */
+	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 64);
+
+	char header_host[64]  = {0};
+	char header_date[48]  = {0};
+	//char now[32]          = {0}; /**< Fri, 24 Feb 2012 02:58:28 GMT */
+	char header_auth[128] = {0};
+	char *now;
+	unsigned int sign_len = 0;
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值，
+	 * */
+	sprintf(resource, "/%s/%s", bucket_name, key);
+	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
+	sprintf(header_host,"Host: %s", client->endpoint);
+	now = (char *)oss_get_gmt_time();
+	sprintf(header_date, "Date: %s", now);
+
+
+	/**
+	 * 请求头部构造
+	 */
+	oss_map_put(default_headers, OSS_DATE, now);
+	
+	/**
+	 * 生成签名值
+	 */
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_DELETE,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+
+	/**
+	 * 自定义 HTTP 请求头部
+	 */
+	struct curl_slist *http_headers = NULL;
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	object_group_curl_operation(OSS_HTTP_DELETE, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+
+	//printf("%u\n", user_data->header_buffer->code);
+	//printf("%s\n", user_data->recv_buffer->ptr);
+	
+	oss_map_delete(default_headers);
+	if(now != NULL) {
+		free(now);
+		now = NULL;
+	}
+	if(sign != NULL) {
+		free(sign);
+		sign = NULL;
+	}
+	if(resource != NULL) {
+		free(resource);
+		resource = NULL;
+	}
+	if(url != NULL) {
+		free(url);
+		url = NULL;
+	}
+	if (user_data->header_buffer->code != 204) {
+		*retcode = get_retcode(user_data->recv_buffer->ptr);
+	} else {
+		*retcode = NO_CONTENT;
+	}
+	free_user_data(user_data);
+}
+
+oss_object_metadata_t *
+client_head_object_group(oss_client_t *client,
+		oss_get_object_group_request_t *request,
+		unsigned short *retcode)
+{
+	assert(client != NULL);
+	assert(request != NULL);
+
+	curl_request_param_t *user_data = (curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+	user_data->send_buffer = NULL;
+
+
+	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 128 * 1024);
+	user_data->recv_buffer->fp = NULL;
+	user_data->recv_buffer->left = 128 * 1024;
+	user_data->recv_buffer->allocated = 128 * 1024;
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 4 * 1024);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = 4 * 1024;
+	user_data->header_buffer->allocated = 4 * 1024;
+
+	size_t bucket_name_len = strlen(request->bucket_name);
+	size_t key_len = strlen(request->key);
+
+	/** 
+	 * Resource: "/"
+	 */
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16);
+
+	/**
+	 * URL: "aliyun.storage.com" + resource
+	 */
+	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 64);
+
+	char header_host[64]  = {0};
+	char header_date[48]  = {0};
+	//char now[32]          = {0}; /**< Fri, 24 Feb 2012 02:58:28 GMT */
+	char header_auth[128] = {0};
+	char *now;
+	unsigned int sign_len = 0;
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值，
+	 * */
+	sprintf(resource, "/%s/%s", request->get_bucket_name(request),
+			request->get_key(request));
+	sprintf(url, "%s/%s/%s", client->endpoint, request->get_bucket_name(request),
+			request->get_key(request));
+	sprintf(header_host,"Host: %s", client->endpoint);
+	now = (char *)oss_get_gmt_time();
+	sprintf(header_date, "Date: %s", now);
+
+
+	/**
+	 * 请求头部构造
+	 */
+	oss_map_put(default_headers, OSS_DATE, now);
+	
+	/**
+	 * 生成签名值
+	 */
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_HEAD,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	/**
+	 * 自定义 HTTP 请求头部
+	 */
+	struct curl_slist *http_headers = NULL;
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	object_group_curl_operation(OSS_HTTP_HEAD, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+
+	//printf("%u\n", user_data->header_buffer->code);
+	//printf("%s\n", user_data->recv_buffer->ptr);
+	
+	oss_map_delete(default_headers);
+	if(now != NULL) {
+		free(now);
+		now = NULL;
+	}
+	if(sign != NULL) {
+		free(sign);
+		sign = NULL;
+	}
+	if(resource != NULL) {
+		free(resource);
+		resource = NULL;
+	}
+	if(url != NULL) {
+		free(url);
+		url = NULL;
+	}
+	if (user_data->header_buffer->code != 200) {
+		*retcode = get_retcode(user_data->recv_buffer->ptr);
+		free_user_data(user_data);
+		return NULL;
+	} else {
+		*retcode = 0;
+		return construct_head_object_group_response(user_data);
+	}
+}
+
+
 
 #if 0
 oss_access_control_list_t *
@@ -1358,7 +1503,6 @@ int main()
 
 	post_object_group_request_finalize(request);
 	post_object_group_result_finalize(post_result);
-	
 	/* *
 	 * test get_object_group
 	 */
@@ -1379,7 +1523,6 @@ int main()
 	/* *
 	 * test get_object_group_index
 	 */
-	
 	oss_get_object_group_index_result_t *index_result;
 	index_result = client_get_object_group_index(client, bucket_name, key, &retcode);
 	if(retcode == 0) {
@@ -1392,55 +1535,34 @@ int main()
 		retinfo = get_retinfo_from_retcode(retcode);
 		printf("error = %s\n", retinfo);
 	}
-	/*
 	for(i = 0; i < index_result->part_number; i++) {
 		multipart_object_group_finalize((index_result->group)[i]);
 	}
 	get_object_group_index_result_finalize(index_result);
-	*/
-#if 0
+
 	/* *
-	 * test get_bucket(list_objects)
+	 * test head_object_group
 	 */
-	oss_object_listing_t *object_listing = client_list_objects_with_bucket_name(client, "&bucketname1", &retcode);
+
+	oss_object_metadata_t *head_result = object_metadata_initialize();
+	oss_get_object_group_request_t *request = get_object_group_request_initialize(bucket_name, key);
+	head_result = client_head_object_group(client, request, &retcode);
+
 	
-	if(retcode == 0) {
-		printf("bucket_name = %s\nnext_marker = %s\nprefix = %s\nmarker = %s\nmax_keys = %d\ndelimiter = %s\nis_truncated = %d\n", object_listing->bucket_name, object_listing->next_marker, object_listing->prefix, object_listing->marker, object_listing->max_keys, object_listing->delimiter, object_listing->is_truncated);
-		for(i = 0; i < object_listing->_counts_summaries; i++) {
-			printf("type = %s\netag = %s\nkey = %s\nlast_modified = %s\nsize = %ld\nstorage_class = %s\nid = %s\ndisplay_name = %s\n", object_listing->summaries[i]->type, object_listing->summaries[i]->etag, object_listing->summaries[i]->key, object_listing->summaries[i]->last_modified, object_listing->summaries[i]->size, object_listing->summaries[i]->storage_class, object_listing->summaries[i]->owner->id, object_listing->summaries[i]->owner->display_name);
-		}
-	} else {
-		printf("retcode = %d\n", retcode);
-		retinfo = get_retinfo_from_retcode(retcode);
-		printf("error = %s\n", retinfo);
-	}
 
 	/* *
-	 * test get_bucket_acl
+	 * test delete_object_group
 	 */
 
-	oss_access_control_list_t *acl = client_get_bucket_acl(client, "&bucketname1", &retcode);
-	if(retcode == 0) {
-		printf("grant = %s\nid = %s\ndisplay_name = %s\n", acl->grant, acl->owner->id, acl->owner->display_name);
+	client_delete_object_group(client, bucket_name, key, &retcode);
+
+	if(retcode == NO_CONTENT) {
+		printf("delete object group succeed\n");
 	} else {
 		printf("retcode = %d\n", retcode);
 		retinfo = get_retinfo_from_retcode(retcode);
 		printf("error = %s\n", retinfo);
 	}
-
-	/* *
-	 * test delete_bucket
-	 */
-
-	client_delete_bucket(client, "b11ucketname1", &retcode);
-	if(retcode == 1) {
-		printf("delete bucket succeed.\n");
-	} else {
-		printf("retcode = %d\n", retcode);
-		retinfo = get_retinfo_from_retcode(retcode);
-		printf("error = %s\n", retinfo);
-	}
-#endif
 
 	client_finalize(client);
 	return 0;
