@@ -224,9 +224,6 @@ generate_authentication(const char *access_key, const char *method,
 		sprintf(string_to_sign, "%s\n\n\n%s\n%s%s", method,
 				date, canonicalized_headers, resource);
 
-
-	printf("string to be signed:\n%s\n", string_to_sign);
-
 	size_t string_to_sign_len = strlen(string_to_sign);
 
 	hmac_sha1(access_key, access_key_len, string_to_sign, string_to_sign_len, hmac_sha1_out);

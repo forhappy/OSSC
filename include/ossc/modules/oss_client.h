@@ -430,7 +430,18 @@ client_list_parts(oss_client_t *client,
  * 上传指定的 OSSObject 到 OSS 中指定的 Bucket
  */
 extern oss_put_object_result_t *
-client_put_object(oss_client_t *client,
+client_put_object_from_file(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		void *input,
+		oss_object_metadata_t *metadata,
+		unsigned short *retcode);
+
+/**
+ * 上传指定的 OSSObject 到 OSS 中指定的 Bucket
+ */
+extern oss_put_object_result_t *
+client_put_object_from_buffer(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
 		void *input,

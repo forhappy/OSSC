@@ -54,8 +54,6 @@ bucket_curl_operation(const char *method,
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
 		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, bucket_curl_operation_header_callback);
 		curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
-		//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
@@ -292,14 +290,7 @@ client_list_buckets(
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	/** 
-	 * Resource: "/"
-	 */
 	char *resource = (char *)malloc(sizeof(char) * 16);
-
-	/**
-	 * URL: "aliyun.storage.com" + resource
-	 */
 	char *url = (char *)malloc(sizeof(char) * strlen(client->endpoint) + 1);
 
 	char header_host[256]  = {0};
@@ -369,12 +360,13 @@ client_list_buckets(
 		url = NULL;
 	}
 	if (user_data->header_buffer->code != 200) {
-		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 		oss_free_user_data(user_data);
 		*buckets_number = 0;
 		return NULL;
 	} else {
-		*retcode = 0;
+		if (retcode != NULL) *retcode = 0;
 		return construct_list_buckets_response(user_data, buckets_number);
 	}
 }
@@ -382,7 +374,6 @@ client_list_buckets(
 /**
  * 设置指定 Bucket 的 Access Control List(ACL)
  */
-
 void
 client_set_bucket_acl(oss_client_t *client,
 		const char *bucket_name,
@@ -411,16 +402,8 @@ client_set_bucket_acl(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 
 	size_t bucket_name_len = strlen(bucket_name);
-
-	/** 
-	 * Resource: "/" + bucket_name
-	 */
 	char *resource = (char *)malloc(
 			sizeof(char) * (bucket_name_len + 16));
-
-	/**
-	 * URL: "aliyun.storage.com" + resource
-	 */
 	char *url = (char *)malloc(sizeof(char) * 
 			(bucket_name_len + strlen(client->endpoint) + 8));
 
@@ -499,15 +482,13 @@ client_set_bucket_acl(oss_client_t *client,
 	}
 
 	if (user_data->header_buffer->code != 200) {
-		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 	} else {
-		*retcode = 0;
+		if (retcode != NULL) *retcode = 0;
 	}
 	oss_free_user_data(user_data);
 }
-
-
-
 
 void
 client_create_bucket(oss_client_t *client,
@@ -537,15 +518,7 @@ client_create_bucket(oss_client_t *client,
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
 	size_t bucket_name_len = strlen(bucket_name);
-
-	/** 
-	 * Resource: "/"
-	 */
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
-
-	/**
-	 * URL: "aliyun.storage.com" + resource
-	 */
 	char *url = (char *)malloc(sizeof(char) * 
 			(bucket_name_len + strlen(client->endpoint) + 8));
 
@@ -556,24 +529,13 @@ client_create_bucket(oss_client_t *client,
 	unsigned int sign_len = 0;
 
 	oss_map_t *default_headers = oss_map_new(16);
-
-	/**
-	 * 构造参数，resource,url 赋值，
-	 * */
 	sprintf(resource, "/%s", bucket_name);
 	sprintf(url, "%s/%s", client->endpoint, bucket_name);
 	sprintf(header_host,"Host: %s", client->endpoint);
 	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
-
-	/**
-	 * 请求头部构造
-	 */
 	oss_map_put(default_headers, OSS_DATE, now);
-	
-	/**
-	 * 生成签名值
-	 */
+
 	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_PUT,
 			default_headers, NULL, resource, &sign_len);
 
@@ -616,9 +578,10 @@ client_create_bucket(oss_client_t *client,
 		url = NULL;
 	}
 	if (user_data->header_buffer->code != 200) {
-		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 	} else {
-		*retcode = 0;
+		if (retcode != NULL) *retcode = 0;
 	}
 	oss_free_user_data(user_data);
 }
@@ -653,15 +616,7 @@ client_list_objects_with_bucket_name(
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
 	size_t bucket_name_len = strlen(bucket_name);
-
-	/** 
-	 * Resource: "/"
-	 */
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
-
-	/**
-	 * URL: "aliyun.storage.com" + resource
-	 */
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + strlen(client->endpoint) + 8));
 
@@ -732,11 +687,12 @@ client_list_objects_with_bucket_name(
 		url = NULL;
 	}
 	if (user_data->header_buffer->code != 200) {
-		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 		oss_free_user_data(user_data);
 		return NULL;
 	} else {
-		*retcode = 0;
+		if (retcode != NULL) *retcode = 0;
 		return construct_list_objects_response(user_data);
 	}
 	
@@ -771,15 +727,7 @@ client_get_bucket_acl(oss_client_t *client,
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
 	size_t bucket_name_len = strlen(bucket_name);
-
-	/** 
-	 * Resource: "/"
-	 */
 	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 16);
-
-	/**
-	 * URL: "aliyun.storage.com" + resource
-	 */
 	char *url = (char *)malloc(
 			sizeof(char) * (bucket_name_len + strlen(client->endpoint) + 8));
 
@@ -797,7 +745,6 @@ client_get_bucket_acl(oss_client_t *client,
 	sprintf(resource, "/%s?acl", bucket_name);
 	sprintf(url, "%s/%s?acl", client->endpoint, bucket_name);
 	sprintf(header_host,"Host: %s", client->endpoint);
-	//sprintf(now, "%s", oss_get_gmt_time());
 	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 
@@ -850,11 +797,12 @@ client_get_bucket_acl(oss_client_t *client,
 		url = NULL;
 	}
 	if (user_data->header_buffer->code != 200) {
-		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 		oss_free_user_data(user_data);
 		return NULL;
 	} else {
-		*retcode = 0;
+		if (retcode != NULL) *retcode = 0;
 		return construct_get_bucket_acl_response(user_data);
 	}
 }
@@ -888,15 +836,7 @@ client_delete_bucket(oss_client_t *client,
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
 	size_t bucket_name_len = strlen(bucket_name);
-
-	/** 
-	 * Resource: "/"
-	 */
 	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 16);
-
-	/**
-	 * URL: "aliyun.storage.com" + resource
-	 */
 	char *url = (char *)malloc(
 			sizeof(char) * (bucket_name_len +strlen(client->endpoint) + 8));
 
@@ -967,9 +907,10 @@ client_delete_bucket(oss_client_t *client,
 		url = NULL;
 	}
 	if (user_data->header_buffer->code != 204) {
-		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 	} else {
-		*retcode = NO_CONTENT;
+		if (retcode != NULL) *retcode = NO_CONTENT;
 	}
 	oss_free_user_data(user_data);
 	return;

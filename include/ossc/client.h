@@ -149,6 +149,8 @@
  * */
 #include <ossc/util/oss_auth.h>
 
+#include <ossc/util/oss_common.h>
+
 /* *
  * get the proper time format
  * */
@@ -160,5 +162,6 @@
 #define _OSS_CONSTANTS_H
 #include <ossc/oss_constants.h>
 #undef _OSS_CONSTANTS_H
+
 
 #endif
