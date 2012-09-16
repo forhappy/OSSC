@@ -11,6 +11,9 @@
  *
  * =============================================================================
  */
+#include <stdlib.h>
+#include <string.h>
+
 #include <ossc/util/oss_common.h>
 
 long

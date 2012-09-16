@@ -1,107 +1,10 @@
 #cmakedefine HAVE_MALLOC_H	1
 #cmakedefine HAVE_ALLOCA_H	1
 #cmakedefine HAVE_ALLOCA	1
-#cmakedefine HAVE_ATEXIT	1
-#cmakedefine HAVE_SIGACTION	1
-#cmakedefine HAVE_EXECINFO_H	1
-#cmakedefine HAVE_BACKTRACE	1
 #cmakedefine HAVE_MALLOC_STATS	1
 #cmakedefine HAVE_MALLINFO	1
 #cmakedefine HAVE_STDBOOL_H	1
-#cmakedefine HAVE_SETJMP_H	1
-#cmakedefine HAVE_CLOCK_GETTIME	1
-#cmakedefine HAVE_SIGSETJMP	1
 
-/* Define to 1 if you have the <arpa/inet.h> header file. */
-#cmakedefine HAVE_ARPA_INET_H 1
-
-/* Define to 1 if you have the declaration of `memmem', and to 0 if you don't.
-   */
-#cmakedefine HAVE_DECL_MEMMEM 1
-
-/* Define to 1 if you have the declaration of `perror', and to 0 if you don't.
-   */
-#cmakedefine HAVE_DECL_PERROR 1
-
-/* Define to 1 if you have the declaration of `strerror', and to 0 if you
-   don't. */
-#cmakedefine HAVE_DECL_STRERROR 1
-
-/* Define if <sys/procfs.h> has elf_fpregset_t. */
-#cmakedefine HAVE_ELF_FPREGSET_T 1
-
-/* Define if errno is available */
-#cmakedefine HAVE_ERRNO 1
-
-/* Define to 1 if you have the <errno.h> header file. */
-#cmakedefine HAVE_ERRNO_H 1
-
-/* Define to 1 if you have the <fcntl.h> header file. */
-#cmakedefine HAVE_FCNTL_H 1
-
-/* Define to 1 if you have the <inttypes.h> header file. */
-#cmakedefine HAVE_INTTYPES_H 1
-
-/* Define to 1 if you have the <linux/elf.h> header file. */
-#cmakedefine HAVE_LINUX_ELF_H 1
-
-/* Define if the target supports register sets. */
-#cmakedefine HAVE_LINUX_REGSETS 1
-
-/* Define if the target supports PTRACE_PEEKUSR for register access. */
-#cmakedefine HAVE_LINUX_USRREGS 1
-
-/* Define if <sys/procfs.h> has lwpid_t. */
-#cmakedefine HAVE_LWPID_T 1
-
-/* Define to 1 if you have the `memmem' function. */
-#cmakedefine HAVE_MEMMEM 1
-
-/* Define to 1 if you have the <memory.h> header file. */
-#cmakedefine HAVE_MEMORY_H 1
-
-/* Define to 1 if you have the <netdb.h> header file. */
-#cmakedefine HAVE_NETDB_H 1
-
-/* Define to 1 if you have the <netinet/in.h> header file. */
-#cmakedefine HAVE_NETINET_IN_H 1
-
-/* Define to 1 if you have the <netinet/tcp.h> header file. */
-#cmakedefine HAVE_NETINET_TCP_H 1
-
-/* Define to 1 if you have the `pread' function. */
-#cmakedefine HAVE_PREAD 1
-
-/* Define to 1 if you have the `pread64' function. */
-#cmakedefine HAVE_PREAD64 1
-
-/* Define if <sys/procfs.h> has prgregset_t. */
-#cmakedefine HAVE_PRGREGSET_T 1
-
-/* Define to 1 if you have the <proc_service.h> header file. */
-/* #undef HAVE_PROC_SERVICE_H */
-
-/* Define if <sys/procfs.h> has psaddr_t. */
-#cmakedefine HAVE_PSADDR_T 1
-
-/* Define if the target supports PTRACE_GETFPXREGS for extended register
-   access. */
-#cmakedefine HAVE_PTRACE_GETFPXREGS 1
-
-/* Define if the target supports PTRACE_GETREGS for register access. */
-#cmakedefine HAVE_PTRACE_GETREGS 1
-
-/* Define to 1 if you have the `pwrite' function. */
-#cmakedefine HAVE_PWRITE 1
-
-/* Define to 1 if you have the <sgtty.h> header file. */
-#cmakedefine HAVE_SGTTY_H 1
-
-/* Define to 1 if you have the <signal.h> header file. */
-#cmakedefine HAVE_SIGNAL_H 1
-
-/* Define to 1 if the system has the type `socklen_t'. */
-#cmakedefine HAVE_SOCKLEN_T 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #cmakedefine HAVE_STDINT_H 1
@@ -115,51 +18,9 @@
 /* Define to 1 if you have the <string.h> header file. */
 #cmakedefine HAVE_STRING_H 1
 
-/* Define to 1 if you have the <sys/file.h> header file. */
-#cmakedefine HAVE_SYS_FILE_H 1
-
-/* Define to 1 if you have the <sys/ioctl.h> header file. */
-#cmakedefine HAVE_SYS_IOCTL_H 1
-
-/* Define to 1 if you have the <sys/procfs.h> header file. */
-#cmakedefine HAVE_SYS_PROCFS_H 1
-
-/* Define to 1 if you have the <sys/reg.h> header file. */
-#cmakedefine HAVE_SYS_REG_H 1
-
-/* Define to 1 if you have the <sys/socket.h> header file. */
-#cmakedefine HAVE_SYS_SOCKET_H 1
-
-/* Define to 1 if you have the <sys/stat.h> header file. */
-#cmakedefine HAVE_SYS_STAT_H 1
-
-/* Define to 1 if you have the <sys/types.h> header file. */
-#cmakedefine HAVE_SYS_TYPES_H 1
-
-/* Define to 1 if you have the <sys/wait.h> header file. */
-#cmakedefine HAVE_SYS_WAIT_H 1
-
-/* Define if td_thr_tls_get_addr is available. */
-#cmakedefine HAVE_TD_THR_TLS_GET_ADDR 1
-
-/* Define if TD_VERSION is available. */
-#cmakedefine HAVE_TD_VERSION 1
-
-/* Define to 1 if you have the <termios.h> header file. */
-#cmakedefine HAVE_TERMIOS_H 1
-
-/* Define to 1 if you have the <termio.h> header file. */
-#cmakedefine HAVE_TERMIO_H 1
-
-/* Define to 1 if you have the <thread_db.h> header file. */
-#cmakedefine HAVE_THREAD_DB_H 1
-
-/* Define to 1 if you have the <unistd.h> header file. */
-#cmakedefine HAVE_UNISTD_H 1
-
 #define REPORT_BUGS_TO		"haipingf@gmail.com && wangwei881116@gmail.com"
 
-#define PROJECT_VERSION		"OSSC 0.0.1"
+#define PROJECT_VERSION		"OSSC 0.0.8"
 
 #define __mkstr1(___a)		#___a
 #define __mkstr2(___a)		__mkstr1(___a)

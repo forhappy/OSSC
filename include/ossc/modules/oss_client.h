@@ -221,25 +221,8 @@ client_initialize_with_endpoint(
 		const char *endpoint);
 
 extern void 
-client_finalize(oss_client_t *client) 
-{
-	if(client != NULL) {
-		if(client->endpoint != NULL) {
-			free(client->endpoint);
-			client->endpoint = NULL;
-		}
-		if(client->access_id != NULL){
-			free(client->access_id);
-			client->access_id = NULL;
-		}
-		if(client->access_key != NULL){
-			free(client->access_key);
-			client->access_key = NULL;
-		}
-		free(client);
-		client = NULL;
-	}
-}
+client_finalize(oss_client_t *client);
+
 /**
  * 终止一个 Multipart 上传事件
  */

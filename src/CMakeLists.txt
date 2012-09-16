@@ -13,12 +13,12 @@ SET_PROPERTY(TARGET ${target}
 	PROPERTY LINK_FLAGS "${MODULES_LINK_FLAGS}")
 ENDMACRO(set_modules_properties target)
 
-SET(SRC
-	oss_client.c)
-ADD_LIBRARY(ossc STATIC ${SRC})
-ADD_DEPENDENCIES(ossc ossmodules ossutil ossauth)
-TARGET_LINK_LIBRARIES(ossc ossmodules ossutil ossauth)
+#SET(SRC oss_client.c)
+#ADD_LIBRARY(ossc STATIC ${SRC})
+#ADD_DEPENDENCIES(ossc ossmodules ossutil ossauth)
+#TARGET_LINK_LIBRARIES(ossc ossmodules ossutil ossauth)
 
+ADD_SUBDIRECTORY(core)
 ADD_SUBDIRECTORY(modules)
 ADD_SUBDIRECTORY(util)
 ADD_SUBDIRECTORY(lib)

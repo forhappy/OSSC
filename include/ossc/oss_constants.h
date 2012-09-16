@@ -84,66 +84,13 @@ typedef enum _OSS_ERROR_CODE {
 	TOO_MANY_BUCKETS
 }OSS_ERROR_CODE;
 
-#if 0
-static inline const char *
-constants_get_error_message(enum _OSS_ERROR_CODE error_code)
-{
-	switch (error_code) {
-		case ACCESS_DENIED:
-			return "AccessDenied";
-		case BUCKES_ALREADY_EXISTS:
-			return "BucketAlreadyExists";
-		case BUCKETS_NOT_EMPTY:
-			return "BucketNotEmpty";
-		case FILE_GROUP_TOO_LARGE:
-			return "FileGroupTooLarge";
-		case FILE_PART_STALE:
-			return "FilePartStale";
-		case INTERNAL_ERROR:
-			return "InternalError";
-		case INVALID_ACCESS_KEY_ID:
-			return "InvalidAccessKeyId";
-		case INVALID_ARGUMENT:
-			return "InvalidArgument";
-		case INVALID_BUCKET_NAME:
-			return "InvalidBucketName";
-		case INVALID_OBJECT_NAME:
-			return "InvalidObjectName";
-		case INVALID_PART:
-			return "InvalidPart";
-		case INVALID_PART_ORDER:
-			return "InvalidPartOrder";
-		case MISSING_CONTENT_LENGTH:
-			return "MissingContentLength";
-		case NO_SUCH_BUCKET:
-			return "NoSuchBucket";
-		case NO_SUCH_KEY:
-			return "NoSuchKey";
-		case NOT_IMPLEMENTED:
-			return "NotImplemented";
-		case PRECONDITION_FAILED:
-			return "PreconditionFailed";
-		case REQUEST_TIME_TOO_SKEWED:
-			return "RequestTimeTooSkewed";
-		case REQUEST_TIMEOUT:
-			return "RequestTimeout";
-		case SIGNATURE_DOES_NOT_MATCH:
-			return "SignatureDoesNotMatch";
-		case TOO_MANY_BUCKETS:
-			return "TooManyBuckets";
-		default:
-			return "NoSuchCode";
-	}
-}
-#endif
-
 typedef enum _OSS_PERMISSION {
 	FULLCONTROL,
 	READ
 }OSS_PERMISSION;
 
 #define DEFAULT_OSS_HOST            "storage.aliyun.com"
-#define VERSION                     "0.0.3"
+#define VERSION                     "0.0.8"
 #define NAME                        "OSS-C-SDK"
 
 #define OSS_BUCKET                  "bucket"
@@ -223,5 +170,9 @@ typedef enum _OSS_PERMISSION {
 #define RESPONSE_HEADER_CONTENT_LANGUAGE     "RESPONSE_HEADER_CONTENT_LANGUAGE"
 #define RESPONSE_HEADER_CONTENT_TYPE         "RESPONSE_HEADER_CONTENT_TYPE"
 #define RESPONSE_HEADER_EXPIRES              "RESPONSE_HEADER_EXPIRES"
+
+#define MAX_SEND_BUFFER_SIZE			(2 * 1024 * 1024)
+#define MAX_RECV_BUFFER_SIZE			(2 * 1024 * 1024)
+#define MAX_HEADER_BUFFER_SIZE			(128 * 1024)
 
 #endif // OSS_CONSTANTS_H
