@@ -570,7 +570,6 @@ client_put_object_from_buffer(oss_client_t *client,
 		free(url);
 		url = NULL;
 	}
-	curl_slist_free_all(http_headers);
 	if (user_data->header_buffer->code == 200) {
 		*retcode = 0;
 		return construct_put_object_response_on_success(user_data);

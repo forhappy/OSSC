@@ -31,6 +31,54 @@
 
 #include <curl/curl.h>
 
+static oss_object_metadata_t *
+construct_get_object_object_to_buffer_response_on_success(
+		curl_request_param_t *user_data)
+{
+	char *headers = user_data->header_buffer->ptr;
+	oss_object_metadata_t *metadata = object_metadata_initialize();
+	char tmpbuf[64] = {0};
+	char *iter = NULL;
+	iter = strtok(headers, "#");
+	int flag = 0;
+	while (iter != NULL) {
+		if (flag % 2 == 0) {
+			memset(tmpbuf, 0, 64);
+			strncpy(tmpbuf, iter, 64);
+		} else {
+			metadata->add_default_metadata(metadata, tmpbuf, iter);
+		}
+		iter = strtok(NULL, "#");
+		flag++;
+	}
+	oss_free_partial_user_data(user_data);
+	return metadata;
+}
+
+static oss_object_metadata_t *
+construct_get_object_metadata_response_on_success(
+		curl_request_param_t *user_data)
+{
+	char *headers = user_data->header_buffer->ptr;
+	oss_object_metadata_t *metadata = object_metadata_initialize();
+	char tmpbuf[64] = {0};
+	char *iter = NULL;
+	iter = strtok(headers, "#");
+	int flag = 0;
+	while (iter != NULL) {
+		if (flag % 2 == 0) {
+			memset(tmpbuf, 0, 64);
+			strncpy(tmpbuf, iter, 64);
+		} else {
+			metadata->add_default_metadata(metadata, tmpbuf, iter);
+		}
+		iter = strtok(NULL, "#");
+		flag++;
+	}
+	oss_free_user_data(user_data);
+	return metadata;
+}
+
 static void
 object_group_curl_operation(const char *method,
 		const char *resource,
@@ -76,6 +124,42 @@ object_group_curl_operation(const char *method,
 
 }
 
+static void
+object_group_curl_operation_2nd(const char *method,
+		const char *resource,
+		const char *url,
+		struct curl_slist *http_headers,
+		void *user_data)
+{
+	assert(method != NULL);
+	assert(resource != NULL);
+	assert(http_headers != NULL);
+	assert(user_data != NULL);
+
+	CURL *curl = NULL;
+
+	curl_request_param_t *params = (curl_request_param_t *)user_data;
+
+	//param_buffer_t *send_buffer = params->send_buffer;
+	param_buffer_t *recv_buffer = params->recv_buffer;
+	param_buffer_t *header_buffer = params->header_buffer;
+
+	curl = curl_easy_init();
+	if (curl != NULL) {
+		curl_easy_setopt(curl, CURLOPT_URL, url);
+		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
+
+		if (strcmp(method, OSS_HTTP_GET) == 0) {
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_curl_operation_recv_to_file_callback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
+			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback_2nd);
+			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);	
+		}
+		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
+		curl_easy_perform(curl);
+		curl_easy_cleanup(curl);
+	}
+}
 
 static oss_get_object_group_index_result_t *
 construct_get_object_group_index_response(curl_request_param_t *user_data)
@@ -325,6 +409,287 @@ client_post_object_group(oss_client_t *client,
 	}
 }
 
+oss_object_metadata_t *
+client_get_object_group_to_file(oss_client_t *client,
+		oss_get_object_group_request_t *request,
+		FILE *file,
+		unsigned short *retcode)
+{
+
+	assert(client != NULL);
+	assert(request != NULL);
+	assert(file != NULL);
+
+	curl_request_param_t *user_data = 
+		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+
+	user_data->send_buffer = NULL; /** 发送缓冲区设置为NULL*/
+	
+
+	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	// user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 1 * 1024);
+	user_data->recv_buffer->fp = file;
+	user_data->recv_buffer->left = 1 * 1024;
+	user_data->recv_buffer->allocated = 1 * 1024;
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 2 * 1024);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = 2 * 1024;
+	user_data->header_buffer->allocated = 2 * 1024;
+
+	size_t bucket_name_len = strlen(request->get_bucket_name(request));
+	size_t key_len = strlen(request->get_key(request));
+
+	size_t sign_len = 0;
+
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
+
+	char *url = (char *)malloc(sizeof(char) *
+			(bucket_name_len + key_len + strlen(client->endpoint) + 8));
+
+	char header_host[256]  = {0};
+	char header_date[48]  = {0};
+	char *now; /**< Fri, 24 Feb 2012 02:58:28 GMT */
+	char header_auth[128] = {0};
+	
+	char header_if_modified_since[64] = {0};
+	char header_if_unmodified_since[64] = {0};
+	char header_range[32] = {0};
+	
+	long start = 0; /**< Range 起始字节位置*/
+	long length = 0; /**< Range 长度*/
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值
+	 * */
+	sprintf(resource, "/%s/%s", request->get_bucket_name(request),
+			request->get_key(request));
+	sprintf(url, "%s/%s/%s", client->endpoint, request->get_bucket_name(request),
+			request->get_key(request));
+	now = (char *)oss_get_gmt_time();
+
+	/** 构造请求头部 */
+	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_date, "Date: %s", now);
+
+	oss_map_put(default_headers, OSS_DATE, now);
+
+	/**
+	 * 生成签名值
+	 */
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_GET,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	/**
+	 * 自定义 HTTP 请求头部，
+	 * TODO：后续版本应支持If-Matching,If-None-Matching
+	 */
+	struct curl_slist *http_headers = NULL;
+	
+	if (request->get_modified_since_constraint(request) != NULL) {
+		sprintf(header_if_modified_since, "If-Modified-Since: %s", request->get_modified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_modified_since);
+	}
+	if (request->get_unmodified_since_constraint(request) != NULL) {
+		sprintf(header_if_unmodified_since, "If-Unmodified-Since: %s", request->get_unmodified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_unmodified_since);
+	}
+	request->get_range(request, &start, &length);
+	if (start > 0 && length > 0) {
+		sprintf(header_range, "Range: %ld-%ld", start, start + length);
+		http_headers = curl_slist_append(http_headers, header_range);
+	}
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	object_group_curl_operation_2nd(OSS_HTTP_GET, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+
+	oss_map_delete(default_headers);
+	if(now != NULL) {
+		free(now);
+		now = NULL;
+	}
+	if(sign != NULL) {
+		free(sign);
+		sign = NULL;
+	}
+	if(resource != NULL) {
+		free(resource);
+		resource = NULL;
+	}
+	if(url != NULL) {
+		free(url);
+		url = NULL;
+	}
+	if (user_data->header_buffer->code == 200) {
+		*retcode = 0;
+		return construct_get_object_metadata_response_on_success(user_data);
+	} else {
+		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		oss_free_user_data(user_data);
+	}
+
+	return NULL;
+}
+
+oss_object_metadata_t *
+client_get_object_group_to_buffer(oss_client_t *client,
+		oss_get_object_group_request_t *request,
+		void **output,
+		size_t *output_len,
+		unsigned short *retcode)
+{
+
+	assert(client != NULL);
+	assert(request != NULL);
+
+	curl_request_param_t *user_data = 
+		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+
+	user_data->send_buffer = NULL; /** 发送缓冲区设置为NULL*/
+	
+
+	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->recv_buffer->ptr = NULL;
+	user_data->recv_buffer->left = 0;
+	user_data->recv_buffer->allocated = 0;
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 2 * 1024);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = 2 * 1024;
+	user_data->header_buffer->allocated = 2 * 1024;
+
+	size_t bucket_name_len = strlen(request->get_bucket_name(request));
+	size_t key_len = strlen(request->get_key(request));
+	size_t sign_len = 0;
+	long start = 0; /**< Range 起始字节位置*/
+	long length = 0; /**< Range 长度*/
+	/** 
+	 * Resource: "/" + bucket_name
+	 */
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
+
+	/**
+	 * URL: "aliyun.storage.com" + resource
+	 */
+	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 64));
+
+	char header_host[256]  = {0};
+	char header_date[48]  = {0};
+	char *now; /**< Fri, 24 Feb 2012 02:58:28 GMT */
+	char header_auth[128] = {0};
+	
+	char header_if_modified_since[64] = {0};
+	char header_if_unmodified_since[64] = {0};
+	char header_range[32] = {0};	
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值
+	 * */
+	sprintf(resource, "/%s/%s", request->get_bucket_name(request),
+			request->get_key(request));
+	sprintf(url, "%s/%s/%s", client->endpoint, request->get_bucket_name(request),
+			request->get_key(request));
+	now = (char *)oss_get_gmt_time();
+
+	/** 构造请求头部 */
+	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_date, "Date: %s", now);
+
+	oss_map_put(default_headers, OSS_DATE, now);
+
+	/**
+	 * 生成签名值
+	 */
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_GET,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	/**
+	 * 自定义 HTTP 请求头部，
+	 * TODO：后续版本应支持If-Matching,If-None-Matching
+	 */
+	struct curl_slist *http_headers = NULL;
+	
+	if (request->get_modified_since_constraint(request) != NULL) {
+		sprintf(header_if_modified_since, "If-Modified-Since: %s", request->get_modified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_modified_since);
+	}
+	if (request->get_unmodified_since_constraint(request) != NULL) {
+		sprintf(header_if_unmodified_since, "If-Unmodified-Since: %s", request->get_unmodified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_unmodified_since);
+	}
+	request->get_range(request, &start, &length);
+	if (start > 0 && length > 0) {
+		sprintf(header_range, "Range: %ld-%ld", start, start + length);
+		http_headers = curl_slist_append(http_headers, header_range);
+	}
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	object_group_curl_operation_2nd(OSS_HTTP_GET, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+	
+	/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
+	 * 如果缓冲区应设置合理的大小
+	 * */
+	*output = user_data->recv_buffer->ptr;
+	*output_len = user_data->recv_buffer->allocated;
+
+	oss_map_delete(default_headers);
+	if(now != NULL) {
+		free(now);
+		now = NULL;
+	}
+	if(sign != NULL) {
+		free(sign);
+		sign = NULL;
+	}
+	if(resource != NULL) {
+		free(resource);
+		resource = NULL;
+	}
+	if(url != NULL) {
+		free(url);
+		url = NULL;
+	}
+	if (user_data->header_buffer->code == 200) {
+		*retcode = 0;
+		return construct_get_object_object_to_buffer_response_on_success(user_data);
+	} else {
+		*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		oss_free_partial_user_data(user_data);
+	}
+	return NULL;
+}
 oss_get_object_group_index_result_t *
 client_get_object_group_index(
 		oss_client_t *client,
