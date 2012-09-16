@@ -5,8 +5,6 @@
  *
  *    Description:  oss_bucket.
  *
- *        Created:  09/04/2012 08:57:48 PM
- *
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  *
@@ -29,9 +27,13 @@
 #include  "ossc/modules/oss_owner.h"
 #undef _OSS_OWNER_H
 
+/**
+ * @defgroup bucket bucket
+ * @{
+ */
+
+
 typedef struct oss_bucket_s oss_bucket_t;
-
-
 
 struct oss_bucket_s {
 	char *create_date;
@@ -56,5 +58,7 @@ bucket_initialize_with_name(const char *name);
 
 extern void 
 bucket_finalize(oss_bucket_t *bucket);
+
+/**@}*/
 
 #endif

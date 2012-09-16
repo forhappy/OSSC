@@ -33,6 +33,11 @@
 #include "ossc/modules/oss_grant.h"
 #undef _OSS_GRANT_H
 
+/**
+ * @defgroup access_control_list access_control_list
+ * @{
+ */
+
 typedef struct oss_access_control_list_s oss_access_control_list_t;
 
 struct oss_access_control_list_s {
@@ -59,5 +64,7 @@ access_control_list_initialize(void);
 
 extern void 
 access_control_list_finalize(oss_access_control_list_t *access_control_list);
+
+/** @} */
 
 #endif
