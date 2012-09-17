@@ -29,6 +29,11 @@
 #include  <ossc/modules/oss_owner.h>
 #undef _OSS_OWNER_H
 
+/**
+ * @defgroup oss_object_summary_t oss_object_summary_t
+ * @{
+ */
+
 typedef struct oss_object_summary_s oss_object_summary_t;
 
 struct oss_object_summary_s {
@@ -67,5 +72,5 @@ object_summary_initialize(void);
 
 extern void 
 object_summary_finalize(oss_object_summary_t *summary);
-
+/**@}*/
 #endif

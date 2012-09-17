@@ -24,6 +24,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+/**
+ * @defgroup oss_multipart_upload_t oss_multipart_upload_t
+ * @{
+ */
 
 typedef struct oss_multipart_upload_s oss_multipart_upload_t;
 
@@ -47,5 +51,5 @@ multipart_upload_initialize(void);
 
 extern void 
 multipart_upload_finalize(oss_multipart_upload_t *uploads);
-
+/**@}*/
 #endif

@@ -23,32 +23,100 @@
 #include <assert.h>
 #include <string.h>
 
+/**
+ * @defgroup oss_post_object_group_result_t oss_post_object_group_result_t
+ * @{
+ */
+
+/**
+ * 创建对象组（Object Group）返回的结果
+ */
 typedef struct oss_post_object_group_result_s oss_post_object_group_result_t;
 
+/**
+ * 创建对象组（Object Group）返回的结果
+ */
 struct oss_post_object_group_result_s {
-	char *bucket_name;
-	char *key;
-	char *etag;
-	size_t size;
+	char *bucket_name; /**< */
+	char *key; /**< */
+	char *etag; /**< */
+	size_t size; /**< */
 
+	/**
+	 *
+	 * @param result
+	 * @return
+	 */
 	const char * (*get_bucket_name)(oss_post_object_group_result_t *result);
-	void (*set_bucket_name)(oss_post_object_group_result_t *result, const char *bucket_name);
 
+	/**
+	 *
+	 * @param result
+	 * @param bucket_name
+	 */
+	void (*set_bucket_name)(oss_post_object_group_result_t *result,
+			const char *bucket_name);
+
+	/**
+	 *
+	 * @param result
+	 * @return
+	 */
 	const char * (*get_key)(oss_post_object_group_result_t *result);
-	void (*set_key)(oss_post_object_group_result_t *result, const char *key);
 
+	/**
+	 *
+	 * @param result
+	 * @param key
+	 */
+	void (*set_key)(oss_post_object_group_result_t *result,
+			const char *key);
+
+	/**
+	 *
+	 * @param result
+	 * @return
+	 */
 	const char * (*get_etag)(oss_post_object_group_result_t *result);
+
+	/**
+	 *
+	 * @param result
+	 * @param etag
+	 */
 	void (*set_etag)(oss_post_object_group_result_t *result, const char *etag);
 
+	/**
+	 *
+	 * @param result
+	 * @return
+	 */
 	size_t (*get_size)(oss_post_object_group_result_t *result);
+
+	/**
+	 *
+	 * @param result
+	 * @param size
+	 */
 	void (*set_size)(oss_post_object_group_result_t *result, size_t size);
 
 };
 
 
-extern oss_post_object_group_result_t * post_object_group_result_initialize();
+/**
+ *
+ * @return
+ */
+extern oss_post_object_group_result_t *
+post_object_group_result_initialize();
 
-extern void post_object_group_result_finalize(oss_post_object_group_result_t *result);
+/**
+ *
+ * @param result
+ */
+extern void
+post_object_group_result_finalize(oss_post_object_group_result_t *result);
 
+/**@}*/
 #endif // OSS_POST_OBJECT_GROUP_RESULT_H
 

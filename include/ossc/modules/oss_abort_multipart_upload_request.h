@@ -28,7 +28,7 @@
 
 
 /**
- * @defgroup abort_multipart_upload_request_t oss_abort_multipart_upload_request_t
+ * @defgroup oss_abort_multipart_upload_request_t oss_abort_multipart_upload_request_t
  * @{
  */
 
@@ -36,8 +36,7 @@
  *oss_abort_multipart_upload_request_s 内部使用 \n
  *oss_abort_multipart_upload_request_t 开发者使用
  */
-typedef struct oss_abort_multipart_upload_request_s \
-			oss_abort_multipart_upload_request_t;
+typedef struct oss_abort_multipart_upload_request_s oss_abort_multipart_upload_request_t;
 
 
 /**
@@ -64,7 +63,7 @@ struct oss_abort_multipart_upload_request_s {
 };
 
 /**
- * abort_multipart_upload_request构造函数
+ * abort_multipart_upload_request_t 构造函数
  * @param [in] bucket_name Bucket名称
  * @param [in] key object名称
  * @param [in] upload_id 标识 Multipart 上传事件的Upload ID
@@ -79,7 +78,7 @@ abort_multipart_upload_request_initialize(const char *bucket_name,
 		const char *upload_id);
 
 /**
- * abort_multipart_upload_request析构函数
+ * abort_multipart_upload_request_t 析构函数
  * @param request [in] 标识一个终止Multipart上传事件请求的句柄
  * retval void
  * @pre request 必须使用abort_multipart_upload_request_initialize的返回值

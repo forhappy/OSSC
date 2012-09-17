@@ -33,6 +33,10 @@
 #include <stdbool.h>
 #endif
 
+/**
+ * @defgroup oss_object_listing_t oss_object_listing_t
+ * @{
+ */
 
 typedef struct oss_object_listing_s oss_object_listing_t;
 
@@ -80,5 +84,5 @@ object_listing_initialize(void);
 
 extern void 
 object_listing_finalize(oss_object_listing_t *listing);
-
+/**@}*/
 #endif

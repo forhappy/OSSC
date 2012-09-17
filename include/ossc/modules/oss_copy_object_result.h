@@ -25,6 +25,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+/**
+ * @defgroup oss_copy_object_result_t oss_copy_object_result_t
+ * @{
+ */
+
 typedef struct oss_copy_object_result_s oss_copy_object_result_t;
 
 struct oss_copy_object_result_s {
@@ -44,5 +49,5 @@ copy_object_result_initialize(void);
 
 extern void 
 copy_object_result_finalize(oss_copy_object_result_t *result);
-
+/**@}*/
 #endif

@@ -27,6 +27,11 @@
 #include <ossc/modules/oss_object_metadata.h>
 #undef _OSS_OBJECT_METADATA_H
 
+/**
+ * @defgroup oss_object_t oss_object_t
+ * @{
+ */
+
 typedef struct oss_object_s oss_object_t;
 
 struct oss_object_s {
@@ -52,6 +57,6 @@ struct oss_object_s {
 extern oss_object_t * object_initialize();
 
 extern void object_finalize(oss_object_t *object);
-
+/**@}*/
 #endif // OSS_OBJECT_H
 

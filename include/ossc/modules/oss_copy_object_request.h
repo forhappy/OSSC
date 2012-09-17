@@ -28,6 +28,11 @@
 #include <ossc/modules/oss_object_metadata.h>
 #undef _OSS_OBJECT_METADATA_H
 
+/**
+ * @defgroup oss_copy_object_request_t oss_copy_object_request_t
+ * @{
+ */
+
 typedef struct oss_copy_object_request_s oss_copy_object_request_t;
 
 struct oss_copy_object_request_s {
@@ -109,6 +114,6 @@ copy_object_request_initialize(const char *source_bucket_name,
 		const char *destination_key);
 
 extern void copy_object_request_finalize(oss_copy_object_request_t *request);
-
+/**@}*/
 #endif // OSS_COPY_OBJECT_REQUEST_H 
 

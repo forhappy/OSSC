@@ -26,8 +26,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct oss_list_multipart_uploads_request_s \
-			oss_list_multipart_uploads_request_t;
+/**
+ * @defgroup oss_list_multipart_uploads_request_t oss_list_multipart_uploads_request_t
+ * @{
+ */
+
+typedef struct oss_list_multipart_uploads_request_s oss_list_multipart_uploads_request_t;
 
 struct oss_list_multipart_uploads_request_s {
 	char *bucket_name;
@@ -70,7 +74,7 @@ list_multipart_uploads_request_initialize(const char *bucket_name);
 extern void
 list_multipart_uploads_request_finalize(
 		oss_list_multipart_uploads_request_t *request);
-
+/**@}*/
 
 #endif // OSS_LIST_MULTIPART_UPLOADS_REQUEST_H 
 

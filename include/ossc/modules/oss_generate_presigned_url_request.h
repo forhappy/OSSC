@@ -31,6 +31,11 @@
 
 #include <ossc/util/oss_map.h>
 
+/**
+ * @defgroup oss_generate_presigned_url_request_t oss_generate_presigned_url_request_t
+ * @{
+ */
+
 typedef struct oss_generate_presigned_url_request_s oss_generate_presigned_url_request_t;
 
 struct oss_generate_presigned_url_request_s {
@@ -82,5 +87,5 @@ generate_presigned_url_request_initialize_with_method(const char *bucket_name, c
 
 extern void 
 generate_presigned_url_request_finalize(oss_generate_presigned_url_request_t *request);
-
+/**@}*/
 #endif

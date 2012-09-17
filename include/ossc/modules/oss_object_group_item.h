@@ -22,6 +22,10 @@
 #include <assert.h>
 #include <string.h>
 
+/**
+ * @defgroup oss_object_group_item_t oss_object_group_item_t
+ * @{
+ */
 
 typedef struct oss_object_group_item_s oss_object_group_item_t;
 
@@ -44,6 +48,6 @@ struct oss_object_group_item_s {
 extern oss_object_group_item_t * object_group_item_initialize();
 
 extern void object_group_item_finalize(oss_object_group_item_t *item);
-
+/**@}*/
 #endif // OSS_OBJECT_GROUP_ITEM_H 
 

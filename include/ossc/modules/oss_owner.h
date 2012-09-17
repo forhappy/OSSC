@@ -25,6 +25,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+/**
+ * @defgroup oss_owner_t oss_owner_t
+ * @{
+ */
+
 typedef struct oss_owner_s oss_owner_t;
 
 struct oss_owner_s {
@@ -60,5 +65,5 @@ owner_initialize_with_id(const char *id,
 
 extern void
 owner_finalize(oss_owner_t *owner);
-
+/**@}*/
 #endif

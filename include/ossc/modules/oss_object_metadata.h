@@ -31,6 +31,11 @@
 #include <ossc/oss_constants.h>
 #undef _OSS_CONSTANTS_H
 
+/**
+ * @defgroup oss_object_metadata_t oss_object_metadata_t
+ * @{
+ */
+
 typedef struct oss_object_metadata_s oss_object_metadata_t;
 struct oss_object_metadata_s {
 	oss_map_t *metadata;
@@ -172,6 +177,6 @@ object_metadata_initialize();
  */
 extern void
 object_metadata_finalize(oss_object_metadata_t *metadata);
-
+/**@}*/
 #endif // OSS_OBJECT_METADATA_H
 
