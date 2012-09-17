@@ -13,7 +13,7 @@
 
 /** @mainpage 
 *
-* @authors Fu Haiping and Wang Wei
+* @authors Fu Haiping and 王维
 *
 * @section intro Introduction
 * introduction content.

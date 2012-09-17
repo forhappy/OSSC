@@ -28,7 +28,7 @@
 
 
 /**
- * @defgroup abort_multipart_upload_request oss_abort_multipart_upload_request
+ * @defgroup abort_multipart_upload_request_t oss_abort_multipart_upload_request_t
  * @{
  */
 
@@ -71,7 +71,7 @@ struct oss_abort_multipart_upload_request_s {
  * @return 返回一个终止Multipart上传事件请求的句柄
  * @retval 非空 表示成功
  * @retval NULL 表示失败
- * @note 用户不需要返回的句柄后要调用相应的finalize函数释放空间
+ * @note 用户不需要句柄后要调用相应的finalize函数释放空间
  */
 extern oss_abort_multipart_upload_request_t *
 abort_multipart_upload_request_initialize(const char *bucket_name,
