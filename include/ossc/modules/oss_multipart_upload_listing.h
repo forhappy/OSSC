@@ -32,6 +32,10 @@
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>
 #endif
+/**
+ * @defgroup oss_multipart_upload_listing_t oss_multipart_upload_listing_t
+ * @{
+ */
 
 typedef struct oss_multipart_upload_listing_s oss_multipart_upload_listing_t;
 
@@ -101,5 +105,5 @@ multipart_upload_listing_initialize(void);
 
 extern void 
 multipart_upload_listing_finalize(oss_multipart_upload_listing_t *listing);
-
+/**@}*/
 #endif

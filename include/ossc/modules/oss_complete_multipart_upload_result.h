@@ -25,6 +25,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+/**
+ * @defgroup oss_complete_multipart_upload_result_t oss_complete_multipart_upload_result_t
+ * @{
+ */
+
 typedef struct oss_complete_multipart_upload_result_s oss_complete_multipart_upload_result_t;
 
 struct oss_complete_multipart_upload_result_s {
@@ -51,5 +56,5 @@ complete_multipart_upload_result_initialize(void);
 
 extern void 
 complete_multipart_upload_result_finalize(oss_complete_multipart_upload_result_t *result);
-
+/**@}*/
 #endif

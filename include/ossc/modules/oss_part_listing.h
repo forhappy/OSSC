@@ -37,6 +37,11 @@
 #include <ossc/modules/oss_part_summary.h>
 #undef _OSS_PART_SUMMARY_H
 
+/**
+ * @defgroup oss_part_listing_t oss_part_listing_t
+ * @{
+ */
+
 typedef struct oss_part_listing_s oss_part_listing_t;
 
 struct oss_part_listing_s {
@@ -97,5 +102,5 @@ part_listing_initialize(void);
 
 extern void 
 part_listing_finalize(oss_part_listing_t *listing);
-
+/**@}*/
 #endif

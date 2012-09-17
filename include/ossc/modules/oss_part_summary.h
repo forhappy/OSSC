@@ -25,6 +25,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+/**
+ * @defgroup oss_part_summary_t oss_part_summary_t
+ * @{
+ */
+
 typedef struct oss_part_summary_s oss_part_summary_t;
 
 struct oss_part_summary_s {
@@ -51,5 +56,5 @@ part_summary_initialize(void);
 
 extern void 
 part_summary_finalize(oss_part_summary_t *summary);
-
+/**@}*/
 #endif

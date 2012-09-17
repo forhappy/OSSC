@@ -26,6 +26,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+/**
+ * @defgroup oss_delete_multiple_object_request_t oss_delete_multiple_object_request_t
+ * @{
+ */
+
 typedef struct oss_delete_multiple_object_request_s oss_delete_multiple_object_request_t;
 
 struct oss_delete_multiple_object_request_s{
@@ -54,5 +59,5 @@ delete_multiple_object_request_initialize(
 extern void 
 delete_multiple_object_request_finalize(
 		oss_delete_multiple_object_request_t *request);
-
+/**@}*/
 #endif

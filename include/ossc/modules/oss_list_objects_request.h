@@ -26,8 +26,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct oss_list_objects_request_s \
-			oss_list_objects_request_t;
+/**
+ * @defgroup oss_list_objects_request_t oss_list_objects_request_t
+ * @{
+ */
+
+typedef struct oss_list_objects_request_s oss_list_objects_request_t;
 
 struct oss_list_objects_request_s {
 	char *bucket_name;
@@ -82,6 +86,6 @@ extern void
 list_objects_request_finalize(
 		oss_list_objects_request_t *request);
 
-
+/**@}*/
 #endif // OSS_LIST_OBJECTS_REQUEST_H 
 

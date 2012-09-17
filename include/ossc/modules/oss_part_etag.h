@@ -25,6 +25,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+/**
+ * @defgroup oss_part_etag_t oss_part_etag_t
+ * @{
+ */
+
 typedef struct oss_part_etag_s oss_part_etag_t;
 
 struct oss_part_etag_s {
@@ -42,5 +47,5 @@ part_etag_initialize(int part_number, const char *etag);
 
 extern void 
 part_etag_finalize(oss_part_etag_t *etag);
-
+/**@}*/
 #endif

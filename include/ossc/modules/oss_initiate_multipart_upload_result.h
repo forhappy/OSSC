@@ -26,8 +26,12 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct oss_initiate_multipart_upload_result_s \
-			oss_initiate_multipart_upload_result_t;
+/**
+ * @defgroup oss_initiate_multipart_upload_result_t oss_initiate_multipart_upload_result_t
+ * @{
+ */
+
+typedef struct oss_initiate_multipart_upload_result_s oss_initiate_multipart_upload_result_t;
 
 struct oss_initiate_multipart_upload_result_s {
 	char *bucket_name;
@@ -56,5 +60,5 @@ initiate_multipart_upload_result_initialize(void);
 extern void
 initiate_multipart_upload_result_finalize(
 		oss_initiate_multipart_upload_result_t *result);
-
+/**@}*/
 #endif // OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H

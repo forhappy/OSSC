@@ -30,6 +30,11 @@
 #include <ossc/modules/oss_response_header_overrides.h>
 #undef _OSS_RESPONSE_HEADER_OVERRIDES_H
 
+/**
+ * @defgroup oss_get_object_group_request_t oss_get_object_group_request_t
+ * @{
+ */
+
 typedef struct oss_get_object_group_request_s oss_get_object_group_request_t;
 
 struct oss_get_object_group_request_s {
@@ -82,5 +87,5 @@ get_object_group_request_initialize(const char *bucket_name, const char *key);
 
 extern void 
 get_object_group_request_finalize(oss_get_object_group_request_t *request);
-
+/**@}*/
 #endif

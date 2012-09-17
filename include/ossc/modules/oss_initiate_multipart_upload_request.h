@@ -30,8 +30,12 @@
 #include <ossc/modules/oss_object_metadata.h>
 #undef _OSS_OBJECT_METADATA_H
 
-typedef struct oss_initiate_multipart_upload_request_s \
-			oss_initiate_multipart_upload_request_t;
+/**
+ * @defgroup oss_initiate_multipart_upload_request_t oss_initiate_multipart_upload_request_t
+ * @{
+ */
+
+typedef struct oss_initiate_multipart_upload_request_s oss_initiate_multipart_upload_request_t;
 
 struct oss_initiate_multipart_upload_request_s {
 	char *bucket_name;
@@ -70,6 +74,6 @@ initiate_multipart_upload_request_initialize_with_metadata(const char *bucket_na
 extern void
 initiate_multipart_upload_request_finalize(
 		oss_initiate_multipart_upload_request_t *request);
-
+/**@}*/
 #endif // OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H
 

@@ -27,6 +27,11 @@
 #include <ossc/modules/oss_multipart_object_group.h>
 #undef _OSS_MULTIPART_OBJECT_GROUP_H
 
+/**
+ * @defgroup oss_get_object_group_index_result_t oss_get_object_group_index_result_t
+ * @{
+ */
+
 typedef struct oss_get_object_group_index_result_s oss_get_object_group_index_result_t;
 
 struct oss_get_object_group_index_result_s {
@@ -59,6 +64,6 @@ struct oss_get_object_group_index_result_s {
 extern oss_get_object_group_index_result_t * get_object_group_index_result_initialize();
 
 extern void get_object_group_index_result_finalize(oss_get_object_group_index_result_t *result);
-
+/**@}*/
 #endif // OSS_GET_OBJECT_GROUP_INDEX_RESULT_H
 

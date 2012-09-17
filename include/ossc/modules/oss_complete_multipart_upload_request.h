@@ -28,6 +28,10 @@
 #define _OSS_PART_ETAG_H
 #include <ossc/modules/oss_part_etag.h>
 #undef _OSS_PART_ETAG_H
+/**
+ * @defgroup oss_complete_multipart_upload_request_t oss_complete_multipart_upload_request_t
+ * @{
+ */
 
 typedef struct oss_complete_multipart_upload_request_s oss_complete_multipart_upload_request_t;
 
@@ -61,5 +65,5 @@ complete_multipart_upload_request_initialize(const char *bucket_name,
 
 extern void 
 complete_multipart_upload_request_finalize(oss_complete_multipart_upload_request_t *request);
-
+/**@}*/
 #endif

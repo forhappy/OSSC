@@ -170,6 +170,10 @@
 
 #include <ossc/util/oss_ttxml.h>
 #include <ossc/util/oss_tstring.h>
+/**
+ * @defgroup oss_client_t oss_client_t
+ * @{
+ */
 
 /**
  * 访问阿里云开放存储服务（Open Storage Service， OSS）的入口。
@@ -464,5 +468,5 @@ extern oss_upload_part_result_t *
 client_upload_part(oss_client_t *client,
 		oss_upload_part_request_t *request,
 		unsigned short *retcode);
-
+/**@}*/
 #endif // OSS_CLIENT_H

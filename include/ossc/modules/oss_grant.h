@@ -25,6 +25,11 @@
 #include <stdlib.h>
 #include <assert.h>
 
+/**
+ * @defgroup oss_grant_t oss_grant_t
+ * @{
+ */
+
 typedef struct oss_grant_s oss_grant_t;
 
 struct oss_grant_s {
@@ -45,5 +50,5 @@ grant_initialize(const char *identifier, const char *permission);
 
 extern void 
 grant_finalize(oss_grant_t *grant);
-
+/**@}*/
 #endif

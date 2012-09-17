@@ -22,6 +22,10 @@
 #include <assert.h>
 #include <string.h>
 
+/**
+ * @defgroup oss_multipart_object_group_t oss_multipart_object_group_t
+ * @{
+ */
 
 typedef struct oss_multipart_object_group_s oss_multipart_object_group_t;
 
@@ -49,6 +53,6 @@ struct oss_multipart_object_group_s {
 extern oss_multipart_object_group_t * multipart_object_group_initialize();
 
 extern void multipart_object_group_finalize(oss_multipart_object_group_t *group);
-
+/**@}*/
 #endif // OSS_MULTIPART_OBJECT_GROUP_H
 
