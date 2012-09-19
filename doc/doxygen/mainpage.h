@@ -45,7 +45,13 @@
 * @section 关于作者
 * 傅海平：中国科学院计算技术研究所网络数据中心学生(haipingf@gmail.com)\n
 * 王  维：中国科院学计算技术研究所网络数据中心学生(wangwei881116@gmail.com)
+* - \subpage test
 */
+
+/** \page test Test
+ * here is \n
+ * something.
+ */
 
 /** @page
  * 示例

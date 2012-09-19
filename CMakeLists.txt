@@ -112,7 +112,7 @@ ENDIF ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
 CONFIGURE_FILE(config.h.cmake.in config.h)
 
 ADD_SUBDIRECTORY(src)
-ADD_SUBDIRECTORY(test2)
+#ADD_SUBDIRECTORY(test2)
 
 # vim:tabstop=4:shiftwidth=4
 
