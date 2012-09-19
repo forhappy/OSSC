@@ -19,7 +19,7 @@
 #ifndef OSS_OBJECT_LISTING_H
 #define OSS_OBJECT_LISTING_H
 #define _OSS_OBJECT_SUMMARY_H
-#include <modules/oss_object_summary.h>
+#include <ossc/modules/oss_object_summary.h>
 #undef _OSS_OBJECT_SUMMARY_H
 
 #include "ossc-config.h"
