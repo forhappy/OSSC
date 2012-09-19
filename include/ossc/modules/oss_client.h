@@ -189,9 +189,15 @@ typedef struct oss_client_s {
 	char *access_key;     /**< 用户的OSS服务密码 */
 }oss_client_t;
 
+/**
+ * struct curl_request_param_s 内部使用 \n
+ * curl_request_param_t 开发者使用
+ */
 typedef struct curl_request_param_s curl_request_param_t;
-typedef struct param_buffer_s param_buffer_t;
 
+/**
+ * param_buffer_t中buffer的内容
+ */
 struct param_buffer_s {
 	char *ptr; /**< 缓冲区首指针 */
 	FILE *fp; /**< 文件指针 */
@@ -200,6 +206,15 @@ struct param_buffer_s {
 	unsigned short code; /**返回码 */
 };
 
+/**
+ * struct param_buffer_s 内部使用 \n
+ * param_buffer_t 开发者使用
+ */
+typedef struct param_buffer_s param_buffer_t;
+
+/**
+ * http请求与接受的buffer总体结构
+ */
 struct curl_request_param_s {
 	param_buffer_t *send_buffer; /**< send buffer */
 	param_buffer_t *recv_buffer; /**< receive buffer */

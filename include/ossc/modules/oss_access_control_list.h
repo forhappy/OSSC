@@ -49,23 +49,24 @@ typedef struct oss_access_control_list_s oss_access_control_list_t;
  * 包含了一组为指定被授权者(Grantee)分配特定权限(Permission)的集合
  */
 struct oss_access_control_list_s {
-	oss_owner_t *owner; /**< Bucket 所有者*/
+	oss_owner_t *owner;     /**< Bucket 所有者*/
 	//oss_grant_t *grants;
 	//int grant_number_count;
-	char *grant; /**< 授权信息*/
+	char *grant;            /**< 授权信息*/
 
 	/**
 	 * 返回所有者 Owner
-	 * @param acl [in] oss_access_control_list_t 指针
-	 * @retval oss_owner_t *
-	 * @return 所有这owner
+	 * @param acl [in] 标识一个oss_access_control_list_t 指针
+	 * @retval 非空 表示成功
+	 * @retval NULL 表示失败
+	 * @return 返回一个oss_owner_t结构指针
 	 */
 	oss_owner_t * (*get_owner)(oss_access_control_list_t 
 	        *acl);
 
 	/**
 	 * 设置所有者Owner
-	 * @param acl [in] oss_access_control_list_t 指针
+	 * @param acl [in] 标识一个oss_access_control_list_t 指针
 	 * @param owner [in] 所有者Owner结构
 	 * @retval void
 	 */
@@ -74,7 +75,7 @@ struct oss_access_control_list_s {
 
 	/**
 	 * 返回该AccessControlList中包含的所有授权信息Grant
-	 * @param acl [in] oss_access_control_list_t 指针
+	 * @param acl [in] 标识一个oss_access_control_list_t 指针
 	 * @retval const char *
 	 * @return AccessControlList中包含的所有授权信息Grant
 	 */
@@ -83,7 +84,7 @@ struct oss_access_control_list_s {
 
 	/**
 	 * 设置所有授权信息Grant
-	 * @param acl [in] oss_access_control_list_t 指针
+	 * @param acl [in] 标识一个oss_access_control_list_t 指针
 	 * @param grant [in] 所有授权信息内容
 	 * @retval void
 	 */
@@ -100,7 +101,7 @@ struct oss_access_control_list_s {
 
 /**
  * oss_access_control_list_t 构造函数
- * @return 返回一个 ACL 结构指针
+ * @return 返回一个oss_access_control_list_t结构指针
  * @retval 非空 表示成功
  * @retval NULL 表示失败
  * @note 用户不需要句柄后要调用相应的finalize函数释放空间
@@ -115,7 +116,7 @@ access_control_list_initialize(void);
 
 /**
  * oss_access_control_list_t 析构函数
- * @param acl [in] 标识一个ACL的结构指针
+ * @param acl [in] 标识一个oss_access_control_list_t的结构指针
  * @retval void
  * @pre acl 必须使用access_control_list_initialize的返回值
  */

@@ -33,10 +33,9 @@
  * @{
  */
 
-
-
 /**
- * 创建Object Group的请求结构
+ * struct oss_post_object_group_request_s 内部使用 \n
+ * oss_post_object_group_request_t 开发者使用
  */
 typedef struct oss_post_object_group_request_s oss_post_object_group_request_t;
 
@@ -57,55 +56,61 @@ typedef struct oss_post_object_group_request_s oss_post_object_group_request_t;
  *
  */
 struct oss_post_object_group_request_s {
-	char *bucket_name; /**< Bucket 名称*/
-	char *key; /**< Oject 名称*/
-	oss_object_group_item_t **items; /**< 一个或多个 Object 组成的松散的集合*/
-	size_t itemnums; /**< 一个或多个 Object 组成的松散的集合的数目*/
+	char *bucket_name;      /**< Bucket 名称*/
+	char *key;              /**< Oject 名称*/
+	oss_object_group_item_t **items;  /**< 一个或多个 Object 组成的松散的集合*/
+	size_t itemnums;        /**< 一个或多个 Object 组成的松散的集合的数目*/
 
 	/**
-	 * 返回 Bucket 名称
-	 * @param request 指向创建Object Group请求对象的指针
-	 * @return 返回 Bucket 名称
+	 * 获得 Bucket 名称
+	 * @param request [in] 标识一个oss_post_object_group_request_t结构指针
+	 * @return Bucket 名称
+	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_post_object_group_request_t *request);
 
 	/**
 	 * 设置 Bucket 名称
-	 * @param request 指向创建Object Group请求对象的指针
-	 * @param bucket_name Bucket 名称
+	 * @param request [in] 标识一个oss_post_object_group_request_t结构指针
+	 * @param bucket_name [in] Bucket 名称
+	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_post_object_group_request_t *request,
 			const char *bucket_name);
 
 	/**
-	 * 返回 Object 名称
-	 * @param request 指向创建Object Group请求对象的指针
-	 * @return 返回 Object 名称
+	 * 获得 Object 名称
+	 * @param request [in] 标识一个oss_post_object_group_request_t结构指针
+	 * @return Object 名称
+	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_post_object_group_request_t *request);
 
 	/**
 	 * 设置Object 名称
-	 * @param request 指向创建Object Group请求对象的指针
-	 * @param key Object 名称
+	 * @param request [in] 标识一个oss_post_object_group_request_t结构指针
+	 * @param key [in] Object 名称
+	 * @retval void
 	 */
 	void (*set_key)(oss_post_object_group_request_t *request,
 			const char *key);
 
 	/**
-	 * 返回一个或多个 Object 组成的松散的集合
-	 * @param request 指向创建Object Group请求对象的指针
-	 * @param itemnums 一个或多个 Object 组成的松散的集合中条目的个数
-	 * @return 返回一个或多个 Object 组成的松散的集合
+	 * 获得一个或多个 Object 组成的松散的集合
+	 * @param request [in] 标识一个oss_post_object_group_request_t结构指针
+	 * @param itemnums [out]  Object 组成的松散的集合的个数
+	 * @return 返回一个oss_object_group_item_t结构指针
+	 * @retval 非空 表示成功
+	 * @retval NULL 表示失败
 	 */
 	oss_object_group_item_t ** (*get_items)(oss_post_object_group_request_t *request,
 			int *itemnums);
 
 	/**
 	 * 设置一个或多个 Object 组成的松散的集合
-	 * @param request 指向创建Object Group请求对象的指针
-	 * @param item  一个或多个 Object 组成的松散的集合
-	 * @param itemnums 一个或多个 Object 组成的松散的集合中条目的个数
+	 * @param request [in] 标识一个oss_post_object_group_request_t结构指针
+	 * @param item  [in] 一个或多个 Object 组成的松散的集合
+	 * @param itemnums [in] 一个或多个 Object 组成的松散的集合中条目的个数
 	 */
 	void (*set_items)(oss_post_object_group_request_t *request,
 			oss_object_group_item_t **item, int itemnums);
@@ -116,7 +121,8 @@ struct oss_post_object_group_request_s {
  * oss_post_object_group_request_t 构造函数
  * @return oss_post_object_group_request_t *指针
  * @retval 非空 表示成功
- * @retal NULL 表示失败
+ * @retval NULL 表示失败
+ * @note 用户不需要句柄后要调用相应的finalize函数释放空间
  */
 extern oss_post_object_group_request_t *
 post_object_group_request_initialize(const char *bucket_name, const char *key,
@@ -124,8 +130,9 @@ post_object_group_request_initialize(const char *bucket_name, const char *key,
 
 /**
  * oss_post_object_group_request_t 析构函数
- * @param request oss_post_object_group_request_t *指针
- * 该指针需由post_object_group_request_initialize返回
+ * @param request[in] 标识一个oss_post_object_group_request_t结构指针
+ * @retval void
+ * @pre request 必须使用post_object_group_request_initialize的返回值
  */
 extern void post_object_group_request_finalize(oss_post_object_group_request_t *request);
 /**@}*/
