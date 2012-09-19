@@ -31,7 +31,8 @@
  */
 
 /**
- * 上传object操作的返回结果
+ * struct oss_put_object_result_s 内部使用 \n
+ * oss_put_object_result_t 开发者使用
  */
 typedef struct oss_put_object_result_s oss_put_object_result_t;
 
@@ -42,33 +43,37 @@ struct oss_put_object_result_s {
 	char *etag; /**< 新创建的OSSObject的ETag值*/
 
 	/**
-	 * 返回新创建的OSSObject的ETag值
-	 * @param result 指向上传object操作的返回结果结构的指针
-	 * @return 返回新创建的OSSObject的ETag值
+	 * 获得新创建的OSSObject的ETag值
+	 * @param result [in] 标识一个oss_put_object_result_t结构指针
+	 * @return 新创建的OSSObject的ETag值
+	 * @retval const char *
 	 */
 	const char * (*get_etag)(oss_put_object_result_t *result);
 
 	/**
 	 * 设置新创建的OSSObject的ETag值
-	 * @param result 指向上传object操作的返回结果结构的指针
-	 * @param etag 新创建的OSSObject的ETag值
+	 * @param result [in] 标识一个oss_put_object_result_t结构指针
+	 * @param etag [in] 新创建的OSSObject的ETag值
+	 * @retval void
 	 */
 	void (*set_etag)(oss_put_object_result_t *result, const char *etag);
 };
 
 /**
  * oss_put_object_result_t 构造函数
- * @return oss_put_object_result_t *指针
+ * @return 返回一个oss_put_object_result_t 结构指针
  * @retval 非空 表示成功
- * @retal NULL 表示失败
+ * @retval NULL 表示失败
+ * @note 用户不需要句柄后要调用相应的finalize函数释放空间
  */
 extern oss_put_object_result_t *
 put_object_result_initialize();
 
 /**
  * oss_put_object_result_t 析构函数
- * @param result oss_put_object_result_t *指针
- * 该指针需由put_object_result_initialize返回
+ * @param  [in] 标识一个oss_put_object_result_t结构指针
+ * @retval void
+ * @pre result 必须使用put_object_result_initialize的返回值
  */
 extern void 
 put_object_result_finalize(oss_put_object_result_t *result);
