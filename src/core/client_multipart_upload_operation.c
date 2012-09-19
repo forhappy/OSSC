@@ -476,8 +476,12 @@ client_initiate_multipart_upload(oss_client_t *client,
 	sprintf(header_date, "Date: %s", now);
 
 	oss_object_metadata_t *metadata = request->get_object_metadata(request);
+	oss_map_t *user_headers = NULL;
 	oss_map_put(default_headers, OSS_DATE, now);
-	oss_map_t *user_headers = (metadata->get_user_metadata(metadata));	
+
+	if (metadata != NULL) {
+		user_headers = (metadata->get_user_metadata(metadata));	
+	}
 	
 	/**
 	 * 生成签名值
@@ -492,21 +496,23 @@ client_initiate_multipart_upload(oss_client_t *client,
 	 */
 	struct curl_slist *http_headers = NULL;
 	
-	if (metadata->get_cache_control(metadata) != NULL) {
-		sprintf(header_cache_control, "Cache-Control: %s", metadata->get_cache_control(metadata));
-		http_headers = curl_slist_append(http_headers, header_cache_control);
-	}
-	if (metadata->get_expiration_time(metadata) != NULL) {
-		sprintf(header_expires, "Expires: %s", metadata->get_expiration_time(metadata));
-		http_headers = curl_slist_append(http_headers, header_expires);
-	}
-	if (metadata->get_content_encoding(metadata) != NULL) {
-		sprintf(header_content_encoding, "Content-Encoding: %s", metadata->get_content_encoding(metadata));
-		http_headers = curl_slist_append(http_headers, header_content_encoding);
-	}
-	if (metadata->get_content_disposition(metadata) != NULL) {
-		sprintf(header_content_disposition, "Content-Disposition: %s", metadata->get_content_disposition(metadata));
-		http_headers = curl_slist_append(http_headers, header_content_disposition);
+	if (metadata != NULL) {
+		if (metadata->get_cache_control(metadata) != NULL) {
+			sprintf(header_cache_control, "Cache-Control: %s", metadata->get_cache_control(metadata));
+			http_headers = curl_slist_append(http_headers, header_cache_control);
+		}
+		if (metadata->get_expiration_time(metadata) != NULL) {
+			sprintf(header_expires, "Expires: %s", metadata->get_expiration_time(metadata));
+			http_headers = curl_slist_append(http_headers, header_expires);
+		}
+		if (metadata->get_content_encoding(metadata) != NULL) {
+			sprintf(header_content_encoding, "Content-Encoding: %s", metadata->get_content_encoding(metadata));
+			http_headers = curl_slist_append(http_headers, header_content_encoding);
+		}
+		if (metadata->get_content_disposition(metadata) != NULL) {
+			sprintf(header_content_disposition, "Content-Disposition: %s", metadata->get_content_disposition(metadata));
+			http_headers = curl_slist_append(http_headers, header_content_disposition);
+		}
 	}
 
 	http_headers = curl_slist_append(http_headers, header_host);
