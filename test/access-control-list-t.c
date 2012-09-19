@@ -28,12 +28,12 @@ int main()
 	owner->set_id(owner, "id");
 	owner->set_display_name(owner, "display_name");
 
-	access_control_list->grant_permission(access_control_list, "identifier1", "permission1");
-	access_control_list->grant_permission(access_control_list, "identifier2", "permission2");
-	access_control_list->grant_permission(access_control_list, "identifier3", "permission3");
-	access_control_list->grant_permission(access_control_list, "identifier4", "permission4");
-	access_control_list->grant_permission(access_control_list, "identifier4", "permission5");
-
+	//access_control_list->grant_permission(access_control_list, "identifier1", "permission1");
+	//access_control_list->grant_permission(access_control_list, "identifier2", "permission2");
+	//access_control_list->grant_permission(access_control_list, "identifier3", "permission3");
+	//access_control_list->grant_permission(access_control_list, "identifier4", "permission4");
+	//access_control_list->grant_permission(access_control_list, "identifier4", "permission5");
+	access_control_list->set_grant(access_control_list, "grant");
 	access_control_list->set_owner(access_control_list, owner);
 
 	printf("owner->display_name = %s\nowner->id = %s\n", 
@@ -43,19 +43,20 @@ int main()
 	printf("owner->display_name = %s\nowner->id = %s\n", 
 			access_control_list->owner->get_display_name(access_control_list->owner), access_control_list->owner->get_id(access_control_list->owner));
 
-	oss_grant_t * grant = access_control_list->get_grants(access_control_list);
-	while(grant) {
-		printf("grant->identifier = %s, %s\ngrant->permission = %s, %s\n", grant->identifier, grant->get_identifier(grant), grant->permission, grant->get_permission(grant));
-		grant = grant->next;
-	}
+	printf("grant = %s\n", access_control_list->grant);
+	//oss_grant_t * grant = access_control_list->get_grants(access_control_list);
+	//while(grant) {
+	//	printf("grant->identifier = %s, %s\ngrant->permission = %s, %s\n", grant->identifier, grant->get_identifier(grant), grant->permission, grant->get_permission(grant));
+	//	grant = grant->next;
+	//}
 
 
-	access_control_list->revoke_all_permissions(access_control_list, "identifier4");
-	grant = access_control_list->get_grants(access_control_list);
-	while(grant) {
-		printf("grant->identifier = %s, %s\ngrant->permission = %s, %s\n", grant->identifier, grant->get_identifier(grant), grant->permission, grant->get_permission(grant));
-		grant = grant->next;
-	}
+	//access_control_list->revoke_all_permissions(access_control_list, "identifier4");
+	//grant = access_control_list->get_grants(access_control_list);
+	//while(grant) {
+	//	printf("grant->identifier = %s, %s\ngrant->permission = %s, %s\n", grant->identifier, grant->get_identifier(grant), grant->permission, grant->get_permission(grant));
+	//	grant = grant->next;
+	//}
 
 	owner_finalize(owner);
 	access_control_list_finalize(access_control_list);
