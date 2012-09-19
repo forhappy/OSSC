@@ -60,4 +60,4 @@ set(tests
 
 build_modules_tests("${tests}" "-lossmodules -lossutil -lossauth -losscore")
 
-#ADD_SUBDIRECTORY(oss-client)
+ADD_SUBDIRECTORY(oss-client)
