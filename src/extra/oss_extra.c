@@ -103,10 +103,16 @@ client_extra_put_object(oss_client_t *client,
 	 * */
 	int num_buffers = file_len / BUFFER_SIZE + 1;
 
-	char *buffer = (char *)malloc(sizeof(char) * num_buffers * BUFFER_SIZE);
-
-
-	fread(buffer, 1, file_len, fp);
+	char **buffer = (char **)malloc(sizeof(char *) * num_buffers * BUFFER_SIZE);
+	for (int i = 0; i < num_buffers; i++) {
+		if (i != num_buffers - 1) {
+			*(buffer + i) = (char *)malloc(sizeof(char) * BUFFER_SIZE);
+			fread(*(buffer + i), 1, BUFFER_SIZE, fp);
+		} else {
+			*(buffer + i) = (char *)malloc(sizeof(char) * (file_len - BUFFER_SIZE * i));
+			fread(*(buffer + i), 1, (file_len - BUFFER_SIZE * i), fp);
+		}
+	}
 
 	/** 首先调用 client_initiate_multipart_upload 获取UploadID */
 	oss_initiate_multipart_upload_request_t *request =
@@ -145,14 +151,14 @@ client_extra_put_object(oss_client_t *client,
 		if (part_number != num_buffers - 1) {
 			user_data->send_buffer = (extra_buffer_t *)malloc(sizeof(extra_buffer_t));
 			memset(user_data->send_buffer, 0, sizeof(extra_buffer_t));
-			user_data->send_buffer->ptr = buffer + part_number * BUFFER_SIZE;
+			user_data->send_buffer->ptr = *(buffer + part_number);
 			user_data->send_buffer->left = BUFFER_SIZE;
 			user_data->send_buffer->allocated = BUFFER_SIZE;
 			user_data->send_buffer->code = 0;
 		} else {
 			user_data->send_buffer = (extra_buffer_t *)malloc(sizeof(extra_buffer_t));
 			memset(user_data->send_buffer, 0, sizeof(extra_buffer_t));
-			user_data->send_buffer->ptr = buffer + part_number * BUFFER_SIZE;
+			user_data->send_buffer->ptr = *(buffer + part_number);
 			user_data->send_buffer->left = file_len - part_number * BUFFER_SIZE;
 			user_data->send_buffer->allocated = file_len - part_number * BUFFER_SIZE;
 			user_data->send_buffer->code = 0;
