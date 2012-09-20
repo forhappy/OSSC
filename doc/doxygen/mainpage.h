@@ -231,9 +231,11 @@
  * ├── test
  *
  * @endcode
+ *
+ * OSSC 采用 CMake 管理项目构建过程，源码主要存放在 src 中，头文件在
  */
 
-OSSC 采用 CMake 管理项目构建过程，源码主要存放在 src 中，头文件在
+
 
 
 /** @page OSSC_CODING_STYLE OSSC编码规范
@@ -251,6 +253,18 @@ OSSC 采用 CMake 管理项目构建过程，源码主要存放在 src 中，头
 
 /** @page OSSC_EXTRA OSSC高级模块Extra库
 * @section OSSC高级模块Extra简介
+* OSSC 高级模块中包含了多线程上传下载文件的 API，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，希望今后会有其他开发者实现
+* 这一功能。
+*
+* OSSC 采用了POSIX多线程标准库 pthread,理论上只要你的操作系统支持 pthread都可以使用 OSSC 的 extra 库中的 API。
+*
+* @section OSSC_EXTRA_API_INTRO OSSC Extra API 介绍
+* OSSC Extra API 提供了 2 个有关多线程上传下载的 API，它们分别是：
+* @code
+* client_extra_put_object();
+* client_extra_get_object();
+* @endcode
+* @section OSSC_EXTRA_API_USAGE OSSC Extra API使用
 */
 
 
