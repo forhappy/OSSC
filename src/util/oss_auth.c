@@ -130,7 +130,7 @@ static void iter_user_headers(const char *key, const char *value, const void *ob
 	oss_add_headers(key, value);
 }
 
-const char *
+char *
 generate_authentication(const char *access_key, const char *method,
 		oss_map_t *default_headers, oss_map_t *user_headers,
 		const char *resource, unsigned int *sign_len)

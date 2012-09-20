@@ -356,6 +356,7 @@ client_delete_object(oss_client_t *client,
 		const char *key,
 		unsigned short *retcode);
 
+#if 0
 /**
  * 生成一个包含签名信息并可以访问 OSSObject 的 URL
  * @param client [in] 标识一个oss_client_t的结构指针
@@ -365,10 +366,10 @@ client_delete_object(oss_client_t *client,
  * @retval 非空 表示成功
  * @retval NULL 表示失败
  */
-extern const char *
+extern char *
 client_generate_presigned_url(oss_client_t *client,
-		oss_generate_presigned_url_request_t *request,
-		unsigned short *retcode);
+		oss_generate_presigned_url_request_t *request);
+#endif
 
 /**
  * 生成一个用 HTTP GET 方法访问 OSSObject 的 URL
@@ -381,12 +382,11 @@ client_generate_presigned_url(oss_client_t *client,
  * @retval 非空 表示成功
  * @retval NULL 表示失败
  */
-extern const char *
+extern char *
 client_generate_presigned_url_with_expiration(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
-		const char *expiration,
-		unsigned short *retcode);
+		const char *expiration);
 
 /**
  * 生成一个用指定 HTTP 方法访问 OSSObject 的 URL
@@ -400,13 +400,12 @@ client_generate_presigned_url_with_expiration(oss_client_t *client,
  * @retval 非空 表示成功
  * @retval NULL 表示失败
  */
-extern const char *
+extern char *
 client_generate_presigned_url_with_method(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
 		const char *expiration,
-		const char *method,
-		unsigned short *retcode);
+		const char *method);
 
 /**
  * 返回给定 Bucket 的 Access Control List(oss_client_t *client, ACL)

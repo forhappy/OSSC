@@ -93,3 +93,6 @@ TARGET_LINK_LIBRARIES(client_list_objects_with_prefix-t ossmodules ossutil ossau
 
 ADD_EXECUTABLE(client_list_objects-t client_list_objects-t.c)
 TARGET_LINK_LIBRARIES(client_list_objects-t ossmodules ossutil ossauth osscore curl)
+
+ADD_EXECUTABLE(client_generate_presigned_url-t client_generate_presigned_url-t.c)
+TARGET_LINK_LIBRARIES(client_generate_presigned_url-t ossmodules ossutil ossauth osscore curl)

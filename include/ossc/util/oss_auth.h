@@ -26,7 +26,7 @@
  * 该函数返回两个值，第一个返回值为签名结果，由函数直接返回，
  * 第二个返回值为 sign_len，由最后一个参数 sign_len 返回。
  * */
-extern const char *
+extern char *
 generate_authentication(const char *access_key, const char *method,
 		oss_map_t *default_headers, oss_map_t *user_headers,
 		const char *resource, unsigned int *sign_len);
