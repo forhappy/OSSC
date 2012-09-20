@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  initiate-multipart-upload-request-t.c
  *
- *    Description:  main testcase
+ *    Description:  initiate-multipart-upload-request testcase
  *
  *        Created:  09/04/2012 09:58:37 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

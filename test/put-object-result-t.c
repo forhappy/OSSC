@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  put-object-result-t.c
  *
- *    Description:  test_put_object_result.
+ *    Description:  put-object-result.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  part-summary-t.c
  *
- *    Description:  test_part_summary.
+ *    Description:  part-summary.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

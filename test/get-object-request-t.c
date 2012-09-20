@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  get-object-request-t.c
  *
- *    Description:  test_get_object_request.
+ *    Description:  get-object-request.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

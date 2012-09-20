@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  copy-object-result-t.c
  *
- *    Description:  test_copy_object_result.
+ *    Description:  copy-object-result.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

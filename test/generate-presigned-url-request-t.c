@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  generate-presigned-url-request-t.c
  *
- *    Description:  test_generate_presigned_url_request.
+ *    Description:  generate-presigned-url-request.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  part-etag-t.c
  *
- *    Description:  test_part_etag.
+ *    Description:  part-etag.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

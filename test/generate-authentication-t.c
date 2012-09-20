@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  generate-authentication-t.c
  *
- *    Description: main testcase. 
+ *    Description:  generate-authentication testcase.
  *
  *        Created:  09/06/2012 06:09:39 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

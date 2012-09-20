@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  access-control-list-t.c
  *
- *    Description:  test_access_control_list.
+ *    Description:  access-control-list testcase.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

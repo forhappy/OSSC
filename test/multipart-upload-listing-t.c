@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  multipart-upload-listing-t.c
  *
- *    Description:  test_multipart_upload_listing.
+ *    Description:  multipart-upload-listing.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

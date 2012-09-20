@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  oss_object_group_item.c
  *
- *    Description:  main testcase.
+ *    Description:  oss_object_group_item testcase.
  *
  *        Created:  09/07/2012 04:00:23 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

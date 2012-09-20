@@ -3,7 +3,7 @@
  *
  *       Filename:  oss_post_object_group_request.h
  *
- *    Description:  oss post object group.
+ *    Description:  oss post object group request.
  *
  *        Created:  09/07/2012 03:22:02 PM
  *

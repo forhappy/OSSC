@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  bucket.c
  *
- *    Description:  test_bucket.
+ *    Description:  bucket testcase.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

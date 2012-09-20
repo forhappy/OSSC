@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  multipart_object_group-t.c
  *
- *    Description:  main testcase.
+ *    Description:  multipart_object_group-t testcase.
  *
  *        Created:  09/07/2012 04:00:23 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
