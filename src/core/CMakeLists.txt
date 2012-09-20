@@ -8,6 +8,7 @@ INCLUDE_DIRECTORIES(
 
 SET(SRC
 	client_bucket_operation.c
+	client_generate_url.c
 	client_multipart_upload_operation.c
 	client_object_group_operation.c
 	client_object_operation.c

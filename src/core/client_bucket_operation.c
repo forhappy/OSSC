@@ -138,12 +138,14 @@ construct_list_objects_response(
 	if(contents_tag != NULL) {
 		contents_tmp = contents_tag;
 		for(; contents_tmp != NULL; contents_tmp = contents_tmp->next) {
-			(object_listing->_counts_summaries)++;
+			if(strcmp(contents_tmp->name, "Contents") == 0)
+				(object_listing->_counts_summaries)++;
+			else break;
 		}
 		oss_object_summary_t **summaries = (oss_object_summary_t **)malloc(
 				sizeof(oss_object_summary_t *) * (object_listing->_counts_summaries));
 
-		for(i = 0; contents_tag != NULL; i++, contents_tag = contents_tag->next) {
+		for(i = 0; i < object_listing->_counts_summaries; i++, contents_tag = contents_tag->next) {
 			summaries[i] = object_summary_initialize();
 			summaries[i]->set_key(summaries[i],
 					*contents_tag->child->child->attrib);
@@ -585,6 +587,259 @@ client_create_bucket(oss_client_t *client,
 	}
 	oss_free_user_data(user_data);
 }
+
+oss_object_listing_t *
+client_list_objects(oss_client_t *client,
+		oss_list_objects_request_t *request,
+		unsigned short *retcode)
+{
+
+	assert(client != NULL);
+	assert((request->bucket_name) != NULL);
+
+	curl_request_param_t *user_data =
+		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+	user_data->send_buffer = NULL;
+
+	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * MAX_RECV_BUFFER_SIZE);
+	user_data->recv_buffer->fp = NULL;
+	user_data->recv_buffer->left = MAX_RECV_BUFFER_SIZE;
+	user_data->recv_buffer->allocated = MAX_RECV_BUFFER_SIZE;
+	memset(user_data->recv_buffer->ptr, 0, MAX_RECV_BUFFER_SIZE);
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * MAX_HEADER_BUFFER_SIZE);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = MAX_HEADER_BUFFER_SIZE;
+	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
+	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
+
+	size_t bucket_name_len = strlen(request->bucket_name);
+	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
+	char *url = (char *)malloc(sizeof(char) *
+			(bucket_name_len + strlen(client->endpoint) + 256));
+
+	char header_host[256]  = {0};
+	char header_date[48]  = {0};
+	char header_auth[128] = {0};
+	char *now;
+	int is_first_param = 0;
+	unsigned int sign_len = 0;
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值，
+	 * */
+	sprintf(resource, "/%s", request->bucket_name);
+	sprintf(url, "%s/%s", client->endpoint, request->bucket_name);
+	if(strcmp(request->prefix, "")) {
+			sprintf(url, "%s?prefix=%s", url, request->prefix);
+			is_first_param = 1;
+	}	
+	if(strcmp(request->delimiter, "")) {
+		if(is_first_param == 0) {
+			sprintf(url, "%s?delimiter=%s", url, request->delimiter);
+			is_first_param = 1;
+		} else 
+			sprintf(url, "%s&delimiter=%s", url, request->delimiter);
+	}
+	if(strcmp(request->marker, "")) {
+		if(is_first_param == 0) {
+			sprintf(url, "%s?marker=%s", url, request->marker);
+			is_first_param = 1;
+		} else 
+			sprintf(url, "%s&marker=%s", url, request->marker);
+	}
+	if(request->max_keys != 0) {
+		if(is_first_param == 0) {
+			sprintf(url, "%s?=max-keys%u", url, request->max_keys);
+			is_first_param = 1;
+		} else 
+			sprintf(url, "%s&max-keys=%u", url, request->max_keys);
+	}
+	sprintf(header_host,"Host: %s", client->endpoint);
+	now = (char *)oss_get_gmt_time();
+	sprintf(header_date, "Date: %s", now);
+
+	/**
+	 * 请求头部构造
+	 */
+	oss_map_put(default_headers, OSS_DATE, now);
+	
+	/**
+	 * 生成签名值
+	 */
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_GET,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	/**
+	 * 自定义 HTTP 请求头部
+	 */
+	struct curl_slist *http_headers = NULL;
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	bucket_curl_operation(OSS_HTTP_GET, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+	oss_map_delete(default_headers);
+	if(now != NULL) {
+		free(now);
+		now = NULL;
+	}
+	if(sign != NULL) {
+		free(sign);
+		sign = NULL;
+	}
+	if(resource != NULL) {
+		free(resource);
+		resource = NULL;
+	}
+	if(url != NULL) {
+		free(url);
+		url = NULL;
+	}
+	if (user_data->header_buffer->code != 200) {
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		oss_free_user_data(user_data);
+		return NULL;
+	} else {
+		if (retcode != NULL) *retcode = 0;
+		return construct_list_objects_response(user_data);
+	}
+	
+}
+
+
+
+oss_object_listing_t *
+client_list_objects_with_prefix(
+		oss_client_t *client,
+		const char *bucket_name,
+		const char *prefix,
+		unsigned short *retcode)
+{
+
+	assert(client != NULL);
+	assert(bucket_name != NULL);
+	if(prefix == NULL || (!strcmp(prefix, "")))  {
+		return client_list_objects_with_bucket_name(client, bucket_name, retcode);
+	}
+
+	curl_request_param_t *user_data =
+		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
+	user_data->send_buffer = NULL;
+
+	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * MAX_RECV_BUFFER_SIZE);
+	user_data->recv_buffer->fp = NULL;
+	user_data->recv_buffer->left = MAX_RECV_BUFFER_SIZE;
+	user_data->recv_buffer->allocated = MAX_RECV_BUFFER_SIZE;
+	memset(user_data->recv_buffer->ptr, 0, MAX_RECV_BUFFER_SIZE);
+
+	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * MAX_HEADER_BUFFER_SIZE);
+	user_data->header_buffer->fp = NULL;
+	user_data->header_buffer->left = MAX_HEADER_BUFFER_SIZE;
+	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
+	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
+
+	size_t bucket_name_len = strlen(bucket_name);
+	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 32 );
+	char *url = (char *)malloc(sizeof(char) *
+			(bucket_name_len + strlen(client->endpoint) + 8));
+
+	char header_host[256]  = {0};
+	char header_date[48]  = {0};
+	char header_auth[128] = {0};
+	char *now;
+
+	unsigned int sign_len = 0;
+
+	oss_map_t *default_headers = oss_map_new(16);
+
+	/**
+	 * 构造参数，resource,url 赋值，
+	 * */
+	sprintf(resource, "/%s", bucket_name);
+	sprintf(url, "%s/%s?prefix=%s", client->endpoint, bucket_name, prefix);
+	sprintf(header_host,"Host: %s", client->endpoint);
+	now = (char *)oss_get_gmt_time();
+	sprintf(header_date, "Date: %s", now);
+
+	/**
+	 * 请求头部构造
+	 */
+	oss_map_put(default_headers, OSS_DATE, now);
+	
+	/**
+	 * 生成签名值
+	 */
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_GET,
+			default_headers, NULL, resource, &sign_len);
+
+	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
+
+	/**
+	 * 自定义 HTTP 请求头部
+	 */
+	struct curl_slist *http_headers = NULL;
+
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+	http_headers = curl_slist_append(http_headers, header_auth);
+
+	/**
+	 * 发送请求
+	 */
+	bucket_curl_operation(OSS_HTTP_GET, resource, url, http_headers, user_data);
+
+	/**
+	 * 释放 http_headers资源
+	 */
+	curl_slist_free_all(http_headers);
+	oss_map_delete(default_headers);
+	if(now != NULL) {
+		free(now);
+		now = NULL;
+	}
+	if(sign != NULL) {
+		free(sign);
+		sign = NULL;
+	}
+	if(resource != NULL) {
+		free(resource);
+		resource = NULL;
+	}
+	if(url != NULL) {
+		free(url);
+		url = NULL;
+	}
+	if (user_data->header_buffer->code != 200) {
+		if (retcode != NULL)
+			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		oss_free_user_data(user_data);
+		return NULL;
+	} else {
+		if (retcode != NULL) *retcode = 0;
+		return construct_list_objects_response(user_data);
+	}
+	
+}
+
 
 
 oss_object_listing_t *

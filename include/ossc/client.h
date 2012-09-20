@@ -163,5 +163,6 @@
 #include <ossc/oss_constants.h>
 #undef _OSS_CONSTANTS_H
 
+#include <ossc/oss_helper.h>
 
 #endif
