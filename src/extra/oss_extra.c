@@ -19,12 +19,12 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 
-#include "oss_extra.h"
 #include "workqueue.h"
 
 #include <ossc/client.h>
 #include <ossc/oss_helper.h>
 #include <ossc/oss_curl_callback.h>
+#include <ossc/oss_extra.h>
 #include <ossc/util/oss_auth.h>
 #include <ossc/util/oss_common.h>
 #include <ossc/util/oss_ttxml.h>

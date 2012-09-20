@@ -1,5 +1,5 @@
 # 项目简介 #
-本项目为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，暂取名为OSSC，
+本项目为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，取名为OSSC，
 目前OSSC提供了OSS开放接口中所描述的所有功能, 特点包括：
 	1. Bucket所有操作，如创建 bucket,删除，设置ACL，获取bucket的信息。
 	2. Object所有操作，创建object（PUT），获取Object，拷贝，删除，删除多个，
