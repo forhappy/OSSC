@@ -19,7 +19,7 @@ ENDMACRO(set_modules_properties target)
 #TARGET_LINK_LIBRARIES(ossc ossmodules ossutil ossauth)
 
 ADD_SUBDIRECTORY(core)
-#ADD_SUBDIRECTORY(extra)
+ADD_SUBDIRECTORY(extra)
 ADD_SUBDIRECTORY(modules)
 ADD_SUBDIRECTORY(util)
 ADD_SUBDIRECTORY(lib)

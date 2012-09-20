@@ -25,11 +25,25 @@ typedef struct job {
 	struct job *next;
 } job_t;
 
+#if 0
 typedef struct workqueue {
 	struct worker *workers;
 	struct job *waiting_jobs;
+	int num_waiting_jobs;
 	pthread_mutex_t jobs_mutex;
-	pthread_cond_t jobs_cond;
+	pthread_cond_t jobs_not_empty_cond;
+} workqueue_t;
+#endif
+
+typedef struct workqueue {
+	struct worker *workers;
+	struct job *waiting_jobs;
+	int num_waiting_jobs;
+	int num_workers;
+	pthread_mutex_t jobs_mutex;
+	pthread_mutex_t num_waiting_jobs_mutex;
+	pthread_cond_t jobs_not_empty_cond;
+	pthread_cond_t jobs_not_full_cond;
 } workqueue_t;
 
 int workqueue_init(workqueue_t *workqueue, int numWorkers);
@@ -38,4 +52,7 @@ void workqueue_shutdown(workqueue_t *workqueue);
 
 void workqueue_add_job(workqueue_t *workqueue, job_t *job);
 
+void workqueue_add_job_ex(workqueue_t *workqueue, job_t *job);
+
+void workqueue_wait(workqueue_t *workqueue);
 #endif	/* #ifndef OSS_WORKQUEUE_H */

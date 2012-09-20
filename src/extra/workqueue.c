@@ -28,17 +28,21 @@ static void *worker_function(void *ptr) {
 	job_t *job;
 
 	while (1) {
+		pthread_mutex_lock(&worker->workqueue->num_waiting_jobs_mutex);
 		/* Wait until we get notified. */
 		pthread_mutex_lock(&worker->workqueue->jobs_mutex);
 		while (worker->workqueue->waiting_jobs == NULL) {
-			pthread_cond_wait(&worker->workqueue->jobs_cond, &worker->workqueue->jobs_mutex);
+			pthread_cond_wait(&worker->workqueue->jobs_not_empty_cond, &worker->workqueue->jobs_mutex);
 		}
 		job = worker->workqueue->waiting_jobs;
 		if (job != NULL) {
 			LL_REMOVE(job, worker->workqueue->waiting_jobs);
+			worker->workqueue->num_waiting_jobs--;
+			pthread_cond_signal(&worker->workqueue->jobs_not_full_cond);
+
 		}
 		pthread_mutex_unlock(&worker->workqueue->jobs_mutex);
-
+		pthread_mutex_unlock(&worker->workqueue->num_waiting_jobs_mutex);
 		/* If we're supposed to terminate, break out of our continuous loop. */
 		if (worker->terminate) break;
 
@@ -62,7 +66,11 @@ int workqueue_init(workqueue_t *workqueue, int numWorkers) {
 	if (numWorkers < 1) numWorkers = 1;
 	memset(workqueue, 0, sizeof(*workqueue));
 	memcpy(&workqueue->jobs_mutex, &blank_mutex, sizeof(workqueue->jobs_mutex));
-	memcpy(&workqueue->jobs_cond, &blank_cond, sizeof(workqueue->jobs_cond));
+	memcpy(&workqueue->num_waiting_jobs_mutex, &blank_mutex, sizeof(workqueue->num_waiting_jobs_mutex));
+	memcpy(&workqueue->jobs_not_empty_cond, &blank_cond, sizeof(workqueue->jobs_not_empty_cond));
+	memcpy(&workqueue->jobs_not_full_cond, &blank_cond, sizeof(workqueue->jobs_not_full_cond));
+	workqueue->num_workers = numWorkers;
+	workqueue->num_waiting_jobs = 0;
 
 	for (i = 0; i < numWorkers; i++) {
 		if ((worker = malloc(sizeof(worker_t))) == NULL) {
@@ -95,7 +103,7 @@ void workqueue_shutdown(workqueue_t *workqueue) {
 	pthread_mutex_lock(&workqueue->jobs_mutex);
 	workqueue->workers = NULL;
 	workqueue->waiting_jobs = NULL;
-	pthread_cond_broadcast(&workqueue->jobs_cond);
+	pthread_cond_broadcast(&workqueue->jobs_not_empty_cond);
 	pthread_mutex_unlock(&workqueue->jobs_mutex);
 }
 
@@ -103,6 +111,28 @@ void workqueue_add_job(workqueue_t *workqueue, job_t *job) {
 	/* Add the job to the job queue, and notify a worker. */
 	pthread_mutex_lock(&workqueue->jobs_mutex);
 	LL_ADD(job, workqueue->waiting_jobs);
-	pthread_cond_signal(&workqueue->jobs_cond);
+	pthread_cond_signal(&workqueue->jobs_not_empty_cond);
 	pthread_mutex_unlock(&workqueue->jobs_mutex);
 }
+
+void workqueue_add_job_ex(workqueue_t *workqueue, job_t *job) {
+	/* Add the job to the job queue, and notify a worker. */
+	pthread_mutex_lock(&workqueue->jobs_mutex);
+
+	while(workqueue->num_waiting_jobs == 2 * workqueue->num_workers) {
+		pthread_cond_wait(&workqueue->jobs_not_full_cond, &workqueue->jobs_mutex);
+	}
+	
+	LL_ADD(job, workqueue->waiting_jobs);
+	workqueue->num_waiting_jobs++;
+	pthread_cond_signal(&workqueue->jobs_not_empty_cond);
+	pthread_mutex_unlock(&workqueue->jobs_mutex);
+}
+
+void workqueue_wait(workqueue_t *workqueue) {
+	worker_t *worker = NULL;
+	for (worker = workqueue->workers; worker != NULL; worker = worker->next) {
+		pthread_join(worker->thread, NULL);
+	}
+}
+

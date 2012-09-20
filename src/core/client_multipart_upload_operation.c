@@ -452,7 +452,7 @@ client_initiate_multipart_upload(oss_client_t *client,
 	size_t sign_len = 0;
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) *
-			(bucket_name_len + key_len + strlen(client->endpoint) + 8));
+			(bucket_name_len + key_len + strlen(client->endpoint) + 64));
 	char header_host[256]  = {0};
 	char header_date[48]  = {0};
 	char *now; /**< Fri, 24 Feb 2012 02:58:28 GMT */

@@ -170,6 +170,7 @@
 
 #include <ossc/util/oss_ttxml.h>
 #include <ossc/util/oss_tstring.h>
+
 /**
  * @defgroup oss_client_t oss_client_t
  * @{
