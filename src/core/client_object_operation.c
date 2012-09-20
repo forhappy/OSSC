@@ -224,6 +224,8 @@ object_curl_operation_2nd(const char *method,
 			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback_2nd);
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);	
 		}
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
@@ -658,6 +660,9 @@ client_get_object_to_file(oss_client_t *client,
 	 */
 	struct curl_slist *http_headers = NULL;
 	
+	http_headers = curl_slist_append(http_headers, header_host);
+	http_headers = curl_slist_append(http_headers, header_date);
+
 	if (request->get_modified_since_constraint(request) != NULL) {
 		sprintf(header_if_modified_since, "If-Modified-Since: %s", request->get_modified_since_constraint(request));
 		http_headers = curl_slist_append(http_headers, header_if_modified_since);
@@ -667,13 +672,11 @@ client_get_object_to_file(oss_client_t *client,
 		http_headers = curl_slist_append(http_headers, header_if_unmodified_since);
 	}
 	request->get_range(request, &start, &length);
-	if (start > 0 && length > 0) {
-		sprintf(header_range, "Range: %ld-%ld", start, start + length);
+	if (start >= 0 && length > 0) {
+		sprintf(header_range, "Range: bytes=%ld-%ld", start, start + length);
 		http_headers = curl_slist_append(http_headers, header_range);
 	}
 
-	http_headers = curl_slist_append(http_headers, header_host);
-	http_headers = curl_slist_append(http_headers, header_date);
 	http_headers = curl_slist_append(http_headers, header_auth);
 
 	/**
@@ -702,7 +705,8 @@ client_get_object_to_file(oss_client_t *client,
 		free(url);
 		url = NULL;
 	}
-	if (user_data->header_buffer->code == 200) {
+	if (user_data->header_buffer->code == 200 
+			|| (user_data->header_buffer->code == 206)) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_get_object_metadata_response(user_data);
 	} else {
@@ -801,8 +805,8 @@ client_get_object_to_buffer(oss_client_t *client,
 		http_headers = curl_slist_append(http_headers, header_if_unmodified_since);
 	}
 	request->get_range(request, &start, &length);
-	if (start > 0 && length > 0) {
-		sprintf(header_range, "Range: %ld-%ld", start, start + length);
+	if (start >= 0 && length > 0) {
+		sprintf(header_range, "Range: bytes=%ld-%ld", start, start + length);
 		http_headers = curl_slist_append(http_headers, header_range);
 	}
 
@@ -841,7 +845,8 @@ client_get_object_to_buffer(oss_client_t *client,
 	*output = user_data->recv_buffer->ptr;
 	*output_len = user_data->recv_buffer->allocated - user_data->recv_buffer->left;
 
-	if (user_data->header_buffer->code == 200) {
+	if (user_data->header_buffer->code == 200
+			|| user_data->header_buffer->code == 206) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_get_object_to_buffer_response(user_data);
 	} else {
@@ -949,8 +954,8 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 		http_headers = curl_slist_append(http_headers, header_if_unmodified_since);
 	}
 	request->get_range(request, &start, &length);
-	if (start > 0 && length > 0) {
-		sprintf(header_range, "Range: %ld-%ld", start, start + length);
+	if (start >= 0 && length > 0) {
+		sprintf(header_range, "Range: bytes=%ld-%ld", start, start + length);
 		http_headers = curl_slist_append(http_headers, header_range);
 	}
 
@@ -990,7 +995,8 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 	*output = user_data->recv_buffer->ptr;
 	*output_len = user_data->recv_buffer->allocated;
 
-	if (user_data->header_buffer->code == 200) {
+	if (user_data->header_buffer->code == 200 
+			|| user_data->header_buffer->code == 206) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_get_object_to_buffer_response(user_data);
 	} else {
