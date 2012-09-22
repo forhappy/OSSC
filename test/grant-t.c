@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename: grant-t.c
  *
- *    Description:  test_grant.
+ *    Description:  grant.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

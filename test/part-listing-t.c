@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  part-listing-t.c
  *
- *    Description:  test_part_listing.
+ *    Description:  part-listing.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

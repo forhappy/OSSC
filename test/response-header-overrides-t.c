@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  response-header-oberrides-t.c
  *
- *    Description:  test_object.
+ *    Description:  response-header-oberrides.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

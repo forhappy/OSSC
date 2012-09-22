@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  copy-object-request-t.c
  *
- *    Description:  main testcase.
+ *    Description:  copy-object-request testcase.
  *
  *        Created:  09/07/2012 04:00:23 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

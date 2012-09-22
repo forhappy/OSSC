@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  object-summary-t.c
  *
- *    Description:  test_object_summary.
+ *    Description:  object-summary.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

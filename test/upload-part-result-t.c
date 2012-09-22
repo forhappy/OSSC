@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  upload-part-result-t.c
  *
- *    Description:  test_upload_part_result.
+ *    Description:  upload-part-result.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

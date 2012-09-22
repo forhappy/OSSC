@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  object-listing-t.c
  *
- *    Description:  test_object.
+ *    Description:  object-listing.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

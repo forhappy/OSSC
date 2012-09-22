@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  upload-part-request-t.c
  *
- *    Description:  test_upload_part_request.
+ *    Description:   upload-part-request.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

@@ -103,17 +103,26 @@ object_group_curl_operation(const char *method,
 		if (strcmp(method, OSS_HTTP_POST) == 0) {
 			curl_easy_setopt(curl, CURLOPT_POSTFIELDS, params->send_buffer->ptr);
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_group_curl_operation_recv_callback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
+			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_group_curl_operation_header_callback);
+			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
 		} else if (strcmp(method, OSS_HTTP_DELETE) == 0 || strcmp(method, OSS_HTTP_HEAD) == 0) {
 			curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method);
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_group_curl_operation_recv_callback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
+			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_group_curl_operation_header_callback);
+			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
+
 		}
 		else if (strcmp(method, OSS_HTTP_GET) == 0) {
+			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_curl_operation_recv_to_buffer_2nd_callback);
+			curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
+			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_group_curl_operation_header_callback);
+			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
+
 		}
 
-		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, object_group_curl_operation_recv_callback);
-		curl_easy_setopt(curl, CURLOPT_WRITEDATA, recv_buffer);
-
-		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_group_curl_operation_header_callback);
-		curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 
 		curl_easy_perform(curl);
@@ -181,7 +190,11 @@ construct_get_object_group_index_response(curl_request_param_t *user_data)
 	result->set_file_length(result, file_length);
 	
 	file_part_tag = xml_find(xml, "FilePart");
-	part_tag = file_part_tag->child;
+	if(file_part_tag != NULL) {
+		part_tag = file_part_tag->child;
+	} else {
+		part_tag = NULL;
+	}
 	if(part_tag != NULL) {
 		part_tmp = part_tag;
 		for(; part_tmp != NULL; part_tmp = part_tmp->next) {
@@ -513,8 +526,18 @@ client_get_object_group_to_file(oss_client_t *client,
 		if (retcode != NULL) *retcode = 0;
 		return construct_get_object_metadata_response_on_success(user_data);
 	} else {
-		if (retcode != NULL)
-			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL) {
+			fflush(file);
+			rewind(file);
+			size_t file_len = oss_get_file_size(file);
+			char *retbuf = (char *)malloc(sizeof(char) * (file_len + 1));
+			memset(retbuf, 0, file_len + 1);
+			size_t retlen = fread(retbuf, 1, file_len, file);
+			if (retlen != file_len)
+				fprintf(stderr, "file mode should be set for both read and write\n");
+			*retcode = oss_get_retcode_from_response(retbuf);
+			free(retbuf);
+		}
 		oss_free_user_data(user_data);
 	}
 
@@ -611,7 +634,7 @@ client_get_object_group_to_buffer(oss_client_t *client,
 	/**
 	 * 发送请求
 	 */
-	object_group_curl_operation_2nd(OSS_HTTP_GET, resource, url, http_headers, user_data);
+	object_group_curl_operation(OSS_HTTP_GET, resource, url, http_headers, user_data);
 
 	/**
 	 * 释放 http_headers资源
@@ -668,10 +691,10 @@ client_get_object_group_index(
 	user_data->send_buffer = NULL;
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
-	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * 128 * 1024);
+	user_data->recv_buffer->ptr = NULL;
 	user_data->recv_buffer->fp = NULL;
-	user_data->recv_buffer->left = 128 * 1024;
-	user_data->recv_buffer->allocated = 128 * 1024;
+	user_data->recv_buffer->left = 0;
+	user_data->recv_buffer->allocated = 0;
 
 	user_data->header_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->header_buffer->ptr = (char *)malloc(sizeof(char) * 4 * 1024);
@@ -901,6 +924,9 @@ client_head_object_group(oss_client_t *client,
 	char header_date[48]  = {0};
 	char header_auth[128] = {0};
 	char *now;
+	char header_if_modified_since[64] = {0};
+	char header_if_unmodified_since[64] = {0};
+
 	unsigned int sign_len = 0;
 	oss_map_t *default_headers = oss_map_new(16);
 
@@ -936,6 +962,14 @@ client_head_object_group(oss_client_t *client,
 	http_headers = curl_slist_append(http_headers, header_host);
 	http_headers = curl_slist_append(http_headers, header_date);
 	http_headers = curl_slist_append(http_headers, header_auth);
+	if (request->get_modified_since_constraint(request) != NULL) {
+		sprintf(header_if_modified_since, "If-Modified-Since: %s", request->get_modified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_modified_since);
+	}
+	if (request->get_unmodified_since_constraint(request) != NULL) {
+		sprintf(header_if_unmodified_since, "If-Unmodified-Since: %s", request->get_unmodified_since_constraint(request));
+		http_headers = curl_slist_append(http_headers, header_if_unmodified_since);
+	}
 
 	/**
 	 * 发送请求
@@ -965,8 +999,19 @@ client_head_object_group(oss_client_t *client,
 		url = NULL;
 	}
 	if (user_data->header_buffer->code != 200) {
-		if (retcode != NULL)
-			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		unsigned short tmp = user_data->header_buffer->code;
+		if (retcode != NULL) {
+			if(tmp == 404) {
+				*retcode = FILE_NOT_FOUND;
+			} else if(tmp == 304) {
+				*retcode = NOT_MODIFIED;
+			} else if(tmp == 412) {
+				*retcode = PRECONDITION_FAILED;
+			} else {
+				*retcode = 1000;
+			}
+		}
+			//*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 		oss_free_user_data(user_data);
 		return NULL;
 	} else {

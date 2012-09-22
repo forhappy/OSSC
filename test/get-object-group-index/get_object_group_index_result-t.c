@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  get_object_group_index_result-t.c
  *
- *    Description:  main testcase.
+ *    Description:  get_object_group_index_result testcase.
  *
  *        Created:  09/07/2012 04:00:23 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

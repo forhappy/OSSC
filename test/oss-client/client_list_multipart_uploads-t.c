@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  client-t.c
+ *       Filename:  client_list_multipart_uploads-t.c
  *
- *    Description:  client testcase.
+ *    Description:  client_list_multipart_uploads testcase.
  *
  *        Created:  09/09/2012 02:55:40 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================
@@ -178,7 +177,7 @@ int main()
 {
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
-	const char *bucket_name = "bucketname1";
+	const char *bucket_name = "bucketname2";
 	//const char *key = "YellowSubmarine.tar.gz";
 	//const char *upload_id = "0004C96978130296AD8E152D1AAAB358";
 

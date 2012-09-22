@@ -7,7 +7,6 @@
  *
  *        Created:  09/05/2012 02:54:05 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

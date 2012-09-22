@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  client_put_bucket_acl-t.c
+ *       Filename:  client_set_bucket_acl-x-t.c
  *
- *    Description:  client_put_bucket_acl testcase.
+ *    Description:  lient_set_bucket_acl-x testcase.
  *
  *        Created:  09/09/2012 02:55:40 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

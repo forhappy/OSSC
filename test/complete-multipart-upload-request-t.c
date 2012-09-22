@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  complete-multipart-upload-request-t.c
  *
- *    Description:  test_complete_multipart_upload_request.
+ *    Description:  complete-multipart-upload-request.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *

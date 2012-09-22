@@ -1,13 +1,12 @@
 /*
  * =============================================================================
  *
- *       Filename:  client-t.c
+ *       Filename:  client_get_bucket_acl-t.c
  *
- *    Description:  client_listing_buckets testcase.
+ *    Description:  client_get_bucket_acl testcase.
  *
  *        Created:  09/09/2012 02:55:40 PM
  *
- *         Author:  Fu Haiping (forhappy), haipingf@gmail.com
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
  * =============================================================================

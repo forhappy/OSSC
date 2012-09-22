@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  main.c
+ *       Filename:  multipart-upload-t.c
  *
- *    Description:  test_multipart_upload.
+ *    Description:  multipart-upload.
  *
  *        Created:  09/04/2012 10:40:49 PM
  *
