@@ -8,6 +8,8 @@ INCLUDE_DIRECTORIES(
 SET(SRC
 	base64.c
 	hmac-sha1.c
+	lz4.c
+	lz4hc.c
 	md5.c
 	memxor.c
 	sha1.c

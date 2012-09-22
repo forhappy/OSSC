@@ -17,12 +17,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <lib/md5.h>
-#include <lib/base64.h>
+
+#define MD5_BUFFER_SIZE (4 * 1024 * 1024)
+
 extern long
 oss_get_file_size(FILE *fp);
 
-extern const char *
+extern char *
+oss_get_file_md5_digest(const char *file);
+
+extern char *
+oss_get_buffer_md5_digest(void *ptr, size_t len);
+
+extern char *
 oss_compute_md5_digest(void *ptr, size_t len);
 
 #endif // OSS_COMMON_H
