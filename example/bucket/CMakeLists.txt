@@ -33,3 +33,6 @@ TARGET_LINK_LIBRARIES(list_objects_with_prefix ossmodules ossutil ossauth osscor
 ADD_EXECUTABLE(list_objects_with_request list_objects_with_request.c)
 TARGET_LINK_LIBRARIES(list_objects_with_request ossmodules ossutil ossauth osscore curl)
 
+ADD_EXECUTABLE(is_bucket_exist is_bucket_exist.c)
+TARGET_LINK_LIBRARIES(is_bucket_exist ossmodules ossutil ossauth osscore curl)
+

@@ -519,8 +519,7 @@ client_initiate_multipart_upload(oss_client_t *client,
  */
 extern bool
 client_is_bucket_exist(oss_client_t *client,
-		const char *bucket_name,
-		unsigned short *retcode);
+		const char *bucket_name);
 
 /**
  * 返回请求者拥有的所有 Bucket 的列表
@@ -770,6 +769,7 @@ client_delete_object_group(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
 		unsigned short *retcode);
+
 
 /**@}*/
 

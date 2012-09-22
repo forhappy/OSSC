@@ -1177,3 +1177,16 @@ client_delete_bucket(oss_client_t *client,
 	oss_free_user_data(user_data);
 	return;
 }
+
+bool
+client_is_bucket_exist(oss_client_t *client,
+		const char *bucket_name)
+{
+	unsigned short retcode;
+	client_get_bucket_acl(client, bucket_name, &retcode);
+	if(retcode == OK) {
+		return true;
+	} else {
+		return false;
+	}
+}

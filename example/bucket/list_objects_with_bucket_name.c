@@ -30,7 +30,7 @@ int main()
 
 	int i;
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
-	const char *bucket_name = "bucket_example";
+	const char *bucket_name = "abucket_example";
 
 	oss_object_listing_t *object_listing = client_list_objects_with_bucket_name(client, bucket_name, &retcode);
 	printf("list_objects_with_bucket_name result:\n\n");
