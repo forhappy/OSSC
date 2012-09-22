@@ -233,27 +233,34 @@ construct_list_buckets_response(
 	size_t response_len = strlen(response); 
 	xml = xml_load_buffer(response, response_len);
 
+	oss_bucket_t **buckets = NULL;
 	*buckets_number = 0;
 	
-	owner_tag = xml_find(xml, "Owner");
-	oss_owner_t *owner = owner_initialize_with_id(*owner_tag->child->child->attrib,
-			*owner_tag->child->next->child->attrib);
-
- 	buckets_tag = xml_find(xml, "Buckets");
-	bucket_tag = buckets_tag->child;
+	buckets_tag = xml_find(xml, "Buckets");
+	if(buckets_tag != NULL) {
+		bucket_tag = buckets_tag->child;
+	} else {
+		bucket_tag = NULL;
+	}
 	for(; bucket_tag != NULL; bucket_tag = bucket_tag->next) {
 		(*buckets_number)++;
 	}
+	
+	if(*buckets_number > 0) {
+		owner_tag = xml_find(xml, "Owner");
+		oss_owner_t *owner = owner_initialize_with_id(*owner_tag->child->child->attrib,
+			*owner_tag->child->next->child->attrib);
 
-	oss_bucket_t **buckets = (oss_bucket_t **)malloc(
-			sizeof(oss_bucket_t *) * (*buckets_number));
-	for(i = 0, bucket_tag = buckets_tag->child;
-			i < *buckets_number; i++, bucket_tag = bucket_tag->next) {
-		buckets[i] = bucket_initialize();
-		buckets[i]->set_name(buckets[i], *bucket_tag->child->child->attrib);
-		buckets[i]->set_create_date(buckets[i],
-				*bucket_tag->child->next->child->attrib);
-		buckets[i]->set_owner(buckets[i], owner);
+		buckets = (oss_bucket_t **)malloc(
+				sizeof(oss_bucket_t *) * (*buckets_number));
+		for(i = 0, bucket_tag = buckets_tag->child;
+				i < *buckets_number; i++, bucket_tag = bucket_tag->next) {
+			buckets[i] = bucket_initialize();
+			buckets[i]->set_name(buckets[i], *bucket_tag->child->child->attrib);
+			buckets[i]->set_create_date(buckets[i],
+					*bucket_tag->child->next->child->attrib);
+			buckets[i]->set_owner(buckets[i], owner);
+		}
 	}
  
 	oss_free_user_data(user_data);

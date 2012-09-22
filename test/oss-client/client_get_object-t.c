@@ -130,6 +130,7 @@ client_get_object(oss_client_t *client,
 		struct curl_slist *http_headers = NULL;
 		curl_easy_setopt(curl, CURLOPT_URL, url);
 		curl_easy_setopt(curl, CURL_HTTP_VERSION_1_1, 1L);
+		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 		curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, client_get_object_callback);
 		curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
@@ -154,8 +155,8 @@ int main()
 {
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
-	const char *bucket_name = "bucketname1";
-	const char *key = "oss_api.py";
+	const char *bucket_name = "bucket_example";
+	const char *key = "f.txt";
 	oss_client_t *client = client_initialize(access_id, access_key);
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
 	client_get_object(client, request, NULL);

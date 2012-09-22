@@ -81,7 +81,13 @@ typedef enum _OSS_ERROR_CODE {
 	/* 签名错误 */
 	SIGNATURE_DOES_NOT_MATCH,
 	/* 用户的 Bucket 数目超过限制 */
-	TOO_MANY_BUCKETS
+	TOO_MANY_BUCKETS,
+	/* 文件完整性 */
+	FILE_PART_INTERITY,
+	/* 文件找不到 */
+	FILE_NOT_FOUND,
+	/* 没有被修改 */
+	NOT_MODIFIED
 }OSS_ERROR_CODE;
 
 typedef enum _OSS_PERMISSION {

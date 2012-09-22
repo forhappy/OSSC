@@ -675,5 +675,102 @@ extern oss_upload_part_result_t *
 client_upload_part(oss_client_t *client,
 		oss_upload_part_request_t *request,
 		unsigned short *retcode);
+
+/**
+ * Post Object Group 操作将根据用户提供的 Object 信息,在 OSS 服务器端创建出一个新的 Object Group.\n
+ * 用户需要将创建该 Object Group 所需的 Object Name, E-tag 以及标识该 Object 在整个 Group 中相对位置的 Part ID
+ * 按照规定的 XML 格式发给 OSS, Object 的 E-tag 值可以通过list_object功能获得
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 标识一个oss_post_object_group_request_t的结构指针
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_post_object_group_result_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+extern oss_post_object_group_result_t *
+client_post_object_group(oss_client_t *client,
+		oss_post_object_group_request_t *request,
+		unsigned short *retcode);
+
+/**
+ * Get Object Group To File 操作将读取用户指定的Object Group到本地文件中
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 标识一个oss_get_object_group_request_t的结构指针
+ * @param file [in] 本地文件的文件指针
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_object_metadata_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+extern oss_object_metadata_t *
+client_get_object_group_to_file(oss_client_t *client,
+		oss_get_object_group_request_t *request,
+		FILE *file,
+		unsigned short *retcode);
+
+/**
+ * Get Object Group To Buffer 操作将读取用户指定的Object Group到Buffer中
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 标识一个oss_get_object_group_request_t的结构指针
+ * @param output [out] Buffer的地址
+ * @param output_len [out] Buffer的长度
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_object_metadata_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+extern oss_object_metadata_t *
+client_get_object_group_to_buffer(oss_client_t *client,
+		oss_get_object_group_request_t *request,
+		void **output,
+		size_t *output_len,
+		unsigned short *retcode);
+
+/**
+ * Get Object Group Index 返回 Object Group 中的 Object List 信息
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param bucket_name [in] Bucket 的名称
+ * @param key [in] Object Group的名称
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_get_object_group_index_result_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+extern oss_get_object_group_index_result_t *
+client_get_object_group_index(
+		oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		unsigned short *retcode);
+
+/**
+ * Head Object Group 返回 指定Object Group 的 元信息，不返回文件内容。
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 标识一个oss_get_object_group_request_t结构指针
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_object_metadata_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+extern oss_object_metadata_t *
+client_head_object_group(oss_client_t *client,
+		oss_get_object_group_request_t *request,
+		unsigned short *retcode);
+
+/**
+ * Delete Object Group 返回 指定Object Group 的 元信息，不返回文件内容。
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param bucket_name [in] 研删除的Object Group所在的Bucket的名称
+ * @param key [in] 要删除的Object Group的名称
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @retval void
+ */
+extern void 
+client_delete_object_group(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		unsigned short *retcode);
+
 /**@}*/
+
 #endif // OSS_CLIENT_H

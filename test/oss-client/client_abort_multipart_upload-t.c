@@ -179,9 +179,9 @@ int main()
 {
 	const char *access_id = "ACSfLOiddaOzejOP";
 	const char *access_key = "MUltNpuYqE";
-	const char *bucket_name = "bucketname1";
-	const char *key = "YellowSubmarine.tar.gz";
-	const char *upload_id = "0004C96978130296AD8E152D1AAAB358";
+	const char *bucket_name = "bucketname2";
+	const char *key = "upload-mt.data";
+	const char *upload_id = "0004CA1E8E4E3B42E1D15FAC2BD2FD02";
 
 	oss_client_t *client = client_initialize(access_id, access_key);
 

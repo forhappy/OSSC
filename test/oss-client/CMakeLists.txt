@@ -22,8 +22,8 @@ INCLUDE_DIRECTORIES(
 #ADD_EXECUTABLE(client_delete_bucket-t client_delete_bucket-t.c)
 #TARGET_LINK_LIBRARIES(client_delete_bucket-t ossmodules ossutil ossauth osscore curl)
 #
-#ADD_EXECUTABLE(client_get_object-t client_get_object-t.c)
-#TARGET_LINK_LIBRARIES(client_get_object-t ossmodules ossutil ossauth osscore curl)
+ADD_EXECUTABLE(client_get_object-t client_get_object-t.c)
+TARGET_LINK_LIBRARIES(client_get_object-t ossmodules ossutil ossauth osscore curl)
 #
 #ADD_EXECUTABLE(client_list_object-t client_list_object-t.c)
 #TARGET_LINK_LIBRARIES(client_list_object-t ossmodules ossutil ossauth osscore curl)
@@ -47,11 +47,11 @@ INCLUDE_DIRECTORIES(
 #ADD_EXECUTABLE(client_complete_multipart_upload-t client_complete_multipart_upload-t.c)
 #TARGET_LINK_LIBRARIES(client_complete_multipart_upload-t ossmodules ossutil ossauth osscore curl)
 #
-#ADD_EXECUTABLE(client_abort_multipart_upload-t client_abort_multipart_upload-t.c)
-#TARGET_LINK_LIBRARIES(client_abort_multipart_upload-t ossmodules ossutil ossauth osscore curl)
+ADD_EXECUTABLE(client_abort_multipart_upload-t client_abort_multipart_upload-t.c)
+TARGET_LINK_LIBRARIES(client_abort_multipart_upload-t ossmodules ossutil ossauth osscore curl)
 #
-#ADD_EXECUTABLE(client_list_multipart_uploads-t client_list_multipart_uploads-t.c)
-#TARGET_LINK_LIBRARIES(client_list_multipart_uploads-t ossmodules ossutil ossauth osscore curl)
+ADD_EXECUTABLE(client_list_multipart_uploads-t client_list_multipart_uploads-t.c)
+TARGET_LINK_LIBRARIES(client_list_multipart_uploads-t ossmodules ossutil ossauth osscore curl)
 #
 #ADD_EXECUTABLE(client_delete_multiple_objectx-t client_delete_multiple_objectx-t.c)
 #TARGET_LINK_LIBRARIES(client_delete_multiple_objectx-t ossmodules ossutil ossauth osscore curl)

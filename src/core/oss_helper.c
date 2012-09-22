@@ -138,6 +138,12 @@ oss_get_error_message_from_retcode(unsigned short retcode)
 		return "SignatureDoesNotMatch";
 	} else if(retcode == TOO_MANY_BUCKETS) {
 		return "TooManyBuckets";
+	} else if(retcode == FILE_PART_INTERITY) {
+		return "FilePartInterity";
+	} else if(retcode == FILE_NOT_FOUND) {
+		return "FileNotFound";
+	} else if(retcode == NOT_MODIFIED) {
+		return "NotModified";
 	} else {
 		return "UnknowError";
 	}
@@ -222,6 +228,12 @@ oss_get_retcode_from_retinfo(const char *retinfo)
 		retcode = SIGNATURE_DOES_NOT_MATCH;
 	} else if(strcmp(retinfo, "TooManyBuckets") == 0) {
 		retcode = TOO_MANY_BUCKETS;
+	} else if(strcmp(retinfo, "FilePartInterity") == 0) {
+		retcode = FILE_PART_INTERITY;
+	} else if(strcmp(retinfo, "FileNotFound") == 0) {
+		retcode = FILE_NOT_FOUND;
+	} else if(strcmp(retinfo, "NotModified") == 0) {
+		retcode = NOT_MODIFIED;
 	} else {
 		retcode = 1000;
 	}
