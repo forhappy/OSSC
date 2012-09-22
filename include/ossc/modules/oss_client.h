@@ -357,6 +357,18 @@ client_delete_object(oss_client_t *client,
 		const char *key,
 		unsigned short *retcode);
 
+/**
+ * 删除指定的多个 OSSObject
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 删除多个Object请求
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @retval oss_delete_multiple_object_request_t 结构指针
+ */
+oss_delete_multiple_object_request_t*
+client_delete_multiple_object(oss_client_t *client,
+		oss_delete_multiple_object_request_t *request,
+		unsigned short *retcode);
+
 #if 0
 /**
  * 生成一个包含签名信息并可以访问 OSSObject 的 URL
@@ -446,6 +458,39 @@ client_get_object(oss_client_t *client,
 		oss_get_object_request_t *request,
 		unsigned short *retcode);
 
+/**
+ * 从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 标识一个oss_get_object_request_t的结构指针
+ * @param file [in] 要存放Object的内存指针
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_object_metadata_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+oss_object_metadata_t *
+client_get_object_to_buffer(oss_client_t *client,
+		oss_get_object_request_t *request,
+		void **output,
+		size_t *output_len,
+		unsigned short *retcode);
+
+/**
+ * 从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 标识一个oss_get_object_request_t的结构指针
+ * @param file [in] 要存放Object的内存指针
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_object_metadata_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+oss_object_metadata_t *
+client_get_object_to_buffer_2nd(oss_client_t *client,
+		oss_get_object_request_t *request,
+		void **output,
+		size_t *output_len,
+		unsigned short *retcode);
 /**
  * 从 OSS 指定的 Bucket 中导出指定的 OSSObject 到目标文件
  * @param client [in] 标识一个oss_client_t的结构指针
