@@ -89,18 +89,10 @@ _grant_initialize(const char *identifier,
 	oss_grant_t *grant;
 	grant = (oss_grant_t *)malloc(sizeof(oss_grant_t));
 
-	if (grant->identifier != NULL) {
-		free(grant->identifier);
-		grant->identifier = NULL;
-	}
 	grant->identifier = (char *)malloc(sizeof(char) * identifier_len + 1);
 	strncpy(grant->identifier, identifier, identifier_len);
 	(grant->identifier)[identifier_len] = '\0';
 
-	if (grant->permission != NULL) {
-		free(grant->permission);
-		grant->permission = NULL;
-	}
 	grant->permission = (char *)malloc(sizeof(char) * permission_len + 1);
 	strncpy(grant->permission, permission, permission_len);
 	(grant->permission)[permission_len] = '\0';

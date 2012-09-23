@@ -219,19 +219,10 @@ _generate_presigned_url_request_initialize(
 	oss_generate_presigned_url_request_t *request;
 	request = (oss_generate_presigned_url_request_t *)
 			malloc(sizeof(oss_generate_presigned_url_request_t));
-	if (request->bucket_name != NULL) {
-		free(request->bucket_name);
-		request->bucket_name = NULL;
-	}
 
 	request->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
 	(request->bucket_name)[bucket_name_len] = '\0';
-
-	if (request->key != NULL) {
-		free(request->key);
-		request->key = NULL;
-	}
 
 	request->key = (char *)malloc(sizeof(char) * key_len + 1);
 	strncpy(request->key, key, key_len);
