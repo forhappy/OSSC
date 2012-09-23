@@ -145,11 +145,6 @@ _bucket_initialize_with_name(const char *name, size_t name_len)
 	bucket = (oss_bucket_t *)malloc(sizeof(oss_bucket_t));
 	bucket->create_date = NULL;
 
-	if (bucket->name != NULL) {
-		free(bucket->name);
-		bucket->name = NULL;
-	}
-
 	bucket->name = (char *)malloc(sizeof(char) * name_len + 1);
 	strncpy(bucket->name, name, name_len);
 	(bucket->name)[name_len] = '\0';
