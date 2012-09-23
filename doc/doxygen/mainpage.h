@@ -27,7 +27,7 @@
 * -# Bucket 所有操作，如创建 Bucket、删除 Bucket、获取某个 Bucket 访问权限、设置 Bucket 访问权限、获取所有 Bucket 信息、
 * 获取 Bucket 中所有 Object 的信息。
 * -# Object 所有操作，创建 Object（PUT），获取 Object，删除 Object，获取 Object 元信息，拷贝 Object，一次性删除多个 Object，另外，还在此基础上\n
-* 实现了从文件上传 Object、从内存缓冲区上传 Object、下载 Object 至文件、下载 Object 至内存缓冲区、多线程断点续传上传大文件，断点续传下载文件。
+* 实现了从文件上传 Object、从内存缓冲区上传 Object、下载 Object 至文件、下载 Object 至内存缓冲区、多线程断点续传上传大文件。
 * -# Multipart Upload 操作，初始化 Multipart Upload、上传 Part、完成 Multipart 上传、终止 Multipart Upload、查看 Multipart Upload，查看正在上传的 Part。
 * -# Object Group 操作，创建 Object Group，获取 Object Group，获取 Object Group 中的 Object List 信息、获取 Object Group 元信息，删除 Object Group。
 *******************************************************************************
@@ -121,6 +121,11 @@
 * OSSC详细的实现原理请参考：\subpage OSSC_INTERNAL
 *******************************************************************************
 * @section OSSC高级模块Extra库
+* OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，希望今后会有其他开发者实现
+* 这一功能。
+*
+* OSSC 采用了POSIX多线程标准库 pthread,理论上只要你的操作系统支持 pthread都可以使用 OSSC 的 extra 库中的 API。
+
 * @subpage OSSC_EXTRA
 *******************************************************************************
 * @section API使用示例
@@ -421,16 +426,20 @@
 
 /** @page OSSC_EXTRA OSSC高级模块Extra库
 * @section OSSC高级模块Extra简介
-* OSSC 高级模块中包含了多线程上传下载文件的 API，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，希望今后会有其他开发者实现
+* OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，希望今后会有其他开发者实现
 * 这一功能。
 *
 * OSSC 采用了POSIX多线程标准库 pthread,理论上只要你的操作系统支持 pthread都可以使用 OSSC 的 extra 库中的 API。
 *
 * @section OSSC_EXTRA_API_INTRO OSSC Extra API 介绍
-* OSSC Extra API 提供了 2 个有关多线程上传下载的 API，它们分别是：
+* OSSC Extra API 提供了有关多线程上传的 API，该 API 支持断点续传
 * @code
-* client_extra_put_object();
-* client_extra_get_object();
+* extern void
+* client_extra_put_object(oss_client_t *client,
+*	const char *bucket_name,
+*	const char *key,
+*	const char *local_file,
+*	unsigned short *retcode);
 * @endcode
 * @section OSSC_EXTRA_API_INTERNAL OSSC Extra API 实现原理
 * @section OSSC_EXTRA_API_USAGE OSSC Extra API使用
