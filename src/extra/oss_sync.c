@@ -36,6 +36,14 @@ _is_folder(const char *path)
 	return ret >= 0 && S_ISDIR(st.st_mode);
 }
 
+
+void 
+_delete_etag_quotation(char * etag)
+{
+	size_t etag_len = strlen(etag);
+	etag[etag_len - 1] = '\0';
+}
+
 void 
 _pre_sync_upload(oss_object_listing_t *object_listing, 
 		const char *dir,
@@ -65,9 +73,12 @@ _pre_sync_upload(oss_object_listing_t *object_listing,
 			//size_t retlen = fread(retbuf, 1, file_len, file);
 			//if (retlen != file_len)
 			//	fprintf(stderr, "file mode should be set for both read and write\n");
-			char *etag = oss_get_file_md5_digest(full_path);
+			char *etag = oss_get_file_md5_digest_2nd(full_path);
 			for(i = 0; i < object_listing->_counts_summaries; i++) {
-				if(strcmp(etag, (object_listing->summaries)[i]->etag) == 0) {
+				_delete_etag_quotation((object_listing->summaries)[i]->etag);
+				(object_listing->summaries)[i]->etag ++;
+				if((strcasecmp(etag, (object_listing->summaries)[i]->etag) == 0) &&
+						(strcmp(dirp->d_name, (object_listing->summaries)[i]->key) == 0)) {
 					break;
 				}
 			}

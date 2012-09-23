@@ -27,6 +27,9 @@ extern char *
 oss_get_file_md5_digest(const char *file);
 
 extern char *
+oss_get_file_md5_digest_2nd(const char *file);
+
+extern char *
 oss_get_buffer_md5_digest(void *ptr, size_t len);
 
 extern char *
