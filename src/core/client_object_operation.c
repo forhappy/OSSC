@@ -287,15 +287,19 @@ client_put_object_from_file(oss_client_t *client,
 	assert(bucket_name != NULL);
 	assert(key != NULL);
 	assert(input != NULL);
-	assert(metadata != NULL);
 
 	curl_request_param_t *user_data = 
 		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
 
 	user_data->send_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->send_buffer->fp = (FILE *)input; /**< 从文件中读取数据  */
-	user_data->send_buffer->left = metadata->get_content_length(metadata);
-	user_data->send_buffer->allocated = metadata->get_content_length(metadata);
+	if (metadata != NULL) {
+		user_data->send_buffer->left = metadata->get_content_length(metadata);
+		user_data->send_buffer->allocated = metadata->get_content_length(metadata);
+	} else {
+		user_data->send_buffer->left = oss_get_file_size((FILE *)input);
+		user_data->send_buffer->allocated = oss_get_file_size((FILE *)input);
+	}
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->recv_buffer->ptr = (char *)malloc(sizeof(char) * MAX_RECV_BUFFER_SIZE);
@@ -331,6 +335,7 @@ client_put_object_from_file(oss_client_t *client,
 	unsigned int sign_len = 0;
 
 	oss_map_t *default_headers = oss_map_new(16);
+	oss_map_t *user_headers = NULL;
 
 	/**
 	 * 构造参数，resource,url 赋值
@@ -344,13 +349,21 @@ client_put_object_from_file(oss_client_t *client,
 	sprintf(header_date, "Date: %s", now);
 
 	/* Content-Type is a must */
-	sprintf(header_content_type, "Content-Type: %s",
-			metadata->get_content_type(metadata));
+	if (metadata != NULL) {
+		sprintf(header_content_type, "Content-Type: %s",
+				metadata->get_content_type(metadata));
+		oss_map_put(default_headers, OSS_CONTENT_TYPE,
+				metadata->get_content_type(metadata));
+		user_headers = metadata->get_user_metadata(metadata);
+	} else {
+		sprintf(header_content_type, "Content-Type: application/octet-stream");
+		oss_map_put(default_headers, OSS_CONTENT_TYPE,
+				"application/octet-stream");
+
+	}
 	
 	oss_map_put(default_headers, OSS_DATE, now);
-	oss_map_put(default_headers, OSS_CONTENT_TYPE, metadata->get_content_type(metadata));
 
-	oss_map_t *user_headers = metadata->get_user_metadata(metadata);
 	/**
 	 * 生成签名值
 	 */
@@ -364,21 +377,23 @@ client_put_object_from_file(oss_client_t *client,
 	 */
 	struct curl_slist *http_headers = NULL;
 	
-	if (metadata->get_cache_control(metadata) != NULL) {
-		sprintf(header_cache_control, "Cache-Control: %s", metadata->get_cache_control(metadata));
-		http_headers = curl_slist_append(http_headers, header_cache_control);
-	}
-	if (metadata->get_expiration_time(metadata) != NULL) {
-		sprintf(header_expires, "Expires: %s", metadata->get_expiration_time(metadata));
-		http_headers = curl_slist_append(http_headers, header_expires);
-	}
-	if (metadata->get_content_encoding(metadata) != NULL) {
-		sprintf(header_content_encoding, "Content-Encoding: %s", metadata->get_content_encoding(metadata));
-		http_headers = curl_slist_append(http_headers, header_content_encoding);
-	}
-	if (metadata->get_content_disposition(metadata) != NULL) {
-		sprintf(header_content_disposition, "Content-Disposition: %s", metadata->get_content_disposition(metadata));
-		http_headers = curl_slist_append(http_headers, header_content_disposition);
+	if (metadata != NULL) {
+		if (metadata->get_cache_control(metadata) != NULL) {
+			sprintf(header_cache_control, "Cache-Control: %s", metadata->get_cache_control(metadata));
+			http_headers = curl_slist_append(http_headers, header_cache_control);
+		}
+		if (metadata->get_expiration_time(metadata) != NULL) {
+			sprintf(header_expires, "Expires: %s", metadata->get_expiration_time(metadata));
+			http_headers = curl_slist_append(http_headers, header_expires);
+		}
+		if (metadata->get_content_encoding(metadata) != NULL) {
+			sprintf(header_content_encoding, "Content-Encoding: %s", metadata->get_content_encoding(metadata));
+			http_headers = curl_slist_append(http_headers, header_content_encoding);
+		}
+		if (metadata->get_content_disposition(metadata) != NULL) {
+			sprintf(header_content_disposition, "Content-Disposition: %s", metadata->get_content_disposition(metadata));
+			http_headers = curl_slist_append(http_headers, header_content_disposition);
+		}
 	}
 
 	http_headers = curl_slist_append(http_headers, header_content_type);
@@ -493,7 +508,9 @@ client_put_object_from_buffer(oss_client_t *client,
 	sprintf(header_date, "Date: %s", now);
 
 	/* Content-Type is a must */
-	sprintf(header_content_type, "Content-Type: %s", metadata->get_content_type(metadata));
+
+	sprintf(header_content_type, "Content-Type: %s",
+			metadata->get_content_type(metadata));
 
 	
 	oss_map_put(default_headers, OSS_DATE, now);
@@ -513,21 +530,23 @@ client_put_object_from_buffer(oss_client_t *client,
 	 */
 	struct curl_slist *http_headers = NULL;
 	
-	if (metadata->get_cache_control(metadata) != NULL) {
-		sprintf(header_cache_control, "Cache-Control: %s", metadata->get_cache_control(metadata));
-		http_headers = curl_slist_append(http_headers, header_cache_control);
-	}
-	if (metadata->get_expiration_time(metadata) != NULL) {
-		sprintf(header_expires, "Expires: %s", metadata->get_expiration_time(metadata));
-		http_headers = curl_slist_append(http_headers, header_expires);
-	}
-	if (metadata->get_content_encoding(metadata) != NULL) {
-		sprintf(header_content_encoding, "Content-Encoding: %s", metadata->get_content_encoding(metadata));
-		http_headers = curl_slist_append(http_headers, header_content_encoding);
-	}
-	if (metadata->get_content_disposition(metadata) != NULL) {
-		sprintf(header_content_disposition, "Content-Disposition: %s", metadata->get_content_disposition(metadata));
-		http_headers = curl_slist_append(http_headers, header_content_disposition);
+	if (metadata != NULL) {
+		if (metadata->get_cache_control(metadata) != NULL) {
+			sprintf(header_cache_control, "Cache-Control: %s", metadata->get_cache_control(metadata));
+			http_headers = curl_slist_append(http_headers, header_cache_control);
+		}
+		if (metadata->get_expiration_time(metadata) != NULL) {
+			sprintf(header_expires, "Expires: %s", metadata->get_expiration_time(metadata));
+			http_headers = curl_slist_append(http_headers, header_expires);
+		}
+		if (metadata->get_content_encoding(metadata) != NULL) {
+			sprintf(header_content_encoding, "Content-Encoding: %s", metadata->get_content_encoding(metadata));
+			http_headers = curl_slist_append(http_headers, header_content_encoding);
+		}
+		if (metadata->get_content_disposition(metadata) != NULL) {
+			sprintf(header_content_disposition, "Content-Disposition: %s", metadata->get_content_disposition(metadata));
+			http_headers = curl_slist_append(http_headers, header_content_disposition);
+		}
 	}
 
 	http_headers = curl_slist_append(http_headers, header_content_type);

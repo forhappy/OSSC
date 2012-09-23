@@ -1170,23 +1170,6 @@ int main()
 	metadata->set_content_encoding(metadata, "utf-8");
 	metadata->set_content_disposition(metadata, "attachment;");
 	metadata->set_expiration_time(metadata, "Thu, 15 Sep 2012 21:08:42 GMT");
-	//oss_put_multipart_upload_result_t *result01 = client_put_multipart_upload_from_file(client, bucket_name, key,
-	//		file, request, NULL);
-
-	///oss_put_multipart_upload_result_t *result02 = client_put_multipart_upload_from_buffer(client, bucket_name, key,
-	//		buffer, request, NULL);
-	//printf("ETag:\n%s\n", result02->get_etag(result02));
-	//put_multipart_upload_result_finalize(result02);
-
-	//oss_client_t *client = client_initialize(access_id, access_key);
-	//oss_get_multipart_upload_request_t *request = get_multipart_upload_request_initialize(bucket_name, key);
-	//client_get_multipart_upload_to_file(client, request, local_file, NULL);
-	//client_get_multipart_upload_to_buffer(client, request, buffer, &file_len, NULL);
-
-	//fwrite(buffer, file_len, 1, local_file);
-	//printf("length: %d\n", file_len);
-	//fclose(file);
-	//fclose(local_file);
 
 	const char *bucket_name = "bucketname001";
 
@@ -1205,20 +1188,6 @@ int main()
 
 	oss_client_t *client = client_initialize(access_id, access_key);
 
-
-	//oss_copy_multipart_upload_result_t *result = client_copy_multipart_upload_ext(client, source_bucket_name, source_key,
-	//		destination_bucket_name, destination_key, NULL);
-	//oss_copy_multipart_upload_request_t *request = copy_multipart_upload_request_initialize(source_bucket_name, source_key,
-	//	destination_bucket_name, destination_key);
-	//request->set_modified_since_constraints(request, "Wed, 12 Sep 2012 12:06:55 GMT");
-	//oss_copy_multipart_upload_result_t *result = client_copy_multipart_upload(client, request, NULL);
-	//if (result != NULL) {
-	//	printf("ETag: %s", result->get_etag(result));
-	//	printf("LastModified: %s\n", result->get_last_modified(result));
-	//}
-	//client_get_multipart_upload_request(client, source_bucket_name, source_key, NULL);
-	//client_delete_multipart_upload(client, source_bucket_name, source_key, &retcode);
-	//printf("%d\n", retcode);
 #if 0
 	oss_initiate_multipart_upload_request_t *request_2nd = 
 		initiate_multipart_upload_request_initialize_with_metadata(bucket_name, key, metadata);

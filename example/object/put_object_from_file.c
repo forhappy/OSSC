@@ -26,7 +26,7 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
+	const char *bucket_name = "bucketexample";       //设置bucket_name
 	const char *key         = "put-ojbect.data";      //设置上传key
 	const char *local_file  = "proactor.pdf";         //设置需要上传的文件
 
@@ -38,7 +38,7 @@ int main()
 
 	size_t file_len = oss_get_file_size(fp);
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
-
+#if 1
 	/* 初始化元信息，并设置相关属性 */
 	oss_object_metadata_t *metadata = object_metadata_initialize(); 
 	metadata->set_content_length(metadata, file_len);
@@ -49,7 +49,9 @@ int main()
 	metadata->set_expiration_time(metadata, "Thu, 13 Sep 2012 21:08:42 GMT");
 	/* 将本地文件上传到云服务器上 */
 	client_put_object_from_file(client, bucket_name, key, fp, metadata, &retcode);
-
+#else 
+	client_put_object_from_file(client, bucket_name, key, fp, NULL, &retcode);
+#endif
 	if (retcode == OK) {
 		printf("Put object from file successfully.\n");
 	} else {
