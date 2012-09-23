@@ -1375,7 +1375,7 @@
 * 
 * 	oss_part_etag_t **part_etag = (oss_part_etag_t **)malloc(sizeof(oss_part_etag_t *) * parts);
 * 	int i = 0;
-* 	for (; i < 5; i++) {
+* 	for (; i < parts; i++) {
 * 
 * 		*(part_etag + i) = part_etag_initialize(i + 1, etags[i]);
 * 	}

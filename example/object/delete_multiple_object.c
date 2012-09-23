@@ -21,11 +21,12 @@ static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
 
 /* 设置需要删除的Object */
 const char *keys[] = {
-	"putxxx-test.pdf",
-	"ccan.tar.bz2",
-	"ncurseass-5.9.tar.gz",
-	"nmon_linsdfux_14g.tar.gz"
+	"a_group_file.data",
+	"put-test.data",
+	"upload-mt.data"
 };
+
+const int keys_num = sizeof(keys) / sizeof(char *);
 
 /* 删除Object*/
 int main()
@@ -34,12 +35,12 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
+	const char *bucket_name = "bucketname001";       //设置bucket_name
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
 	oss_delete_multiple_object_request_t *request = 
-		delete_multiple_object_request_initialize(bucket_name, keys, 4, false); /** 同时删除 4 个对象Object*/
+		delete_multiple_object_request_initialize(bucket_name, keys, keys_num, false); /** 同时删除 keys_num 个对象Object*/
 
 	client_delete_multiple_object(client, request, &retcode);
 

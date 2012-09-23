@@ -22,8 +22,8 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
-	const char *key         = "get-ojbect.data";      //设置需要下载的key
+	const char *bucket_name = "bucketname001";       //设置bucket_name
+	const char *key         = "glib-2.32.4.tar.xz";      //设置需要下载的key
 	const char *local_file  = "local-file.data";         //设置需要下载的本地文件名，可以和key同名
 
 	FILE *fp = fopen(local_file, "w");
@@ -35,7 +35,7 @@ int main()
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	// request->set_range(request, 0, 2 * 1024 * 1024);
+	request->set_range(request, 0, 2 * 1024 * 1024);
 	client_get_object_to_file(client, request, fp, &retcode);
 
 	if (retcode == OK) {

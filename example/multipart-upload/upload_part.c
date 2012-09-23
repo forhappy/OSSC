@@ -24,11 +24,13 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
+	const char *bucket_name = "bucketexample";       //设置bucket_name
 	const char *key         = "multipart-upload.data";      //设置key
-	const char *upload_id = ""; /* TODO: 设置upload id，此upload id由initiate multipart upload 操作返回 */
 
-	FILE *fp= fopen("neo4j-community.tar.gz", "r"); /* 需要通过multipart upload上传的文件 */
+	/* TODO: 设置upload id，此upload id由initiate multipart upload 操作返回 */
+	const char *upload_id = "0004CA5FAC0DD11BFCEE7E76679BD09D"; 
+
+	FILE *fp= fopen("mysql-5.1.52.tar.gz", "r"); /* 需要通过multipart upload上传的文件 */
 	size_t file_len = oss_get_file_size(fp); /* 获取文件大小 */
 	
 	char *buffer = (char *)malloc(sizeof(char) * file_len + 1);

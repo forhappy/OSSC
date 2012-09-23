@@ -27,8 +27,8 @@ int main()
 
 	const char *source_bucket_name = "bucketname001";
 	const char *destination_bucket_name = "bucketname002";
-	const char *source_key = "put.png";
-	const char *destination_key = "PUT.png";
+	const char *source_key = "glib-2.32.4.tar.xz";
+	const char *destination_key = "copy-of-glib-2.32.4.tar.xz";
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
@@ -40,12 +40,11 @@ int main()
 
 	oss_copy_object_result_t *result = client_copy_object(client, request, &retcode);
 
-	if (result != NULL) {
-		printf("ETag: %s", result->get_etag(result));
-		printf("LastModified: %s\n", result->get_last_modified(result));
-	}
-
 	if (retcode == OK) {
+		if (result != NULL) {
+			printf("ETag: %s\n", result->get_etag(result));
+			printf("LastModified: %s\n", result->get_last_modified(result));
+		}
 		printf("Copy object successfully.\n");
 	} else {
 		retinfo = oss_get_error_message_from_retcode(retcode);

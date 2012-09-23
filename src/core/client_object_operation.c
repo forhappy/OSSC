@@ -83,7 +83,7 @@ construct_put_object_response(
 	const char *etag = user_data->header_buffer->ptr;
 	oss_put_object_result_t *result = put_object_result_initialize();
 	result->set_etag(result, etag);
-	oss_free_user_data(user_data);
+	oss_free_partial_user_data_2nd(user_data);
 	return result;
 }
 
@@ -585,7 +585,7 @@ client_put_object_from_buffer(oss_client_t *client,
 	} else {
 		if (retcode != NULL)
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
-		oss_free_user_data(user_data);
+		oss_free_partial_user_data_2nd(user_data);
 	}
 	return NULL;
 }
@@ -729,8 +729,19 @@ client_get_object_to_file(oss_client_t *client,
 		if (retcode != NULL) *retcode = 0;
 		return construct_get_object_metadata_response(user_data);
 	} else {
-		if (retcode != NULL)
-			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL) {
+			if (user_data->header_buffer->code == 403) {
+				*retcode = ACCESS_DENIED;
+			} else if (user_data->header_buffer->code == 412) {
+				*retcode = PRECONDITION_FAILED;
+			} else if (user_data->header_buffer->code == 304) {
+				*retcode = NOT_MODIFIED;
+			} else if (user_data->header_buffer->code == 404) {
+				*retcode = FILE_NOT_FOUND;
+			} else {
+				*retcode = -1;
+			}
+		}
 		oss_free_user_data(user_data);
 	}
 
@@ -1425,8 +1436,13 @@ client_get_object_metadata(oss_client_t *client,
 		if (retcode != NULL) *retcode = 0;
 		return construct_get_object_metadata_response(user_data);
 	} else {
-		if (retcode != NULL)
-			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		if (retcode != NULL) {
+			if (user_data->header_buffer->code == 404) {
+				*retcode = FILE_NOT_FOUND;
+			} else {
+				*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+			}
+		}
 		oss_free_user_data(user_data);
 	}
 	return NULL;
@@ -1528,7 +1544,7 @@ client_delete_object(oss_client_t *client,
 		free(url);
 		url = NULL;
 	}
-	if (user_data->header_buffer->code == 200) {
+	if (user_data->header_buffer->code == 204) {
 		if (retcode != NULL) *retcode = 0;
 		oss_free_user_data(user_data);
 	} else {

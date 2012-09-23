@@ -46,6 +46,30 @@ oss_free_partial_user_data(curl_request_param_t *user_data)
 }
 
 void
+oss_free_partial_user_data_2nd(curl_request_param_t *user_data) 
+{
+	if(user_data != NULL) {
+		if (user_data->send_buffer != NULL) free(user_data->send_buffer);
+		if(user_data->recv_buffer != NULL) {
+			if(user_data->recv_buffer->ptr != NULL) {
+				free(user_data->recv_buffer->ptr);
+				user_data->recv_buffer->ptr = NULL;
+			}
+			free(user_data->recv_buffer);
+			user_data->recv_buffer= NULL;
+		}
+		if(user_data->header_buffer != NULL) {
+			if(user_data->header_buffer->ptr != NULL) {
+				free(user_data->header_buffer->ptr);
+				user_data->header_buffer->ptr = NULL;
+			}
+			free(user_data->header_buffer);
+			user_data->header_buffer = NULL;
+		}
+	}
+}
+
+void
 oss_free_user_data(curl_request_param_t *user_data) 
 {
 	if(user_data != NULL) {

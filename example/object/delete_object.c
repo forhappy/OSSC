@@ -26,8 +26,8 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
-	const char *key         = "delete-ojbect.data";      //设置key
+	const char *bucket_name = "bucketname001";       //设置bucket_name
+	const char *key         = "Screenshot from 2012-09-07 17:37:14.png";      //设置key
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 

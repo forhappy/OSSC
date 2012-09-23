@@ -54,7 +54,7 @@ construct_upload_part_response(curl_request_param_t *user_data)
 	const char *etag = user_data->header_buffer->ptr;
 	oss_upload_part_result_t *result = upload_part_result_initialize();
 	result->set_etag(result, etag);
-	oss_free_user_data(user_data);
+	oss_free_partial_user_data_2nd(user_data);
 
 	return result;
 }
@@ -626,7 +626,7 @@ client_upload_part(oss_client_t *client,
 	} else {
 		if (retcode != NULL)
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
-		oss_free_user_data(user_data);
+		oss_free_partial_user_data_2nd(user_data);
 	}
 	return NULL;
 }
@@ -736,7 +736,7 @@ client_abort_multipart_upload(oss_client_t *client,
 
 	curl_request_param_t *user_data = 
 		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
-	user_data->send_buffer->ptr = NULL;
+	user_data->send_buffer = NULL;
 
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));

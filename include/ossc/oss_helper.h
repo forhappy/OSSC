@@ -23,6 +23,9 @@ extern void
 oss_free_partial_user_data(curl_request_param_t *user_data);
 
 extern void
+oss_free_partial_user_data_2nd(curl_request_param_t *user_data);
+
+extern void
 oss_free_user_data(curl_request_param_t *user_data);
 
 extern const char *

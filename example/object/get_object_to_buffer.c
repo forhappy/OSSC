@@ -24,8 +24,8 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
-	const char *key         = "get-ojbect.data";      //设置下载 key
+	const char *bucket_name = "bucketname001";       //设置bucket_name
+	const char *key         = "glib-2.32.4.tar.xz";      //设置下载 key
 	const char *local_file  = "local-file.data";         //设置需要保存到本地的文件名
 	size_t file_len = -1; /**< 远程文件的长度  */
 	void *buffer = NULL; /* 存放文件内容的缓冲区首指针 */
@@ -42,7 +42,10 @@ int main()
 	// request->set_range(request, 0, 2 * 1024);
 
 	/* 将远程服务器上的文件下载到内存中 */
+
+	/* 以下两个函数均可以成功调用 */
 	client_get_object_to_buffer(client, request, &buffer, &file_len, &retcode);
+	//client_get_object_to_buffer_2nd(client, request, &buffer, &file_len, &retcode);
 
 	if (retcode == OK) {
 		fwrite(buffer, file_len, 1, fp);
