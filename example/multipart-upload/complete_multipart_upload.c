@@ -18,10 +18,9 @@ static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
 
 /* TODO: 此处设置你从 Upload Part 步骤中获取的 ETag 值*/
 const char *etags[] = {
-	"ETag001",
-	"ETag002",
-	"...",
-	"ETag00n"
+	"7C9EE23B43ABA3108DE146CC92D50FAF",
+	"ADCF605A94B33267BCB1B0F5A8599BAC",
+	"4966A72870743052AA700D4D3528E2B1"
 };
 
 /* 完成一个Multipart Upload操作*/
@@ -31,9 +30,11 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
+	const char *bucket_name = "bucketexample";       //设置bucket_name
 	const char *key         = "multipart-upload.data";      //设置key
-	const char *upload_id = ""; /* TODO:此处设置你需要终止的 Upload ID */
+
+	/* TODO:此处设置你需要终止的 Upload ID */
+	const char *upload_id = "0004CA5F502B4C6AEE20E8B4ED6E2002"; 
 
 	size_t parts = sizeof(etags) / sizeof(char *);
 
@@ -41,7 +42,7 @@ int main()
 
 	oss_part_etag_t **part_etag = (oss_part_etag_t **)malloc(sizeof(oss_part_etag_t *) * parts);
 	int i = 0;
-	for (; i < 5; i++) {
+	for (; i < parts; i++) {
 
 		*(part_etag + i) = part_etag_initialize(i + 1, etags[i]);
 	}
@@ -61,7 +62,7 @@ int main()
 		printf("%s\n", retinfo);
 	}
 	complete_multipart_upload_request_finalize(request);
-	complete_multipart_upload_result_finalize(result);
+	if (result != NULL) complete_multipart_upload_result_finalize(result);
 	client_finalize(client);
 
 	return 0;

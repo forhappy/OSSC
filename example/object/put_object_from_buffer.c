@@ -25,7 +25,7 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
+	const char *bucket_name = "bucketexample";       //设置bucket_name
 	const char *key         = "put-ojbect.data";      //设置上传key
 	const char *local_file  = "proactor.pdf";         //设置需要上传的文件
 	size_t retsize = 0; // 读取文件时的返回值
@@ -67,6 +67,7 @@ int main()
 	}
 
 	client_finalize(client);
+	free(buffer);
 	fclose(fp);
 	return 0;
 }

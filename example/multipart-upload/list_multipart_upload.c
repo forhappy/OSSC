@@ -22,7 +22,7 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucket_example";       //设置bucket_name
+	const char *bucket_name = "bucketexample";       //设置bucket_name
 
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
@@ -56,7 +56,7 @@ int main()
 
 
 	list_multipart_uploads_request_finalize(request);
-	multipart_upload_listing_finalize(listing);
+	if (listing != NULL) multipart_upload_listing_finalize(listing);
 	client_finalize(client);
 
 	return 0;

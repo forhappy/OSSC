@@ -603,7 +603,8 @@ client_extra_put_object(oss_client_t *client,
 			initiate_multipart_upload_request_initialize(bucket_name, key);
 		
 		oss_initiate_multipart_upload_result_t *result = 
-			client_initiate_multipart_upload(client, request, NULL);
+			client_initiate_multipart_upload(client, request, retcode);
+		if (*retcode != OK) return;
 		
 		/* 保存Upload ID文件 */
 		if (mkdir(upload_metadir, S_IRUSR | S_IWUSR | S_IXUSR) != 0) return;
