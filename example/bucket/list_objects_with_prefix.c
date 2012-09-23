@@ -13,7 +13,7 @@
  */
 
 /**
-* 返回请求者制定Bucket下的所有Object的列表
+* 返回请求者指定Bucket下的所有Object的列表
 */
 
 #include <ossc/client.h>

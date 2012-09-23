@@ -13,7 +13,6 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <ossc/client.h>
 
 static const char *access_id  = "ACSGmv8fkV1TDO9L"; /**设置用户 Access ID */
