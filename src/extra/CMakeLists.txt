@@ -14,7 +14,7 @@ SET(SRC
 
 ADD_LIBRARY(ossextra STATIC ${SRC})
 ADD_DEPENDENCIES(ossextra ossmodules ossutil ossauth osscore)
-TARGET_LINK_LIBRARIES(ossextra ossmodules ossutil ossauth osscore)
+TARGET_LINK_LIBRARIES(ossextra ossmodules ossutil ossauth osscore curl)
 
 ADD_EXECUTABLE(oss_sync oss_sync.c)
 TARGET_LINK_LIBRARIES(oss_sync ossmodules ossutil ossauth osscore curl)
