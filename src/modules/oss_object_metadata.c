@@ -403,11 +403,13 @@ object_metadata_finalize(oss_object_metadata_t *metadata)
 
 	if (metadata != NULL) {
 		if (metadata->metadata != NULL) {
-			free(metadata->metadata);
+			//free(metadata->metadata);
+			oss_map_delete(metadata->metadata);
 			metadata->metadata = NULL;
 		}
 		if (metadata->user_metadata != NULL) {
-			free(metadata->user_metadata);
+			//free(metadata->user_metadata);
+			oss_map_delete(metadata->user_metadata);
 			metadata->user_metadata = NULL;
 		}
 		free(metadata);

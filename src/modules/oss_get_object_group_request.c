@@ -310,6 +310,10 @@ _get_object_group_request_initialize(const char *bucket_name, size_t bucket_name
 	request->length = 0;
 	request->response_headers = NULL;
 	request->unmodified_since_constraint = NULL;
+	request->matching_etag_constraints = NULL;
+	request->no_matching_etag_constraints = NULL;
+	request->_counts_matching_etag_constraints = 0;
+	request->_counts_no_matching_etag_constraints = 0;
 
 	request->get_bucket_name = _get_object_group_request_get_bucket_name;
 	request->set_bucket_name = _get_object_group_request_set_bucket_name;
@@ -372,6 +376,7 @@ get_object_group_request_finalize(oss_get_object_group_request_t *request)
 						*(request->matching_etag_constraints + j) = NULL;
 					}
 				}
+				free(request->matching_etag_constraints);
 			}
 		}
 
@@ -385,6 +390,7 @@ get_object_group_request_finalize(oss_get_object_group_request_t *request)
 						*(request->no_matching_etag_constraints + j) = NULL;
 					}
 				}
+				free(request->no_matching_etag_constraints);
 			}
 		}
 

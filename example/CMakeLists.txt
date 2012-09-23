@@ -2,4 +2,4 @@ ADD_SUBDIRECTORY(bucket)
 ADD_SUBDIRECTORY(multipart-upload)
 ADD_SUBDIRECTORY(object)
 ADD_SUBDIRECTORY(object-group)
-
+ADD_SUBDIRECTORY(miscs)

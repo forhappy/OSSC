@@ -1183,8 +1183,13 @@ client_is_bucket_exist(oss_client_t *client,
 		const char *bucket_name)
 {
 	unsigned short retcode;
-	client_get_bucket_acl(client, bucket_name, &retcode);
+	oss_access_control_list_t *acl = NULL;
+	oss_owner_t *owner = NULL;
+	acl = client_get_bucket_acl(client, bucket_name, &retcode);
 	if(retcode == OK) {
+		owner = acl->get_owner(acl);
+		owner_finalize(owner);
+		access_control_list_finalize(acl);
 		return true;
 	} else {
 		return false;

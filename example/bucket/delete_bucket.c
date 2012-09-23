@@ -29,7 +29,7 @@ int main()
 	const char *retinfo;            //保存通过retcode获得的错误信息
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
-	const char *bucket_name = "bucket_example";       //设置bucket_name
+	const char *bucket_name = "qwe";       //设置bucket_name
 
 	client_delete_bucket(client, bucket_name, &retcode);
 	printf("delete_bucket result:\n\n");

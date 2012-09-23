@@ -31,7 +31,7 @@ int main()
 	int i;
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 	const char *bucket_name = "bucket_example";
-	const char *prefix = "f";       //设置前缀
+	const char *prefix = "a";       //设置前缀
 
 	oss_object_listing_t *object_listing = client_list_objects_with_prefix(client, bucket_name, prefix, &retcode);
 	printf("list_objects_with_prefix result:\n\n");

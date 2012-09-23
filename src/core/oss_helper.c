@@ -38,6 +38,10 @@ oss_free_partial_user_data(curl_request_param_t *user_data)
 			free(user_data->header_buffer);
 			user_data->header_buffer = NULL;
 		}
+		if(user_data->recv_buffer != NULL) {
+			free(user_data->recv_buffer);
+		}
+		free(user_data);
 	}
 }
 

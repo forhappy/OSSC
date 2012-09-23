@@ -29,7 +29,7 @@ int main()
 	const char *retinfo;            //保存通过retcode获得的错误信息
 
 	const char *bucket_name = "bucket_example";       //设置bucket_name
-	const char *key = "a_empty_group_file.dat";             //设置object group的名称
+	const char *key = "a_group_file.dat";             //设置object group的名称
 	char *buffer;
 	size_t buf_len;
 

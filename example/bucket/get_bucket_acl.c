@@ -29,7 +29,7 @@ int main()
 	const char *retinfo;            //保存通过retcode获得的错误信息
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
-	const char *bucket_name = "xbucket_example";    //设置bucket_name
+	const char *bucket_name = "bucket_example";    //设置bucket_name
 
 	oss_access_control_list_t *acl = 
 		client_get_bucket_acl(client, bucket_name, &retcode);

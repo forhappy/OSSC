@@ -27,20 +27,20 @@ static const char *endpoint = "storage.aliyun.com";    //设置hostname
 
 /* *设置要组合的Objects的etag值 */
 static const char *etags[] = {
-	//"6F395BF16882D154CCB448806EA8C47D",
-	//"321F048D6C898398F3168545F6CE8551",
-	//"249697174471EEE73202E9214B037E08",
-	//"B78E7B470FA41AA5478CFB0EDFF7B2E6",
-	//"E0CA28D194BC790EF3C6236231D033A7"
+	"6F395BF16882D154CCB448806EA8C47D",
+	"321F048D6C898398F3168545F6CE8551",
+	"249697174471EEE73202E9214B037E08",
+	"B78E7B470FA41AA5478CFB0EDFF7B2E6",
+	"E0CA28D194BC790EF3C6236231D033A7"
 };
 
 /* *设置要组合的Objects的name */
 static const char *partname[] = {
-	//"a.txt",
-	//"b.txt",
-	//"c.txt",
-	//"d.txt",
-	//"e.txt"
+	"a.txt",
+	"b.txt",
+	"c.txt",
+	"d.txt",
+	"e.txt"
 };
 
 int main()
@@ -50,7 +50,7 @@ int main()
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 	const char *bucket_name = "bucket_example";       //设置bucket_name
-	const char *key = "a_empty_group_file.dat";             //设置object group的名称
+	const char *key = "a_group_file.dat";             //设置object group的名称
 	int i;
 	int n = sizeof(partname)/sizeof(char *);
 	/* *构造各个Object的etag，name，ID到part_item */

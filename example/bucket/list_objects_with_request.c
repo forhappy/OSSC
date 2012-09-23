@@ -36,7 +36,7 @@ int main()
 	request->set_prefix(request,"fun/");          //设置prefix
 	request->set_delimiter(request, "/");      //设置delimiter
 	request->set_max_keys(request, 100);      //设置max_keys
-	request->set_marker(request, "t");         //设置marker
+	request->set_marker(request, "a");         //设置marker
 
 
 	oss_object_listing_t *object_listing = client_list_objects(client, request, &retcode);
@@ -74,6 +74,9 @@ int main()
 			free(object_listing->summaries);
 		}
 		object_listing_finalize(object_listing);
+	}
+	if(request != NULL) {
+		list_objects_request_finalize(request);
 	}
 
 	client_finalize(client);

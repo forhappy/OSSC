@@ -271,7 +271,7 @@ construct_head_object_group_response(curl_request_param_t *user_data)
 		ptr = tmp + 1;
 		flag ++;
 	}
-
+	oss_free_user_data(user_data);
 	return result;
 	
 }
@@ -306,7 +306,7 @@ client_post_object_group(oss_client_t *client,
 	size_t key_len = strlen(request->key);
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16);
 	char *url = (char *)malloc(sizeof(char) *
-			(bucket_name_len + key_len + strlen(client->endpoint) + 8));
+			(bucket_name_len + key_len + strlen(client->endpoint) + 32));
 
 	char header_host[256]  = {0};
 	char header_date[48]  = {0};
@@ -354,8 +354,13 @@ client_post_object_group(oss_client_t *client,
 		tstring_append(tstr_part_item, part);
 	}
 	tstring_append(tstr_part_item, "</CreateFileGroup>\n");
+	size_t tmp_len = strlen(tstring_data(tstr_part_item));
+	char *tmp = (char *)malloc(sizeof(char) * (tmp_len + 1));
+	strncpy(tmp, tstring_data(tstr_part_item), tmp_len);
+	tmp[tmp_len] = '\0';
 
-	user_data->send_buffer->ptr = (char *)(tstring_data(tstr_part_item));
+	user_data->send_buffer->ptr = tmp;
+	//user_data->send_buffer->ptr = (char *)(tstring_data(tstr_part_item));
 	user_data->send_buffer->left = tstring_size(tstr_part_item);
 	user_data->send_buffer->allocated = tstring_size(tstr_part_item);
 	/**
@@ -376,7 +381,7 @@ client_post_object_group(oss_client_t *client,
 	 * 释放 http_headers资源
 	 */
 	curl_slist_free_all(http_headers);
-	
+	tstring_free(tstr_part_item);
 	oss_map_delete(default_headers);
 	if(now != NULL) {
 		free(now);

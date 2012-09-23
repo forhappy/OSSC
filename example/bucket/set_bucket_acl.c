@@ -20,8 +20,8 @@
 #include <ossc/client.h>
 #include <stdio.h>
 
-static const char *access_id = "";   //设置用户帐号
-static const char *access_key = "";  //设置用户密码
+static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
+static const char *access_key = "MUltNpuYqE";  //设置用户密码
 static const char *endpoint = "storage.aliyun.com";    //设置hostname
 
 int main()
@@ -30,9 +30,9 @@ int main()
 	const char *retinfo;            //保存通过retcode获得的错误信息
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
-	const char *bucket_name = "";    //设置bucket_name
+	const char *bucket_name = "bucket_example";    //设置bucket_name
 
-	const char *acl = "";            //设置bucket的访问权限（private，public-read，public-read-write中的一个）
+	const char *acl = "public-read";            //设置bucket的访问权限（private，public-read，public-read-write中的一个）
 	client_set_bucket_acl(client, bucket_name, acl, &retcode);
 	printf("set_bucket_acl result:\n\n");
 	if(retcode == 0) {

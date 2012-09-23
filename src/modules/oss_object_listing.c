@@ -339,6 +339,7 @@ object_listing_finalize(oss_object_listing_t *listing)
 					*(listing->common_prefixes + j) = NULL;
 				}
 			}
+			free(listing->common_prefixes);
 		}
 	}
 
