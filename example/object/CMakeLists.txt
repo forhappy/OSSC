@@ -31,7 +31,7 @@ ADD_EXECUTABLE(get_object_to_file get_object_to_file.c)
 TARGET_LINK_LIBRARIES(get_object_to_file ossmodules ossutil ossauth osscore curl)
 
 ADD_EXECUTABLE(put_object_from_buffer put_object_from_buffer.c)
-TARGET_LINK_LIBRARIES(put_object_from_buffer ossmodules ossutil ossauth osscore curl ossextra pthread)
+TARGET_LINK_LIBRARIES(put_object_from_buffer ossmodules ossutil ossauth osscore curl)
 
 ADD_EXECUTABLE(put_object_from_file put_object_from_file.c)
 TARGET_LINK_LIBRARIES(put_object_from_file ossmodules ossutil ossauth osscore curl)

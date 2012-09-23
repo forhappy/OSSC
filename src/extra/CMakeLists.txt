@@ -9,7 +9,7 @@ INCLUDE_DIRECTORIES(
 SET(SRC
 	oss_extra.c
 	workqueue.c
-	oss_sync.c
+	#	oss_sync.c
 	)
 
 ADD_LIBRARY(ossextra STATIC ${SRC})

@@ -199,7 +199,7 @@ object_curl_operation_header_callback(
 		header_buffer->code= code;
 	}
 
-	retag = sscanf(ptr, "ETag: \"%s\"", etag);
+	retag = sscanf(ptr, "ETag: %s", etag);
 	if (retag != 0) {
 		memset(header_buffer->ptr, 0, header_buffer->allocated);
 		strncpy(header_buffer->ptr, etag, 48);

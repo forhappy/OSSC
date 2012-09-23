@@ -292,6 +292,7 @@ client_put_object_from_file(oss_client_t *client,
 		(curl_request_param_t *)malloc(sizeof(curl_request_param_t));
 
 	user_data->send_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->send_buffer->ptr = NULL;
 	user_data->send_buffer->fp = (FILE *)input; /**< 从文件中读取数据  */
 	if (metadata != NULL) {
 		user_data->send_buffer->left = metadata->get_content_length(metadata);

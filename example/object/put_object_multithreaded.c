@@ -11,6 +11,7 @@
  *
  * =============================================================================
  */
+#include <ossc/client.h>
 #include <ossc/oss_extra.h>
 #include <ossc/oss_helper.h>
 
