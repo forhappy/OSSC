@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  client_get_object-t.c
+ *       Filename:  list_parts.c
  *
- *    Description:  client_get_object testcase
+ *    Description:  list_parts testcase
  *
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
@@ -40,7 +40,7 @@ int main()
 		oss_part_summary_t **parts = listing->get_parts(listing, &part_counts);
 
 		for (i = 0; i < part_counts; i++) {
-			printf("***********************************CONTENT %d*******************************\n", i + 1);
+			printf("********************************** CONTENT %d*******************************\n", i + 1);
 			printf("ETAG: %s\n", (*(parts + i))->get_etag(*(parts + i)));
 			printf("LAST_MODIFIED: %s\n", (*(parts + i))->get_last_modified(*(parts + i)));
 			printf("PARTNUMBER: %d\n", (int)(*(parts + i))->get_part_number(*(parts + i)));

@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  client_get_object-t.c
+ *       Filename:  upload_part.c
  *
- *    Description:  client_get_object testcase
+ *    Description:  upload_part testcase
  *
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
