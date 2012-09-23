@@ -13,7 +13,7 @@
  */
 
 /**
-* Post Object Group 返回用户指定的 Object Group 信息, 不返回文件内容。
+* Head Object Group 返回用户指定的 Object Group 信息, 不返回文件内容。
 */
 
 #include <ossc/client.h>
@@ -39,7 +39,10 @@ int main()
 	printf("head_obejct_group result:\n\n");
 	if(retcode == OK) {
 		printf("head_object_group successfully.\n");
-		printf("content-length = %ld\ncontent-type = %s\nlast-modified = %s\n", result->get_content_length(result), result->get_content_type(result), result->get_last_modified(result));
+		printf("content-length = %ld\ncontent-type = %s\nlast-modified = %s\n",
+				result->get_content_length(result),
+				result->get_content_type(result),
+				result->get_last_modified(result));
 	} else {
 		retinfo = oss_get_error_message_from_retcode(retcode);
 		printf("error = %s\n", retinfo);

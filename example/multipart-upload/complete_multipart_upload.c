@@ -1,9 +1,9 @@
 /*
  * =============================================================================
  *
- *       Filename:  client_get_object-t.c
+ *       Filename:  complete_multipart_upload.c
  *
- *    Description:  client_get_object testcase
+ *    Description:  complete_multipart_upload testcase
  *
  *        Company:  ICT ( Institute Of Computing Technology, CAS )
  *
