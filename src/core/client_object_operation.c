@@ -224,8 +224,6 @@ object_curl_operation_2nd(const char *method,
 			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback_2nd);
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);	
 		}
-		curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
-		curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
@@ -610,6 +608,7 @@ client_get_object_to_file(oss_client_t *client,
 	
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
+	user_data->recv_buffer->ptr = NULL;
 	user_data->recv_buffer->fp = file;
 	user_data->recv_buffer->left = 1 * 1024;
 	user_data->recv_buffer->allocated = 1 * 1024;

@@ -82,4 +82,15 @@ client_extra_put_object(oss_client_t *client,
 		const char *key,
 		const char *local_file,
 		unsigned short *retcode);
+
+extern int
+oss_sync_upload(oss_client_t * client,
+		const char * dir, 
+		const char *bucket_name);
+
+extern int 
+oss_sync_download(oss_client_t * client,
+		const char *dir, 
+		const char *bucket_name);
+
 #endif // OSS_EXTRA_H

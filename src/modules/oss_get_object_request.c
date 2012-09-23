@@ -297,19 +297,9 @@ _get_object_request_initialize(const char *bucket_name, size_t bucket_name_len, 
 	oss_get_object_request_t *request;
 	request = (oss_get_object_request_t *)malloc(sizeof(oss_get_object_request_t));
 
-	if (request->bucket_name != NULL) {
-		free(request->bucket_name);
-		request->bucket_name = NULL;
-	}
-
 	request->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
 	(request->bucket_name)[bucket_name_len] = '\0';
-
-	if (request->key != NULL) {
-		free(request->key);
-		request->key = NULL;
-	}
 
 	request->key = (char *)malloc(sizeof(char) * key_len + 1);
 	strncpy(request->key, key, key_len);
@@ -320,6 +310,8 @@ _get_object_request_initialize(const char *bucket_name, size_t bucket_name_len, 
 	request->length = 0;
 	request->response_headers = NULL;
 	request->unmodified_since_constraint = NULL;
+	request->_counts_matching_etag_constraints = 0;
+	request->_counts_no_matching_etag_constraints = 0;
 
 	request->get_bucket_name = _get_object_request_get_bucket_name;
 	request->set_bucket_name = _get_object_request_set_bucket_name;
