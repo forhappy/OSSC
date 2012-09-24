@@ -39,10 +39,15 @@ int main()
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	request->set_range(request, 0, 2 * 1024);
+	// request->set_range(request, 0, 2 * 1024);
 
 	/* 将远程服务器上的文件下载到内存中 */
-	client_get_object_to_buffer_2nd(client, request, &buffer, &file_len, &retcode);
+
+	/* 警告: 获取Object的函数均会返回该对象的元信息，由于元信息是动态动态分配的，
+	 * 你需要获取其元信息，并在程序退出时释放它，否则会造成少量的内存泄漏(数百字节)
+	 * */
+	oss_object_metadata_t *metadata =
+		client_get_object_to_buffer_2nd(client, request, &buffer, &file_len, &retcode);
 
 	if (retcode == OK) {
 		fwrite(buffer, file_len, 1, fp);
@@ -53,6 +58,9 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+	if (buffer != NULL) free(buffer);
+	if (request != NULL) get_object_request_finalize(request);
+	if (metadata != NULL) object_metadata_finalize(metadata);
 	client_finalize(client);
 	fclose(fp);
 

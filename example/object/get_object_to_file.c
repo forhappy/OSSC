@@ -35,8 +35,14 @@ int main()
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	request->set_range(request, 0, 2 * 1024 * 1024);
-	client_get_object_to_file(client, request, fp, &retcode);
+	// request->set_range(request, 0, 2 * 1024 * 1024);
+
+	/* 警告: 获取Object的函数均会返回该对象的元信息，由于元信息是动态动态分配的，
+	 * 你需要获取其元信息，并在程序退出时释放它，否则会造成少量的内存泄漏(数百字节)
+	 * */
+	
+	oss_object_metadata_t *metadata =
+		client_get_object_to_file(client, request, fp, &retcode);
 
 	if (retcode == OK) {
 		printf("Get object to file successfully.\n");
@@ -45,6 +51,8 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+	if (request != NULL) get_object_request_finalize(request);
+	if (metadata != NULL) object_metadata_finalize(metadata);
 	client_finalize(client);
 	fclose(fp);
 

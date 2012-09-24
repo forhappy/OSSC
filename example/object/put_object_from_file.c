@@ -47,9 +47,13 @@ int main()
 	metadata->set_content_disposition(metadata, "attachment;");
 	metadata->set_expiration_time(metadata, "Thu, 13 Sep 2012 21:08:42 GMT");
 	/* 将本地文件上传到云服务器上 */
-	client_put_object_from_file(client, bucket_name, key, fp, metadata, &retcode);
+	oss_put_object_result_t *result =
+		client_put_object_from_file(client, bucket_name, key, fp, metadata, &retcode);
+
+	if (metadata != NULL) object_metadata_finalize(metadata);
 #else 
-	client_put_object_from_file(client, bucket_name, key, fp, NULL, &retcode);
+	oss_put_object_result_t *result =
+		client_put_object_from_file(client, bucket_name, key, fp, NULL, &retcode);
 #endif
 	if (retcode == OK) {
 		printf("Put object from file successfully.\n");
@@ -58,6 +62,7 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+	if (result != NULL) put_object_result_finalize(result);
 	client_finalize(client);
 	fclose(fp);
 

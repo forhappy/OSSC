@@ -43,5 +43,7 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+
+	if (metadata != NULL) object_metadata_finalize(metadata);
 	client_finalize(client);
 }

@@ -50,6 +50,7 @@ int main()
 		retinfo = oss_get_error_message_from_retcode(retcode);
 		printf("%s\n", retinfo);
 	}
-
+	if (request != NULL) copy_object_request_finalize(request);
+	if (result != NULL) copy_object_result_finalize(result);
 	client_finalize(client);
 }

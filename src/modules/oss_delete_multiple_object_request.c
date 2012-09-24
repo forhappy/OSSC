@@ -134,11 +134,6 @@ delete_multiple_object_request_initialize(
 	oss_delete_multiple_object_request_t *request;
 	request = (oss_delete_multiple_object_request_t *)malloc(sizeof(oss_delete_multiple_object_request_t));
 
-	if (request->bucket_name != NULL) {
-		free(request->bucket_name);
-		request->bucket_name = NULL;
-	}
-
 	size_t bucket_name_len = strlen(bucket_name);
 	request->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
@@ -188,6 +183,7 @@ delete_multiple_object_request_finalize(
 					}
 				}
 			}
+			free(request->keys);
 		}
 
 		free(request);

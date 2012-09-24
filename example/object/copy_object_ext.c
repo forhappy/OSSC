@@ -46,5 +46,6 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+	if (result != NULL) copy_object_result_finalize(result);
 	client_finalize(client);
 }
