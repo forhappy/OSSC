@@ -176,6 +176,8 @@ object_curl_operation(const char *method,
 			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback);
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
 		}
+		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
