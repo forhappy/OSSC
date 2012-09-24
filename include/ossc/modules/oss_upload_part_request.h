@@ -18,7 +18,6 @@
 
 #ifndef OSS_UPLOAD_PART_REQUEST_H
 #define OSS_UPLOAD_PART_REQUEST_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

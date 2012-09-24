@@ -18,7 +18,6 @@
 
 #ifndef OSS_RESPONSE_HEADER_OVERRIDES_H
 #define OSS_RESPONSE_HEADER_OVERRIDES_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

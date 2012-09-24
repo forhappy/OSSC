@@ -18,16 +18,11 @@
 
 #ifndef OSS_PART_LISTING_H
 #define OSS_PART_LISTING_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
-
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
 
 #define _OSS_OWNER_H
 #include  <ossc/modules/oss_owner.h>
@@ -37,6 +32,11 @@
 #include <ossc/modules/oss_part_summary.h>
 #undef _OSS_PART_SUMMARY_H
 
+#include <ossc/ossc-config.h>
+
+#ifdef HAVE_STDBOOL_H
+#include <stdbool.h>
+#endif
 /**
  * @defgroup oss_part_listing_t oss_part_listing_t
  * @{

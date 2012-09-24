@@ -18,7 +18,6 @@
 
 #ifndef OSS_GRANT_H
 #define OSS_GRANT_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

@@ -13,9 +13,6 @@
 #include <stdlib.h>
 
 #include <ossc/client.h>
-//#define _OSS_CLIENT_H
-//#include <ossc/modules/oss_client.h>
-//#undef _OSS_CLIENT_H
 
 char *
 client_generate_presigned_url_with_expiration(oss_client_t *client,

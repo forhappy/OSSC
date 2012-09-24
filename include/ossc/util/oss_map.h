@@ -14,7 +14,6 @@
 
 #ifndef OSS_MAP_H
 #define OSS_MAP_H
-#include "ossc-config.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -22,10 +21,6 @@ extern "C" {
 
 #include <stdlib.h>
 #include <string.h>
-
-#ifdef HAVE_STDBOOL_H
-#include <stdbool.h>
-#endif
 
 typedef struct oss_map_s oss_map_t;
 

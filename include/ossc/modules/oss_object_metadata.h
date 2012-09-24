@@ -18,7 +18,6 @@
 
 #ifndef OSS_OBJECT_METADATA_H
 #define OSS_OBJECT_METADATA_H
-#include "ossc-config.h"
 
 #include <assert.h>
 #include <stdlib.h>

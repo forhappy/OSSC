@@ -14,7 +14,6 @@
 
 #ifndef UTILITY_TSTRING_H
 #define UTILITY_TSTRING_H
-#include "ossc-config.h"
 
 #include <assert.h>
 #include <ctype.h>
