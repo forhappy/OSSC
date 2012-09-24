@@ -130,7 +130,7 @@ post_object_group_request_initialize(const char *bucket_name, const char *key,
 
 /**
  * oss_post_object_group_request_t 析构函数
- * @param request[in] 标识一个oss_post_object_group_request_t结构指针
+ * @param request [in] 标识一个oss_post_object_group_request_t结构指针
  * @retval void
  * @pre request 必须使用post_object_group_request_initialize的返回值
  */

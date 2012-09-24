@@ -390,7 +390,6 @@ client_generate_presigned_url(oss_client_t *client,
  * @param bucket_name [in] 要访问的Object所在的Bucket名称
  * @param key [in] 要访问的Object的名称
  * @param expiration [in] 过期时间
- * @param retcode [out] 服务器返回的HTTP返回码
  * @return url字符串
  * @retval 非空 表示成功
  * @retval NULL 表示失败
@@ -408,7 +407,6 @@ client_generate_presigned_url_with_expiration(oss_client_t *client,
  * @param key [in] 要访问的Object的名称
  * @param expiration [in] 过期时间
  * @param method [in] http方法
- * @param retcode [out] 服务器返回的HTTP返回码
  * @return url字符串
  * @retval 非空 表示成功
  * @retval NULL 表示失败
@@ -462,7 +460,8 @@ client_get_object(oss_client_t *client,
  * 从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存
  * @param client [in] 标识一个oss_client_t的结构指针
  * @param request [in] 标识一个oss_get_object_request_t的结构指针
- * @param file [in] 要存放Object的内存指针
+ * @param output [in] 要存放Object的内存地址
+ * @param output_len [out] output的长度
  * @param retcode [out] 服务器返回的HTTP返回码
  * @return 返回一个oss_object_metadata_t的结构指针
  * @retval 非空 表示成功
@@ -479,7 +478,8 @@ client_get_object_to_buffer(oss_client_t *client,
  * 从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存
  * @param client [in] 标识一个oss_client_t的结构指针
  * @param request [in] 标识一个oss_get_object_request_t的结构指针
- * @param file [in] 要存放Object的内存指针
+ * @param output [in] 要存放Object的内存地址
+ * @param output_len [out] output的长度
  * @param retcode [out] 服务器返回的HTTP返回码
  * @return 返回一个oss_object_metadata_t的结构指针
  * @retval 非空 表示成功
@@ -557,7 +557,6 @@ client_initiate_multipart_upload(oss_client_t *client,
  * 判断给定 Bucket 是否存在
  * @param client [in] 标识一个oss_client_t的结构指针
  * @param bucket_name 要查询的Bucket名称
- * @param retcode [out] 服务器返回的HTTP返回码
  * @return 真或假
  * @retval true 表示存在
  * @retval false 表示不存在

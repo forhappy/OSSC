@@ -102,7 +102,7 @@
 * @code
 * const char *access_id = "ACSGmv9fkV1TDO9L";// Access ID
 * const char *access_key = "BedoWbsje2"; // Access key
-* onst char *bucket_name = "bucketname001"; //Bucket 名称
+* const char *bucket_name = "bucketname001"; //Bucket 名称
 * const char *key = "put-test.data"; // Key, Object 名称
 *
 * FILE *file = fopen("proactor.pdf", "r"); //打开需要上传的文件
@@ -447,7 +447,6 @@
 
 
 /** @page OSSC_API_EXAMPLE OSSC API 使用示例
-* @tableofcontents
 * @section Bucket操作
 * @subsection 创建Bucket
 * @code

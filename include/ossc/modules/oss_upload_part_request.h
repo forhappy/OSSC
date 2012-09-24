@@ -180,7 +180,7 @@ upload_part_request_initialize(void);
 
 /**
  * oss_upload_part_request_t 析构函数
- * @param result [in] 标识一个oss_upload_part_request_t结构指针
+ * @param request [in] 标识一个oss_upload_part_request_t结构指针
  * @retval void
  * @pre request 必须使用upload_part_request_initialize的返回值
  */

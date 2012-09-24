@@ -71,7 +71,7 @@ put_object_result_initialize();
 
 /**
  * oss_put_object_result_t 析构函数
- * @param  [in] 标识一个oss_put_object_result_t结构指针
+ * @param  result [in] 标识一个oss_put_object_result_t结构指针
  * @retval void
  * @pre result 必须使用put_object_result_initialize的返回值
  */
