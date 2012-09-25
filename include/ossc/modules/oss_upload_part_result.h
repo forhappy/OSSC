@@ -38,6 +38,9 @@
  */
 typedef struct oss_upload_part_result_s oss_upload_part_result_t;
 
+/**
+ * 包含向OSS上传Multipart分块（Part）的结果信息
+ */
 struct oss_upload_part_result_s {
 	char *etag;      /**< OSS生成的ETag值*/
 	int part_number; /**< 包含Part标识号码和ETag值的PartETag对象*/
