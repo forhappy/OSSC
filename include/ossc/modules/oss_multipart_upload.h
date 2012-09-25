@@ -18,7 +18,6 @@
 
 #ifndef OSS_MULTIPART_UPLOAD_H
 #define OSS_MULTIPART_UPLOAD_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

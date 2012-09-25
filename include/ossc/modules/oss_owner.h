@@ -18,7 +18,6 @@
 
 #ifndef OSS_OWNER_H
 #define OSS_OWNER_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

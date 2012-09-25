@@ -19,7 +19,6 @@
 
 #ifndef OSS_GET_OBJECT_GROUP_REQUEST_H
 #define OSS_GET_OBJECT_GROUP_REQUEST_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

@@ -18,7 +18,6 @@
 
 #ifndef OSS_PART_SUMMARY_H
 #define OSS_PART_SUMMARY_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

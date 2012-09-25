@@ -11,8 +11,13 @@
  *
  * =============================================================================
  */
+
+#include "ossc-config.h"
 #include <assert.h>
 #include <stdio.h>
+#ifdef HAVE_STDBOOL_H
+#include <stdbool.h>
+#endif
 
 #include <ossc/util/oss_map.h>
 

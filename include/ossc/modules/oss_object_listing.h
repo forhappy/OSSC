@@ -21,8 +21,7 @@
 #define _OSS_OBJECT_SUMMARY_H
 #include <ossc/modules/oss_object_summary.h>
 #undef _OSS_OBJECT_SUMMARY_H
-
-#include "ossc-config.h"
+#include <ossc/ossc-config.h>
 
 #include <stdio.h>
 #include <string.h>

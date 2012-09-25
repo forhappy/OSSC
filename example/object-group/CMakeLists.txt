@@ -10,20 +10,20 @@ INCLUDE_DIRECTORIES(
 	)
 
 ADD_EXECUTABLE(post_object_group post_object_group.c)
-TARGET_LINK_LIBRARIES(post_object_group ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(post_object_group osscore_static curl)
 
 ADD_EXECUTABLE(get_object_group_to_file get_object_group_to_file.c)
-TARGET_LINK_LIBRARIES(get_object_group_to_file ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(get_object_group_to_file osscore_static curl)
 
 ADD_EXECUTABLE(get_object_group_to_buffer get_object_group_to_buffer.c)
-TARGET_LINK_LIBRARIES(get_object_group_to_buffer ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(get_object_group_to_buffer osscore_static curl)
 
 ADD_EXECUTABLE(get_object_group_index get_object_group_index.c)
-TARGET_LINK_LIBRARIES(get_object_group_index ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(get_object_group_index osscore_static curl)
 
 ADD_EXECUTABLE(head_object_group head_object_group.c)
-TARGET_LINK_LIBRARIES(head_object_group ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(head_object_group osscore_static curl)
 
 ADD_EXECUTABLE(delete_object_group delete_object_group.c)
-TARGET_LINK_LIBRARIES(delete_object_group ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(delete_object_group osscore_static curl)
 

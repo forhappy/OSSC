@@ -18,7 +18,6 @@
 
 #ifndef OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H
 #define OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H 
-#include "ossc-config.h"
 
 #include <stdbool.h>
 #include <stdio.h>

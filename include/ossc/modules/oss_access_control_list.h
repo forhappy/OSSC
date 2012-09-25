@@ -18,7 +18,6 @@
 /* 头文件保护 */
 #ifndef OSS_ACCESS_CONTROL_LIST_H
 #define OSS_ACCESS_CONTROL_LIST_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

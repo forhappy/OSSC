@@ -861,11 +861,23 @@ tstring_up(tstring_t *str)
 void
 tstring_append_vprintf(tstring_t *str, const char *format, va_list args)
 {
-    char *buf;
+#if defined(_GNU_SOURCE)
+	char *buf = NULL;
+#else
+    char *buf = (char *)malloc(sizeof(char) * 2 * 1024 * 1024);
+	if (buf == NULL) return;
+#endif
+
     int len;
     assert(str != NULL);
     assert(format != NULL);
+
+#if defined(_GNU_SOURCE)
     len = vasprintf(&buf, format, args);
+#else
+    len = vsprintf(buf, format, args);
+#endif
+
     if (len >= 0) {
         _tstring_maybe_expand(str, len);
         memcpy(str->str + str->len, buf, len + 1);

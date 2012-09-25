@@ -13,7 +13,6 @@
  */
 #ifndef GENERATE_AUTHENTICATION_H
 #define GENERATE_AUTHENTICATION_H
-#include "ossc-config.h"
 
 /* *
  * 生成签名值，传入参数分别为：

@@ -50,7 +50,7 @@ int main()
 
 	/* 初始化元信息，并设置相关属性 */
 	oss_object_metadata_t *metadata = object_metadata_initialize(); 
-	metadata->set_content_length(metadata, file_len);
+	metadata->set_content_length(metadata, file_len); /** 该参数必须设置 */
 	metadata->set_content_type(metadata, "application/octet-stream");
 	metadata->set_cache_control(metadata, "no-cache");
 	metadata->set_content_encoding(metadata, "utf-8");
@@ -58,7 +58,8 @@ int main()
 	metadata->set_expiration_time(metadata, "Thu, 13 Sep 2012 21:08:42 GMT");
 
 	/* 将内存中的内容上传至云服务器中 */
-	client_put_object_from_buffer(client, bucket_name, key, buffer, metadata, &retcode);
+	oss_put_object_result_t *result =
+		client_put_object_from_buffer(client, bucket_name, key, buffer, metadata, &retcode);
 	if (retcode == OK) {
 		printf("put object from file successfully.\n");
 	} else {
@@ -66,7 +67,9 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+	if (result != NULL) put_object_result_finalize(result);
 	client_finalize(client);
+	object_metadata_finalize(metadata);
 	free(buffer);
 	fclose(fp);
 	return 0;

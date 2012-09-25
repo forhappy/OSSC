@@ -21,9 +21,8 @@ static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
 
 /* 设置需要删除的Object */
 const char *keys[] = {
-	"a_group_file.data",
-	"put-test.data",
-	"upload-mt.data"
+	"accumulo-1.4.0-src.tar.g",
+	"neo4j-communityx.tar.gz"
 };
 
 const int keys_num = sizeof(keys) / sizeof(char *);
@@ -51,5 +50,6 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+	if (request != NULL) delete_multiple_object_request_finalize(request);
 	client_finalize(client);
 }

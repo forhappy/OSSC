@@ -18,7 +18,6 @@
 
 #ifndef OSS_COPY_OBJECT_RESULT_H
 #define OSS_COPY_OBJECT_RESULT_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

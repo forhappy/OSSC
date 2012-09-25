@@ -7,35 +7,35 @@ INCLUDE_DIRECTORIES(
 	)
 
 ADD_EXECUTABLE(copy_object copy_object.c)
-TARGET_LINK_LIBRARIES(copy_object ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(copy_object osscore_static curl)
 
 ADD_EXECUTABLE(copy_object_ext copy_object_ext.c)
-TARGET_LINK_LIBRARIES(copy_object_ext ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(copy_object_ext osscore_static curl)
 
 ADD_EXECUTABLE(delete_multiple_object delete_multiple_object.c)
-TARGET_LINK_LIBRARIES(delete_multiple_object ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(delete_multiple_object osscore_static curl)
 
 ADD_EXECUTABLE(delete_object delete_object.c)
-TARGET_LINK_LIBRARIES(delete_object ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(delete_object osscore_static curl)
 
 ADD_EXECUTABLE(get_object_metadata get_object_metadata.c)
-TARGET_LINK_LIBRARIES(get_object_metadata ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(get_object_metadata osscore_static curl)
 
 ADD_EXECUTABLE(get_object_to_buffer get_object_to_buffer.c)
-TARGET_LINK_LIBRARIES(get_object_to_buffer ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(get_object_to_buffer osscore_static curl)
 
 ADD_EXECUTABLE(get_object_to_buffer_2nd get_object_to_buffer_2nd.c)
-TARGET_LINK_LIBRARIES(get_object_to_buffer_2nd ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(get_object_to_buffer_2nd osscore_static curl)
 
 ADD_EXECUTABLE(get_object_to_file get_object_to_file.c)
-TARGET_LINK_LIBRARIES(get_object_to_file ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(get_object_to_file osscore_static curl)
 
 ADD_EXECUTABLE(put_object_from_buffer put_object_from_buffer.c)
-TARGET_LINK_LIBRARIES(put_object_from_buffer ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(put_object_from_buffer osscore_static curl)
 
 ADD_EXECUTABLE(put_object_from_file put_object_from_file.c)
-TARGET_LINK_LIBRARIES(put_object_from_file ossmodules ossutil ossauth osscore curl)
+TARGET_LINK_LIBRARIES(put_object_from_file osscore_static curl)
 
 ADD_EXECUTABLE(put_object_multithreaded put_object_multithreaded.c)
-TARGET_LINK_LIBRARIES(put_object_multithreaded ossmodules ossutil ossauth osscore curl ossextra pthread)
+TARGET_LINK_LIBRARIES(put_object_multithreaded osscore_static ossextra_static pthread curl)
 

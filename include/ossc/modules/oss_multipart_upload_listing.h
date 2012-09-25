@@ -18,8 +18,6 @@
 
 #ifndef OSS_MULTIPART_UPLOAD_LISTING_H
 #define OSS_MULTIPART_UPLOAD_LISTING_H
-#include "ossc-config.h"
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -28,6 +26,7 @@
 #define _OSS_MULTIPART_UPLOAD_H
 #include <ossc/modules/oss_multipart_upload.h>
 #undef _OSS_MULTIPART_UPLOAD_H
+#include <ossc/ossc-config.h>
 
 #ifdef HAVE_STDBOOL_H
 #include <stdbool.h>

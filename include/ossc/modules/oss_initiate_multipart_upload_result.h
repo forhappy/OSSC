@@ -19,7 +19,6 @@
 
 #ifndef OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H 
 #define OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H
-#include "ossc-config.h"
 
 #include <assert.h>
 #include <stdio.h>

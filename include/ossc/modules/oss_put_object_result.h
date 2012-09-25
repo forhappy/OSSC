@@ -18,7 +18,6 @@
 
 #ifndef OSS_PUT_OBJECT_RESULT_H
 #define OSS_PUT_OBJECT_RESULT_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

@@ -14,7 +14,6 @@
  */
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
-#include "ossc-config.h"
 
 #define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
 #include <ossc/modules/oss_abort_multipart_upload_request.h>
@@ -155,6 +154,12 @@
  * get the proper time format
  * */
 #include <ossc/util/oss_time.h>
+
+/* 
+ *
+ * */
+#include <ossc/util/oss_compression.h>
+#include <ossc/util/oss_decompression.h>
 
 /* *
  * constants

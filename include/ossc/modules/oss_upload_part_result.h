@@ -17,7 +17,6 @@
 
 #ifndef OSS_UPLOAD_PART_RESULT_H
 #define OSS_UPLOAD_PART_RESULT_H
-#include "ossc-config.h"
 
 #include <stdio.h>
 #include <string.h>

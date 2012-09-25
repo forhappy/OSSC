@@ -176,6 +176,8 @@ object_curl_operation(const char *method,
 			curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, object_curl_operation_header_callback);
 			curl_easy_setopt(curl, CURLOPT_HEADERDATA, header_buffer);
 		}
+		//curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+		//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, http_headers);
 		curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
@@ -562,23 +564,12 @@ client_put_object_from_buffer(oss_client_t *client,
 	 * 释放 http_headers资源
 	 */
 	curl_slist_free_all(http_headers);
-	
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
+	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
+
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_put_object_response(user_data);
@@ -707,23 +698,12 @@ client_get_object_to_file(oss_client_t *client,
 	 * 释放 http_headers资源
 	 */
 	curl_slist_free_all(http_headers);
+	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
 
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
 	if (user_data->header_buffer->code == 200 
 			|| (user_data->header_buffer->code == 206)) {
 		if (retcode != NULL) *retcode = 0;
@@ -853,22 +833,12 @@ client_get_object_to_buffer(oss_client_t *client,
 	 * 释放 http_headers资源
 	 */
 	curl_slist_free_all(http_headers);
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
+	oss_map_delete(default_headers);
+	if(now != NULL) free(now);
+	if(sign != NULL) free(sign);
+	if(resource != NULL) free(resource);
+	if(url != NULL) free(url);
+
 	/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
 	 * 如果缓冲区应设置合理的大小
 	 * */
@@ -909,6 +879,7 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 
 	user_data->recv_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
 	user_data->recv_buffer->ptr = NULL;
+	user_data->recv_buffer->fp = NULL;
 	user_data->recv_buffer->left = 0;
 	user_data->recv_buffer->allocated = 0;
 
@@ -1002,22 +973,11 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 	 * 释放 http_headers资源
 	 */
 	curl_slist_free_all(http_headers);
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
+	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
 	
 	/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
 	 * 如果缓冲区应设置合理的大小
@@ -1144,22 +1104,12 @@ client_copy_object_ext(oss_client_t *client,
 	object_curl_operation_3rd(OSS_HTTP_PUT, resource, url, http_headers, user_data);
 	curl_slist_free_all(http_headers);
 
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
+	if (copy_source != NULL) free(copy_source);
+	if (header_copy_source != NULL) free(header_copy_source);
 	oss_map_delete(default_headers);
 	oss_map_delete(user_headers);
 
@@ -1299,22 +1249,12 @@ client_copy_object(oss_client_t *client,
 
 	curl_slist_free_all(http_headers);
 
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
+	if (copy_source != NULL) free(copy_source);
+	if (header_copy_source != NULL) free(header_copy_source);
 
 	oss_map_delete(default_headers);
 	oss_map_delete(user_headers);
@@ -1527,23 +1467,12 @@ client_delete_object(oss_client_t *client,
 	 * 释放 http_headers资源
 	 */
 	curl_slist_free_all(http_headers);
+	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
 
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
 	if (user_data->header_buffer->code == 204) {
 		if (retcode != NULL) *retcode = 0;
 		oss_free_user_data(user_data);
@@ -1592,7 +1521,7 @@ client_delete_multiple_object(oss_client_t *client,
 	char header_auth[128] = {0};
 	char header_md5[128]  = {0};
 	char delete_key[1024] = {0};
-	const char *content_md5 = NULL;
+	char *content_md5 = NULL;
 	unsigned int sign_len = 0;
 	int keynums = 0;
 	unsigned int i = 0;
@@ -1648,32 +1577,23 @@ client_delete_multiple_object(oss_client_t *client,
 	object_curl_operation(OSS_HTTP_POST, resource, url, http_headers, user_data);
 
 	curl_slist_free_all(http_headers);
-	if(now != NULL) {
-		free(now);
-		now = NULL;
-	}
-	if(sign != NULL) {
-		free(sign);
-		sign = NULL;
-	}
-	if(resource != NULL) {
-		free(resource);
-		resource = NULL;
-	}
-	if(url != NULL) {
-		free(url);
-		url = NULL;
-	}
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
+	if (content_md5 != NULL) free(content_md5);
+	tstring_free(key_list);
 	oss_map_delete(default_headers);
 
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
-		oss_free_user_data(user_data);
+		oss_free_partial_user_data_2nd(user_data);
 		return NULL;
 	} else {
+		printf("%s\n", user_data->recv_buffer->ptr);
 		if (retcode != NULL)
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
-		oss_free_user_data(user_data);
+		oss_free_partial_user_data_2nd(user_data);
 		return NULL;
 	}
 }

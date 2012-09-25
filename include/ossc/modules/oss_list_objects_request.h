@@ -19,7 +19,6 @@
 
 #ifndef OSS_LIST_OBJECTS_REQUEST_H
 #define OSS_LIST_OBJECTS_REQUEST_H
-#include "ossc-config.h"
 
 #include <assert.h>
 #include <stdio.h>
