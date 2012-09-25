@@ -38,7 +38,6 @@
 #define NUM_THREADS 4
 #define PART_SIZE (8 * 1024 * 1024)
 
-
 typedef struct extra_buffer_s extra_buffer_t;
 typedef struct extra_request_param_s extra_request_param_t;
 typedef struct extra_worker_monitor_param_s extra_worker_monitor_param_t;

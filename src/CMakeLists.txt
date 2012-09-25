@@ -19,29 +19,13 @@ SET(CORE_SRC
 
 ADD_LIBRARY(osscore_static STATIC ${CORE_SRC})
 ADD_LIBRARY(osscore_shared SHARED ${CORE_SRC})
-
 SET_TARGET_PROPERTIES(osscore_static PROPERTIES OUTPUT_NAME "osscore") 
 SET_TARGET_PROPERTIES(osscore_shared PROPERTIES OUTPUT_NAME "osscore") 
-
 SET_TARGET_PROPERTIES(osscore_shared PROPERTIES VERSION 0.1.3 SOVERSION 1) 
 
-
-SET(EXTRA_SRC
-	${EXTRA})
-
-ADD_LIBRARY(ossextra_shared SHARED ${EXTRA_SRC})
-TARGET_LINK_LIBRARIES(ossextra_shared osscore_shared)
-ADD_LIBRARY(ossextra_static STATIC ${EXTRA_SRC})
-TARGET_LINK_LIBRARIES(ossextra_static osscore_static)
-
-SET_TARGET_PROPERTIES(ossextra_static PROPERTIES OUTPUT_NAME "ossextra") 
-SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES OUTPUT_NAME "ossextra") 
-
-SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES VERSION 0.1.3 SOVERSION 1) 
-
 INSTALL(TARGETS
-	osscore_static ossextra_static
-	osscore_shared ossextra_shared
+	osscore_static 
+	osscore_shared
 	LIBRARY DESTINATION lib
 	ARCHIVE DESTINATION lib) 
 
@@ -50,3 +34,26 @@ INSTALL(FILES ${OSSC_BINARY_DIR}/config.h DESTINATION include/ossc/modules/)
 INSTALL(FILES ${OSSC_SOURCE_DIR}/AUTHORS DESTINATION share/doc/ossc/)
 INSTALL(FILES ${OSSC_SOURCE_DIR}/LGPL-2.1 DESTINATION share/doc/ossc/)
 INSTALL(FILES ${OSSC_SOURCE_DIR}/LICENSE.txt DESTINATION share/doc/ossc/)
+
+IF(UNIX)
+
+SET(EXTRA_SRC
+	${EXTRA})
+
+ADD_LIBRARY(ossextra_shared SHARED ${EXTRA_SRC})
+ADD_LIBRARY(ossextra_static STATIC ${EXTRA_SRC})
+TARGET_LINK_LIBRARIES(ossextra_shared osscore_shared)
+TARGET_LINK_LIBRARIES(ossextra_static osscore_static)
+SET_TARGET_PROPERTIES(ossextra_static PROPERTIES OUTPUT_NAME "ossextra") 
+SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES OUTPUT_NAME "ossextra") 
+SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES VERSION 0.1.3 SOVERSION 1) 
+
+INSTALL(TARGETS
+	ossextra_static
+	ossextra_shared
+	LIBRARY DESTINATION lib
+	ARCHIVE DESTINATION lib) 
+
+ENDIF(UNIX)
+
+
