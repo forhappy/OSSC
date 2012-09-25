@@ -87,7 +87,7 @@ struct oss_object_group_item_s {
 	 * @param part_name [in] Object的number
 	 * @retval void
 	 */
-	void (*set_part_number)(oss_object_group_item_t *item, int part_name);
+	void (*set_part_number)(oss_object_group_item_t *item, int part_number);
 };
 
 /**
