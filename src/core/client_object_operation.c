@@ -21,6 +21,8 @@
 #include <ossc/util/oss_common.h>
 #include <ossc/util/oss_ttxml.h>
 #include <ossc/util/oss_time.h>
+#include <ossc/util/oss_compression.h>
+#include <ossc/util/oss_decompression.h>
 
 #define _OSS_CLIENT_H
 #include <ossc/modules/oss_client.h>
@@ -581,6 +583,38 @@ client_put_object_from_buffer(oss_client_t *client,
 	return NULL;
 }
 
+oss_put_object_result_t *
+client_put_compressed_object_from_buffer(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		void *input, 
+		size_t input_len,
+		oss_object_metadata_t *metadata,
+		unsigned short *retcode)
+{
+
+	assert(client != NULL);
+	assert(bucket_name != NULL);
+	assert(key != NULL);
+	assert(input != NULL);
+
+	int new_size = 0;
+
+#define LZ4_compressBound(isize)   (isize + (isize/255) + 16)
+	size_t outbuf_len = LZ4_compressBound(input_len);
+#undef LZ4_compressBound
+	char *outbuf = (char*)malloc(sizeof(char) * outbuf_len);
+	if (outbuf == NULL) return NULL;
+	memset(outbuf, 0, outbuf_len);
+	new_size = oss_compress_block_2nd(input, input_len, outbuf, outbuf_len,
+			0x01, 0, 0);
+	metadata->set_content_length(metadata, new_size);
+	oss_put_object_result_t *result =
+		client_put_object_from_buffer(client, bucket_name, key, outbuf, metadata, retcode);
+	free(outbuf);
+	return result;
+}
+
 oss_object_metadata_t *
 client_get_object_to_file(oss_client_t *client,
 		oss_get_object_request_t *request,
@@ -995,6 +1029,37 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 		oss_free_user_data(user_data);
 	}
 	return NULL;
+}
+
+oss_object_metadata_t *
+client_get_compressed_object_to_buffer(
+		oss_client_t *client,
+		oss_get_object_request_t *request,
+		void **output,
+		size_t *output_len,
+		unsigned short *retcode)
+{
+	assert(client != NULL);
+	assert(request != NULL);
+
+	char *tmpbuf = NULL;
+	size_t tmpbuf_len = 0;
+
+	oss_object_metadata_t *metadata =
+		client_get_object_to_buffer_2nd(client,
+			request,(void **)&tmpbuf, &tmpbuf_len, retcode);
+
+
+#define LZ4_compressBound(isize)   (isize + (isize/255) + 16)
+	char *decompressed_buf = (char *)malloc(3 * LZ4_compressBound(tmpbuf_len));
+	int decompressed_len = oss_decompress_block_2nd(tmpbuf, tmpbuf_len,
+			decompressed_buf, (3 * LZ4_compressBound(tmpbuf_len)));
+#undef LZ4_compressBound
+	*output = decompressed_buf;
+	*output_len = decompressed_len;
+
+	free(tmpbuf);
+	return metadata;
 }
 
 oss_copy_object_result_t *

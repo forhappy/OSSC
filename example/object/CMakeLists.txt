@@ -18,6 +18,9 @@ TARGET_LINK_LIBRARIES(delete_multiple_object osscore_static curl)
 ADD_EXECUTABLE(delete_object delete_object.c)
 TARGET_LINK_LIBRARIES(delete_object osscore_static curl)
 
+ADD_EXECUTABLE(get_compressed_object_to_buffer get_compressed_object_to_buffer.c)
+TARGET_LINK_LIBRARIES(get_compressed_object_to_buffer osscore_static curl)
+
 ADD_EXECUTABLE(get_object_metadata get_object_metadata.c)
 TARGET_LINK_LIBRARIES(get_object_metadata osscore_static curl)
 
@@ -32,6 +35,9 @@ TARGET_LINK_LIBRARIES(get_object_to_file osscore_static curl)
 
 ADD_EXECUTABLE(put_object_from_buffer put_object_from_buffer.c)
 TARGET_LINK_LIBRARIES(put_object_from_buffer osscore_static curl)
+
+ADD_EXECUTABLE(put_compressed_object_from_buffer put_compressed_object_from_buffer)
+TARGET_LINK_LIBRARIES(put_compressed_object_from_buffer osscore_static curl)
 
 ADD_EXECUTABLE(put_object_from_file put_object_from_file.c)
 TARGET_LINK_LIBRARIES(put_object_from_file osscore_static curl)

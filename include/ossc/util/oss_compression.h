@@ -46,13 +46,13 @@ extern void oss_compress_file(
 		char flag,      /** 0: 不写入源文件的校验值，1:写入源文件的校验值 */
 		int level);
 
-void oss_compress_block(
+extern int oss_compress_block(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */
 		int level /**< 该压缩算法的压缩等级*/);
 
-extern void oss_compress_block_2nd(
+extern int oss_compress_block_2nd(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */

@@ -23,14 +23,14 @@
 extern oss_compression_header_t *
 oss_read_compression_header(FILE *fp);
 
-size_t
+int
 oss_decompress_block(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm /** 压缩算法 */
 		);
 
-size_t
+int
 oss_decompress_block_2nd(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
