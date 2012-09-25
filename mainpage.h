@@ -12,7 +12,8 @@
 
 /** @mainpage OSSC 开发者手册
 *******************************************************************************
-* @section OSSC介绍
+* @section OSSC介绍 
+* @subpage OSSC_INTRO
 * @subsection 关于OSS
 * 阿里云存储服务(OpenStorageService,简称 OSS)，是阿里云对外提供的海量，安全，低成本，高可靠的云存储服务。
 * 用户可以通过简单的 REST 接口，在任何时间、任何地点、任何互联网设备上进行上传和下载数据，
@@ -20,7 +21,6 @@
 * 基于 OSS，用户可以搭建出各种多媒体分享网站、网盘、个人企业数据备份等基于大规模数据的服务。
 * 【摘自《OSS API 开放接口规范文档》】。
 *
-* @subpage OSSC_INTRO
 * @subsection 我们为OSS做了什么？
 * 本项目为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，并取名为 OSSC，
 * 目前 OSSC 提供了 OSS 开放接口中所描述的所有功能, 特点包括：
@@ -30,6 +30,12 @@
 * 实现了从文件上传 Object、从内存缓冲区上传 Object、下载 Object 至文件、下载 Object 至内存缓冲区、多线程断点续传上传大文件。
 * -# Multipart Upload 操作，初始化 Multipart Upload、上传 Part、完成 Multipart 上传、终止 Multipart Upload、查看 Multipart Upload，查看正在上传的 Part。
 * -# Object Group 操作，创建 Object Group，获取 Object Group，获取 Object Group 中的 Object List 信息、获取 Object Group 元信息，删除 Object Group。
+*
+* @subsection OSSC亮点
+* 目前 OSSC 除了提供 OSS 开放接口中所描述的所有功能以外，还包括以下亮点：
+* - 多线程断点上传功能(由于设置Range参数时获取Ojbect请求总是出现："connection reset by peer"，所以多线程断点下载功能暂时未完成)
+* - 文件实时压缩上传和实时解压缩下载;
+* - 简易的文件夹同步上传和同步下载功能
 *******************************************************************************
 * @section OSSC安装细节
 * @subpage OSSC_INSTALL
@@ -70,14 +76,16 @@
 * -L/path-to-your-ossc-installation -lossextra.
 *******************************************************************************
 * @section OSSC编码规范
+* @subpage OSSC_CODING_STYLE
+*
 * 一个优秀的项目必须遵循良好的编码规范，良好的编码风格可以促进团队协作，减少 BUG 产生几率，有助于开发后的代码审查，降低后期维护成本。
 *
 * OSSC虽然只是我们在业余时间完成的小项目，但是也注重的编码风格的一致性，我们强烈建议那些希望基于OSSC做二次开发的编码人员阅读本规范，
 * 相信本规范能够让你快速熟悉 OSSC 的整体结构和OSSC API 的使用方法。
 *
-* @subpage OSSC_CODING_STYLE
 *******************************************************************************
 * @section OSSC实现原理
+* OSSC详细的实现原理请参考：\subpage OSSC_INTERNAL
 *
 * @subsection 概括
 * OSSC（OSS-C-SDK）完全采用C语言开发，并实现了类似面向对象的调用方式，即“对象（struct 结构）”的“成员函数（函数指针）“采用函数指针形式实现，
@@ -118,7 +126,6 @@
 *
 * @endcode
 *
-* OSSC详细的实现原理请参考：\subpage OSSC_INTERNAL
 *******************************************************************************
 * @section OSSC高级模块Extra库
 * OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，希望今后会有其他开发者实现
@@ -137,13 +144,13 @@
 * http://www.gnu.org/licenses/lgpl.html
 *******************************************************************************
 * @section 关于作者
-* 傅海平：中国科学院计算技术研究所网络数据中心学生(haipingf@gmail.com)\n
-* 王  维：中国科院学计算技术研究所网络数据中心学生(wangwei881116@gmail.com)
+* 傅海平：中国科学院计算技术研究所网络数据中心(haipingf@gmail.com)\n
+* 王  维：中国科院学计算技术研究所网络数据中心(wangwei881116@gmail.com)
 */
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-/** @page OSSC_INTRO OSSC介绍
+/** @page OSSC_INTRO OSSC详细介绍
  * @section OSSC介绍
  * @subsection OSS 简介
 * 阿里云存储服务(OpenStorageService,简称 OSS)，是阿里云对外提供的海量，安全，低成本，高可靠的云存储服务。
@@ -164,6 +171,12 @@
 * - Multipart Upload 操作，初始化 Multipart Upload、上传 Part、完成 Multipart 上传、终止 Multipart Upload、查看 Multipart Upload，查看正在上传的 Part。
 *
 * - Object Group 操作，创建 Object Group，获取 Object Group，获取 Object Group 中的 Object List 信息、获取 Object Group 元信息，删除 Object Group。
+*
+* @subsection OSSC亮点
+* 目前 OSSC 除了提供 OSS 开放接口中所描述的所有功能以外，还包括以下亮点：
+* - 多线程断点上传功能(由于设置Range参数时获取Ojbect请求总是出现："connect reset by peer"，所以多线程断点下载功能暂时未完成)
+* - 文件实时压缩上传和实时解压缩下载;
+* - 简易的文件夹同步上传和同步下载功能
 *
 * @subsection 我们的夙愿
 * 我们是 OSSC（OSS C SDK） 的开发者，OSSC 为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，目前 OSSC 相比 OSS JAVA可能还存在一些不足，程序稳定性有待检验，
@@ -212,7 +225,7 @@
 * -L/path-to-your-ossc-installation -lossextra.
  */
 
-/** @page OSSC_CODING_STYLE OSSC编码规范
+/** @page OSSC_CODING_STYLE OSSC编码规范详述
 * @section 编码规范的重要性
 * 如前文所述，一个优秀的项目必须遵循良好的编码规范，良好的编码风格可以促进团队协作，减少 BUG 产生几率，有助于开发后的代码审查，降低后期维护成本。
 * @section OSSC编码规范概述
@@ -366,6 +379,7 @@
  * @section 概述
  * OSSC（OSS-C-SDK）完全采用C语言开发，所有代码（头文件 + 实现文件 + 测试文件）合计约 2.2 万行，我们在 OSSC 中实现了类似面向对象的调用方式，\n
  * 因此熟悉 OSS Java调用方式的开发者可以在很短的时间内掌握 OSS C SDK的使用。
+ *
  * @section 代码目录结构
  * @code
  * .
@@ -414,15 +428,217 @@
  *
  * @code
  * #include <ossc/client.h>
- * #include <ossc/oss_helper.h>
  * #include <ossc/oss_extra.h> // 多线程断点上传大文件功能，由于依赖pthread线程库，所以目前仅在Unix/Linux中可以使用。
- * #include <ossc/util/oss_common.h>
  * @endcode
  *
  *@attention
  * 其中 ossc/oss_extra.h 里面包含了多线程断点上传大文件功能，由于依赖pthread线程库，所以目前仅在Unix/Linux中可以使用。
+ *
+ * 另外，src 目录结构如下：
+ * @code
+ * .
+ * ├── CMakeLists.txt
+ * ├── core
+ * ├── extra
+ * ├── lib
+ * ├── modules
+ * └── util
+ * @endcode
+ * - CMakeLists.txt: 该目录的CMake脚本;
+ * - core: OSSC 的核心代码，包含 Bucket，Object，Multipart Upload，Object Group 四类主要功能的实现及其辅助函数；
+ * - extra: extra 库的核心实现，包括多线程断点续传和文件夹上传同步和下载同步的功能；
+ * - lib: OSSC 的依赖库，包括 md5，hmac-sha1，sha1，base64和其他压缩库(LZ4, LZO)等功能；
+ * - modules: OSSC 各个结构实现代码；
+ * - util: OSSC 的工具函数，包括压缩库，签名验证函数，时间，字符串，XML解析等功能
+ * 
+ * @section 对象实现
+ * OSSC 采用面向对象的方式构造每个结构（可以称之为类），每个对象对外只有初始化函数和析构函数，其他函数均采用函数指针方式调用，
+ * 所以一个典型的对象声明方式如下：
+ * @code
+ *  //  Bucket是OSS上的命名空间 \n
+ *  //  Bucket名在整个 OSS 中具有全局唯一性,且不能修改；
+ *  //  存储在OSS上的每个Object必须都包含在某个Bucket中。
+ *  //  一个应用，例如图片分享网站，可以对应一个或多个 Bucket。
+ *  //  一个用户最多可创建 10 个Bucket, 但每个Bucket中存放的Object的数量和大小总和没有限制,
+ *  //  用户不需要考虑数据的可扩展性。\n
+ *  //  Bucket 命名规范
+ *  //  - 只能包括小写字母，数字，下划线（_）和短横线（-）
+ *  //  - 必须以小写字母或者数字开头
+ *  //  - 长度必须在 3-255 字节之间
+ *
+ * struct oss_bucket_s {
+ * 	char *create_date;  //< Bucket的创建时间
+ * 	char *name;         //< Bucket的名称 
+ * 	oss_owner_t *owner; //< Bucket的所有者 
+ * 
+ * 	//
+ * 	// 返回Bucket的创建时间
+ * 	// @param bucket [in] oss_bucket_t 指针
+ * 	// @retval const char *
+ * 	// @return Bucket的创建时间
+ * 	/
+ * 	const char * (*get_create_date)(oss_bucket_t *bucket);
+ * 
+ *  //	
+ *  // 设置Bucket的创建时间
+ *  // @param bucket [in] oss_bucket_t 指针
+ *  // @param create_date [in] Bucket的创建时间
+ *  // @retval void
+ *  //	
+ * 	void (*set_create_date)(oss_bucket_t *bucket, const char *create_date);
+ * 
+ * // 	
+ * // 返回Bucket的名称
+ * // @param bucket [in] oss_bucket_t 指针
+ * // @retval const char *
+ * // @return Bucket的名称
+ * // 	
+ * 	const char * (*get_name)(oss_bucket_t *bucket);
+ * 
+ * //	
+ * // 设置Bucket的名称
+ * // @param bucket [in] oss_bucket_t 指针
+ * // @param name [in] Bucket的名称
+ * // @retval void
+ * //	
+ * 	void (*set_name)(oss_bucket_t *bucket, const char * name);
+ * 
+ * //	
+ * // 返回Bucket的所有者
+ * // @param bucket [in] oss_bucket_t 指针
+ * // @retval oss_owner_t *
+ * // @return Bucket的所有者
+ * 	
+ * 	oss_owner_t * (*get_owner)(oss_bucket_t *bucket);
+ * 
+ * //	
+ * // 设置Bucket的所有者
+ * // @param bucket [in] oss_bucket_t 指针
+ * // @param owner [in] Bucket的所有者
+ * // @retval void
+ * //	
+ * 	void (*set_owner)(oss_bucket_t *bucket, oss_owner_t *owner);
+ * };
+ * 
+ * //  
+ * // oss_bucket_t 构造函数
+ * // @return 返回一个标识Bucket的结构指针
+ * // @note 用户不需要句柄后要调用相应的finalize函数释放空间
+ * // @retval 非空 表示成功
+ * // @retval NULL 表示失败
+ * 
+ * extern oss_bucket_t *
+ * bucket_initialize(void);
+ * 
+ * //  
+ * // oss_bucket_t 带bucket_name参数的构造函数
+ * // @return 返回一个标识Bucket的结构指针
+ * // @note 用户不需要句柄后要调用相应的finalize函数释放空间
+ * // @retval 非空 表示成功
+ * // @retval NULL 表示失败
+ * //  
+ * extern oss_bucket_t *
+ * bucket_initialize_with_name(const char *name);
+ * 
+ * // 
+ * // oss_bucket_t 析构函数
+ * // @param bucket [in] 标识一个ACL的结构指针
+ * // @retval void
+ * // @pre bucket 必须使用bucket_initialize的返回值
+ * // 
+ * extern void 
+ * bucket_finalize(oss_bucket_t *bucket);
+ * @endcode
+ *
+ * @section 签名验证
+ * OSSC签名验证步骤遵循OSS标准签名验证方式，具体方式详见《OSS开放接口规范》
+ *
+ * @section 请求处理
+ * 我们使用 libcurl 发送请求并接受返回结果。libcurl 可以灵活处理多种网络协议，对于HTTP协议来说，
+ * 也可以灵活地生成请求方式和请求头部。OSSC的HTTP请求处理的核心代码位于src/core中，
+ * 因此具体方式可以参见src/core/client_object_operation.c或相关的实现文件。
+ *
+ * @section 返回结果解析与处理
+ * 由于返回结果可能是包含错误信息的XML格式文件，另外OSSC使用C开发，需要重复制造轮子，但是我们并没有使用类似expat，
+ * libxml2等“重量级”的库，而是选择了超轻量级的CCAN的ttxml库（http://ccodearchive.net/info/ttxml.html,一个xml文件只读库，
+ * 源码仅仅300行左右），我们并对它进行了适当的改造，所以返回结果解析与处理比较完整，详细实现请参考 src/util/ttxml和相关文件。
+ *
+ * @section 压缩文件格式描述
+ * 为了减少用户海量文件对OSS存储造成的压力，同时降低对网络带宽等有限资源的使用，
+ * OSSC 采用当前流行的实时压缩算法设计了一种针对阿里云存储服务的可扩展压缩文件格式。
+ *
+ * @subsection 为什么采用压缩文件上传
+ * 我们的实验也证明，该压缩文件格式由于支持多种实时压缩算法，因此可以在采用合理的压缩算法的情况下，
+ * 既保证用户不会损失很长的压缩时间，同时也有效减少用户上传文件大小20%-70%，
+ * 另外用户可以在压缩速度和压缩比之间进行取舍，该策略带来的好处是降低了OSS和用户双方的存储压力和网络带宽压力
+ *
+ * 经过进一步的实验我们发现，其实压缩过程时间损失完全可以由压缩后文件变小更利于上传而带来的网络传输时间减小而弥补，
+ * 某些时候后者带来的好处远远大于前者。
+ *
+ * 以LZ4压缩算法网站给出的数据(http://code.google.com/p/lz4/)，假设采用LZ4(r59)，压缩速率为 330MB/s，用户采用100M光纤上传1G的文件，
+ * 不采用压缩将需要 1024 MB / 12.5MB = 81.92s,如果采用压缩方式上传，压缩所用时间为3秒，压缩后500M，此时文件上传仅需40秒的时间，因此压缩方式上传只需要 3 + 40 = 43秒，
+ * 同时也大大减少了存储空间，可以说是一举两得。
+ *
+ * @code
+ *        Single Thread, Core 2 Duo @3GHz
+ *
+ *      Name        Ratio    C.speed    D.speed
+ * LZ4 (r59)        2.084    330        915
+ * LZO 2.05 1x_1    2.038    311        480
+ * QuickLZ 1.5-1    2.233    257        277
+ * Snappy 1.0.5     2.024    227        729
+ * LZF              2.076    197        465
+ * FastLZ           2.030    195        420
+ * zlib 1.2.5 -1    2.728    39         195
+ * LZ4 HC (r66)     2.712    18         1020
+ * zlib 1.2.5-6     3.095    14         210
+ * @endcode
+ *
+ * @subsection OSSC采用的压缩格式简介
+ * @code
+ * +---+---+---+---+---+---+---+---+
+ * |"O"|"S"|"S"|"C"| V | A | F | L |   "OSSC": Magic Number;
+ * +---+---+---+---+---+---+---+---+        V: Compressed File Version, Current Version 0x1
+ * |           MD5[00-07]          |        A: Compression Algorithm, 0x1(LZ4), 0x2(LZO), ...
+ * +---+---+---+---+---+---+---+---+        F: Flag, 0x1:Integrity Check, ...
+ * |           MD5[08-15]          |        L: Header Length, Max Value 255
+ * +---+---+---+---+---+---+---+---+ Optional: Optional Header, Not Used In Version 0x1
+ * |       Optional(4 Bytes)       |
+ * +---+---+---+---+---+---+---+---+--+                                                 
+ * | Block  Length |               |  |                                                 
+ * +---------------+               |  \                                                 
+ * |                               |   X(Compressed Data Block 1)                       
+ * |      Compressed Data          |  /                                                 
+ * |                               |  |                                                 
+ * +----------------+--------------+--+                                                 
+ * | Block  Length  |              |  |                                                 
+ * +----------------+              |  \                                                 
+ * |                               |   X(Compressed Data Block 2)                       
+ * |      Compressed Data          |  /                                                 
+ * |                               |  |                                                 
+ * +-------------------------------+--+                                                 
+ * |                               |  |                                                 
+ * |         Compressed            |  \                                                 
+ * |            Data               |   X(Compressed Data Block 3 ~ (n - 1))             
+ * |           Blocks              |  /                                                 
+ * |                               |  |                                                 
+ * +-------------------------------+--+                                                 
+ * | Block  Length |               |  |                                                 
+ * +---------------+               |  \                                                 
+ * |                               |   X(Compressed Data Block n)                       
+ * |      Compressed Data          |  /                                                 
+ * |                               |  |                                                 
+ * +-------------------------------+--+   
+ * @endcode
+ * @subsection 压缩文件解析
+ * - OSSC: OSSC压缩文件起始的4个字节是魔数字符串"OSSC"，用来识别该文件是否是OSSC的压缩文件格式
+ * -    V: Version，1个字节，压缩文件格式的版本号，目前为0x1
+ * -    A: Algorithm，1个字节，标识压缩文件采用的算法，目前支持LZ4,LZO两种
+ * -    F: Flag，1个字节，标志位，取值为0x1时需要计算原始数据的MD5，同时在解压时进行完整性验证，取值为其他时待定
+ * -    L: Length，1个字节，标识头部长度，所以头部最大长度为255字节
+ * -  MD5: 原始数据的MD5值，在解压缩时进行完整性校验
+ * -Optional: 可选数据项，目前版本0x1该项没有被利用
  */
-
 
 /** @page OSSC_EXTRA OSSC高级模块Extra库
 * @section OSSC高级模块Extra简介
@@ -443,6 +659,41 @@
 * @endcode
 * @section OSSC_EXTRA_API_INTERNAL OSSC Extra API 实现原理
 * @section OSSC_EXTRA_API_USAGE OSSC Extra API使用
+* 以下是OSSC Extra 库的使用：
+* @subsection 多线程断点上传大文件
+* @code
+* #include <ossc/client.h>
+* #include <ossc/oss_extra.h>
+* #include <ossc/oss_helper.h>
+* 
+* static const char *access_id  = "ACSGmv8fkV1TDO9L"; //设置用户 Access ID 
+* static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key 
+* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* 
+* // 多线程断点续传，将本地大文件(> 5M)上传至云服务器中 
+* int main()
+* {
+* 	unsigned short retcode = -1;
+* 	const char *retinfo = NULL;
+* 
+* 	const char *bucket_name = "bucketexample";
+* 	const char *key = "upload-mt.data";
+* 	const char *local_file = "mysql-5.5.27-linux2.6-x86_64.tar.gz";
+* 	//const char *local_file = "mysql-5.1.52.tar.gz";
+* 
+* 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
+* 	
+* 	// 多线程断点续传，将本地大文件上传至云服务器中 
+* 	client_extra_put_object(client, bucket_name, key, local_file, &retcode);
+* 
+* 	if (retcode == OK) {
+* 		printf("put object with multithreaded mode successfully.\n");
+* 	} else {
+* 		retinfo = oss_get_error_message_from_retcode(retcode);
+* 		printf("%s\n", retinfo);
+* 	}
+* }
+* @endcode
 */
 
 

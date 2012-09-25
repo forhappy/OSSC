@@ -1,0 +1,33 @@
++---+---+---+---+---+---+---+---+
+|"O"|"S"|"S"|"C"| V | A | F | L |   "OSSC": Magic Number;
++---+---+---+---+---+---+---+---+        V: Compressed File Version, Current Version 0x1
+|           MD5[00-07]          |        A: Compression Algorithm, 0x1(LZ4), 0x2(LZO), ...
++---+---+---+---+---+---+---+---+        F: Flag, 0x1:Integrity Check, ...
+|           MD5[08-15]          |        L: Header Length, Max Value 255
++---+---+---+---+---+---+---+---+ Optional: Optional Header, Not Used In Version 0x1
+|       Optional(4 Bytes)       |
++---+---+---+---+---+---+---+---+--+                                                 
+| Block  Length |               |  |                                                 
++---------------+               |  \                                                 
+|                               |   X(Compressed Data Block 1)                       
+|      Compressed Data          |  /                                                 
+|                               |  |                                                 
++----------------+--------------+--+                                                 
+| Block  Length  |              |  |                                                 
++----------------+              |  \                                                 
+|                               |   X(Compressed Data Block 2)                       
+|      Compressed Data          |  /                                                 
+|                               |  |                                                 
++-------------------------------+--+                                                 
+|                               |  |                                                 
+|         Compressed            |  \                                                 
+|            Data               |   X(Compressed Data Block 3 ~ (n - 1))             
+|           Blocks              |  /                                                 
+|                               |  |                                                 
++-------------------------------+--+                                                 
+| Block  Length |               |  |                                                 
++---------------+               |  \                                                 
+|                               |   X(Compressed Data Block n)                       
+|      Compressed Data          |  /                                                 
+|                               |  |                                                 
++-------------------------------+--+                                                 

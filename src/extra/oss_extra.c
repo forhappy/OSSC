@@ -47,7 +47,8 @@ _extra_get_file_fingerprint(FILE *fp)
 #define PAGE_SIZE 4096
 	char file_begin[PAGE_SIZE] = {0};
 	char *fingerprint = NULL;
-	fread(file_begin, PAGE_SIZE, 1, fp);
+	size_t dummy = fread(file_begin, PAGE_SIZE, 1, fp);
+	if (dummy < 0) return NULL;
 	fingerprint = (char *)oss_compute_md5_digest(file_begin, PAGE_SIZE);
 #undef PAGE_SIZE
 	return fingerprint;
@@ -345,7 +346,8 @@ _extra_complete_multipart_upload(oss_client_t *client, const char *bucket_name,
 			char etag_orig[48] = {0};
 			char etag[48] = {0};
 			int j= 0, k = 0;
-			fread(etag_orig, 48, 1, fp);
+			size_t dummy = fread(etag_orig, 48, 1, fp);
+			if (dummy < 1) return;
 			for (j = 0; j < strlen(etag_orig); j++) {
 				if (etag_orig[j] != '"') {
 					etag[k] = etag_orig[j];
@@ -460,6 +462,7 @@ client_extra_put_object(oss_client_t *client,
 	job_t *job;
 	pthread_t worker_monitor;
 	extra_worker_monitor_param_t *worker_monitor_param = NULL;
+	size_t read_file_sz = 0;
 
 	FILE *fp = fopen(local_file, "r");
 	if (fp == NULL) return;
@@ -501,8 +504,12 @@ client_extra_put_object(oss_client_t *client,
 		strncpy(upload_id_filename, upload_id_fnbuf, upload_id_fnbuf_len);
 
 		FILE *upload_id_fp = fopen(upload_id_filename, "r");
-		if (upload_id_fp == NULL) return;
-		fread(upload_id, 48, 1, upload_id_fp);
+		if (upload_id_fp == NULL) {
+			fprintf(stderr, "Error, cannot find upload-id file\n");
+			return;
+		}
+		size_t ret = fread(upload_id, 48, 1, upload_id_fp);
+		if (ret < 0) return;
 		free(upload_id_filename);
 		fclose(upload_id_fp);
 
@@ -554,7 +561,8 @@ client_extra_put_object(oss_client_t *client,
 					user_data->send_buffer->unmovable_buffer_ptr =  user_data->send_buffer->ptr;
 					memset(user_data->send_buffer->ptr, 0, PART_SIZE);
 					fseek(fp, part_number * PART_SIZE, SEEK_SET);
-					fread(user_data->send_buffer->ptr, PART_SIZE, 1, fp);
+					read_file_sz = fread(user_data->send_buffer->ptr, PART_SIZE, 1, fp);
+					if (read_file_sz != 1) {read_file_sz = 0;return;}
 					user_data->send_buffer->left = PART_SIZE;
 					user_data->send_buffer->allocated = PART_SIZE;
 					user_data->send_buffer->code = 0;
@@ -565,7 +573,8 @@ client_extra_put_object(oss_client_t *client,
 							(file_len - part_number * PART_SIZE));
 					user_data->send_buffer->unmovable_buffer_ptr =  user_data->send_buffer->ptr;
 					fseek(fp, part_number * PART_SIZE, SEEK_SET);
-					fread(user_data->send_buffer->ptr, file_len - part_number * PART_SIZE, 1, fp);
+					read_file_sz = fread(user_data->send_buffer->ptr, file_len - part_number * PART_SIZE, 1, fp);
+					if (read_file_sz != 1) {read_file_sz = 0;return;}
 					user_data->send_buffer->left = file_len - part_number * PART_SIZE;
 					user_data->send_buffer->allocated = file_len - part_number * PART_SIZE;
 					user_data->send_buffer->code = 0;
@@ -651,7 +660,8 @@ client_extra_put_object(oss_client_t *client,
 				user_data->send_buffer->unmovable_buffer_ptr =  user_data->send_buffer->ptr;
 				memset(user_data->send_buffer->ptr, 0, PART_SIZE);
 				fseek(fp, part_number * PART_SIZE, SEEK_SET);
-				fread(user_data->send_buffer->ptr, PART_SIZE, 1, fp);
+				read_file_sz = fread(user_data->send_buffer->ptr, PART_SIZE, 1, fp);
+				if (read_file_sz != 1) {read_file_sz = 0;return;}
 				user_data->send_buffer->left = PART_SIZE;
 				user_data->send_buffer->allocated = PART_SIZE;
 				user_data->send_buffer->code = 0;
@@ -663,7 +673,8 @@ client_extra_put_object(oss_client_t *client,
 				user_data->send_buffer->unmovable_buffer_ptr =  user_data->send_buffer->ptr;
 				memset(user_data->send_buffer->ptr, 0, (file_len - part_number * PART_SIZE));
 				fseek(fp, part_number * PART_SIZE, SEEK_SET);
-				fread(user_data->send_buffer->ptr, file_len - part_number * PART_SIZE, 1, fp);
+				read_file_sz = fread(user_data->send_buffer->ptr, file_len - part_number * PART_SIZE, 1, fp);
+				if (read_file_sz != 1) {read_file_sz = 0;return;}
 				user_data->send_buffer->left = file_len - part_number * PART_SIZE;
 				user_data->send_buffer->allocated = file_len - part_number * PART_SIZE;
 				user_data->send_buffer->code = 0;

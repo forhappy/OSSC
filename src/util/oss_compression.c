@@ -101,7 +101,7 @@ oss_write_compression_header(FILE *fp,
 /**
  * 压缩整块内存，不加上压缩文件的头部内容
  * */
-static void
+static int
 _compress_block_with_lz4(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
@@ -126,13 +126,13 @@ _compress_block_with_lz4(
 	* (unsigned int*) outbuf = cout_size;
 	LITTLE_ENDIAN32(cout_size);
 
-	return;
+	return cout_size;
 }
 
 /**
  * 压缩整块内存，压缩完后加上压缩文件的头部内容
  * */
-static void
+static int
 _compress_block_with_lz4_2nd(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
@@ -152,7 +152,7 @@ _compress_block_with_lz4_2nd(
 		oss_write_compression_header_in_memory(outbuf, 0x1, flag, NULL);
 	if (flag == 1) {
 		md5 = oss_get_buffer_md5_digest(inbuf, inbuf_len);
-		oss_write_compression_header_in_memory(outbuf, 0x01, flag, md5);
+		oss_write_compression_header_in_memory(outbuf, 0x1, flag, md5);
 		free(md5);
 	}
 
@@ -165,7 +165,7 @@ _compress_block_with_lz4_2nd(
 	* (unsigned int*) (outbuf + sizeof(oss_compression_header_t)) = cout_size;
 	LITTLE_ENDIAN32(cout_size);
 
-	return;
+	return cout_size + sizeof(oss_compression_header_t) + 4;
 }
 
 static void _compress_file_with_lz4(
@@ -242,7 +242,7 @@ static void _compress_file_with_lz4(
 /**
  * 压缩内存块
  * */
-void oss_compress_block(
+int oss_compress_block(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */
@@ -251,18 +251,19 @@ void oss_compress_block(
 
 	assert(inbuf != NULL);
 	assert(outbuf != NULL);
+	int retsize = 0;
 
 	if (algorithm == 0x01) {
-		_compress_block_with_lz4(inbuf, inbuf_len,
+		retsize = _compress_block_with_lz4(inbuf, inbuf_len,
 				outbuf, outbuf_len, level);
 	}
-	return;
+	return retsize;
 }
 
 /**
  * 压缩内存块，同时加上压缩文件的头部内容
  * */
-void oss_compress_block_2nd(
+int oss_compress_block_2nd(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */
@@ -272,12 +273,13 @@ void oss_compress_block_2nd(
 
 	assert(inbuf!= NULL);
 	assert(outbuf != NULL);
+	int retsize = 0;
 
 	if (algorithm == 0x01) {
-		_compress_block_with_lz4_2nd(inbuf, inbuf_len,
+		retsize = _compress_block_with_lz4_2nd(inbuf, inbuf_len,
 				outbuf, outbuf_len, flag, level);
 	}
-	return;
+	return retsize;
 }
 
 /**

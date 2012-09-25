@@ -105,7 +105,7 @@ oss_read_compression_header_in_memory(char *buffer)
 /**
  * 压缩整块内存，该块内存不包含压缩文件的头部内容
  * */
-static size_t 
+static int 
 _decompress_block_with_lz4(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
@@ -121,7 +121,7 @@ _decompress_block_with_lz4(
 /**
  * 压缩整块内存，该块内存包含压缩文件的头部内容
  * */
-static size_t 
+static int 
 _decompress_block_with_lz4_2nd(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
@@ -180,7 +180,7 @@ static void _decompress_file_with_lz4(
 /**
  * 解压缩内存块，该内存块不包含压缩格式的头部内容
  * */
-size_t
+int
 oss_decompress_block(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
@@ -190,7 +190,7 @@ oss_decompress_block(
 
 	assert(inbuf!= NULL);
 	assert(outbuf != NULL);
-	size_t ret = 0;
+	int ret = 0;
 
 	if (algorithm == 0x01) {
 		ret = _decompress_block_with_lz4(inbuf + 4, inbuf_len - 4,
@@ -203,7 +203,7 @@ oss_decompress_block(
 /**
  * 解压缩内存块，该内存块包含压缩格式的头部内容
  * */
-size_t
+int
 oss_decompress_block_2nd(
 		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
 		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
@@ -213,7 +213,7 @@ oss_decompress_block_2nd(
 	assert(inbuf!= NULL);
 	assert(outbuf != NULL);
 
-	size_t ret = 0;
+	int ret = 0;
 	size_t header_len = 0;
 
 	oss_compression_header_t *header =
