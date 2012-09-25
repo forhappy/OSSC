@@ -927,7 +927,7 @@ client_list_multipart_uploads(oss_client_t *client,
 	if (strlen(request->get_key_marker(request)) > 0) {
 		tstring_append_printf(resource_params, "&key-marker=%s", request->get_key_marker(request));
 	}
-	if (request->get_max_uploads(request) >= 0) {
+	if (request->get_max_uploads(request) > 0) {
 		tstring_append_printf(resource_params, "&max-uploads=%d", request->get_max_uploads(request));
 	}
 	if (strlen(request->get_prefix(request)) > 0) {
