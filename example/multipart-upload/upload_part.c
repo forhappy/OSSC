@@ -35,8 +35,8 @@ int main()
 	
 	char *buffer = (char *)malloc(sizeof(char) * file_len + 1);
 	memset(buffer, '\0', file_len + 1);
-	/* 一次性读入该文件所有内容，为简单起见，不对fread返回值做错误处理 */
-	fread(buffer, 1, file_len, fp); 
+	size_t file_sz = fread(buffer, 1, file_len, fp);
+	if (file_sz < file_len) {fprintf(stderr, "fread error.\n"); return -1;}
 	const int single_request_len = 8 * 1024 * 1024; /* 每个Part的大小 */
 	int requests_num = file_len / single_request_len; /* 需要多少次上传 */
 	int current_part_number = 0; /* 当前上传的 Part Number */
