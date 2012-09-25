@@ -722,8 +722,8 @@ _delete_etag_quotation(char * etag)
 	etag[etag_len - 1] = '\0';
 }
 
-void 
-_pre_sync_upload(oss_object_listing_t *object_listing, 
+void
+_sync_upload(oss_object_listing_t *object_listing, 
 		const char *dir,
 		oss_client_t *client,
 		const char *bucket_name) 
@@ -741,7 +741,7 @@ _pre_sync_upload(oss_object_listing_t *object_listing,
 		char full_path[100];
 		sprintf(full_path, "%s/%s", dir, dirp->d_name);
 		if(_is_folder(full_path)) {
-			_pre_sync_upload(object_listing, full_path, client, bucket_name);
+			_sync_upload(object_listing, full_path, client, bucket_name);
 		} else {
 			FILE *fp = fopen(full_path, "r");
 			char *etag = oss_get_file_md5_digest_2nd(full_path);
@@ -758,6 +758,7 @@ _pre_sync_upload(oss_object_listing_t *object_listing,
 			}
 		}
 	}
+	
 }
 
 int
@@ -778,11 +779,14 @@ oss_sync_upload(oss_client_t *client, const char * dir, const char *bucket_name)
 		if(retcode == NO_SUCH_BUCKET) {
 			client_create_bucket(client, bucket_name, &retcode);
 			object_listing = client_list_objects_with_bucket_name(client, bucket_name, &retcode);
+			if(retcode != OK) {
+				return -1;
+			}
 		} else {
 			return -1;
 		}
 	}
-	_pre_sync_upload(object_listing, tmp_dir, client, bucket_name);
+	_sync_upload(object_listing, tmp_dir, client, bucket_name);
 	return 0;
 }
 
