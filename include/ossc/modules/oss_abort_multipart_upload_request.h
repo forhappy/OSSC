@@ -39,8 +39,7 @@ typedef struct oss_abort_multipart_upload_request_s oss_abort_multipart_upload_r
 
 
 /**
- *oss_abort_multipart_upload_request_t 包含终止一个 Multipart 上传
- *事件的请求参数
+ *oss_abort_multipart_upload_request_t 包含终止一个 Multipart 上传事件的请求参数
  */
 struct oss_abort_multipart_upload_request_s {
 	char *bucket_name;       /**< Bucket 名称 */
@@ -49,7 +48,7 @@ struct oss_abort_multipart_upload_request_s {
 
 	/**
 	 * 返回 Bucket 名称
-	 * @param request [in] 标识一个ss_abort_multipart_upload_request_t 指针
+	 * @param request [in] 标识一个oss_abort_multipart_upload_request_t 指针
 	 * @retval const char *
 	 * @return Bucket 名称
 	 */

@@ -70,7 +70,7 @@ struct oss_list_parts_request_s {
 	/**
 	 * 获得part_number_marker
 	 * @param request [in] 标识一个oss_list_parts_request_t结构指针
-	 * @returnpart_number_marker
+	 * @return part_number_marker
 	 * @retval unsigned int
 	 */
 	unsigned int (*get_part_number_marker)(oss_list_parts_request_t *request);
