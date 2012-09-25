@@ -36,6 +36,10 @@
  */
 typedef struct oss_list_parts_request_s oss_list_parts_request_t;
 
+
+/**
+ * 包含列出Part的请求参数
+ */
 struct oss_list_parts_request_s {
 	char *bucket_name;         /**< Bucket名称 */
 	char *key;                 /**< Object名称 */
