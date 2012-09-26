@@ -61,7 +61,7 @@ oss_read_compression_header(FILE *fp)
 	oss_compression_header_t *hdr = (oss_compression_header_t *)header_buf;
 	strncpy(header->magic, OSS_COMPRESSION_MAGIC, OSS_COMPRESSION_MAGIC_LEN);
 	header->version = (char)hdr->version; 
-	header->algorithm = hdr->version;
+	header->algorithm = hdr->algorithm;
 	header->flag = hdr->flag;
 	header->length = hdr->length;
 	memcpy(header->md5, hdr->md5, 16);
@@ -192,7 +192,7 @@ oss_decompress_block(
 	assert(outbuf != NULL);
 	int ret = 0;
 
-	if (algorithm == 0x01) {
+	if (algorithm == OSS_LZ4) {
 		ret = _decompress_block_with_lz4(inbuf + 4, inbuf_len - 4,
 				outbuf, outbuf_len);
 	}
@@ -220,7 +220,7 @@ oss_decompress_block_2nd(
 		oss_read_compression_header_in_memory(inbuf);
 	if (header != NULL) {
 		header_len = header->length;
-		if (header->algorithm == 0x01) {
+		if (header->algorithm == OSS_LZ4) {
 			ret = _decompress_block_with_lz4_2nd(
 					inbuf + header_len + 4 , inbuf_len - header_len - 4,
 					outbuf, outbuf_len);
@@ -265,7 +265,7 @@ void oss_decompress_file(
 		oss_read_compression_header(fin);
 
 	if (header != NULL) {
-		if (header->algorithm == 0x01) {
+		if (header->algorithm == OSS_LZ4) {
 			size_t header_len = header->length;
 			fseek(fin, header_len, SEEK_SET); /**< 从头部开始往后读*/
 			_decompress_file_with_lz4(fin, fout);

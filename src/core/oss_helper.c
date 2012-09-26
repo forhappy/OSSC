@@ -173,6 +173,8 @@ oss_get_error_message_from_retcode(unsigned short retcode)
 		return "FileNotFound";
 	} else if(retcode == NOT_MODIFIED) {
 		return "NotModified";
+	} else if(retcode == FILE_TOO_LARGE) {
+		return "FileTooLarge";
 	} else {
 		return "UnknowError";
 	}
@@ -263,6 +265,8 @@ oss_get_retcode_from_retinfo(const char *retinfo)
 		retcode = FILE_NOT_FOUND;
 	} else if(strcmp(retinfo, "NotModified") == 0) {
 		retcode = NOT_MODIFIED;
+	} else if(strcmp(retinfo, "FileTooLarge") == 0) {
+		retcode = FILE_TOO_LARGE;
 	} else {
 		retcode = 1000;
 	}

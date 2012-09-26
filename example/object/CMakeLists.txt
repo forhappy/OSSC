@@ -33,6 +33,10 @@ TARGET_LINK_LIBRARIES(get_object_to_buffer_2nd osscore_static curl)
 ADD_EXECUTABLE(get_object_to_file get_object_to_file.c)
 TARGET_LINK_LIBRARIES(get_object_to_file osscore_static curl)
 
+ADD_EXECUTABLE(get_compressed_object_to_file get_compressed_object_to_file.c)
+TARGET_LINK_LIBRARIES(get_compressed_object_to_file osscore_static curl)
+
+
 ADD_EXECUTABLE(put_object_from_buffer put_object_from_buffer.c)
 TARGET_LINK_LIBRARIES(put_object_from_buffer osscore_static curl)
 

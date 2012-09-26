@@ -33,12 +33,21 @@
 *
 * @subsection OSSC亮点
 * 目前 OSSC 除了提供 OSS 开放接口中所描述的所有功能以外，还包括以下亮点：
-* - 多线程断点上传功能(由于设置Range参数时获取Ojbect请求总是出现："connection reset by peer"，所以多线程断点下载功能暂时未完成)
+* - 多线程断点上传功能(由于设置Range参数时获取Ojbect请求会出现："connection reset by peer"，无法进行测试，所以多线程断点下载功能未经过测试，没集成到代码库中)
 * - 文件实时压缩上传和实时解压缩下载;
+* - 内存块实时压缩上传和实时解压缩下载;
 * - 简易的文件夹同步上传和同步下载功能
 *******************************************************************************
 * @section OSSC安装细节
 * @subpage OSSC_INSTALL
+* @subsection 操作系统
+* OSSC经过测试操作系统：
+* - Ubuntu 12.04, 11.10, 11.04, 10.10, 10.04
+* - CentOS 5.5
+* - Fedora 15, 16, 17
+*
+* @attention 目前我们没有在Windows上经过严格测试，虽然 OSSC 是标准ISO C写的，理论上也可以在 Windows 上编译运行，但是目前不建议在Windows系统下使用 OSSC，我们以后会对此改进。
+*
 * @subsection OSSC依赖库
 * OSSC 采用 CURL 库处理 HTTP 请求，因此在编译 OSSC 之前你需要安装 CURL，CURL 源码中包含了C调用API，最新版 CURL下载地址：http://curl.haxx.se/libcurl/。
 * 除此之外，OSSC 不依赖任何其他程序库。
@@ -69,7 +78,7 @@
 *
 * @subsection 在你的程序中使用OSSC
 * OSSC以程序库的形式提供给上层开发者使用，因此如果你想基于OSSC开发上层应用，必须链接OSSC程序库，OSSC大部分都集中到了 osscore 中，\n
-* 只是支持多线程调用模式的API单独放在 ossextra库中（由于时间有限，目前多线程只支持 pthread 线程库，后期会考虑在 Windows 下也支持多线程）\n
+* 只是支持多线程调用模式的API单独放在 ossextra库中（目前多线程只支持 pthread 线程库，后期会考虑在 Windows 下也支持多线程）\n
 * 以下是你的程序需要连接OSSC，链接参数为：-L/path-to-your-ossc-installation -losscore.
 *
 * 另外需要注意的是，OSSC支持多线程断点续传模式下上传和下载文件，如果你想体验该功能，你需要链接如下库：
@@ -470,53 +479,17 @@
  * 	char *create_date;  //< Bucket的创建时间
  * 	char *name;         //< Bucket的名称 
  * 	oss_owner_t *owner; //< Bucket的所有者 
- * 
- * 	//
- * 	// 返回Bucket的创建时间
- * 	// @param bucket [in] oss_bucket_t 指针
- * 	// @retval const char *
- * 	// @return Bucket的创建时间
- * 	/
+
  * 	const char * (*get_create_date)(oss_bucket_t *bucket);
- * 
- *  //	
- *  // 设置Bucket的创建时间
- *  // @param bucket [in] oss_bucket_t 指针
- *  // @param create_date [in] Bucket的创建时间
- *  // @retval void
- *  //	
+
  * 	void (*set_create_date)(oss_bucket_t *bucket, const char *create_date);
- * 
- * // 	
- * // 返回Bucket的名称
- * // @param bucket [in] oss_bucket_t 指针
- * // @retval const char *
- * // @return Bucket的名称
- * // 	
+
  * 	const char * (*get_name)(oss_bucket_t *bucket);
- * 
- * //	
- * // 设置Bucket的名称
- * // @param bucket [in] oss_bucket_t 指针
- * // @param name [in] Bucket的名称
- * // @retval void
- * //	
+
  * 	void (*set_name)(oss_bucket_t *bucket, const char * name);
- * 
- * //	
- * // 返回Bucket的所有者
- * // @param bucket [in] oss_bucket_t 指针
- * // @retval oss_owner_t *
- * // @return Bucket的所有者
  * 	
  * 	oss_owner_t * (*get_owner)(oss_bucket_t *bucket);
- * 
- * //	
- * // 设置Bucket的所有者
- * // @param bucket [in] oss_bucket_t 指针
- * // @param owner [in] Bucket的所有者
- * // @retval void
- * //	
+
  * 	void (*set_owner)(oss_bucket_t *bucket, oss_owner_t *owner);
  * };
  * 
@@ -569,7 +542,7 @@
  *
  * @subsection 为什么采用压缩文件上传
  * 我们的实验也证明，该压缩文件格式由于支持多种实时压缩算法，因此可以在采用合理的压缩算法的情况下，
- * 既保证用户不会损失很长的压缩时间，同时也有效减少用户上传文件大小20%-70%，
+ * 既保证用户不会损失很长的压缩时间，同时也有效减少用户上传文件大小20%-70%,
  * 另外用户可以在压缩速度和压缩比之间进行取舍，该策略带来的好处是降低了OSS和用户双方的存储压力和网络带宽压力
  *
  * 经过进一步的实验我们发现，其实压缩过程时间损失完全可以由压缩后文件变小更利于上传而带来的网络传输时间减小而弥补，
@@ -637,13 +610,13 @@
  * -    F: Flag，1个字节，标志位，取值为0x1时需要计算原始数据的MD5，同时在解压时进行完整性验证，取值为其他时待定
  * -    L: Length，1个字节，标识头部长度，所以头部最大长度为255字节
  * -  MD5: 原始数据的MD5值，在解压缩时进行完整性校验
- * -Optional: 可选数据项，目前版本0x1该项没有被利用
+ * - Optional: 可选数据项，目前版本0x1该项没有被利用
  */
 
 /** @page OSSC_EXTRA OSSC高级模块Extra库
 * @section OSSC高级模块Extra简介
-* OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，希望今后会有其他开发者实现
-* 这一功能。
+* OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，我们目前并没有实现 Windows 平台的多线程上传下载功能，以后我们会对此进行改进。
+* 另外还支持简单的文件夹上传同步和下载同步的功能，希望该API对其他开发者有用。
 *
 * OSSC 采用了POSIX多线程标准库 pthread,理论上只要你的操作系统支持 pthread都可以使用 OSSC 的 extra 库中的 API。
 *
@@ -657,7 +630,70 @@
 *	const char *local_file,
 *	unsigned short *retcode);
 * @endcode
+* 另外该库里面还包含了文件夹上传同步和下载同步的功能，API如下：
+* @code
+* //同步上传
+* //该函数功能是将dir目录下的所有文件同步到远程bucket_name所标识的Bucket中
+* extern int
+* oss_sync_upload(oss_client_t * client,
+*		const char * dir, //本地目录
+*		const char *bucket_name // 远程Bucket Name
+*		);
+* @endcode
+*
+* @code
+* //同步上传
+* //该函数功能是将远程的Bucket中所有文件下载到本地dir目录
+* extern int
+* oss_sync_download(oss_client_t * client,
+*		const char *dir, 
+*		const char *bucket_name);
+* @endcode
+
 * @section OSSC_EXTRA_API_INTERNAL OSSC Extra API 实现原理
+*  @subsection 多线程断点续传上传大文件功能实现
+*  OSSC Extra库提供的另外一个有用的功能是多线程断点续传模式上传大文件，该功能主要利用了OSS的 Multipart Upload来实现。
+*
+*  首次调用多线程上传功能的函数时，会在当前目录创建一个新的文件夹用来保存上传信息，
+*  该文件夹的名称是需要上传文件的起始4096字节的MD5值经过BASE64编码后的字符串（可以确保目录名称唯一性），
+*  文件夹内存放了此次上传的Upload ID，以及每个已经成功上传的Part块(8MB)的记录，每个Part的记录方式均采用一个文件来标识，
+*  文件名即该Part的PartNumber，内容是该Part的ETag值，如果某次上传网络连接断开，
+*  再次启动大文件上传时程序会寻找相应的保存了该文件上传信息的目录，找到Upload ID，扫描Part记录文件，便可以确定哪些Part已经成功上传，
+*  然后再用一个位图标识那些成功上传的Part，剩下未上传的Part则在此次启动后被上传，直到整个文件上传完毕。另外，在大文件上传的过程中可以多次中止和启动上传过程，文件上传成功以后，用于保存上传信息的文件夹将被删除。
+*
+*  @attention 在上传过程中请不要删除保存上传信息的文件夹，待文件上传成功后该文件夹会自动删除。
+*
+*  综上所述，大文件上传的整个流程如下：
+*
+*  -# 首先根据参数提供的本地大文件路径获取该大文件的基本信息，主要是该文件大小，以便计算需要多少个Part；
+*  -# 初始化线程池，目前线程池中线程数目固定为4；
+*  -# 检查该文件是否为上次未完成上传的文件(方法：读取文件起始4096字节，计算MD5，获取其BASE64值，查找改目录下是否存在与此文件对应的上传信息目录，如果不存在，则是首次上传，如果存在，则是断点续传)；
+*  -# 如果该文件是首次上传，则新建该文件的上传信息目录，然后初始化一次Multipart Upload，并将upload id保存在该目录中的ID文件中；
+*  -# 然后由主线程将上传任务放到任务队列中，线程池中的各个线程再从任务队列中取上传任务并执行，注意，为了防止任务过多而消耗过多内存，目前任务队列中任务数目是线程池中线程数目的2倍；
+*  -# 主线程将所有的任务添加到任务队列后在创建一个新的线程，该线程监视线程池中的线程是否已经完成了所有的上传任务，如果文件已经上传完毕，则由该线程清理掉线程池；
+*  -# 最后主线程完成上传请求，向OSS发送Complete multipart upload请求，并删除该文件的上传信息目录；
+*  -# 如果该文件是断点续传，则遍历该文件上传信息目录，找到各个Part记录文件，确定哪些Part已经成功上传；
+*  -# 对于已经成功上传的文件，在位图中将该Part的位置“1”；
+*  -# 继续上传未完成的Part，剩下的步骤和第5、6、7步流程相同。
+*
+* @subsection 简单文件夹同步功能原理
+* 目前文件夹同步上传和下载都实现的比较简单，核心思想是对比本地和远程文件的MD5值，避免重复上传和下载，减少数据冗余和网络流量，
+* 原理如下：
+* @subsubsection 同步上传功能实现
+* -# oss_sync_upload首先根据bucket_name参数提供的Bucket名称尝试获取该Bucket的所有对象Object;
+* -# 如果远程没有该Bucket，则根据本地目录名称创建一个新的Bucket，然后在将本地文件夹下的所有文件同步到该目录中;
+* -# 如果远程存在该Bucket，则获取它的所有对象；
+* -# 遍历本地需要同步的文件夹，然后对于每个等待上传的文件，计算其MD5值，如果在远程也存在相同MD5值的对象，则该文件不上传;
+* -# 如果远程没有与该文件MD5值相同的对象，则上传该文件。
+*
+* @subsubsection 同步下载功能实现
+* -# oss_sync_download首先根据bucket_name参数提供的Bucket名称尝试获取该Bucket的所有对象Object;
+* -# 如果远程没有该Bucket，则直接返回;
+* -# 如果远程存在该Bucket，则获取它的所有对象；
+* -# 对于远程需要下载的每个文件，获取其MD5值，如果在本地也存在相同MD5值的对象，则该文件不下载;
+* -# 如果本地没有与该文件MD5值相同的对象，则下载该文件。
+*
+*
 * @section OSSC_EXTRA_API_USAGE OSSC Extra API使用
 * 以下是OSSC Extra 库的使用：
 * @subsection 多线程断点上传大文件
@@ -694,10 +730,58 @@
 * 	}
 * }
 * @endcode
+*  
+* @subsection 文件夹同步上传示例
+* @code
+* #include <ossc/client.h>
+* #include <ossc/oss_extra.h>
+* #include <stdio.h>
+* 
+* static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
+* static const char *access_key = "MUltNpuYqE";  //设置用户密码
+* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* 
+* int main()
+* {
+* 
+* 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
+* 	const char *bucket_name = "bucket_name_test";       //设置bucket_name
+* 	if(oss_sync_upload(client, "/home/wangwei/Documents/upload_test/", bucket_name) == 0) {
+* 		printf("sync_upload success.\n");
+* 	} else {
+* 		printf("sync_upload failed.\n");
+* 	}
+* }
+* @endcode
+*
+* @subsection 文件夹同步下载示例
+* @code
+* #include <ossc/client.h>
+* #include <ossc/oss_extra.h>
+* #include <stdio.h>
+* 
+* static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
+* static const char *access_key = "MUltNpuYqE";  //设置用户密码
+* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* 
+* int main()
+* {
+* 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
+* 	const char *bucket_name = "bucket_name_test";       //设置bucket_name
+* 	if(oss_sync_download(client, "/home/wangwei/Documents/download_test/",bucket_name) == 0) {
+* 		printf("sync_download success.\n");
+* 	} else {
+* 		printf("sync_download failed.\n");
+* 	}
+* }
+* @endcode
 */
 
 
 /** @page OSSC_API_EXAMPLE OSSC API 使用示例
+* @attention 最新示例代码位于 example 目录中，如果需要测试示例代码，
+* 请编译example中的例子（亲，默认已经编译好了，你可以直接去 build/example 的各个子目录中找到可执行文件啦:-)）
+*
 * @section Bucket操作
 * @subsection 创建Bucket
 * @code

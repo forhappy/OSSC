@@ -42,8 +42,8 @@ SET(EXTRA_SRC
 
 ADD_LIBRARY(ossextra_shared SHARED ${EXTRA_SRC})
 ADD_LIBRARY(ossextra_static STATIC ${EXTRA_SRC})
-TARGET_LINK_LIBRARIES(ossextra_shared osscore_shared)
-TARGET_LINK_LIBRARIES(ossextra_static osscore_static)
+TARGET_LINK_LIBRARIES(ossextra_shared osscore_shared pthread)
+TARGET_LINK_LIBRARIES(ossextra_static osscore_static pthread)
 SET_TARGET_PROPERTIES(ossextra_static PROPERTIES OUTPUT_NAME "ossextra") 
 SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES OUTPUT_NAME "ossextra") 
 SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES VERSION 0.1.3 SOVERSION 1) 

@@ -87,7 +87,9 @@ typedef enum _OSS_ERROR_CODE {
 	/* 文件找不到 */
 	FILE_NOT_FOUND,
 	/* 没有被修改 */
-	NOT_MODIFIED
+	NOT_MODIFIED,
+	/* 文件过大 */
+	FILE_TOO_LARGE
 }OSS_ERROR_CODE;
 
 typedef enum _OSS_PERMISSION {
@@ -96,7 +98,7 @@ typedef enum _OSS_PERMISSION {
 }OSS_PERMISSION;
 
 #define DEFAULT_OSS_HOST            "storage.aliyun.com"
-#define VERSION                     "0.0.8"
+#define VERSION                     "0.1.4"
 #define NAME                        "OSS-C-SDK"
 
 #define OSS_BUCKET                  "bucket"

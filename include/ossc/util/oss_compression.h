@@ -24,6 +24,15 @@
 
 #define OSS_CHUNK_SIZE (8 * 1024 * 1024)
 
+typedef enum oss_compression_algorithm_e oss_compression_algorithm_t;
+
+enum oss_compression_algorithm_e {
+	OSS_LZ4 = 0x01,
+	OSS_LZO = 0x02,
+	OSS_QLZ = 0x03,
+	OSS_SNAPPY = 0x04
+};
+
 typedef struct oss_compression_header_s oss_compression_header_t;
 
 struct oss_compression_header_s {

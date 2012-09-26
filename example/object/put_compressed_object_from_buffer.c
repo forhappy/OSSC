@@ -59,7 +59,7 @@ int main()
 
 	/* 将内存中的内容上传至云服务器中 */
 	oss_put_object_result_t *result =
-		client_put_compressed_object_from_buffer(client, bucket_name, key, (void *)buffer, file_len, metadata, &retcode);
+		client_put_compressed_object_from_buffer(client, bucket_name, key, metadata, (void *)buffer, file_len, OSS_LZ4, 0, 0, &retcode);
 	if (retcode == OK) {
 		printf("put object from file successfully.\n");
 	} else {

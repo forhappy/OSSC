@@ -512,6 +512,22 @@ client_get_object_to_file(oss_client_t *client,
 		unsigned short *retcode);
 
 /**
+ * 从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到目标文件
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param request [in] 标识一个oss_get_object_request_t的结构指针
+ * @param file [in] 要存放Object的文件指针
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_object_metadata_t的结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+oss_object_metadata_t *
+client_get_compressed_object_to_file(oss_client_t *client,
+		oss_get_object_request_t *request,
+		FILE *file,
+		unsigned short *retcode);
+
+/**
  * 从 OSS 指定的 Bucket 中导出 OSSObject
  * @param client [in] 标识一个oss_client_t的结构指针
  * @param bucket_name 要导出的Object所在的Bucket名称
@@ -700,21 +716,28 @@ client_put_object_from_buffer(oss_client_t *client,
  * @param client [in] 标识一个oss_client_t的结构指针
  * @param bucket_name 要上传到的Bucket名称
  * @param key 要上传到服务器上显示的Object的名称
+ * @param metadata 标识数据的一些元信息，一个oss_object_metadata_t结构指针
  * @param input 要上传数据的缓存区
  * @param input_len 要上传数据的长度
- * @param metadata 标识数据的一些元信息，一个oss_object_metadata_t结构指针
+ * @param algorithm 压缩算法
+ * @param flag 标志位
+ * @param level 该压缩算法的压缩等级
  * @param retcode [out] 服务器返回的HTTP返回码
  * @return 返回一个oss_put_object_result_t结构指针
  * @retval 非空 表示成功
  * @retval NULL 表示失败
  */
+
 extern oss_put_object_result_t *
 client_put_compressed_object_from_buffer(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
-		void *input,
-		size_t input_len,
 		oss_object_metadata_t *metadata,
+		void *input, 
+		size_t input_len,
+		char algorithm,
+		char flag,
+		char level,
 		unsigned short *retcode);
 
 /**

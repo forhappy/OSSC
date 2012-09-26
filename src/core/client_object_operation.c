@@ -442,6 +442,38 @@ client_put_object_from_file(oss_client_t *client,
 }
 
 oss_put_object_result_t *
+client_put_compressed_object_from_file(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		oss_object_metadata_t *metadata,
+		void *input, /**< 文件指针 */
+		char algorithm,
+		char flag,
+		char level,
+		unsigned short *retcode)
+{
+	assert(client != NULL);
+	assert(bucket_name != NULL);
+	assert(key != NULL);
+	FILE *fp = (FILE *)input;
+	size_t file_size = oss_get_file_size(fp);
+	if (file_size < 200 * 1024 * 1024) {/* 如果文件过大，不建议一次性读入内存 */
+		char *tmpbuf = (char *)malloc(file_size);
+		size_t ret = fread(tmpbuf, 1, file_size, fp);
+		if (ret != file_size) return NULL;
+		oss_put_object_result_t *result = 
+			client_put_compressed_object_from_buffer(client, bucket_name, key,
+				metadata, tmpbuf, file_size, algorithm, flag, level, retcode);
+		free(tmpbuf);
+		return result;
+	} else {
+		//TODO 大文件压缩处理
+		if (retcode != NULL) *retcode = FILE_TOO_LARGE;
+		return NULL;
+	}
+}
+
+oss_put_object_result_t *
 client_put_object_from_buffer(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
@@ -587,9 +619,12 @@ oss_put_object_result_t *
 client_put_compressed_object_from_buffer(oss_client_t *client,
 		const char *bucket_name,
 		const char *key,
+		oss_object_metadata_t *metadata,
 		void *input, 
 		size_t input_len,
-		oss_object_metadata_t *metadata,
+		char algorithm,
+		char flag,
+		char level,
 		unsigned short *retcode)
 {
 
@@ -607,7 +642,7 @@ client_put_compressed_object_from_buffer(oss_client_t *client,
 	if (outbuf == NULL) return NULL;
 	memset(outbuf, 0, outbuf_len);
 	new_size = oss_compress_block_2nd(input, input_len, outbuf, outbuf_len,
-			0x01, 0, 0);
+			algorithm, flag, level);
 	metadata->set_content_length(metadata, new_size);
 	oss_put_object_result_t *result =
 		client_put_object_from_buffer(client, bucket_name, key, outbuf, metadata, retcode);
@@ -759,6 +794,29 @@ client_get_object_to_file(oss_client_t *client,
 		oss_free_user_data(user_data);
 	}
 
+	return NULL;
+}
+
+oss_object_metadata_t *
+client_get_compressed_object_to_file(oss_client_t *client,
+		oss_get_object_request_t *request,
+		FILE *file,
+		unsigned short *retcode) {
+	assert(client != NULL);
+	assert(request != NULL);
+	assert(file != NULL);
+
+	char *buffer= NULL;
+	size_t file_len = 0;
+
+	oss_object_metadata_t *metadata =
+		client_get_compressed_object_to_buffer(client, request, (void **)&buffer, &file_len, retcode);
+	if ((retcode != NULL && *retcode == OK)
+			|| metadata != NULL) {
+		fwrite(buffer, 1, file_len, file);
+		free(buffer);
+		return metadata;
+	}
 	return NULL;
 }
 
@@ -1049,17 +1107,20 @@ client_get_compressed_object_to_buffer(
 		client_get_object_to_buffer_2nd(client,
 			request,(void **)&tmpbuf, &tmpbuf_len, retcode);
 
-
+	if ((retcode != NULL && *retcode == OK)
+			|| metadata != NULL) {
 #define LZ4_compressBound(isize)   (isize + (isize/255) + 16)
-	char *decompressed_buf = (char *)malloc(3 * LZ4_compressBound(tmpbuf_len));
-	int decompressed_len = oss_decompress_block_2nd(tmpbuf, tmpbuf_len,
-			decompressed_buf, (3 * LZ4_compressBound(tmpbuf_len)));
+		char *decompressed_buf = (char *)malloc(3 * LZ4_compressBound(tmpbuf_len));
+		int decompressed_len = oss_decompress_block_2nd(tmpbuf, tmpbuf_len,
+				decompressed_buf, (3 * LZ4_compressBound(tmpbuf_len)));
 #undef LZ4_compressBound
-	*output = decompressed_buf;
-	*output_len = decompressed_len;
-
-	free(tmpbuf);
-	return metadata;
+		*output = decompressed_buf;
+		*output_len = decompressed_len;
+	
+		if (tmpbuf != NULL)free(tmpbuf);
+		return metadata;
+	}
+	return NULL;
 }
 
 oss_copy_object_result_t *

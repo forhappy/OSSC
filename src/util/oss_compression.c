@@ -253,7 +253,7 @@ int oss_compress_block(
 	assert(outbuf != NULL);
 	int retsize = 0;
 
-	if (algorithm == 0x01) {
+	if (algorithm == OSS_LZ4) {
 		retsize = _compress_block_with_lz4(inbuf, inbuf_len,
 				outbuf, outbuf_len, level);
 	}
@@ -275,7 +275,7 @@ int oss_compress_block_2nd(
 	assert(outbuf != NULL);
 	int retsize = 0;
 
-	if (algorithm == 0x01) {
+	if (algorithm == OSS_LZ4) {
 		retsize = _compress_block_with_lz4_2nd(inbuf, inbuf_len,
 				outbuf, outbuf_len, flag, level);
 	}
@@ -295,7 +295,7 @@ void oss_compress_file(
 	assert(infile != NULL);
 	assert(outfile != NULL);
 
-	if (algorithm == 0x01) {
+	if (algorithm == OSS_LZ4) {
 		_compress_file_with_lz4(infile, outfile, flag, level);
 	}
 	return;
