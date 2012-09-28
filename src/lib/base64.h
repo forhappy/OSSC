@@ -17,12 +17,15 @@
 
 #ifndef BASE64_H
 # define BASE64_H
+#include "ossc/ossc-config.h"
 
 /* Get unsigned int. */
 # include <stddef.h>
 
 /* Get bool. */
+#ifdef HAVE_STDBOOL_H
 # include <stdbool.h>
+#endif
 
 /* Get stderr */
 #include <stdio.h>

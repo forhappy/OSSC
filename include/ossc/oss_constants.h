@@ -146,13 +146,11 @@ typedef enum _OSS_PERMISSION {
 #define OSS_SUB_RESOURCE            "sub_resource"
 #define OSS_DEFAULT_PREFIX          "x-oss-"
 
-
 #define OSS_URL_ACCESS_KEY_ID  "OSSAccessKeyId"
 #define OSS_URL_EXPIRES        "Expires"
 #define OSS_URL_SIGNATURE      "Signature"
 
 //HTTP方法
-
 #define OSS_HTTP_GET     "GET"
 #define OSS_HTTP_PUT     "PUT"
 #define OSS_HTTP_HEAD    "HEAD"
@@ -160,7 +158,6 @@ typedef enum _OSS_PERMISSION {
 #define OSS_HTTP_DELETE  "DELETE"
 
 //其他常量
-
 #define OSS_ACL                         "x-oss-acl"
 #define OSS_OBJECT_GROUP                "x-oss-file-group"
 #define OSS_COPY_SOURCE					"x-oss-copy-source"
@@ -178,7 +175,8 @@ typedef enum _OSS_PERMISSION {
 #define RESPONSE_HEADER_CONTENT_LANGUAGE     "RESPONSE_HEADER_CONTENT_LANGUAGE"
 #define RESPONSE_HEADER_CONTENT_TYPE         "RESPONSE_HEADER_CONTENT_TYPE"
 #define RESPONSE_HEADER_EXPIRES              "RESPONSE_HEADER_EXPIRES"
-
+//
+//发送缓冲区，接收缓冲区，头部缓冲区大小
 #define MAX_SEND_BUFFER_SIZE			(2 * 1024 * 1024)
 #define MAX_RECV_BUFFER_SIZE			(2 * 1024 * 1024)
 #define MAX_HEADER_BUFFER_SIZE			(128 * 1024)

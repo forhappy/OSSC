@@ -325,7 +325,7 @@ client_post_object_group(oss_client_t *client,
 			request->get_key(request));
 	sprintf(url, "%s/%s/%s?group", client->endpoint, request->get_bucket_name(request),
 			request->get_key(request));
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 
@@ -465,7 +465,7 @@ client_get_object_group_to_file(oss_client_t *client,
 	now = (char *)oss_get_gmt_time();
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 	oss_map_put(default_headers, OSS_DATE, now);
 
@@ -602,7 +602,7 @@ client_get_object_group_to_buffer(oss_client_t *client,
 			request->get_key(request));
 	now = (char *)oss_get_gmt_time();
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 	oss_map_put(default_headers, OSS_DATE, now);
 	/**
@@ -724,7 +724,7 @@ client_get_object_group_index(
 	 * */
 	sprintf(resource, "/%s/%s", bucket_name, key);
 	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 	sprintf(header_group, "%s:%s", OSS_OBJECT_GROUP, "I'm NULL."); 
@@ -835,7 +835,7 @@ client_delete_object_group(oss_client_t *client,
 	 * */
 	sprintf(resource, "/%s/%s", bucket_name, key);
 	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 
@@ -942,7 +942,7 @@ client_head_object_group(oss_client_t *client,
 			request->get_key(request));
 	sprintf(url, "%s/%s/%s", client->endpoint, request->get_bucket_name(request),
 			request->get_key(request));
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 
@@ -1016,7 +1016,7 @@ client_head_object_group(oss_client_t *client,
 				*retcode = 1000;
 			}
 		}
-			//*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		//*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 		oss_free_user_data(user_data);
 		return NULL;
 	} else {

@@ -41,12 +41,13 @@
 * @section OSSC安装细节
 * @subpage OSSC_INSTALL
 * @subsection 操作系统
-* OSSC经过测试操作系统：
+* OSSC 在 Ubuntu 12.04 上开发，我们测试了OSSC在不同Linux操作系统发行版的稳定性，以下是OSSC经过测试操作系统：
 * - Ubuntu 12.04, 11.10, 11.04, 10.10, 10.04
 * - CentOS 5.5
 * - Fedora 15, 16, 17
+* - openSUSE 12.2
 *
-* @attention 目前我们没有在Windows上经过严格测试，虽然 OSSC 是标准ISO C写的，理论上也可以在 Windows 上编译运行，但是目前不建议在Windows系统下使用 OSSC，我们以后会对此改进。
+* @attention 目前我们没有在Windows上经过严格测试，虽然 OSSC 是标准C (C99) 写的，理论上也可以在 Windows 上编译运行，但是目前不建议在Windows系统下使用 OSSC，我们以后会对此改进。
 *
 * @subsection OSSC依赖库
 * OSSC 采用 CURL 库处理 HTTP 请求，因此在编译 OSSC 之前你需要安装 CURL，CURL 源码中包含了C调用API，最新版 CURL下载地址：http://curl.haxx.se/libcurl/。
@@ -549,7 +550,7 @@
  * 某些时候后者带来的好处远远大于前者。
  *
  * 以LZ4压缩算法网站给出的数据(http://code.google.com/p/lz4/)，假设采用LZ4(r59)，压缩速率为 330MB/s，用户采用100M光纤上传1G的文件，
- * 不采用压缩将需要 1024 MB / 12.5MB = 81.92s,如果采用压缩方式上传，压缩所用时间为3秒，压缩后500M，此时文件上传仅需40秒的时间，因此压缩方式上传只需要 3 + 40 = 43秒，
+ * 不采用压缩将需要 1024 MB / 12.5MB = 81.92s,如果采用压缩方式上传，压缩所用时间为3秒(当然还需要考虑文件从磁盘读入到内存的时间)，压缩后500M，此时文件上传仅需40秒的时间，因此压缩方式上传只需要 3 + 40 = 43秒，
  * 同时也大大减少了存储空间，可以说是一举两得。
  *
  * @code

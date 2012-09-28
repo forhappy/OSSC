@@ -46,7 +46,7 @@ TARGET_LINK_LIBRARIES(ossextra_shared osscore_shared pthread)
 TARGET_LINK_LIBRARIES(ossextra_static osscore_static pthread)
 SET_TARGET_PROPERTIES(ossextra_static PROPERTIES OUTPUT_NAME "ossextra") 
 SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES OUTPUT_NAME "ossextra") 
-SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES VERSION 0.1.3 SOVERSION 1) 
+SET_TARGET_PROPERTIES(ossextra_shared PROPERTIES VERSION 0.1.4 SOVERSION 1) 
 
 INSTALL(TARGETS
 	ossextra_static

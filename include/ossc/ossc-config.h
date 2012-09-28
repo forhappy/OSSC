@@ -27,5 +27,4 @@ typedef unsigned char bool;
 #define TRUE (!FALSE)
 #endif
 
-
 #endif // OSSC_CONFIG_H

@@ -38,6 +38,7 @@
  * OK: data in OUT/OUTLEN.
  *
  */
+#include "ossc/ossc-config.h"
 
 /* Get prototype. */
 #include "base64.h"
@@ -49,6 +50,11 @@
 #include <limits.h>
 
 #include <string.h>
+
+/* Get bool. */
+#ifdef HAVE_STDBOOL_H
+# include <stdbool.h>
+#endif
 
 /* C89 compliant way to cast 'char' to 'unsigned char'. */
 static inline unsigned char

@@ -348,7 +348,7 @@ client_put_object_from_file(oss_client_t *client,
 	now = (char *)oss_get_gmt_time();
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 
 	/* Content-Type is a must */
@@ -539,7 +539,7 @@ client_put_object_from_buffer(oss_client_t *client,
 	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 
 	/* Content-Type is a must */
@@ -720,7 +720,7 @@ client_get_object_to_file(oss_client_t *client,
 			request->get_key(request));
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
@@ -880,7 +880,7 @@ client_get_object_to_buffer(oss_client_t *client,
 			request->get_key(request));
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 	oss_map_put(default_headers, OSS_DATE, now);
 
@@ -1019,7 +1019,7 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 			request->get_key(request));
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
@@ -1199,7 +1199,7 @@ client_copy_object_ext(oss_client_t *client,
 	sprintf(url, "%s/%s/%s", client->endpoint, destination_bucket_name, destination_key);
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 	sprintf(header_copy_source, "%s: %s", OSS_COPY_SOURCE, copy_source);
 
@@ -1349,7 +1349,7 @@ client_copy_object(oss_client_t *client,
 			request->get_unmodified_since_constraints(request));
 	}
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 	sprintf(header_copy_source, "%s: %s", OSS_COPY_SOURCE, copy_source);
 
@@ -1448,7 +1448,7 @@ client_get_object_metadata(oss_client_t *client,
 	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
@@ -1566,7 +1566,7 @@ client_delete_object(oss_client_t *client,
 	sprintf(url, "%s/%s/%s", client->endpoint, bucket_name, key);
 
 	/** 构造请求头部 */
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
@@ -1656,7 +1656,7 @@ client_delete_multiple_object(oss_client_t *client,
 	now = (char *)oss_get_gmt_time();
 	sprintf(resource, "/%s/?delete", request->get_bucket_name(request));
 	sprintf(url, "%s/%s/?delete", client->endpoint, request->get_bucket_name(request));
-	sprintf(header_host,"Host: %s", client->endpoint);
+	sprintf(header_host, "Host: %s", client->endpoint);
 	sprintf(header_date, "Date: %s", now);
 
 	const char **p = request->get_keys(request, &keynums);
