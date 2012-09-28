@@ -694,7 +694,7 @@ client_get_object_to_file(oss_client_t *client,
 	 * URL: "aliyun.storage.com" + resource
 	 */
 	char *url = (char *)malloc(sizeof(char) * 
-			(bucket_name_len + key_len + strlen(client->endpoint) + 64));
+			(bucket_name_len + key_len + strlen(client->endpoint) + 32));
 
 	char header_host[256]  = {0};
 	char header_date[48]  = {0};
@@ -788,7 +788,7 @@ client_get_object_to_file(oss_client_t *client,
 			} else if (user_data->header_buffer->code == 404) {
 				*retcode = FILE_NOT_FOUND;
 			} else {
-				*retcode = -1;
+				*retcode = 1000;
 			}
 		}
 		oss_free_user_data(user_data);
@@ -858,7 +858,7 @@ client_get_object_to_buffer(oss_client_t *client,
 	long length = 0; /**< Range 长度*/
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) *
-			(bucket_name_len + key_len + strlen(client->endpoint) + 8));
+			(bucket_name_len + key_len + strlen(client->endpoint) + 32));
 
 	char header_host[256]  = {0};
 	char header_date[48]  = {0};
@@ -931,19 +931,22 @@ client_get_object_to_buffer(oss_client_t *client,
 	if(resource != NULL) free(resource);
 	if(url != NULL) free(url);
 
-	/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
-	 * 如果缓冲区应设置合理的大小
-	 * */
-	*output = user_data->recv_buffer->ptr;
-	*output_len = user_data->recv_buffer->allocated - user_data->recv_buffer->left;
 
 	if (user_data->header_buffer->code == 200
 			|| user_data->header_buffer->code == 206) {
 		if (retcode != NULL) *retcode = 0;
+		/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
+		 * 如果缓冲区应设置合理的大小
+		 * */
+		*output = user_data->recv_buffer->ptr;
+		*output_len = user_data->recv_buffer->allocated - user_data->recv_buffer->left;
 		return construct_get_object_to_buffer_response(user_data);
 	} else {
-		if (retcode != NULL)
+		if (retcode != NULL) {
+			*output = NULL;
+			*output_len = 0;
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		}
 		oss_free_user_data(user_data);
 	}
 
@@ -1071,19 +1074,23 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 	if (resource != NULL) free(resource);
 	if (url != NULL) free(url);
 	
-	/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
-	 * 如果缓冲区应设置合理的大小
-	 * */
-	*output = user_data->recv_buffer->ptr;
-	*output_len = user_data->recv_buffer->allocated;
 
 	if (user_data->header_buffer->code == 200 
 			|| user_data->header_buffer->code == 206) {
 		if (retcode != NULL) *retcode = 0;
+		/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
+		 * 如果缓冲区应设置合理的大小
+		 * */
+		*output = user_data->recv_buffer->ptr;
+		*output_len = user_data->recv_buffer->allocated;
 		return construct_get_object_to_buffer_response(user_data);
 	} else {
-		if (retcode != NULL)
+		if (retcode != NULL) {
+			*output = NULL;
+			*output_len = 0;
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		}
+
 		oss_free_user_data(user_data);
 	}
 	return NULL;
@@ -1505,8 +1512,15 @@ client_get_object_metadata(oss_client_t *client,
 		if (retcode != NULL) {
 			if (user_data->header_buffer->code == 404) {
 				*retcode = FILE_NOT_FOUND;
+			} else if (user_data->header_buffer->code == 403) {
+				*retcode = ACCESS_DENIED;
+			} else if (user_data->header_buffer->code == 304) {
+				*retcode = NOT_MODIFIED;
+			} else if (user_data->header_buffer->code == 412) {
+				*retcode = PRECONDITION_FAILED;
 			} else {
-				*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+				*retcode = 1000;
+				//*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 			}
 		}
 		oss_free_user_data(user_data);
@@ -1637,9 +1651,9 @@ client_delete_multiple_object(oss_client_t *client,
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
 	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
-	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + 16));
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + 32));
 	char *url = (char *)malloc(sizeof(char) *
-			(bucket_name_len + strlen(client->endpoint) + 8));
+			(bucket_name_len + strlen(client->endpoint) + 32));
 
 	char header_host[256]  = {0};
 	char header_date[48]  = {0};

@@ -36,7 +36,7 @@ int main()
 			source_bucket_name, source_key,
 			destination_bucket_name, destination_key);
 
-	request->set_modified_since_constraints(request, "Wed, 12 Sep 2012 12:06:55 GMT");
+	request->set_modified_since_constraints(request, "Fri, 26 Sep 2012 12:06:55 GMT");
 
 	oss_copy_object_result_t *result = client_copy_object(client, request, &retcode);
 

@@ -625,7 +625,7 @@ client_list_objects(oss_client_t *client,
 	unsigned int bucket_name_len = strlen(request->bucket_name);
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
 	char *url = (char *)malloc(sizeof(char) *
-			(bucket_name_len + strlen(client->endpoint) + 256));
+			(bucket_name_len + strlen(client->endpoint) + 1024));
 
 	char header_host[256]  = {0};
 	char header_date[48]  = {0};
@@ -767,7 +767,7 @@ client_list_objects_with_prefix(
 	unsigned int bucket_name_len = strlen(bucket_name);
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 32 );
 	char *url = (char *)malloc(sizeof(char) *
-			(bucket_name_len + strlen(client->endpoint) + 8));
+			(bucket_name_len + strlen(client->endpoint) + strlen(prefix) + 32));
 
 	char header_host[256]  = {0};
 	char header_date[48]  = {0};

@@ -15,6 +15,10 @@
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
 #include <ossc/modules/oss_abort_multipart_upload_request.h>
 #undef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
@@ -169,5 +173,9 @@
 #undef _OSS_CONSTANTS_H
 
 #include <ossc/oss_helper.h>
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

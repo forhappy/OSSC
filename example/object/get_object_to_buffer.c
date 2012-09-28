@@ -25,7 +25,7 @@ int main()
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
 	const char *bucket_name = "bucketname001";       //设置bucket_name
-	const char *key         = "glib-2.32.4.tar.xz";      //设置下载 key
+	const char *key         = "glibx-2.32.4.tar.xz";      //设置下载 key
 	const char *local_file  = "local-file.data";         //设置需要保存到本地的文件名
 	unsigned int file_len = -1; /**< 远程文件的长度  */
 	void *buffer = NULL; /* 存放文件内容的缓冲区首指针 */
@@ -39,7 +39,7 @@ int main()
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	request->set_range(request, 0, 2 * 1024);
+	// request->set_range(request, 0, 2 * 1024);
 
 	/* 将远程服务器上的文件下载到内存中 */
 

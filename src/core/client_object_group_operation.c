@@ -532,16 +532,17 @@ client_get_object_group_to_file(oss_client_t *client,
 		return construct_get_object_metadata_response_on_success(user_data);
 	} else {
 		if (retcode != NULL) {
-			fflush(file);
-			rewind(file);
-			unsigned int file_len = oss_get_file_size(file);
-			char *retbuf = (char *)malloc(sizeof(char) * (file_len + 1));
-			memset(retbuf, 0, file_len + 1);
-			unsigned int retlen = fread(retbuf, 1, file_len, file);
-			if (retlen != file_len)
-				fprintf(stderr, "file mode should be set for both read and write\n");
-			*retcode = oss_get_retcode_from_response(retbuf);
-			free(retbuf);
+			if (user_data->header_buffer->code == 403) {
+				*retcode = ACCESS_DENIED;
+			} else if (user_data->header_buffer->code == 412) {
+				*retcode = PRECONDITION_FAILED;
+			} else if (user_data->header_buffer->code == 304) {
+				*retcode = NOT_MODIFIED;
+			} else if (user_data->header_buffer->code == 404) {
+				*retcode = FILE_NOT_FOUND;
+			} else {
+				*retcode = 1000;
+			}
 		}
 		oss_free_user_data(user_data);
 	}
@@ -646,11 +647,6 @@ client_get_object_group_to_buffer(oss_client_t *client,
 	 */
 	curl_slist_free_all(http_headers);
 	
-	/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
-	 * 如果缓冲区应设置合理的大小
-	 * */
-	*output = user_data->recv_buffer->ptr;
-	*output_len = user_data->recv_buffer->allocated;
 
 	oss_map_delete(default_headers);
 	if(now != NULL) {
@@ -671,10 +667,18 @@ client_get_object_group_to_buffer(oss_client_t *client,
 	}
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
+		/** 注意，output_len参数既指明了output的长度，又指明了返回文件的大小，
+		 * 如果缓冲区应设置合理的大小
+		 * */
+		*output = user_data->recv_buffer->ptr;
+		*output_len = user_data->recv_buffer->allocated;
 		return construct_get_object_object_to_buffer_response_on_success(user_data);
 	} else {
-		if (retcode != NULL)
+		if (retcode != NULL) {
+			*output = NULL;
+			*output_len = 0;
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
+		}
 		oss_free_partial_user_data(user_data);
 	}
 	return NULL;
@@ -1012,6 +1016,8 @@ client_head_object_group(oss_client_t *client,
 				*retcode = NOT_MODIFIED;
 			} else if(tmp == 412) {
 				*retcode = PRECONDITION_FAILED;
+			} else if(tmp == 403) {
+				*retcode = ACCESS_DENIED;
 			} else {
 				*retcode = 1000;
 			}
