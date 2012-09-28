@@ -39,7 +39,7 @@ int main()
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
 	oss_get_object_request_t *request = get_object_request_initialize(bucket_name, key);
-	// request->set_range(request, 0, 2 * 1024);
+	request->set_range(request, 0, 2 * 1024);
 
 	/* 将远程服务器上的文件下载到内存中 */
 
