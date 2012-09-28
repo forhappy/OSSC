@@ -422,7 +422,7 @@ char* xml_attr(XmlNode *x, const char *name)
 
 /* we add another function:
  *        XmlNode *xml_load_buffer(const char *buffer) to fit our need. */
-XmlNode* xml_load_buffer(const char * buffer, size_t buffer_len)
+XmlNode* xml_load_buffer(const char * buffer, unsigned int buffer_len)
 {
 	struct XMLBUF xml;
 	XmlNode *ret = NULL;

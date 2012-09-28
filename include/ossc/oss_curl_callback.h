@@ -18,89 +18,89 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern size_t
+extern unsigned int
 bucket_curl_operation_send_callback(
-		void *ptr, size_t size, 
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size, 
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 bucket_curl_operation_recv_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 bucket_curl_operation_header_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 object_curl_operation_send_from_file_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 object_curl_operation_send_from_buffer_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 object_curl_operation_recv_to_file_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 object_curl_operation_recv_to_buffer_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 object_curl_operation_recv_to_buffer_2nd_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 object_curl_operation_header_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 object_curl_operation_header_callback_2nd(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
 
-extern size_t
+extern unsigned int
 multipart_upload_curl_operation_send_from_file_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t
+extern unsigned int
 multipart_upload_curl_operation_send_from_buffer_callback(
-		void *ptr, size_t size, size_t nmemb, void *stream);
+		void *ptr, unsigned int size, unsigned int nmemb, void *stream);
 
-extern size_t 
+extern unsigned int 
 multipart_upload_curl_operation_recv_to_file_callback(
-		void *ptr, size_t size, 
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size, 
+		unsigned int nmemb, void *stream);
 
-extern size_t 
+extern unsigned int 
 multipart_upload_curl_operation_recv_to_buffer_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t 
+extern unsigned int 
 multipart_upload_curl_operation_header_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t 
+extern unsigned int 
 object_group_curl_operation_recv_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
-extern size_t 
+extern unsigned int 
 object_group_curl_operation_header_callback(
-		void *ptr, size_t size,
-		size_t nmemb, void *stream);
+		void *ptr, unsigned int size,
+		unsigned int nmemb, void *stream);
 
 #endif // OSS_CURL_CALLBACK_H

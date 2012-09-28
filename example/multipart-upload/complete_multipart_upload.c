@@ -36,7 +36,7 @@ int main()
 	/* TODO:此处设置你需要终止的 Upload ID */
 	const char *upload_id = "0004CA5F502B4C6AEE20E8B4ED6E2002"; 
 
-	size_t parts = sizeof(etags) / sizeof(char *);
+	unsigned int parts = sizeof(etags) / sizeof(char *);
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 

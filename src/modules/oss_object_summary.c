@@ -26,7 +26,7 @@ static inline void
 __object_summary_set_type(
 		oss_object_summary_t *summary,
 		const char *type,
-		size_t type_len)
+		unsigned int type_len)
 {
 	if (summary->type != NULL) {
 		free(summary->type);
@@ -45,7 +45,7 @@ _object_summary_set_type(
 {
 	assert(type != NULL);
 
-	size_t type_len = strlen(type);
+	unsigned int type_len = strlen(type);
 	__object_summary_set_type(summary, type, type_len);
 }
 
@@ -59,7 +59,7 @@ static inline void
 __object_summary_set_etag(
 		oss_object_summary_t *summary,
 		const char *etag,
-		size_t etag_len)
+		unsigned int etag_len)
 {
 	if (summary->etag != NULL) {
 		free(summary->etag);
@@ -78,7 +78,7 @@ _object_summary_set_etag(
 {
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__object_summary_set_etag(summary, etag, etag_len);
 }
 
@@ -93,7 +93,7 @@ static inline void
 __object_summary_set_key(
 		oss_object_summary_t *summary,
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (summary->key != NULL) {
 		free(summary->key);
@@ -112,7 +112,7 @@ _object_summary_set_key(
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__object_summary_set_key(summary, key, key_len);
 }
 
@@ -126,7 +126,7 @@ static inline void
 __object_summary_set_last_modified(
 		oss_object_summary_t *summary,
 		const char *last_modified,
-		size_t last_modified_len)
+		unsigned int last_modified_len)
 {
 	if (summary->last_modified != NULL) {
 		free(summary->last_modified);
@@ -144,7 +144,7 @@ _object_summary_set_last_modified(
 {
 	assert(last_modified != NULL);
 
-	size_t last_modified_len = strlen(last_modified);
+	unsigned int last_modified_len = strlen(last_modified);
 	__object_summary_set_last_modified(summary, last_modified, last_modified_len);
 }
 
@@ -158,7 +158,7 @@ static inline void
 __object_summary_set_storage_class(
 		oss_object_summary_t *summary,
 		const char *storage_class,
-		size_t storage_class_len)
+		unsigned int storage_class_len)
 {
 	if (summary->storage_class != NULL) {
 		free(summary->storage_class);
@@ -176,7 +176,7 @@ _object_summary_set_storage_class(
 {
 	assert(storage_class != NULL);
 
-	size_t storage_class_len = strlen(storage_class);
+	unsigned int storage_class_len = strlen(storage_class);
 	__object_summary_set_storage_class(summary, storage_class, storage_class_len);
 }
 
@@ -211,12 +211,12 @@ _object_summary_set_owner(
 	//	owner_finalize(summary->owner);
 	summary->owner = owner;
 	//summary->owner = (oss_owner_t *)malloc(sizeof(oss_owner_t));
-	//size_t display_name_len = strlen(owner->display_name);
+	//unsigned int display_name_len = strlen(owner->display_name);
 	//summary->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
 	//strncpy(summary->owner->display_name, owner->display_name, display_name_len);
 	//(summary->owner->display_name)[display_name_len] = '\0';
 
-	//size_t id_len = strlen(owner->id);
+	//unsigned int id_len = strlen(owner->id);
 	//summary->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
 	//strncpy(summary->owner->id, owner->id, id_len);
 	//(summary->owner->id)[id_len] = '\0';

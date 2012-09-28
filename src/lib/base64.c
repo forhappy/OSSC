@@ -30,7 +30,7 @@
  *   FAIL: memory allocation error
  * OK: data in OUT/OUTLEN
  *
- * size_t outlen = base64_encode_alloc (in, inlen, &out);
+ * unsigned int outlen = base64_encode_alloc (in, inlen, &out);
  * if (out == NULL && outlen == 0 && inlen != 0)
  *   FAIL: input too long
  * if (out == NULL)
@@ -62,8 +62,8 @@ to_uchar (char ch)
    possible.  If OUTLEN is larger than BASE64_LENGTH(INLEN), also zero
    terminate the output buffer. */
 void
-base64_encode (const char * in, size_t inlen,
-               char * out, size_t outlen)
+base64_encode (const char * in, unsigned int inlen,
+               char * out, unsigned int outlen)
 {
   static const char b64str[64] =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -108,10 +108,10 @@ base64_encode (const char * in, size_t inlen,
    memory allocation failed, OUT is set to NULL, and the return value
    indicates length of the requested memory block, i.e.,
    BASE64_LENGTH(inlen) + 1. */
-size_t
-base64_encode_alloc (const char *in, size_t inlen, char **out)
+unsigned int
+base64_encode_alloc (const char *in, unsigned int inlen, char **out)
 {
-  size_t outlen = 1 + BASE64_LENGTH (inlen);
+  unsigned int outlen = 1 + BASE64_LENGTH (inlen);
 
   /* Check for overflow in outlen computation.
    *
@@ -315,7 +315,7 @@ base64_decode_ctx_init (struct base64_decode_context *ctx)
 static inline char *
 get_4 (struct base64_decode_context *ctx,
        char const **in, char const * in_end,
-       size_t *n_non_newline)
+       unsigned int *n_non_newline)
 {
   if (ctx->i == 4)
     ctx->i = 0;
@@ -367,8 +367,8 @@ get_4 (struct base64_decode_context *ctx,
    *OUT to point to the byte after the last one written, and decrement
    *OUTLEN to reflect the number of bytes remaining in *OUT.  */
 static inline bool
-decode_4 (char const * in, size_t inlen,
-          char **outp, size_t *outleft)
+decode_4 (char const * in, unsigned int inlen,
+          char **outp, unsigned int *outleft)
 {
   char *out = *outp;
   if (inlen < 2)
@@ -453,10 +453,10 @@ decode_4 (char const * in, size_t inlen,
 
 bool
 base64_decode_ctx (struct base64_decode_context *ctx,
-                   const char * in, size_t inlen,
-                   char * out, size_t *outlen)
+                   const char * in, unsigned int inlen,
+                   char * out, unsigned int *outlen)
 {
-  size_t outleft = *outlen;
+  unsigned int outleft = *outlen;
   bool ignore_newlines = ctx != NULL;
   bool flush_ctx = false;
   unsigned int ctx_i = 0;
@@ -470,7 +470,7 @@ base64_decode_ctx (struct base64_decode_context *ctx,
 
   while (true)
     {
-      size_t outleft_save = outleft;
+      unsigned int outleft_save = outleft;
       if (ctx_i == 0 && !flush_ctx)
         {
           while (true)
@@ -544,15 +544,15 @@ base64_decode_ctx (struct base64_decode_context *ctx,
    undefined. */
 bool
 base64_decode_alloc_ctx (struct base64_decode_context *ctx,
-                         const char *in, size_t inlen, char **out,
-                         size_t *outlen)
+                         const char *in, unsigned int inlen, char **out,
+                         unsigned int *outlen)
 {
   /* This may allocate a few bytes too many, depending on input,
      but it's not worth the extra CPU time to compute the exact size.
      The exact size is 3 * (inlen + (ctx ? ctx->i : 0)) / 4, minus 1 if the
      input ends with "=" and minus another 1 if the input ends with "==".
      Dividing before multiplying avoids the possibility of overflow.  */
-  size_t needlen = 3 * (inlen / 4) + 3;
+  unsigned int needlen = 3 * (inlen / 4) + 3;
 
   *out = malloc (needlen);
   if (!*out)

@@ -27,7 +27,7 @@ static inline void
 __multipart_upload_listing_set_bucket_name(
 		oss_multipart_upload_listing_t *listing,
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (listing->bucket_name != NULL) {
 		free(listing->bucket_name);
@@ -62,8 +62,8 @@ void _multipart_upload_listing_set_common_prefixs(
 	 * If listing->common_prefixs != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = listing->_counts_common_prefixs;
+	unsigned int j = 0;
+	unsigned int total = listing->_counts_common_prefixs;
 	if (listing->common_prefixs != NULL) {
 
 		for (j = 0; j < total; j++) {
@@ -74,13 +74,13 @@ void _multipart_upload_listing_set_common_prefixs(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const char **pnmec = common_prefixs;
 
 	listing->common_prefixs = (char **)malloc(sizeof(char *) * counts);
 	
 	for (i = 0; i < counts; i++) {
-		size_t len = strlen(*(pnmec + i));
+		unsigned int len = strlen(*(pnmec + i));
 		*(listing->common_prefixs + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(listing->common_prefixs + i), '\0', len + 1);
 		strncpy(*(listing->common_prefixs + i), *(pnmec + i), len);
@@ -95,7 +95,7 @@ _multipart_upload_listing_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__multipart_upload_listing_set_bucket_name(listing, bucket_name, bucket_name_len);
 }
 
@@ -110,7 +110,7 @@ static inline void
 __multipart_upload_listing_set_key_marker(
 		oss_multipart_upload_listing_t *listing,
 		const char *key_marker,
-		size_t key_marker_len)
+		unsigned int key_marker_len)
 {
 	if (listing->key_marker != NULL) {
 		free(listing->key_marker);
@@ -129,7 +129,7 @@ _multipart_upload_listing_set_key_marker(
 {
 	assert(key_marker != NULL);
 
-	size_t key_marker_len = strlen(key_marker);
+	unsigned int key_marker_len = strlen(key_marker);
 	__multipart_upload_listing_set_key_marker(listing, key_marker, key_marker_len);
 }
 
@@ -144,7 +144,7 @@ static inline void
 __multipart_upload_listing_set_upload_id_marker(
 		oss_multipart_upload_listing_t *listing,
 		const char *upload_id_marker,
-		size_t upload_id_marker_len)
+		unsigned int upload_id_marker_len)
 {
 	if (listing->upload_id_marker != NULL) {
 		free(listing->upload_id_marker);
@@ -163,7 +163,7 @@ _multipart_upload_listing_set_upload_id_marker(
 {
 	assert(upload_id_marker != NULL);
 
-	size_t upload_id_marker_len = strlen(upload_id_marker);
+	unsigned int upload_id_marker_len = strlen(upload_id_marker);
 	__multipart_upload_listing_set_upload_id_marker(listing,
 			upload_id_marker, upload_id_marker_len);
 }
@@ -179,7 +179,7 @@ static inline void
 __multipart_upload_listing_set_next_key_marker(
 		oss_multipart_upload_listing_t *listing,
 		const char *next_key_marker,
-		size_t next_key_marker_len)
+		unsigned int next_key_marker_len)
 {
 	if (listing->next_key_marker != NULL) {
 		free(listing->next_key_marker);
@@ -197,7 +197,7 @@ _multipart_upload_listing_set_next_key_marker(
 {
 	assert(next_key_marker != NULL);
 
-	size_t next_key_marker_len = strlen(next_key_marker);
+	unsigned int next_key_marker_len = strlen(next_key_marker);
 	__multipart_upload_listing_set_next_key_marker(listing,
 			next_key_marker, next_key_marker_len);
 }
@@ -213,7 +213,7 @@ static inline void
 __multipart_upload_listing_set_next_upload_id_marker(
 		oss_multipart_upload_listing_t *listing,
 		const char *next_upload_id_marker,
-		size_t next_upload_id_marker_len)
+		unsigned int next_upload_id_marker_len)
 {
 	if (listing->next_upload_id_marker != NULL) {
 		free(listing->next_upload_id_marker);
@@ -232,7 +232,7 @@ _multipart_upload_listing_set_next_upload_id_marker(
 {
 	assert(next_upload_id_marker != NULL);
 
-	size_t next_upload_id_marker_len = strlen(next_upload_id_marker);
+	unsigned int next_upload_id_marker_len = strlen(next_upload_id_marker);
 	__multipart_upload_listing_set_next_upload_id_marker(listing,
 			next_upload_id_marker, next_upload_id_marker_len);
 }
@@ -248,7 +248,7 @@ static inline void
 __multipart_upload_listing_set_max_uploads(
 		oss_multipart_upload_listing_t *listing,
 		const char *max_uploads,
-		size_t max_uploads_len)
+		unsigned int max_uploads_len)
 {
 	if (listing->max_uploads != NULL) {
 		free(listing->max_uploads);
@@ -266,7 +266,7 @@ _multipart_upload_listing_set_max_uploads(
 {
 	assert(max_uploads != NULL);
 
-	size_t max_uploads_len = strlen(max_uploads);
+	unsigned int max_uploads_len = strlen(max_uploads);
 	__multipart_upload_listing_set_max_uploads(listing,
 			max_uploads, max_uploads_len);
 }
@@ -319,8 +319,8 @@ void _multipart_upload_listing_set_multipart_uploads(
 	 * If listing->multipart_uploads != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = listing->_counts_multipart_uploads;
+	unsigned int j = 0;
+	unsigned int total = listing->_counts_multipart_uploads;
 	if (listing->multipart_uploads != NULL) {
 
 		for (; j < total; j++) {
@@ -331,7 +331,7 @@ void _multipart_upload_listing_set_multipart_uploads(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const oss_multipart_upload_t **pmu = multipart_uploads;
 
 	listing->multipart_uploads = (char **)malloc
@@ -371,7 +371,7 @@ static inline void
 __multipart_upload_listing_set_delimiter(
 		oss_multipart_upload_listing_t *listing,
 		const char *delimiter,
-		size_t delimiter_len)
+		unsigned int delimiter_len)
 {
 	if (listing->delimiter != NULL) {
 		free(listing->delimiter);
@@ -390,7 +390,7 @@ _multipart_upload_listing_set_delimiter(
 {
 	assert(delimiter != NULL);
 
-	size_t delimiter_len = strlen(delimiter);
+	unsigned int delimiter_len = strlen(delimiter);
 	__multipart_upload_listing_set_delimiter(listing, delimiter, delimiter_len);
 }
 
@@ -405,7 +405,7 @@ static inline void
 __multipart_upload_listing_set_prefix(
 		oss_multipart_upload_listing_t *listing,
 		const char *prefix,
-		size_t prefix_len)
+		unsigned int prefix_len)
 {
 	if (listing->prefix != NULL) {
 		free(listing->prefix);
@@ -424,7 +424,7 @@ _multipart_upload_listing_set_prefix(
 {
 	assert(prefix != NULL);
 
-	size_t prefix_len = strlen(prefix);
+	unsigned int prefix_len = strlen(prefix);
 	__multipart_upload_listing_set_prefix(listing, prefix, prefix_len);
 }
 
@@ -483,8 +483,8 @@ multipart_upload_listing_finalize(
 	}
 
 	if (listing->common_prefixs != NULL) {
-		size_t j = 0;
-		size_t total = listing->_counts_common_prefixs;
+		unsigned int j = 0;
+		unsigned int total = listing->_counts_common_prefixs;
 		if (listing->common_prefixs != NULL) {
 			for (j = 0; j < total; j++) {
 				if (*(listing->common_prefixs + j) != NULL) {

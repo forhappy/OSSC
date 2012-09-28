@@ -37,7 +37,7 @@ int main()
 
 		printf("BUCKET NAME: %s\n", listing->get_bucket_name(listing));
 
-		size_t upload_counts = 0;
+		unsigned int upload_counts = 0;
 		int i = 0;
 
 		oss_multipart_upload_t **uploads = listing->get_multipart_uploads(listing, &upload_counts);

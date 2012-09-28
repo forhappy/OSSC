@@ -705,7 +705,7 @@ int LZ4_uncompress(const char* source,
 	BYTE token;
 
 	int	len, length;
-	size_t dec[] ={0, 3, 2, 3, 0, 0, 0, 0};
+	unsigned int dec[] ={0, 3, 2, 3, 0, 0, 0, 0};
 
 
 	// Main Loop
@@ -737,8 +737,8 @@ int LZ4_uncompress(const char* source,
 		if unlikely(op-ref<STEPSIZE)
 		{
 #if LZ4_ARCH64
-			size_t dec2table[]={0, 0, 0, -1, 0, 1, 2, 3};
-			size_t dec2 = dec2table[op-ref];
+			unsigned int dec2table[]={0, 0, 0, -1, 0, 1, 2, 3};
+			unsigned int dec2 = dec2table[op-ref];
 #else
 			const int dec2 = 0;
 #endif
@@ -788,7 +788,7 @@ int LZ4_uncompress_unknownOutputSize(
 	BYTE* const oend = op + maxOutputSize;
 	BYTE* cpy;
 
-	size_t dec[] ={0, 3, 2, 3, 0, 0, 0, 0};
+	unsigned int dec[] ={0, 3, 2, 3, 0, 0, 0, 0};
 
 
 	// Main Loop
@@ -826,8 +826,8 @@ int LZ4_uncompress_unknownOutputSize(
 		if unlikely(op-ref<STEPSIZE)
 		{
 #if LZ4_ARCH64
-			size_t dec2table[]={0, 0, 0, -1, 0, 1, 2, 3};
-			size_t dec2 = dec2table[op-ref];
+			unsigned int dec2table[]={0, 0, 0, -1, 0, 1, 2, 3};
+			unsigned int dec2 = dec2table[op-ref];
 #else
 			const int dec2 = 0;
 #endif

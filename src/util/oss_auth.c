@@ -76,8 +76,8 @@ static void oss_add_headers(const char *key, const char *value)
 	assert(value != NULL);
 
 	user_headers_t *s = (user_headers_t *)malloc(sizeof(user_headers_t));
-	size_t key_len = strlen(key);
-	size_t value_len = strlen(value);
+	unsigned int key_len = strlen(key);
+	unsigned int value_len = strlen(value);
 
 	s->key = (char *)malloc(sizeof(char) * key_len + 1);
 	s->value = (char *)malloc(sizeof(char) * value_len + 1);
@@ -107,7 +107,7 @@ void fill_canonicalized_headers()
 {
 	user_headers_t *s;
 	for (s = oss_user_headers; s != NULL; s = s->hh.next) {
-		size_t offset = 0;
+		unsigned int offset = 0;
 		offset = sprintf(key_iter, "%s:%s\n", s->key, s->value);
 		key_iter += offset;
 	}
@@ -116,7 +116,7 @@ void fill_canonicalized_headers()
 #if 0
 static void iter_user_headers(const char *key, const char *value, const void *obj)
 {
-	size_t offset = 0;
+	unsigned int offset = 0;
 	offset = sprintf(key_iter, "%s:%s\n", key, value);
 	key_iter += offset;
 }
@@ -148,7 +148,7 @@ generate_authentication(const char *access_key, const char *method,
 	 * 将要签名的字符串长度是 canonicalized_headers 的 4 倍
 	 * */
 	char *string_to_sign = (char *)malloc(sizeof(char) * CANONICALIZED_HEADERS_BUFFER_SIZE *4);
-	size_t access_key_len = strlen(access_key);
+	unsigned int access_key_len = strlen(access_key);
 
 	/* *
 	 * hmac-sha1 结果存放
@@ -224,7 +224,7 @@ generate_authentication(const char *access_key, const char *method,
 		sprintf(string_to_sign, "%s\n\n\n%s\n%s%s", method,
 				date, canonicalized_headers, resource);
 
-	size_t string_to_sign_len = strlen(string_to_sign);
+	unsigned int string_to_sign_len = strlen(string_to_sign);
 
 	hmac_sha1(access_key, access_key_len, string_to_sign, string_to_sign_len, hmac_sha1_out);
 

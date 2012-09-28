@@ -26,7 +26,7 @@
    output to pre-allocated 20 byte minimum RESBUF buffer.  Return 0 on
    success.  */
 int
-hmac_sha1 (const void *key, size_t keylen,
-           const void *in, size_t inlen, void *resbuf);
+hmac_sha1 (const void *key, unsigned int keylen,
+           const void *in, unsigned int inlen, void *resbuf);
 
 #endif /* HMAC_H */

@@ -18,7 +18,7 @@
 static inline void
 __list_multipart_uploads_request_set_bucket_name(
 		oss_list_multipart_uploads_request_t *request,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
@@ -36,7 +36,7 @@ __list_multipart_uploads_request_set_bucket_name(
 static inline void
 __list_multipart_uploads_request_set_prefix(
 		oss_list_multipart_uploads_request_t *request,
-		const char *prefix, size_t prefix_len)
+		const char *prefix, unsigned int prefix_len)
 {
 
 	assert(prefix != NULL);
@@ -55,7 +55,7 @@ __list_multipart_uploads_request_set_prefix(
 static inline void
 __list_multipart_uploads_request_set_key_marker(
 		oss_list_multipart_uploads_request_t *request,
-		const char *key_marker, size_t key_marker_len)
+		const char *key_marker, unsigned int key_marker_len)
 {
 	assert(key_marker != NULL);
 	assert(key_marker_len > 0);
@@ -73,7 +73,7 @@ __list_multipart_uploads_request_set_key_marker(
 static inline void
 __list_multipart_uploads_request_set_delimiter(
 		oss_list_multipart_uploads_request_t *request,
-		const char *delimiter, size_t delimiter_len)
+		const char *delimiter, unsigned int delimiter_len)
 {
 
 	assert(delimiter!= NULL);
@@ -92,7 +92,7 @@ __list_multipart_uploads_request_set_delimiter(
 static inline void
 __list_multipart_uploads_request_set_upload_id_marker(
 		oss_list_multipart_uploads_request_t *request,
-		const char *upload_id_marker, size_t upload_id_marker_len)
+		const char *upload_id_marker, unsigned int upload_id_marker_len)
 {
 
 	assert(upload_id_marker!= NULL);
@@ -155,7 +155,7 @@ _list_multipart_uploads_request_set_bucket_name(
 		oss_list_multipart_uploads_request_t *request,
 		const char *bucket_name)
 {
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	__list_multipart_uploads_request_set_bucket_name(request,
 			bucket_name, bucket_name_len);
@@ -166,7 +166,7 @@ _list_multipart_uploads_request_set_prefix(
 		oss_list_multipart_uploads_request_t *request,
 		const char *prefix)
 {
-	size_t prefix_len = strlen(prefix);
+	unsigned int prefix_len = strlen(prefix);
 
 	__list_multipart_uploads_request_set_prefix(request,
 			prefix, prefix_len);
@@ -177,7 +177,7 @@ _list_multipart_uploads_request_set_key_marker(
 		oss_list_multipart_uploads_request_t *request,
 		const char *key_marker)
 {
-	size_t key_marker_len = strlen(key_marker);
+	unsigned int key_marker_len = strlen(key_marker);
 
 	__list_multipart_uploads_request_set_key_marker(request,
 			key_marker, key_marker_len);
@@ -188,7 +188,7 @@ _list_multipart_uploads_request_set_delimiter(
 		oss_list_multipart_uploads_request_t *request,
 		const char *delimiter)
 {
-	size_t delimiter_len = strlen(delimiter);
+	unsigned int delimiter_len = strlen(delimiter);
 
 	__list_multipart_uploads_request_set_delimiter(request,
 			delimiter, delimiter_len);
@@ -199,7 +199,7 @@ _list_multipart_uploads_request_set_upload_id_marker(
 		oss_list_multipart_uploads_request_t *request,
 		const char *upload_id_marker)
 {
-	size_t upload_id_marker_len = strlen(upload_id_marker);
+	unsigned int upload_id_marker_len = strlen(upload_id_marker);
 
 	__list_multipart_uploads_request_set_upload_id_marker(request,
 			upload_id_marker, upload_id_marker_len);
@@ -217,14 +217,14 @@ _list_multipart_uploads_request_set_max_uploads(
  */
 static inline oss_list_multipart_uploads_request_t *
 _list_multipart_uploads_request_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *delimiter, size_t delimiter_len,
-		const char *key_marker, size_t key_marker_len,
-		const char *prefix, size_t prefix_len,
-		const char *upload_id_marker, size_t upload_id_marker_len,
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *delimiter, unsigned int delimiter_len,
+		const char *key_marker, unsigned int key_marker_len,
+		const char *prefix, unsigned int prefix_len,
+		const char *upload_id_marker, unsigned int upload_id_marker_len,
 		unsigned int max_uploads)
 {
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 
 	oss_list_multipart_uploads_request_t * request = NULL;
 	request = (oss_list_multipart_uploads_request_t *)malloc(
@@ -274,7 +274,7 @@ list_multipart_uploads_request_initialize(const char *bucket_name)
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	return _list_multipart_uploads_request_initialize(bucket_name, bucket_name_len,
 			NULL, 0,

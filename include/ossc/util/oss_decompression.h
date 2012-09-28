@@ -25,15 +25,15 @@ oss_read_compression_header(FILE *fp);
 
 int
 oss_decompress_block(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm /** 压缩算法 */
 		);
 
 int
 oss_decompress_block_2nd(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len/** 输出参数，必须预先分配空间 */
 		);
 
 void oss_decompress_file(

@@ -18,7 +18,7 @@
 #ifndef BASE64_H
 # define BASE64_H
 
-/* Get size_t. */
+/* Get unsigned int. */
 # include <stddef.h>
 
 /* Get bool. */
@@ -63,20 +63,20 @@ struct base64_decode_context
 
 extern bool isbase64 (char ch);
 
-extern void base64_encode (const char *in, size_t inlen,
-                           char *out, size_t outlen);
+extern void base64_encode (const char *in, unsigned int inlen,
+                           char *out, unsigned int outlen);
 
-extern size_t base64_encode_alloc (const char *in, size_t inlen, char **out);
+extern unsigned int base64_encode_alloc (const char *in, unsigned int inlen, char **out);
 
 extern void base64_decode_ctx_init (struct base64_decode_context *ctx);
 
 extern bool base64_decode_ctx (struct base64_decode_context *ctx,
-                               const char *in, size_t inlen,
-                               char *out, size_t *outlen);
+                               const char *in, unsigned int inlen,
+                               char *out, unsigned int *outlen);
 
 extern bool base64_decode_alloc_ctx (struct base64_decode_context *ctx,
-                                     const char *in, size_t inlen,
-                                     char **out, size_t *outlen);
+                                     const char *in, unsigned int inlen,
+                                     char **out, unsigned int *outlen);
 
 #define base64_decode(in, inlen, out, outlen) \
         base64_decode_ctx (NULL, in, inlen, out, outlen)

@@ -41,7 +41,7 @@ struct oss_post_object_group_result_s {
 	char *bucket_name;      /**< Bucket名称 */
 	char *key;              /**< Object名称*/
 	char *etag;             /**< Object的etag值*/
-	size_t size;            /**< Object的大小*/
+	unsigned int size;            /**< Object的大小*/
 
 	/**
 	 * 获得Bucket名称
@@ -97,9 +97,9 @@ struct oss_post_object_group_result_s {
 	 * 获得Object的大小
 	 * @param result [in] 标识一个oss_post_object_group_result_t结构指针
 	 * @return Object的大小
-	 * @retval size_t
+	 * @retval unsigned int
 	 */
-	size_t (*get_size)(oss_post_object_group_result_t *result);
+	unsigned int (*get_size)(oss_post_object_group_result_t *result);
 
 	/**
 	 * 设置Object的大小
@@ -107,7 +107,7 @@ struct oss_post_object_group_result_s {
 	 * @param size [in] Object的大小
 	 * @retval void
 	 */
-	void (*set_size)(oss_post_object_group_result_t *result, size_t size);
+	void (*set_size)(oss_post_object_group_result_t *result, unsigned int size);
 
 };
 

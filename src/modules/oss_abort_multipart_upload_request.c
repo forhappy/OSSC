@@ -29,7 +29,7 @@ _abort_multipart_upload_request_get_bucket_name(
 static inline void
 __abort_multipart_upload_request_set_bucket_name(
 		oss_abort_multipart_upload_request_t *request,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
@@ -52,7 +52,7 @@ _abort_multipart_upload_request_set_bucket_name(
 		oss_abort_multipart_upload_request_t *request,
 		const char *bucket_name)
 {
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	__abort_multipart_upload_request_set_bucket_name(request,
 			bucket_name, bucket_name_len);
@@ -71,7 +71,7 @@ _abort_multipart_upload_request_get_key(
 static inline void
 __abort_multipart_upload_request_set_key(
 		oss_abort_multipart_upload_request_t *request,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 	assert(key != NULL);
 	assert(key_len > 0);
@@ -94,7 +94,7 @@ _abort_multipart_upload_request_set_key(
 		oss_abort_multipart_upload_request_t *request,
 		const char *key)
 {
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 
 	__abort_multipart_upload_request_set_key(request,
 			key, key_len);
@@ -113,7 +113,7 @@ _abort_multipart_upload_request_get_upload_id(
 static inline void
 __abort_multipart_upload_request_set_upload_id(
 		oss_abort_multipart_upload_request_t *request,
-		const char *upload_id, size_t upload_id_len)
+		const char *upload_id, unsigned int upload_id_len)
 {
 	assert(upload_id != NULL);
 	assert(upload_id_len > 0);
@@ -136,7 +136,7 @@ _abort_multipart_upload_request_set_upload_id(
 		oss_abort_multipart_upload_request_t *request,
 		const char *upload_id)
 {
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 
 	__abort_multipart_upload_request_set_upload_id(request,
 			upload_id, upload_id_len);
@@ -147,11 +147,11 @@ _abort_multipart_upload_request_set_upload_id(
  */
 static inline oss_abort_multipart_upload_request_t *
 _abort_multipart_upload_request_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *key, size_t key_len,
-		const char *upload_id, size_t upload_id_len)
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *key, unsigned int key_len,
+		const char *upload_id, unsigned int upload_id_len)
 {
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 	oss_abort_multipart_upload_request_t * request = NULL;
 
 	request = (oss_abort_multipart_upload_request_t *)malloc(
@@ -191,9 +191,9 @@ abort_multipart_upload_request_initialize(const char *bucket_name,
 	assert(key != NULL);
 	assert(upload_id != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
+	unsigned int upload_id_len = strlen(upload_id);
 
 	return _abort_multipart_upload_request_initialize(
 			bucket_name, bucket_name_len,

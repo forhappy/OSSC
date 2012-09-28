@@ -40,7 +40,7 @@ static inline void
 __generate_presigned_url_request_set_bucket_name(
 		oss_generate_presigned_url_request_t *request,
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
@@ -59,7 +59,7 @@ _generate_presigned_url_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__generate_presigned_url_request_set_bucket_name(request, bucket_name, bucket_name_len);
 }
 
@@ -74,7 +74,7 @@ static inline void
 __generate_presigned_url_request_set_expiration(
 		oss_generate_presigned_url_request_t *request,
 		const char *expiration,
-		size_t expiration_len)
+		unsigned int expiration_len)
 {
 	if (request->expiration != NULL) {
 		free(request->expiration);
@@ -93,7 +93,7 @@ _generate_presigned_url_request_set_expiration(
 {
 	assert(expiration != NULL);
 
-	size_t expiration_len = strlen(expiration);
+	unsigned int expiration_len = strlen(expiration);
 	__generate_presigned_url_request_set_expiration(request, expiration, expiration_len);
 
 }
@@ -109,7 +109,7 @@ static inline void
 __generate_presigned_url_request_set_key(
 		oss_generate_presigned_url_request_t *request,
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (request->key != NULL) {
 		free(request->key);
@@ -127,7 +127,7 @@ _generate_presigned_url_request_set_key(
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__generate_presigned_url_request_set_key(request, key, key_len);
 }
 
@@ -142,7 +142,7 @@ static inline void
 __generate_presigned_url_request_set_method(
 		oss_generate_presigned_url_request_t *request,
 		const char *method,
-		size_t method_len)
+		unsigned int method_len)
 {
 	if (request->method != NULL) {
 		free(request->method);
@@ -161,7 +161,7 @@ _generate_presigned_url_request_set_method(
 {
 	assert(method != NULL);
 
-	size_t method_len = strlen(method);
+	unsigned int method_len = strlen(method);
 	__generate_presigned_url_request_set_method(request, method, method_len);
 }
 
@@ -213,8 +213,8 @@ _generate_presigned_url_request_set_response_headers(
 
 oss_generate_presigned_url_request_t *
 _generate_presigned_url_request_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *key, size_t key_len)
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *key, unsigned int key_len)
 {
 	oss_generate_presigned_url_request_t *request;
 	request = (oss_generate_presigned_url_request_t *)
@@ -255,8 +255,8 @@ generate_presigned_url_request_initialize(const char *bucket_name, const char *k
 	assert(bucket_name != NULL);
 	assert(key != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 
 	return _generate_presigned_url_request_initialize(
 			bucket_name, bucket_name_len, key, key_len);
@@ -265,9 +265,9 @@ generate_presigned_url_request_initialize(const char *bucket_name, const char *k
 
 oss_generate_presigned_url_request_t *
 _generate_presigned_url_request_initialize_with_method(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *key, size_t key_len, const char *method,
-		size_t method_len)
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *key, unsigned int key_len, const char *method,
+		unsigned int method_len)
 {
 	oss_generate_presigned_url_request_t *request;
 	request = (oss_generate_presigned_url_request_t *)
@@ -326,9 +326,9 @@ generate_presigned_url_request_initialize_with_method(
 	assert(key != NULL);
 	assert(method != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
-	size_t method_len = strlen(method);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
+	unsigned int method_len = strlen(method);
 	return _generate_presigned_url_request_initialize_with_method(
 			bucket_name, bucket_name_len, key, key_len, method, method_len);
 }

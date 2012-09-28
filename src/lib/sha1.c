@@ -96,7 +96,7 @@ sha1_finish_ctx (struct sha1_ctx *ctx, void *resbuf)
 {
   /* Take yet unprocessed bytes into account.  */
   uint32_t bytes = ctx->buflen;
-  size_t size = (bytes < 56) ? 64 / 4 : 64 * 2 / 4;
+  unsigned int size = (bytes < 56) ? 64 / 4 : 64 * 2 / 4;
 
   /* Now count remaining bytes.  */
   ctx->total[0] += bytes;
@@ -122,7 +122,7 @@ int
 sha1_stream (FILE *stream, void *resblock)
 {
   struct sha1_ctx ctx;
-  size_t sum;
+  unsigned int sum;
 
   char *buffer = malloc (BLOCKSIZE + 72);
   if (!buffer)
@@ -137,7 +137,7 @@ sha1_stream (FILE *stream, void *resblock)
       /* We read the file in blocks of BLOCKSIZE bytes.  One call of the
          computation function processes the whole buffer so that with the
          next round of the loop another block can be read.  */
-      size_t n;
+      unsigned int n;
       sum = 0;
 
       /* Read block.  Take care for partial reads.  */
@@ -193,7 +193,7 @@ sha1_stream (FILE *stream, void *resblock)
    output yields to the wanted ASCII representation of the message
    digest.  */
 void *
-sha1_buffer (const char *buffer, size_t len, void *resblock)
+sha1_buffer (const char *buffer, unsigned int len, void *resblock)
 {
   struct sha1_ctx ctx;
 
@@ -208,14 +208,14 @@ sha1_buffer (const char *buffer, size_t len, void *resblock)
 }
 
 void
-sha1_process_bytes (const void *buffer, size_t len, struct sha1_ctx *ctx)
+sha1_process_bytes (const void *buffer, unsigned int len, struct sha1_ctx *ctx)
 {
   /* When we already have some bits in our internal buffer concatenate
      both inputs first.  */
   if (ctx->buflen != 0)
     {
-      size_t left_over = ctx->buflen;
-      size_t add = 128 - left_over > len ? len : 128 - left_over;
+      unsigned int left_over = ctx->buflen;
+      unsigned int add = 128 - left_over > len ? len : 128 - left_over;
 
       memcpy (&((char *) ctx->buffer)[left_over], buffer, add);
       ctx->buflen += add;
@@ -259,7 +259,7 @@ sha1_process_bytes (const void *buffer, size_t len, struct sha1_ctx *ctx)
   /* Move remaining bytes in internal buffer.  */
   if (len > 0)
     {
-      size_t left_over = ctx->buflen;
+      unsigned int left_over = ctx->buflen;
 
       memcpy (&((char *) ctx->buffer)[left_over], buffer, len);
       left_over += len;
@@ -292,10 +292,10 @@ sha1_process_bytes (const void *buffer, size_t len, struct sha1_ctx *ctx)
    Most of this code comes from GnuPG's cipher/sha1.c.  */
 
 void
-sha1_process_block (const void *buffer, size_t len, struct sha1_ctx *ctx)
+sha1_process_block (const void *buffer, unsigned int len, struct sha1_ctx *ctx)
 {
   const uint32_t *words = buffer;
-  size_t nwords = len / sizeof (uint32_t);
+  unsigned int nwords = len / sizeof (uint32_t);
   const uint32_t *endp = words + nwords;
   uint32_t x[16];
   uint32_t a = ctx->A;

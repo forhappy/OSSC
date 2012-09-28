@@ -175,7 +175,7 @@ construct_get_object_group_index_response(curl_request_param_t *user_data)
 	assert(response != NULL);
 	int i;
 	XmlNode *xml, *bucket_tag, *key_tag, *etag_tag, *length_tag, *file_part_tag, *part_tag, *part_tmp;
-	size_t response_len = strlen(response); 
+	unsigned int response_len = strlen(response); 
 	xml = xml_load_buffer(response, response_len);
 
 	oss_get_object_group_index_result_t *result = get_object_group_index_result_initialize();
@@ -186,7 +186,7 @@ construct_get_object_group_index_response(curl_request_param_t *user_data)
 	etag_tag = xml_find(xml, "ETag");
 	result->set_etag(result, *etag_tag->child->attrib);
 	length_tag = xml_find(xml, "FileLength");
-	size_t file_length = (size_t)atoi(*length_tag->child->attrib);
+	unsigned int file_length = (unsigned int)atoi(*length_tag->child->attrib);
 	result->set_file_length(result, file_length);
 	
 	file_part_tag = xml_find(xml, "FilePart");
@@ -207,7 +207,7 @@ construct_get_object_group_index_response(curl_request_param_t *user_data)
 			group[i]->set_part_name(group[i], *part_tag->child->next->child->attrib);
 			int part_number = atoi(*part_tag->child->next->next->child->attrib);
 			group[i]->set_part_number(group[i], part_number);
-			size_t part_size = (size_t)(atoi(*part_tag->child->next->next->next->child->attrib));
+			unsigned int part_size = (unsigned int)(atoi(*part_tag->child->next->next->next->child->attrib));
 			group[i]->set_part_size(group[i], part_size);
 		}
 		result->group = group;
@@ -226,7 +226,7 @@ construct_post_object_group_response(curl_request_param_t *user_data)
 	const char *response = user_data->recv_buffer->ptr;
 	assert(response != NULL);
 	XmlNode *xml, *bucket_tag, *key_tag, *etag_tag, *size_tag;
-	size_t response_len = strlen(response); 
+	unsigned int response_len = strlen(response); 
 	xml = xml_load_buffer(response, response_len);
 
 	oss_post_object_group_result_t *result = post_object_group_result_initialize();
@@ -237,7 +237,7 @@ construct_post_object_group_response(curl_request_param_t *user_data)
  	etag_tag = xml_find(xml, "ETag");
 	result->set_etag(result, *etag_tag->child->attrib);
 	size_tag = xml_find(xml,"Size");
-	size_t size = (size_t)atoi(*size_tag->child->attrib);
+	unsigned int size = (unsigned int)atoi(*size_tag->child->attrib);
 	result->set_size(result, size);
  
 	oss_free_user_data(user_data);
@@ -302,8 +302,8 @@ client_post_object_group(oss_client_t *client,
 	user_data->header_buffer->left = MAX_HEADER_BUFFER_SIZE;
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 
-	size_t bucket_name_len = strlen(request->bucket_name);
-	size_t key_len = strlen(request->key);
+	unsigned int bucket_name_len = strlen(request->bucket_name);
+	unsigned int key_len = strlen(request->key);
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16);
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + key_len + strlen(client->endpoint) + 32));
@@ -354,7 +354,7 @@ client_post_object_group(oss_client_t *client,
 		tstring_append(tstr_part_item, part);
 	}
 	tstring_append(tstr_part_item, "</CreateFileGroup>\n");
-	size_t tmp_len = strlen(tstring_data(tstr_part_item));
+	unsigned int tmp_len = strlen(tstring_data(tstr_part_item));
 	char *tmp = (char *)malloc(sizeof(char) * (tmp_len + 1));
 	strncpy(tmp, tstring_data(tstr_part_item), tmp_len);
 	tmp[tmp_len] = '\0';
@@ -438,9 +438,9 @@ client_get_object_group_to_file(oss_client_t *client,
 	user_data->header_buffer->left = MAX_HEADER_BUFFER_SIZE;
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 
-	size_t bucket_name_len = strlen(request->get_bucket_name(request));
-	size_t key_len = strlen(request->get_key(request));
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
+	unsigned int key_len = strlen(request->get_key(request));
+	unsigned int sign_len = 0;
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + key_len + strlen(client->endpoint) + 8));
@@ -534,10 +534,10 @@ client_get_object_group_to_file(oss_client_t *client,
 		if (retcode != NULL) {
 			fflush(file);
 			rewind(file);
-			size_t file_len = oss_get_file_size(file);
+			unsigned int file_len = oss_get_file_size(file);
 			char *retbuf = (char *)malloc(sizeof(char) * (file_len + 1));
 			memset(retbuf, 0, file_len + 1);
-			size_t retlen = fread(retbuf, 1, file_len, file);
+			unsigned int retlen = fread(retbuf, 1, file_len, file);
 			if (retlen != file_len)
 				fprintf(stderr, "file mode should be set for both read and write\n");
 			*retcode = oss_get_retcode_from_response(retbuf);
@@ -553,7 +553,7 @@ oss_object_metadata_t *
 client_get_object_group_to_buffer(oss_client_t *client,
 		oss_get_object_group_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode)
 {
 
@@ -577,9 +577,9 @@ client_get_object_group_to_buffer(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(request->get_bucket_name(request));
-	size_t key_len = strlen(request->get_key(request));
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
+	unsigned int key_len = strlen(request->get_key(request));
+	unsigned int sign_len = 0;
 	long start = 0; /**< Range 起始字节位置*/
 	long length = 0; /**< Range 长度*/
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
@@ -707,8 +707,8 @@ client_get_object_group_index(
 	user_data->header_buffer->left = 4 * 1024;
 	user_data->header_buffer->allocated = 4 * 1024;
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16 );
 	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 64);
 	char header_host[64]  = {0};
@@ -817,8 +817,8 @@ client_delete_object_group(oss_client_t *client,
 	user_data->header_buffer->left = 4 * 1024;
 	user_data->header_buffer->allocated = 4 * 1024;
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 	char *resource = (char *)malloc(
 			sizeof(char) * (bucket_name_len + key_len) + 16);
 	char *url = (char *)malloc(sizeof(char) *
@@ -918,8 +918,8 @@ client_head_object_group(oss_client_t *client,
 	user_data->header_buffer->left = 4 * 1024;
 	user_data->header_buffer->allocated = 4 * 1024;
 
-	size_t bucket_name_len = strlen(request->bucket_name);
-	size_t key_len = strlen(request->key);
+	unsigned int bucket_name_len = strlen(request->bucket_name);
+	unsigned int key_len = strlen(request->key);
 
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16);
 

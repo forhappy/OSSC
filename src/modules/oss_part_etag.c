@@ -39,7 +39,7 @@ static inline void
 __part_etag_set_etag(
 		oss_part_etag_t *pe, 
 		const char *etag,
-		size_t etag_len)
+		unsigned int etag_len)
 {
 	if (pe->etag != NULL) {
 		free(pe->etag);
@@ -58,7 +58,7 @@ _part_etag_set_etag(
 {
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__part_etag_set_etag(pe, etag, etag_len);
 }
 
@@ -77,7 +77,7 @@ _part_etag_set_part_number(
 }
 
 oss_part_etag_t *
-_part_etag_initialize(int part_number, const char *etag, size_t etag_len)
+_part_etag_initialize(int part_number, const char *etag, unsigned int etag_len)
 {
 	oss_part_etag_t *pe;
 	pe = (oss_part_etag_t *)malloc(sizeof(oss_part_etag_t));
@@ -99,6 +99,6 @@ part_etag_initialize(int part_number, const char *etag)
 {
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	return _part_etag_initialize(part_number, etag, etag_len);
 }

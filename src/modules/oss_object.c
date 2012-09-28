@@ -43,7 +43,7 @@ _object_get_object_metadata(oss_object_t *object)
 
 static inline void 
 __object_set_bucket_name(oss_object_t *object,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(object != NULL);
 
@@ -62,13 +62,13 @@ _object_set_bucket_name(oss_object_t *object, const char *bucket_name)
 	assert(object != NULL);
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__object_set_bucket_name(object, bucket_name, bucket_name_len);
 }
 
 static inline void 
 __object_set_key(oss_object_t *object,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 	assert(object != NULL);
 
@@ -88,13 +88,13 @@ _object_set_key(oss_object_t *object, const char *key)
 	assert(object != NULL);
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__object_set_key(object, key, key_len);
 }
 
 static inline void
 __object_set_object_content(oss_object_t *object,
-		const char *object_content, size_t object_content_len)
+		const char *object_content, unsigned int object_content_len)
 {
 	assert(object != NULL);
 	if (object->object_content!= NULL) {
@@ -110,7 +110,7 @@ __object_set_object_content(oss_object_t *object,
 static inline void
 _object_set_object_content(oss_object_t *object,
 		const char *object_content,
-		size_t object_content_len)
+		unsigned int object_content_len)
 {
 	assert(object != NULL);
 	assert(object_content != NULL);

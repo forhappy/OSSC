@@ -26,7 +26,7 @@ static inline void
 __complete_multipart_upload_request_set_bucket_name(
 		oss_complete_multipart_upload_request_t *request, 
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
@@ -45,7 +45,7 @@ _complete_multipart_upload_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__complete_multipart_upload_request_set_bucket_name(request, bucket_name, bucket_name_len);
 }
 
@@ -80,7 +80,7 @@ static inline void
 __complete_multipart_upload_request_set_key(
 		oss_complete_multipart_upload_request_t *request, 
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (request->key != NULL) {
 		free(request->key);
@@ -99,7 +99,7 @@ _complete_multipart_upload_request_set_key(
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__complete_multipart_upload_request_set_key(request, key, key_len);
 }
 
@@ -114,7 +114,7 @@ static inline void
 __complete_multipart_upload_request_set_upload_id(
 		oss_complete_multipart_upload_request_t *request, 
 		const char *upload_id,
-		size_t upload_id_len)
+		unsigned int upload_id_len)
 {
 	if (request->upload_id != NULL) {
 		free(request->upload_id);
@@ -133,7 +133,7 @@ _complete_multipart_upload_request_set_upload_id(
 {
 	assert(upload_id != NULL);
 
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 	__complete_multipart_upload_request_set_upload_id(request, upload_id, upload_id_len);
 }
 
@@ -148,17 +148,17 @@ complete_multipart_upload_request_initialize(
 	oss_complete_multipart_upload_request_t *request;
 	request = (oss_complete_multipart_upload_request_t *)malloc(sizeof(oss_complete_multipart_upload_request_t));
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	request->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
 	(request->bucket_name)[bucket_name_len] = '\0';
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	request->key = (char *)malloc(sizeof(char) * key_len + 1);
 	strncpy(request->key, key, key_len);
 	(request->key)[key_len] = '\0';
 	
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 	request->upload_id = (char *)malloc(sizeof(char) * upload_id_len + 1);
 	strncpy(request->upload_id, upload_id, upload_id_len);
 	(request->upload_id)[upload_id_len] = '\0';

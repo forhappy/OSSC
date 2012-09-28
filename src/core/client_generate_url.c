@@ -25,8 +25,8 @@ client_generate_presigned_url_with_expiration(oss_client_t *client,
 	assert(key != NULL);
 	assert(expiration != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 256);
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16);
 	unsigned int sign_len = 0;
@@ -74,8 +74,8 @@ client_generate_presigned_url_with_method(oss_client_t *client,
 		return client_generate_presigned_url_with_expiration(client,
 				bucket_name, key, expiration);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 	char *url = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 256);
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len) + 16);
 	unsigned int sign_len = 0;

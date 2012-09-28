@@ -31,11 +31,11 @@ int main()
 	const char *upload_id = "0004CA5FAC0DD11BFCEE7E76679BD09D"; 
 
 	FILE *fp= fopen("mysql-5.1.52.tar.gz", "r"); /* 需要通过multipart upload上传的文件 */
-	size_t file_len = oss_get_file_size(fp); /* 获取文件大小 */
+	unsigned int file_len = oss_get_file_size(fp); /* 获取文件大小 */
 	
 	char *buffer = (char *)malloc(sizeof(char) * file_len + 1);
 	memset(buffer, '\0', file_len + 1);
-	size_t file_sz = fread(buffer, 1, file_len, fp);
+	unsigned int file_sz = fread(buffer, 1, file_len, fp);
 	if (file_sz < file_len) {fprintf(stderr, "fread error.\n"); return -1;}
 	const int single_request_len = 8 * 1024 * 1024; /* 每个Part的大小 */
 	int requests_num = file_len / single_request_len; /* 需要多少次上传 */

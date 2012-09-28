@@ -19,7 +19,7 @@
 static inline void
 __initiate_multipart_upload_result_set_bucket_name(
 		oss_initiate_multipart_upload_result_t *result,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
@@ -37,7 +37,7 @@ __initiate_multipart_upload_result_set_bucket_name(
 static inline void
 __initiate_multipart_upload_result_set_key(
 		oss_initiate_multipart_upload_result_t *result,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 
 	assert(key != NULL);
@@ -56,7 +56,7 @@ __initiate_multipart_upload_result_set_key(
 static inline void
 __initiate_multipart_upload_result_set_upload_id(
 		oss_initiate_multipart_upload_result_t *result,
-		const char *upload_id, size_t upload_id_len)
+		const char *upload_id, unsigned int upload_id_len)
 {
 	assert(upload_id != NULL);
 	assert(upload_id_len > 0);
@@ -109,7 +109,7 @@ _initiate_multipart_upload_result_set_bucket_name(
 		oss_initiate_multipart_upload_result_t *result,
 		const char *bucket_name)
 {
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	__initiate_multipart_upload_result_set_bucket_name(result,
 			bucket_name, bucket_name_len);
@@ -123,7 +123,7 @@ _initiate_multipart_upload_result_set_key(
 		oss_initiate_multipart_upload_result_t *result,
 		const char *key)
 {
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 
 	__initiate_multipart_upload_result_set_key(result,
 			key, key_len);
@@ -137,7 +137,7 @@ _initiate_multipart_upload_result_set_upload_id(
 		oss_initiate_multipart_upload_result_t *result,
 		const char *upload_id)
 {
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 
 	__initiate_multipart_upload_result_set_upload_id(result,
 			upload_id, upload_id_len);
@@ -148,11 +148,11 @@ _initiate_multipart_upload_result_set_upload_id(
  */
 static inline oss_initiate_multipart_upload_result_t *
 _initiate_multipart_upload_result_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *key, size_t key_len,
-		const char *upload_id, size_t upload_id_len)
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *key, unsigned int key_len,
+		const char *upload_id, unsigned int upload_id_len)
 {
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 
 	oss_initiate_multipart_upload_result_t * result = NULL;
 	result = (oss_initiate_multipart_upload_result_t *)malloc(

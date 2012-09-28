@@ -28,7 +28,7 @@ static inline void
 __delete_multiple_object_request_set_bucket_name(
 		oss_delete_multiple_object_request_t *request, 
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (request->bucket_name) {
 		free(request->bucket_name);
@@ -47,7 +47,7 @@ _delete_multiple_object_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__delete_multiple_object_request_set_bucket_name(request, bucket_name, bucket_name_len);
 }
 
@@ -66,7 +66,7 @@ static inline void
 __delete_multiple_object_request_set_key(
 		oss_delete_multiple_object_request_t *request, 
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 }
 
@@ -81,8 +81,8 @@ _delete_multiple_object_request_set_keys(
 	 * If request->keys != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = request->keynums;
+	unsigned int j = 0;
+	unsigned int total = request->keynums;
 	if (request->keys != NULL) {
 		for (j = 0; j < total; j++) {
 			if (*(request->keys + j) != NULL) {
@@ -92,13 +92,13 @@ _delete_multiple_object_request_set_keys(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const char **pk = keys;
 
 	request->keys = (char **)malloc(sizeof(char *) * keynums);
 	
 	for (i = 0; i < keynums; i++) {
-		size_t len = strlen(*(pk + i));
+		unsigned int len = strlen(*(pk + i));
 		*(request->keys + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(request->keys + i), '\0', len + 1);
 		strncpy(*(request->keys + i), *(pk + i), len);
@@ -134,7 +134,7 @@ delete_multiple_object_request_initialize(
 	oss_delete_multiple_object_request_t *request;
 	request = (oss_delete_multiple_object_request_t *)malloc(sizeof(oss_delete_multiple_object_request_t));
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	request->bucket_name = (char *)malloc(sizeof(char) * bucket_name_len + 1);
 	strncpy(request->bucket_name, bucket_name, bucket_name_len);
 	(request->bucket_name)[bucket_name_len] = '\0';
@@ -143,7 +143,7 @@ delete_multiple_object_request_initialize(
 
 	const char **pk = keys;
 	for (i = 0; i < keynums; i++) {
-		size_t len = strlen(*(pk + i));
+		unsigned int len = strlen(*(pk + i));
 		*(request->keys + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(request->keys + i), '\0', len + 1);
 		strncpy(*(request->keys + i), *(pk + i), len);
@@ -173,8 +173,8 @@ delete_multiple_object_request_finalize(
 		}
 
 		if (request->keys != NULL) {
-			size_t j = 0;
-			size_t total = request->keynums;
+			unsigned int j = 0;
+			unsigned int total = request->keynums;
 			if (request->keys != NULL) {
 				for (j = 0; j < total; j++) {
 					if (*(request->keys + j) != NULL) {

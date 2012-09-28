@@ -26,7 +26,7 @@ static inline void
 __bucket_set_create_date(
 		oss_bucket_t *bucket, 
 		const char *create_date,
-		size_t create_date_len)
+		unsigned int create_date_len)
 {
 	if (bucket->create_date != NULL) {
 		free(bucket->create_date);
@@ -45,7 +45,7 @@ _bucket_set_create_date(
 {
 	assert(create_date != NULL);
 
-	size_t create_date_len = strlen(create_date);
+	unsigned int create_date_len = strlen(create_date);
 	__bucket_set_create_date(bucket, create_date, create_date_len);
 }
 
@@ -59,7 +59,7 @@ static inline void
 __bucket_set_name(
 		oss_bucket_t *bucket, 
 		const char *name,
-		size_t name_len)
+		unsigned int name_len)
 {
 	if (bucket->name != NULL) {
 		free(bucket->name);
@@ -78,7 +78,7 @@ _bucket_set_name(
 {
 	assert(name != NULL);
 
-	size_t name_len = strlen(name);
+	unsigned int name_len = strlen(name);
 	__bucket_set_name(bucket, name, name_len);
 }
 
@@ -104,12 +104,12 @@ _bucket_set_owner(
 	//
 	/* 
 	 * bucket->owner = owner_initialize();
-	 * size_t display_name_len = strlen(owner->display_name);
+	 * unsigned int display_name_len = strlen(owner->display_name);
 	 * bucket->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
 	 * strncpy(bucket->owner->display_name, owner->display_name, display_name_len);
 	 * (bucket->owner->display_name)[display_name_len] = '\0';
 	 *
-	 * size_t id_len = strlen(owner->id);
+	 * unsigned int id_len = strlen(owner->id);
 	 * bucket->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
 	 * strncpy(bucket->owner->id, owner->id, id_len);
 	 * (bucket->owner->id)[id_len] = '\0';
@@ -139,7 +139,7 @@ bucket_initialize(void)
 }
 
 oss_bucket_t *
-_bucket_initialize_with_name(const char *name, size_t name_len)
+_bucket_initialize_with_name(const char *name, unsigned int name_len)
 {
 	oss_bucket_t *bucket;
 	bucket = (oss_bucket_t *)malloc(sizeof(oss_bucket_t));
@@ -168,7 +168,7 @@ bucket_initialize_with_name(const char *name)
 {
 	assert(name != NULL);
 
-	size_t name_len = strlen(name);
+	unsigned int name_len = strlen(name);
 	return _bucket_initialize_with_name(name, name_len);
 }
 

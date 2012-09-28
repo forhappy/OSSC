@@ -37,7 +37,7 @@ _object_group_item_get_part_number(oss_object_group_item_t *item)
 
 static inline void 
 __object_group_item_set_etag(oss_object_group_item_t *item,
-		const char *etag, size_t etag_len)
+		const char *etag, unsigned int etag_len)
 {
 	assert(item != NULL);
 	if (item->etag != NULL) {
@@ -56,13 +56,13 @@ _object_group_item_set_etag(oss_object_group_item_t *item, const char *etag)
 	assert(item != NULL);
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__object_group_item_set_etag(item, etag, etag_len);
 }
 
 static inline void 
 __object_group_item_set_part_name(oss_object_group_item_t *item,
-		const char *part_name, size_t part_name_len)
+		const char *part_name, unsigned int part_name_len)
 {
 	assert(item != NULL);
 	if (item->part_name!= NULL) {
@@ -81,7 +81,7 @@ _object_group_item_set_part_name(oss_object_group_item_t *item, const char *part
 	assert(item != NULL);
 	assert(part_name != NULL);
 
-	size_t part_name_len = strlen(part_name);
+	unsigned int part_name_len = strlen(part_name);
 	__object_group_item_set_part_name(item, part_name, part_name_len);
 }
 
@@ -95,9 +95,9 @@ _object_group_item_set_part_number(oss_object_group_item_t *item, int part_numbe
 
 
 oss_object_group_item_t *
-_object_group_item_initialize(const char *etag, size_t etag_len,
-		const char *part_name, size_t part_name_len,
-		size_t part_number)
+_object_group_item_initialize(const char *etag, unsigned int etag_len,
+		const char *part_name, unsigned int part_name_len,
+		unsigned int part_number)
 {
 	oss_object_group_item_t *item = 
 		(oss_object_group_item_t *)malloc(sizeof(oss_object_group_item_t));
@@ -126,14 +126,14 @@ _object_group_item_initialize(const char *etag, size_t etag_len,
 oss_object_group_item_t *
 object_group_item_initialize(const char *etag,
 		const char *part_name,
-		size_t part_number)
+		unsigned int part_number)
 {
 	assert(etag != NULL);
 	assert(part_name != NULL);
 	assert(part_number > 0);
 
-	size_t etag_len = strlen(etag);
-	size_t part_name_len = strlen(part_name);
+	unsigned int etag_len = strlen(etag);
+	unsigned int part_name_len = strlen(part_name);
 
 	return _object_group_item_initialize(etag,
 			etag_len, part_name, part_name_len, part_number);

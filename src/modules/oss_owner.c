@@ -28,7 +28,7 @@ _owner_get_display_name(oss_owner_t *owner)
 }
 
 static inline void
-__owner_set_id(oss_owner_t *owner, const char *id, size_t id_len)
+__owner_set_id(oss_owner_t *owner, const char *id, unsigned int id_len)
 {
 	assert(id != NULL);
 
@@ -44,7 +44,7 @@ __owner_set_id(oss_owner_t *owner, const char *id, size_t id_len)
 }
 
 static inline void
-__owner_set_display_name(oss_owner_t *owner, const char *name, size_t name_len)
+__owner_set_display_name(oss_owner_t *owner, const char *name, unsigned int name_len)
 {
 	assert(name != NULL);
 
@@ -66,7 +66,7 @@ _owner_set_id(oss_owner_t *owner, const char *id)
 	assert(owner != NULL);
 	assert(id != NULL);
 
-	size_t id_len = strlen(id);
+	unsigned int id_len = strlen(id);
 
 	__owner_set_id(owner, id, id_len);
 }
@@ -78,14 +78,14 @@ _owner_set_display_name(oss_owner_t *owner, const char *name)
 	assert(owner != NULL);
 	assert(name != NULL);
 
-	size_t name_len = strlen(name);
+	unsigned int name_len = strlen(name);
 
 	__owner_set_display_name(owner, name, name_len);
 }
 
 static inline oss_owner_t *
-_owner_initialize_with_id_and_name(const char *id, size_t id_len,
-		const char *name, size_t name_len)
+_owner_initialize_with_id_and_name(const char *id, unsigned int id_len,
+		const char *name, unsigned int name_len)
 {
 	oss_owner_t *owner = (oss_owner_t *)malloc(
 			sizeof(oss_owner_t));
@@ -121,8 +121,8 @@ owner_initialize_with_id(const char *id,
 	assert(id != NULL);
 	assert(name != NULL);
 
-	size_t id_len = strlen(id);
-	size_t name_len = strlen(name);
+	unsigned int id_len = strlen(id);
+	unsigned int name_len = strlen(name);
 	return _owner_initialize_with_id_and_name(id, id_len,
 			name, name_len);
 }

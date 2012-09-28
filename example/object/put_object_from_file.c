@@ -35,7 +35,7 @@ int main()
 		return -1;
 	}
 
-	size_t file_len = oss_get_file_size(fp);
+	unsigned int file_len = oss_get_file_size(fp);
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 #if 1
 	/* 初始化元信息，并设置相关属性 */

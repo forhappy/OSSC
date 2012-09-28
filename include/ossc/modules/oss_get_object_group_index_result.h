@@ -47,7 +47,7 @@ struct oss_get_object_group_index_result_s {
 	char *etag;                      /**< Object的MD5值 */
 	oss_multipart_object_group_t **group;  /**< object group中的多个object列表 */
 	int part_number;                 /**< object group中的多个object列表的个数 */
-	size_t file_length;              /**< 文件长度 */
+	unsigned int file_length;              /**< 文件长度 */
 
 	/**
 	 * 获得Bucket名称
@@ -121,9 +121,9 @@ struct oss_get_object_group_index_result_s {
 	 * 获得Object的文件长度
 	 * @param result [in] 标识一个oss_get_object_group_index_result_t结构指针
 	 * @return Object的文件长度
-	 * @retval size_t
+	 * @retval unsigned int
 	 */
-	size_t (*get_file_length)(oss_get_object_group_index_result_t *result);
+	unsigned int (*get_file_length)(oss_get_object_group_index_result_t *result);
 
 	/**
 	 * 设置Object的文件长度
@@ -131,7 +131,7 @@ struct oss_get_object_group_index_result_s {
 	 * @param file_length [in] Object的文件长度
 	 * @retval void
 	 */
-	void (*set_file_length)(oss_get_object_group_index_result_t *result, size_t file_length);
+	void (*set_file_length)(oss_get_object_group_index_result_t *result, unsigned int file_length);
 
 };
 

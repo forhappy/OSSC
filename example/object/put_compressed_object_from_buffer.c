@@ -28,7 +28,7 @@ int main()
 	const char *bucket_name = "bucketexample";       //设置bucket_name
 	const char *key         = "put-object.data";      //设置上传key
 	const char *local_file  = "proactor.pdf";         //设置需要上传的文件
-	size_t retsize = 0; // 读取文件时的返回值
+	unsigned int retsize = 0; // 读取文件时的返回值
 
 	FILE *fp = fopen(local_file, "r");
 	if (fp == NULL) {
@@ -36,7 +36,7 @@ int main()
 		return -1;
 	}
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
-	size_t file_len = oss_get_file_size(fp);
+	unsigned int file_len = oss_get_file_size(fp);
 
 	char *buffer = (char *)malloc(sizeof(char) * file_len + 1);
 

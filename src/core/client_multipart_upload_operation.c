@@ -140,7 +140,7 @@ construct_list_multipart_uploads_response(curl_request_param_t *user_data)
 	}
 
 	tmp = xml_find(xml, "Upload");
-	size_t upload_counts = 0;
+	unsigned int upload_counts = 0;
 	tmp2 = tmp;
 	if (tmp2 != NULL) upload_counts = 1;
 	while (tmp2->next != NULL) {
@@ -220,7 +220,7 @@ construct_list_parts_response(curl_request_param_t *user_data)
 	}
 
 	tmp = xml_find(xml, "Part");
-	size_t part_counts = 0;
+	unsigned int part_counts = 0;
 	tmp2 = tmp;
 	if (tmp2 != NULL) part_counts = 1;
 	while (tmp2->next != NULL) {
@@ -447,9 +447,9 @@ client_initiate_multipart_upload(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(request->get_bucket_name(request));
-	size_t key_len = strlen(request->get_key(request));
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
+	unsigned int key_len = strlen(request->get_key(request));
+	unsigned int sign_len = 0;
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + key_len + strlen(client->endpoint) + 64));

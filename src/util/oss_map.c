@@ -235,11 +235,11 @@ int oss_map_append(oss_map_t *map, const char *key, const char *value)
 	assert(key != NULL);
 	assert(value != NULL);
 
-	size_t value_len = strlen(value);
-	size_t new_len = 0;
+	unsigned int value_len = strlen(value);
+	unsigned int new_len = 0;
 
 	if (oss_map_exists(map, key) == 1) { // key exist!
-		size_t len = 0;
+		unsigned int len = 0;
 		len  = oss_map_get(map, key, NULL, 0);
 		if (len > 0) {
 			new_len = value_len + len; // new buffer length.
@@ -249,7 +249,7 @@ int oss_map_append(oss_map_t *map, const char *key, const char *value)
 			 * */
 			char *buf = (char *)malloc(sizeof(char) * new_len + 1);
 			memset(buf, '\0', new_len + 1);
-			size_t old_len = len;
+			unsigned int old_len = len;
 			len = oss_map_get(map, key, buf, len);
 			if (len != 0) {
 				buf[old_len - 1] = ',';

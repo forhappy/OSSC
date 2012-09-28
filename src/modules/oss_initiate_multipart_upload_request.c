@@ -19,7 +19,7 @@
 static inline void
 __initiate_multipart_upload_request_set_bucket_name(
 		oss_initiate_multipart_upload_request_t *request,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
@@ -37,7 +37,7 @@ __initiate_multipart_upload_request_set_bucket_name(
 static inline void
 __initiate_multipart_upload_request_set_key(
 		oss_initiate_multipart_upload_request_t *request,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 
 	assert(key != NULL);
@@ -92,7 +92,7 @@ _initiate_multipart_upload_request_set_bucket_name(
 		oss_initiate_multipart_upload_request_t *request,
 		const char *bucket_name)
 {
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	__initiate_multipart_upload_request_set_bucket_name(request,
 			bucket_name, bucket_name_len);
@@ -106,7 +106,7 @@ _initiate_multipart_upload_request_set_key(
 		oss_initiate_multipart_upload_request_t *request,
 		const char *key)
 {
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 
 	__initiate_multipart_upload_request_set_key(request,
 			key, key_len);
@@ -131,11 +131,11 @@ _initiate_multipart_upload_request_set_object_metadata(
  */
 static inline oss_initiate_multipart_upload_request_t *
 _initiate_multipart_upload_request_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *key, size_t key_len,
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *key, unsigned int key_len,
 		oss_object_metadata_t *object_metadata )
 {
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 
 	oss_initiate_multipart_upload_request_t * request = NULL;
 	request = (oss_initiate_multipart_upload_request_t *)malloc(
@@ -168,8 +168,8 @@ oss_initiate_multipart_upload_request_t *
 initiate_multipart_upload_request_initialize(const char *bucket_name,
 		const char *key)
 {
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 
 	return _initiate_multipart_upload_request_initialize(
 			bucket_name, bucket_name_len,
@@ -186,8 +186,8 @@ initiate_multipart_upload_request_initialize_with_metadata(const char *bucket_na
 		const char *key,
 		oss_object_metadata_t *object_metadata)
 {
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 
 	return _initiate_multipart_upload_request_initialize(
 			bucket_name, bucket_name_len,

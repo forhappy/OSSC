@@ -113,7 +113,7 @@ static inline void
 __copy_object_request_set_destination_bucket_name(
 		oss_copy_object_request_t *object,
 		const char * destination_bucket_name,
-		size_t destination_bucket_name_len)
+		unsigned int destination_bucket_name_len)
 {
 	assert(object != NULL);
 
@@ -138,7 +138,7 @@ _copy_object_request_set_destination_bucket_name(
 	assert(object != NULL);
 	assert(destination_bucket_name != NULL);
 
-	size_t destination_bucket_name_len = strlen(destination_bucket_name);
+	unsigned int destination_bucket_name_len = strlen(destination_bucket_name);
 
 	__copy_object_request_set_destination_bucket_name(object,
 		destination_bucket_name, destination_bucket_name_len);
@@ -149,7 +149,7 @@ static inline void
 __copy_object_request_set_destination_key(
 		oss_copy_object_request_t *object,
 		const char *destination_key,
-		size_t destination_key_len)
+		unsigned int destination_key_len)
 {
 	assert(object != NULL);
 	assert(destination_key != NULL);
@@ -174,7 +174,7 @@ _copy_object_request_set_destination_key(
 	assert(object != NULL);
 	assert(destination_key != NULL);
 
-	size_t destination_key_len = strlen(destination_key);
+	unsigned int destination_key_len = strlen(destination_key);
 
 	__copy_object_request_set_destination_key(object,
 		destination_key, destination_key_len);
@@ -193,8 +193,8 @@ _copy_object_request_set_matching_etag_constraints(
 	 * If object->no_matching_etag_constraints != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = object->_counts_matching_etag_constraints;
+	unsigned int j = 0;
+	unsigned int total = object->_counts_matching_etag_constraints;
 
 	if (object->matching_etag_constraints != NULL) {
 		for (j = 0; j < total; j++) {
@@ -205,13 +205,13 @@ _copy_object_request_set_matching_etag_constraints(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const char **pnmec = matching_etag_constraints;
 
 	object->matching_etag_constraints = (char **)malloc(sizeof(char *) * counts);
 	
 	for (; i < counts; i++) {
-		size_t len = strlen(*(pnmec + i));
+		unsigned int len = strlen(*(pnmec + i));
 		*(object->matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(object->matching_etag_constraints + i), 0, len + 1);
 		strncpy(*(object->matching_etag_constraints + i), *(pnmec + i), len);
@@ -224,7 +224,7 @@ static inline void
 __copy_object_request_set_modified_since_constraints(
 		oss_copy_object_request_t *object,
 		const char *modified_since_constraints,
-		size_t modified_since_constraints_len)
+		unsigned int modified_since_constraints_len)
 {
 	assert(object != NULL);
 	assert(modified_since_constraints != NULL);
@@ -250,7 +250,7 @@ _copy_object_request_set_modified_since_constraints(
 	assert(object != NULL);
 	assert(modified_since_constraints != NULL);
 
-	size_t modified_since_constraints_len = strlen(modified_since_constraints);
+	unsigned int modified_since_constraints_len = strlen(modified_since_constraints);
 
 	__copy_object_request_set_modified_since_constraints(object,
 		modified_since_constraints, modified_since_constraints_len);
@@ -280,8 +280,8 @@ _copy_object_request_set_no_matching_etag_constraints(
 	 * If object->no_matching_etag_constraints != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = object->_counts_no_matching_etag_constraints;
+	unsigned int j = 0;
+	unsigned int total = object->_counts_no_matching_etag_constraints;
 	if (object->no_matching_etag_constraints != NULL) {
 		for (; j < total; j++) {
 			if (*(object->no_matching_etag_constraints + j) != NULL) {
@@ -291,13 +291,13 @@ _copy_object_request_set_no_matching_etag_constraints(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const char **pnmec = no_matching_etag_constraints;
 
 	object->no_matching_etag_constraints = (char **)malloc(sizeof(char *) * counts);
 	
 	for (; i < counts; i++) {
-		size_t len = strlen(*(pnmec + i));
+		unsigned int len = strlen(*(pnmec + i));
 		*(object->no_matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(object->no_matching_etag_constraints + i), 0, len + 1);
 		strncpy(*(object->no_matching_etag_constraints + i), *(pnmec + i), len);
@@ -310,7 +310,7 @@ static inline void
 __copy_object_request_set_source_bucket_name(
 		oss_copy_object_request_t *object,
 		const char *source_bucket_name,
-		size_t source_bucket_name_len)
+		unsigned int source_bucket_name_len)
 {
 	assert(object != NULL);
 	assert(source_bucket_name != NULL);
@@ -336,7 +336,7 @@ _copy_object_request_set_source_bucket_name(
 	assert(object != NULL);
 	assert(source_bucket_name != NULL);
 
-	size_t source_bucket_name_len = strlen(source_bucket_name);
+	unsigned int source_bucket_name_len = strlen(source_bucket_name);
 
 	__copy_object_request_set_source_bucket_name(object,
 		source_bucket_name, source_bucket_name_len);
@@ -346,7 +346,7 @@ static inline void
 __copy_object_request_set_source_key(
 		oss_copy_object_request_t *object,
 		const char *source_key,
-		size_t source_key_len)
+		unsigned int source_key_len)
 {
 	assert(object != NULL);
 	assert(source_key != NULL);
@@ -370,7 +370,7 @@ _copy_object_request_set_source_key(
 	assert(object != NULL);
 	assert(source_key != NULL);
 
-	size_t source_key_len = strlen(source_key);
+	unsigned int source_key_len = strlen(source_key);
 
 	__copy_object_request_set_source_key(object,
 		source_key, source_key_len);
@@ -380,7 +380,7 @@ static inline void
 __copy_object_request_set_unmodified_since_constraints(
 		oss_copy_object_request_t *object,
 		const char *unmodified_since_constraints,
-		size_t unmodified_since_constraints_len)
+		unsigned int unmodified_since_constraints_len)
 {
 	assert(object != NULL);
 	assert(unmodified_since_constraints != NULL);
@@ -406,7 +406,7 @@ _copy_object_request_set_unmodified_since_constraints(
 	assert(object != NULL);
 	assert(unmodified_since_constraints != NULL);
 
-	size_t unmodified_since_constraints_len = strlen(unmodified_since_constraints);
+	unsigned int unmodified_since_constraints_len = strlen(unmodified_since_constraints);
 
 	__copy_object_request_set_unmodified_since_constraints(object,
 		unmodified_since_constraints, unmodified_since_constraints_len);
@@ -414,12 +414,12 @@ _copy_object_request_set_unmodified_since_constraints(
 
 oss_copy_object_request_t *
 _copy_object_request_initialize(
-	const char *source_bucket_name, size_t source_bucket_name_len,
-	const char *source_key, size_t source_key_len,
-	const char *destination_bucket_name, size_t destination_bucket_name_len,
-	const char *destination_key, size_t destination_key_len)
+	const char *source_bucket_name, unsigned int source_bucket_name_len,
+	const char *source_key, unsigned int source_key_len,
+	const char *destination_bucket_name, unsigned int destination_bucket_name_len,
+	const char *destination_key, unsigned int destination_key_len)
 {
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 	oss_copy_object_request_t *object = (
 		oss_copy_object_request_t *)malloc(sizeof(oss_copy_object_request_t));
 
@@ -475,10 +475,10 @@ copy_object_request_initialize(
 	assert(destination_bucket_name != NULL);
 	assert(destination_key != NULL);
 
-	size_t source_bucket_name_len = strlen(source_bucket_name);
-	size_t source_key_len = strlen(source_key);
-	size_t destination_bucket_name_len = strlen(destination_bucket_name);
-	size_t destination_key_len = strlen(destination_key);
+	unsigned int source_bucket_name_len = strlen(source_bucket_name);
+	unsigned int source_key_len = strlen(source_key);
+	unsigned int destination_bucket_name_len = strlen(destination_bucket_name);
+	unsigned int destination_key_len = strlen(destination_key);
 
 	return _copy_object_request_initialize(
 			source_bucket_name, source_bucket_name_len,
@@ -518,8 +518,8 @@ copy_object_request_finalize(oss_copy_object_request_t *object)
 		}
 
 		if (object->matching_etag_constraints != NULL) {
-			size_t j = 0;
-			size_t total = object->_counts_matching_etag_constraints;
+			unsigned int j = 0;
+			unsigned int total = object->_counts_matching_etag_constraints;
 			if (object->matching_etag_constraints != NULL) {
 				for (; j < total; j++) {
 					if (*(object->matching_etag_constraints + j) != NULL) {
@@ -531,8 +531,8 @@ copy_object_request_finalize(oss_copy_object_request_t *object)
 		}
 
 		if (object->no_matching_etag_constraints != NULL) {
-			size_t j = 0;
-			size_t total = object->_counts_no_matching_etag_constraints;
+			unsigned int j = 0;
+			unsigned int total = object->_counts_no_matching_etag_constraints;
 			if (object->no_matching_etag_constraints != NULL) {
 				for (; j < total; j++) {
 					if (*(object->no_matching_etag_constraints + j) != NULL) {

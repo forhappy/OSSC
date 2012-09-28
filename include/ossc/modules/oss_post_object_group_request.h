@@ -59,7 +59,7 @@ struct oss_post_object_group_request_s {
 	char *bucket_name;      /**< Bucket 名称*/
 	char *key;              /**< Oject 名称*/
 	oss_object_group_item_t **items;  /**< 一个或多个 Object 组成的松散的集合*/
-	size_t itemnums;        /**< 一个或多个 Object 组成的松散的集合的数目*/
+	unsigned int itemnums;        /**< 一个或多个 Object 组成的松散的集合的数目*/
 
 	/**
 	 * 获得 Bucket 名称

@@ -47,7 +47,7 @@ _extra_get_file_fingerprint(FILE *fp)
 #define PAGE_SIZE 4096
 	char file_begin[PAGE_SIZE] = {0};
 	char *fingerprint = NULL;
-	size_t dummy = fread(file_begin, PAGE_SIZE, 1, fp);
+	unsigned int dummy = fread(file_begin, PAGE_SIZE, 1, fp);
 	if (dummy < 0) return NULL;
 	fingerprint = (char *)oss_compute_md5_digest(file_begin, PAGE_SIZE);
 #undef PAGE_SIZE
@@ -117,11 +117,11 @@ _extra_upload_part_response(extra_curl_request_param_t *user_data)
 	return result;
 }
 
-static size_t 
-_extra_curl_operation_send_from_buffer_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+static unsigned int 
+_extra_curl_operation_send_from_buffer_callback(void *ptr, unsigned int size, unsigned int nmemb, void *stream)
 {
 	extra_buffer_t *send_buffer = (extra_buffer_t*)stream;
-	size_t bytes_per_send = size * nmemb; 
+	unsigned int bytes_per_send = size * nmemb; 
 
 	if(bytes_per_send < 1)
 		return 0;
@@ -133,27 +133,27 @@ _extra_curl_operation_send_from_buffer_callback(void *ptr, size_t size, size_t n
 			return bytes_per_send;
 		} else {
 			memcpy(ptr, send_buffer->ptr, send_buffer->left);
-			size_t last_sent_bytes = send_buffer->left;
+			unsigned int last_sent_bytes = send_buffer->left;
 			send_buffer->left -= bytes_per_send; /* less data left */
 			return last_sent_bytes;
 		}
 	} else return 0;
 }
 
-static size_t
-_extra_curl_operation_recv_to_buffer_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+static unsigned int
+_extra_curl_operation_recv_to_buffer_callback(void *ptr, unsigned int size, unsigned int nmemb, void *stream)
 {
 	extra_buffer_t *recv_buffer = (extra_buffer_t *)stream;
-	size_t bytes_per_recv = size * nmemb;
+	unsigned int bytes_per_recv = size * nmemb;
 	if ((int)(recv_buffer->left) > 0) {
-		size_t offset = recv_buffer->allocated - recv_buffer->left;
+		unsigned int offset = recv_buffer->allocated - recv_buffer->left;
 		if (recv_buffer->left > bytes_per_recv) {
 			strncpy(recv_buffer->ptr + offset, ptr, size * nmemb);
 			recv_buffer->left -= bytes_per_recv;
 			return bytes_per_recv;
 		} else {
 			strncpy(recv_buffer->ptr + offset, ptr, recv_buffer->left);
-			size_t last_recv_bytes = recv_buffer->left;
+			unsigned int last_recv_bytes = recv_buffer->left;
 			recv_buffer->left -= bytes_per_recv;
 			return last_recv_bytes;
 		}
@@ -163,14 +163,14 @@ _extra_curl_operation_recv_to_buffer_callback(void *ptr, size_t size, size_t nme
 	}
 }
 
-static size_t
-_extra_curl_operation_header_callback(void *ptr, size_t size, size_t nmemb, void *stream)
+static unsigned int
+_extra_curl_operation_header_callback(void *ptr, unsigned int size, unsigned int nmemb, void *stream)
 {
 	extra_buffer_t *header_buffer = (extra_buffer_t *)stream;
 	char etag[48] = {0};
 	int rcode = 0;
 	int retag = 0;
-	size_t code = 0;
+	unsigned int code = 0;
 
 	rcode = sscanf(ptr, "HTTP/1.1 %u\n", &code);
 	if (rcode != 0) {
@@ -338,7 +338,7 @@ _extra_complete_multipart_upload(oss_client_t *client, const char *bucket_name,
 		if ((entry->d_name)[0] != '.'
 				&& strncmp(entry->d_name, "ID", 2) != 0) {
 			sprintf(fnbuf, "%s/%s", upload_metadir, entry->d_name);
-			size_t fnbuf_len = strlen(fnbuf);
+			unsigned int fnbuf_len = strlen(fnbuf);
 			char *filename = (char *)malloc(sizeof(char) * (fnbuf_len + 1));
 			memset(filename, 0, fnbuf_len + 1);
 			strncpy(filename, fnbuf, fnbuf_len);
@@ -346,7 +346,7 @@ _extra_complete_multipart_upload(oss_client_t *client, const char *bucket_name,
 			char etag_orig[48] = {0};
 			char etag[48] = {0};
 			int j= 0, k = 0;
-			size_t dummy = fread(etag_orig, 48, 1, fp);
+			unsigned int dummy = fread(etag_orig, 48, 1, fp);
 			if (dummy < 1) return;
 			for (j = 0; j < strlen(etag_orig); j++) {
 				if (etag_orig[j] != '"') {
@@ -388,7 +388,7 @@ do_upload_part(job_t *job_data)
 	oss_upload_part_result_t *result = _oss_extra_upload_part(param->client, request, NULL);
 
 	sprintf(fnbuf, "%s/%d", param->metadir, result->get_part_number(result));
-	size_t fnbuf_len = strlen(fnbuf);
+	unsigned int fnbuf_len = strlen(fnbuf);
 	char *filename = (char *)malloc(sizeof(char) * (fnbuf_len + 1));
 	memset(filename, 0, fnbuf_len + 1);
 	strncpy(filename, fnbuf, fnbuf_len);
@@ -462,11 +462,11 @@ client_extra_put_object(oss_client_t *client,
 	job_t *job;
 	pthread_t worker_monitor;
 	extra_worker_monitor_param_t *worker_monitor_param = NULL;
-	size_t read_file_sz = 0;
+	unsigned int read_file_sz = 0;
 
 	FILE *fp = fopen(local_file, "r");
 	if (fp == NULL) return;
-	size_t file_len = oss_get_file_size(fp);
+	unsigned int file_len = oss_get_file_size(fp);
 
 	/* 
 	 * 文件块的个数，每个文件块大小为8M，如果文件大小为59M，则需要
@@ -498,7 +498,7 @@ client_extra_put_object(oss_client_t *client,
 		/* 获取上次的Upload ID,Upload ID 存放在 upload_metadir/ID中 */
 		sprintf(upload_id_fnbuf, "%s/ID", upload_metadir);
 
-		size_t upload_id_fnbuf_len = strlen(upload_id_fnbuf);
+		unsigned int upload_id_fnbuf_len = strlen(upload_id_fnbuf);
 		char *upload_id_filename = (char *)malloc(sizeof(char) * (upload_id_fnbuf_len + 1));
 		memset(upload_id_filename, 0, upload_id_fnbuf_len + 1);
 		strncpy(upload_id_filename, upload_id_fnbuf, upload_id_fnbuf_len);
@@ -508,7 +508,7 @@ client_extra_put_object(oss_client_t *client,
 			fprintf(stderr, "Error, cannot find upload-id file\n");
 			return;
 		}
-		size_t ret = fread(upload_id, 48, 1, upload_id_fp);
+		unsigned int ret = fread(upload_id, 48, 1, upload_id_fp);
 		if (ret < 0) return;
 		free(upload_id_filename);
 		fclose(upload_id_fp);
@@ -543,8 +543,8 @@ client_extra_put_object(oss_client_t *client,
 				user_data->echo_md5 = NULL;
 				user_data->metadir = upload_metadir;
 
-				size_t bucket_name_len = strlen(bucket_name);
-				size_t key_len = strlen(key);
+				unsigned int bucket_name_len = strlen(bucket_name);
+				unsigned int key_len = strlen(key);
 
 				user_data->bucket_name = (char *)malloc(sizeof(char) * (bucket_name_len + 1));
 				memset(user_data->bucket_name, 0, bucket_name_len + 1);
@@ -621,7 +621,7 @@ client_extra_put_object(oss_client_t *client,
 		char upload_id_fnbuf[64] = {0};
 
 		sprintf(upload_id_fnbuf, "%s/ID", upload_metadir);
-		size_t upload_id_fnbuf_len = strlen(upload_id_fnbuf);
+		unsigned int upload_id_fnbuf_len = strlen(upload_id_fnbuf);
 		char *upload_id_filename = (char *)malloc(sizeof(char) * (upload_id_fnbuf_len + 1));
 		memset(upload_id_filename, 0, upload_id_fnbuf_len + 1);
 		strncpy(upload_id_filename, upload_id_fnbuf, upload_id_fnbuf_len);
@@ -641,8 +641,8 @@ client_extra_put_object(oss_client_t *client,
 			user_data->echo_md5 = NULL;
 			user_data->metadir = upload_metadir;
 
-			size_t bucket_name_len = strlen(bucket_name);
-			size_t key_len = strlen(key);
+			unsigned int bucket_name_len = strlen(bucket_name);
+			unsigned int key_len = strlen(key);
 
 			user_data->bucket_name = (char *)malloc(sizeof(char) * (bucket_name_len + 1));
 			memset(user_data->bucket_name, 0, bucket_name_len + 1);
@@ -729,7 +729,7 @@ _is_folder(const char *path)
 void 
 _delete_etag_quotation(char * etag)
 {
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	etag[etag_len - 1] = '\0';
 }
 
@@ -778,7 +778,7 @@ oss_sync_upload(oss_client_t *client, const char * dir, const char *bucket_name)
 	assert(dir != NULL);
 	assert(bucket_name != NULL);
 	unsigned short retcode; 
-	size_t dir_len = strlen(dir);
+	unsigned int dir_len = strlen(dir);
 	char *tmp_dir = (char *) malloc(sizeof(char) * dir_len + 1);
 	strncpy(tmp_dir, dir, dir_len);
 	tmp_dir[dir_len] = '\0';
@@ -866,7 +866,7 @@ oss_sync_download(oss_client_t *client, const char *dir, const char *bucket_name
 	int file_count = 0;
 	int i, j;
 	unsigned short retcode; 
-	size_t dir_len = strlen(dir);
+	unsigned int dir_len = strlen(dir);
 	char full_path[100];
 	char *tmp_dir = (char *) malloc(sizeof(char) * dir_len + 1);
 	strncpy(tmp_dir, dir, dir_len);

@@ -74,7 +74,7 @@ construct_list_objects_response(
 	XmlNode *contents_tag, *common_prefixes_tag, *contents_tmp;
 	XmlNode *common_prefixes_tmp = NULL;
 
-	size_t response_len = strlen(response); 
+	unsigned int response_len = strlen(response); 
 	xml = xml_load_buffer(response, response_len);
 	oss_object_listing_t *object_listing = object_listing_initialize();
 
@@ -178,7 +178,7 @@ construct_list_objects_response(
 		for(i = 0; common_prefixes_tag != NULL; 
 				i++, common_prefixes_tag = common_prefixes_tag->next) {
 			const char *tmp = *common_prefixes_tag->child->child->attrib;
-			size_t common_prefixes_len = strlen(tmp);
+			unsigned int common_prefixes_len = strlen(tmp);
 			common_prefixes[i] = (char *)malloc(
 					sizeof(char) * (common_prefixes_len + 1));
 			strncpy(common_prefixes[i], tmp, common_prefixes_len);
@@ -201,7 +201,7 @@ construct_get_bucket_acl_response(
 	const char *response = user_data->recv_buffer->ptr;
 	assert(response != NULL);
 	XmlNode *xml, *grant_tag, *owner_tag;
-	size_t response_len = strlen(response); 
+	unsigned int response_len = strlen(response); 
 	xml = xml_load_buffer(response, response_len);
 
 	owner_tag = xml_find(xml, "Owner");
@@ -230,7 +230,7 @@ construct_list_buckets_response(
 	assert(response != NULL);
 	XmlNode *xml, *buckets_tag, *bucket_tag, *owner_tag;
 	int i;
-	size_t response_len = strlen(response); 
+	unsigned int response_len = strlen(response); 
 	xml = xml_load_buffer(response, response_len);
 
 	oss_bucket_t **buckets = NULL;
@@ -410,7 +410,7 @@ client_set_bucket_acl(oss_client_t *client,
 	user_data->header_buffer->left = MAX_HEADER_BUFFER_SIZE;
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	char *resource = (char *)malloc(
 			sizeof(char) * (bucket_name_len + 16));
 	char *url = (char *)malloc(sizeof(char) * 
@@ -526,7 +526,7 @@ client_create_bucket(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
 	char *url = (char *)malloc(sizeof(char) * 
 			(bucket_name_len + strlen(client->endpoint) + 8));
@@ -622,7 +622,7 @@ client_list_objects(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(request->bucket_name);
+	unsigned int bucket_name_len = strlen(request->bucket_name);
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + strlen(client->endpoint) + 256));
@@ -764,7 +764,7 @@ client_list_objects_with_prefix(
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 32 );
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + strlen(client->endpoint) + 8));
@@ -877,7 +877,7 @@ client_list_objects_with_bucket_name(
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	char *resource = (char *)malloc(sizeof(char) *bucket_name_len + 16 );
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + strlen(client->endpoint) + 8));
@@ -988,7 +988,7 @@ client_get_bucket_acl(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 16);
 	char *url = (char *)malloc(
 			sizeof(char) * (bucket_name_len + strlen(client->endpoint) + 8));
@@ -1097,7 +1097,7 @@ client_delete_bucket(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 16);
 	char *url = (char *)malloc(
 			sizeof(char) * (bucket_name_len +strlen(client->endpoint) + 8));

@@ -19,7 +19,7 @@
 static inline void
 __list_objects_request_set_bucket_name(
 		oss_list_objects_request_t *request,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
@@ -37,7 +37,7 @@ __list_objects_request_set_bucket_name(
 static inline void
 __list_objects_request_set_prefix(
 		oss_list_objects_request_t *request,
-		const char *prefix, size_t prefix_len)
+		const char *prefix, unsigned int prefix_len)
 {
 
 	assert(prefix != NULL);
@@ -56,7 +56,7 @@ __list_objects_request_set_prefix(
 static inline void
 __list_objects_request_set_marker(
 		oss_list_objects_request_t *request,
-		const char *marker, size_t marker_len)
+		const char *marker, unsigned int marker_len)
 {
 	assert(marker != NULL);
 	assert(marker_len > 0);
@@ -74,7 +74,7 @@ __list_objects_request_set_marker(
 static inline void
 __list_objects_request_set_delimiter(
 		oss_list_objects_request_t *request,
-		const char *delimiter, size_t delimiter_len)
+		const char *delimiter, unsigned int delimiter_len)
 {
 
 	assert(delimiter!= NULL);
@@ -130,7 +130,7 @@ _list_objects_request_set_bucket_name(
 		oss_list_objects_request_t *request,
 		const char *bucket_name)
 {
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	__list_objects_request_set_bucket_name(request,
 			bucket_name, bucket_name_len);
@@ -141,7 +141,7 @@ _list_objects_request_set_prefix(
 		oss_list_objects_request_t *request,
 		const char *prefix)
 {
-	size_t prefix_len = strlen(prefix);
+	unsigned int prefix_len = strlen(prefix);
 
 	__list_objects_request_set_prefix(request,
 			prefix, prefix_len);
@@ -152,7 +152,7 @@ _list_objects_request_set_marker(
 		oss_list_objects_request_t *request,
 		const char *marker)
 {
-	size_t marker_len = strlen(marker);
+	unsigned int marker_len = strlen(marker);
 
 	__list_objects_request_set_marker(request,
 			marker, marker_len);
@@ -163,7 +163,7 @@ _list_objects_request_set_delimiter(
 		oss_list_objects_request_t *request,
 		const char *delimiter)
 {
-	size_t delimiter_len = strlen(delimiter);
+	unsigned int delimiter_len = strlen(delimiter);
 
 	__list_objects_request_set_delimiter(request,
 			delimiter, delimiter_len);
@@ -182,13 +182,13 @@ _list_objects_request_set_max_keys(
  */
 static inline oss_list_objects_request_t *
 _list_objects_request_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *prefix, size_t prefix_len,
-		const char *marker, size_t marker_len,
-		const char *delimiter, size_t delimiter_len,
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *prefix, unsigned int prefix_len,
+		const char *marker, unsigned int marker_len,
+		const char *delimiter, unsigned int delimiter_len,
 		unsigned int max_keys)
 {
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 
 	oss_list_objects_request_t * request = NULL;
 	request = (oss_list_objects_request_t *)malloc(
@@ -247,7 +247,7 @@ list_objects_request_initialize_with_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	return _list_objects_request_initialize(bucket_name, bucket_name_len,
 			NULL, 0,
@@ -271,10 +271,10 @@ list_objects_request_initialize_with_args(const char *bucket_name,
 	assert(marker != NULL);
 	assert(delimiter != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t prefix_len = strlen(prefix);
-	size_t marker_len = strlen(marker);
-	size_t delimiter_len = strlen(delimiter);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int prefix_len = strlen(prefix);
+	unsigned int marker_len = strlen(marker);
+	unsigned int delimiter_len = strlen(delimiter);
 
 	return _list_objects_request_initialize(bucket_name, bucket_name_len,
 			prefix, prefix_len,

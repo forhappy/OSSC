@@ -50,14 +50,14 @@ extern void sha1_init_ctx (struct sha1_ctx *ctx);
    initialization function update the context for the next LEN bytes
    starting at BUFFER.
    It is necessary that LEN is a multiple of 64!!! */
-extern void sha1_process_block (const void *buffer, size_t len,
+extern void sha1_process_block (const void *buffer, unsigned int len,
                                 struct sha1_ctx *ctx);
 
 /* Starting with the result of former calls of this function (or the
    initialization function update the context for the next LEN bytes
    starting at BUFFER.
    It is NOT required that LEN is a multiple of 64.  */
-extern void sha1_process_bytes (const void *buffer, size_t len,
+extern void sha1_process_bytes (const void *buffer, unsigned int len,
                                 struct sha1_ctx *ctx);
 
 /* Process the remaining bytes in the buffer and put result from CTX
@@ -82,7 +82,7 @@ extern int sha1_stream (FILE *stream, void *resblock);
    result is always in little endian byte order, so that a byte-wise
    output yields to the wanted ASCII representation of the message
    digest.  */
-extern void *sha1_buffer (const char *buffer, size_t len, void *resblock);
+extern void *sha1_buffer (const char *buffer, unsigned int len, void *resblock);
 
 # ifdef __cplusplus
 }

@@ -27,7 +27,7 @@ static inline void
 __complete_multipart_upload_result_set_bucket_name(
 		oss_complete_multipart_upload_result_t *result,
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (result->bucket_name != NULL) {
 		free(result->bucket_name);
@@ -46,7 +46,7 @@ _complete_multipart_upload_result_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__complete_multipart_upload_result_set_bucket_name(
 			result, bucket_name, bucket_name_len);
 }
@@ -62,7 +62,7 @@ static inline void
 __complete_multipart_upload_result_set_etag(
 		oss_complete_multipart_upload_result_t *result,
 		const char *etag,
-		size_t etag_len)
+		unsigned int etag_len)
 {
 	if (result->etag != NULL) {
 		free(result->etag);
@@ -81,7 +81,7 @@ _complete_multipart_upload_result_set_etag(
 {
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__complete_multipart_upload_result_set_etag(result, etag, etag_len);
 }
 
@@ -97,7 +97,7 @@ static inline void
 __complete_multipart_upload_result_set_key(
 		oss_complete_multipart_upload_result_t *result,
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (result->key != NULL) {
 		free(result->key);
@@ -116,7 +116,7 @@ _complete_multipart_upload_result_set_key(
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__complete_multipart_upload_result_set_key(result, key, key_len);
 }
 
@@ -131,7 +131,7 @@ static inline void
 __complete_multipart_upload_result_set_location(
 		oss_complete_multipart_upload_result_t *result,
 		const char *location,
-		size_t location_len)
+		unsigned int location_len)
 {
 	if (result->location != NULL) {
 		free(result->location);
@@ -150,7 +150,7 @@ _complete_multipart_upload_result_set_location(
 {
 	assert(location != NULL);
 
-	size_t location_len = strlen(location);
+	unsigned int location_len = strlen(location);
 	__complete_multipart_upload_result_set_location(result, location, location_len);
 }
 

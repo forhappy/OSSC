@@ -26,7 +26,7 @@ static inline void
 __upload_part_request_set_bucket_name(
 		oss_upload_part_request_t *request,
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
@@ -45,7 +45,7 @@ _upload_part_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__upload_part_request_set_bucket_name(request, bucket_name, bucket_name_len);
 }
 
@@ -59,7 +59,7 @@ static inline void
 __upload_part_request_set_key(
 		oss_upload_part_request_t *request,
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (request->key != NULL) {
 		free(request->key);
@@ -77,7 +77,7 @@ _upload_part_request_set_key(
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__upload_part_request_set_key(request, key, key_len);
 }
 
@@ -92,7 +92,7 @@ static inline void
 __upload_part_request_set_input_stream(
 		oss_upload_part_request_t *request,
 		const char *input_stream,
-		size_t input_stream_len)
+		unsigned int input_stream_len)
 {
 	if (request->input_stream != NULL) {
 		free(request->input_stream);
@@ -108,7 +108,7 @@ __upload_part_request_set_input_stream(
 static void
 _upload_part_request_set_input_stream(
 		oss_upload_part_request_t *request,
-		const char *input_stream, size_t input_stream_len)
+		const char *input_stream, unsigned int input_stream_len)
 {
 	assert(input_stream != NULL);
 
@@ -126,7 +126,7 @@ static inline void
 __upload_part_request_set_md5_digest(
 		oss_upload_part_request_t *request,
 		const char *md5_digest,
-		size_t md5_digest_len)
+		unsigned int md5_digest_len)
 {
 	if (request->md5_digest != NULL) {
 		free(request->md5_digest);
@@ -145,7 +145,7 @@ _upload_part_request_set_md5_digest(
 {
 	assert(md5_digest != NULL);
 
-	size_t md5_digest_len = strlen(md5_digest);
+	unsigned int md5_digest_len = strlen(md5_digest);
 	__upload_part_request_set_md5_digest(request, md5_digest, md5_digest_len);
 }
 
@@ -159,7 +159,7 @@ static inline void
 __upload_part_request_set_upload_id(
 		oss_upload_part_request_t *request,
 		const char *upload_id,
-		size_t upload_id_len)
+		unsigned int upload_id_len)
 {
 	if (request->upload_id != NULL) {
 		free(request->upload_id);
@@ -178,7 +178,7 @@ _upload_part_request_set_upload_id(
 {
 	assert(upload_id != NULL);
 
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 	__upload_part_request_set_upload_id(request, upload_id, upload_id_len);
 }
 

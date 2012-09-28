@@ -30,9 +30,9 @@ extern char *
 oss_get_file_md5_digest_2nd(const char *file);
 
 extern char *
-oss_get_buffer_md5_digest(void *ptr, size_t len);
+oss_get_buffer_md5_digest(void *ptr, unsigned int len);
 
 extern char *
-oss_compute_md5_digest(void *ptr, size_t len);
+oss_compute_md5_digest(void *ptr, unsigned int len);
 
 #endif // OSS_COMMON_H

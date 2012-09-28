@@ -31,7 +31,7 @@ int main()
 	const char *bucket_name = "bucket_example";       //设置bucket_name
 	const char *key = "a_group_file.dat";             //设置object group的名称
 	char *buffer;
-	size_t buf_len;
+	unsigned int buf_len;
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 	oss_get_object_group_request_t *request = 

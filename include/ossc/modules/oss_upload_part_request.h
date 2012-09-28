@@ -115,7 +115,7 @@ struct oss_upload_part_request_s {
 	 * @retval void
 	 */
 	void (*set_input_stream)(oss_upload_part_request_t *request,
-			const char *input_stream, size_t input_stream_len);
+			const char *input_stream, unsigned int input_stream_len);
 
 	/**
 	 * 获得标识Multipart上传事件的Upload ID

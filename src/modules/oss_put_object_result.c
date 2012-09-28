@@ -26,7 +26,7 @@ static inline void
 __put_object_result_set_etag(
 		oss_put_object_result_t *result,
 		const char *etag,
-		size_t etag_len)
+		unsigned int etag_len)
 {
 	if (result->etag != NULL) {
 		free(result->etag);
@@ -45,7 +45,7 @@ _put_object_result_set_etag(
 {
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__put_object_result_set_etag(result, etag, etag_len);
 }
 

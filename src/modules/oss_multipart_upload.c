@@ -25,7 +25,7 @@ _multipart_upload_get_initiated(oss_multipart_upload_t *uploads)
 static inline void
 __multipart_upload_set_initiated(oss_multipart_upload_t *uploads,
 		const char *initiated,
-		size_t initiated_len)
+		unsigned int initiated_len)
 {
 	if (uploads->initiated != NULL) {
 		free(uploads->initiated);
@@ -43,7 +43,7 @@ _multipart_upload_set_initiated(oss_multipart_upload_t *uploads,
 {
 	assert(initiated != NULL);
 
-	size_t initiated_len = strlen(initiated);
+	unsigned int initiated_len = strlen(initiated);
 	__multipart_upload_set_initiated(uploads, initiated, initiated_len);
 }
 
@@ -57,7 +57,7 @@ static inline void
 __multipart_upload_set_storage_class(
 		oss_multipart_upload_t *uploads,
 		const char *storage_class,
-		size_t storage_class_len)
+		unsigned int storage_class_len)
 {
 	if (uploads->storage_class != NULL) {
 		free(uploads->storage_class);
@@ -75,7 +75,7 @@ _multipart_upload_set_storage_class(
 {
 	assert(storage_class != NULL);
 
-	size_t storage_class_len = strlen(storage_class);
+	unsigned int storage_class_len = strlen(storage_class);
 	__multipart_upload_set_storage_class(uploads, storage_class, storage_class_len);
 }
 
@@ -88,7 +88,7 @@ _multipart_upload_get_upload_id(oss_multipart_upload_t *uploads)
 static inline void
 __multipart_upload_set_upload_id(oss_multipart_upload_t *uploads,
 		const char *upload_id,
-		size_t upload_id_len)
+		unsigned int upload_id_len)
 {
 	if (uploads->upload_id != NULL) {
 		free(uploads->upload_id);
@@ -107,7 +107,7 @@ _multipart_upload_set_upload_id(oss_multipart_upload_t *uploads,
 {
 	assert(upload_id != NULL);
 
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 	__multipart_upload_set_upload_id(uploads, upload_id, upload_id_len);
 }
 
@@ -120,7 +120,7 @@ _multipart_upload_get_key(oss_multipart_upload_t *uploads)
 static inline void
 __multipart_upload_set_key(oss_multipart_upload_t *uploads,
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (uploads->key != NULL) {
 		free(uploads->key);
@@ -137,7 +137,7 @@ _multipart_upload_set_key(oss_multipart_upload_t *uploads,
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__multipart_upload_set_key(uploads, key, key_len);
 }
 

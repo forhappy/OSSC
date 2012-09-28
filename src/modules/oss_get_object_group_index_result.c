@@ -24,7 +24,7 @@ _get_object_group_index_result_get_bucket_name(oss_get_object_group_index_result
 
 static inline void 
 __get_object_group_index_result_set_bucket_name(oss_get_object_group_index_result_t *result,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(result != NULL);
 	if (result->bucket_name != NULL) {
@@ -42,7 +42,7 @@ _get_object_group_index_result_set_bucket_name(oss_get_object_group_index_result
 	assert(result != NULL);
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__get_object_group_index_result_set_bucket_name(result, bucket_name, bucket_name_len);
 }
 
@@ -54,7 +54,7 @@ _get_object_group_index_result_get_key(oss_get_object_group_index_result_t *resu
 
 static inline void 
 __get_object_group_index_result_set_key(oss_get_object_group_index_result_t *result,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 	assert(result != NULL);
 	if (result->key!= NULL) {
@@ -72,7 +72,7 @@ _get_object_group_index_result_set_key(oss_get_object_group_index_result_t *resu
 	assert(result != NULL);
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__get_object_group_index_result_set_key(result, key, key_len);
 }
 
@@ -84,7 +84,7 @@ _get_object_group_index_result_get_etag(oss_get_object_group_index_result_t *res
 
 static inline void 
 __get_object_group_index_result_set_etag(oss_get_object_group_index_result_t *result,
-		const char *etag, size_t etag_len)
+		const char *etag, unsigned int etag_len)
 {
 	assert(result != NULL);
 	if (result->etag!= NULL) {
@@ -102,18 +102,18 @@ _get_object_group_index_result_set_etag(oss_get_object_group_index_result_t *res
 	assert(result != NULL);
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__get_object_group_index_result_set_etag(result, etag, etag_len);
 }
 
-static inline size_t 
+static inline unsigned int 
 _get_object_group_index_result_get_file_length(oss_get_object_group_index_result_t *result)
 {
 	return result->file_length;
 }
 
 static inline void 
-_get_object_group_index_result_set_file_length(oss_get_object_group_index_result_t *result, size_t file_length)
+_get_object_group_index_result_set_file_length(oss_get_object_group_index_result_t *result, unsigned int file_length)
 {
 	assert(result != NULL);
 	result->file_length = file_length;

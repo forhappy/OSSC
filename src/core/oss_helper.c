@@ -187,7 +187,7 @@ oss_get_retcode_from_response(const char *response)
 	assert(response != NULL);
 	XmlNode *xml, *code_tag;
 	char *retinfo;
-	size_t response_len = strlen(response); 
+	unsigned int response_len = strlen(response); 
 	xml = xml_load_buffer(response, response_len);
 
 	code_tag = xml_find(xml, "Code");

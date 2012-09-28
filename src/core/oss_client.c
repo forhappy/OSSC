@@ -24,15 +24,15 @@
  */
 oss_client_t *
 _client_initialize(
-		const char *access_id, size_t access_id_len,
-		const char *access_key, size_t access_key_len,
-		const char *endpoint, size_t endpoint_len)
+		const char *access_id, unsigned int access_id_len,
+		const char *access_key, unsigned int access_key_len,
+		const char *endpoint, unsigned int endpoint_len)
 {
 	assert(access_id != NULL);
 	assert(access_key != NULL);
 	assert(endpoint != NULL);
 
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 	oss_client_t *client = NULL;
 
 	client = (oss_client_t *)malloc(sizeof(oss_client_t));
@@ -62,9 +62,9 @@ client_initialize(const char *access_id,
 	assert(access_id != NULL);
 	assert(access_key != NULL);
 
-	size_t access_id_len = strlen(access_id);
-	size_t access_key_len = strlen(access_key);
-	size_t endpoint_len = strlen(DEFAULT_OSS_HOST);
+	unsigned int access_id_len = strlen(access_id);
+	unsigned int access_key_len = strlen(access_key);
+	unsigned int endpoint_len = strlen(DEFAULT_OSS_HOST);
 
 	return _client_initialize(access_id, access_id_len,
 			access_key, access_key_len,
@@ -84,9 +84,9 @@ client_initialize_with_endpoint(const char *access_id,
 	assert(access_key != NULL);
 	assert(endpoint != NULL);
 
-	size_t access_id_len = strlen(access_id);
-	size_t access_key_len = strlen(access_key);
-	size_t endpoint_len = strlen(endpoint); 
+	unsigned int access_id_len = strlen(access_id);
+	unsigned int access_key_len = strlen(access_key);
+	unsigned int endpoint_len = strlen(endpoint); 
 	return _client_initialize(access_id, access_id_len,
 			access_key, access_key_len,
 			endpoint, endpoint_len);

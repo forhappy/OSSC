@@ -24,7 +24,7 @@ _post_object_group_result_get_bucket_name(oss_post_object_group_result_t *result
 
 static inline void 
 __post_object_group_result_set_bucket_name(oss_post_object_group_result_t *result,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(result != NULL);
 	if (result->bucket_name != NULL) {
@@ -42,7 +42,7 @@ _post_object_group_result_set_bucket_name(oss_post_object_group_result_t *result
 	assert(result != NULL);
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__post_object_group_result_set_bucket_name(result, bucket_name, bucket_name_len);
 }
 
@@ -54,7 +54,7 @@ _post_object_group_result_get_key(oss_post_object_group_result_t *result)
 
 static inline void 
 __post_object_group_result_set_key(oss_post_object_group_result_t *result,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 	assert(result != NULL);
 	if (result->key!= NULL) {
@@ -72,7 +72,7 @@ _post_object_group_result_set_key(oss_post_object_group_result_t *result, const 
 	assert(result != NULL);
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__post_object_group_result_set_key(result, key, key_len);
 }
 
@@ -84,7 +84,7 @@ _post_object_group_result_get_etag(oss_post_object_group_result_t *result)
 
 static inline void 
 __post_object_group_result_set_etag(oss_post_object_group_result_t *result,
-		const char *etag, size_t etag_len)
+		const char *etag, unsigned int etag_len)
 {
 	assert(result != NULL);
 	if (result->etag!= NULL) {
@@ -102,18 +102,18 @@ _post_object_group_result_set_etag(oss_post_object_group_result_t *result, const
 	assert(result != NULL);
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__post_object_group_result_set_etag(result, etag, etag_len);
 }
 
-static inline size_t 
+static inline unsigned int 
 _post_object_group_result_get_size(oss_post_object_group_result_t *result)
 {
 	return result->size;
 }
 
 static inline void 
-_post_object_group_result_set_size(oss_post_object_group_result_t *result, size_t size)
+_post_object_group_result_set_size(oss_post_object_group_result_t *result, unsigned int size)
 {
 	assert(result != NULL);
 	result->size = size;

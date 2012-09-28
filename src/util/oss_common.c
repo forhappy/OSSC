@@ -56,7 +56,7 @@ oss_get_file_md5_digest(const char *file)
 	md5_init(&md5_state);
 
 	while (1) {
-		size_t ret = fread(md5buf, 1, MD5_BUFFER_SIZE, fp);
+		unsigned int ret = fread(md5buf, 1, MD5_BUFFER_SIZE, fp);
 		if (ret == MD5_BUFFER_SIZE) {
 			md5_append(&md5_state, (const md5_byte_t *)md5buf, MD5_BUFFER_SIZE);
 			continue;
@@ -104,7 +104,7 @@ oss_get_file_md5_digest_2nd(const char *file)
 	md5_init(&md5_state);
 
 	while (1) {
-		size_t ret = fread(md5buf, 1, MD5_BUFFER_SIZE, fp);
+		unsigned int ret = fread(md5buf, 1, MD5_BUFFER_SIZE, fp);
 		if (ret == MD5_BUFFER_SIZE) {
 			md5_append(&md5_state, (const md5_byte_t *)md5buf, MD5_BUFFER_SIZE);
 			continue;
@@ -138,7 +138,7 @@ oss_get_file_md5_digest_2nd(const char *file)
 }
 
 char *
-oss_get_buffer_md5_digest(void *ptr, size_t len)
+oss_get_buffer_md5_digest(void *ptr, unsigned int len)
 {
 	char *md5_digest = (char *)malloc(sizeof(char) * 17);
 	md5_state_t md5_state;
@@ -153,7 +153,7 @@ oss_get_buffer_md5_digest(void *ptr, size_t len)
 }
 
 char *
-oss_compute_md5_digest(void *ptr, size_t len)
+oss_compute_md5_digest(void *ptr, unsigned int len)
 {
 	char md5_digest[17];
 	md5_state_t md5_state;

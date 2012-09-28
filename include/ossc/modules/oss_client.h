@@ -201,8 +201,8 @@ typedef struct curl_request_param_s curl_request_param_t;
 struct param_buffer_s {
 	char *ptr; /**< 缓冲区首指针 */
 	FILE *fp; /**< 文件指针 */
-	size_t left; /** 缓冲区剩余大小 */
-	size_t allocated; /** 缓冲区总大小 */
+	unsigned int left; /** 缓冲区剩余大小 */
+	unsigned int allocated; /** 缓冲区总大小 */
 	unsigned short code; /**返回码 */
 };
 
@@ -456,7 +456,7 @@ oss_object_metadata_t *
 client_get_object_to_buffer(oss_client_t *client,
 		oss_get_object_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode);
 
 /**
@@ -474,7 +474,7 @@ oss_object_metadata_t *
 client_get_object_to_buffer_2nd(oss_client_t *client,
 		oss_get_object_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode);
 /**
  * 从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到内存，
@@ -492,7 +492,7 @@ oss_object_metadata_t *
 client_get_compressed_object_to_buffer(oss_client_t *client,
 		oss_get_object_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode);
 
 /**
@@ -734,7 +734,7 @@ client_put_compressed_object_from_buffer(oss_client_t *client,
 		const char *key,
 		oss_object_metadata_t *metadata,
 		void *input, 
-		size_t input_len,
+		unsigned int input_len,
 		char algorithm,
 		char flag,
 		char level,
@@ -815,7 +815,7 @@ extern oss_object_metadata_t *
 client_get_object_group_to_buffer(oss_client_t *client,
 		oss_get_object_group_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode);
 
 /**

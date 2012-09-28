@@ -26,7 +26,7 @@ static inline void
 __part_listing_set_bucket_name(
 		oss_part_listing_t *listing,
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (listing->bucket_name != NULL) {
 		free(listing->bucket_name);
@@ -45,7 +45,7 @@ _part_listing_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__part_listing_set_bucket_name(listing, bucket_name, bucket_name_len);
 }
 
@@ -59,7 +59,7 @@ static inline void
 __part_listing_set_key(
 		oss_part_listing_t *listing,
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (listing->key != NULL) {
 		free(listing->key);
@@ -77,7 +77,7 @@ _part_listing_set_key(
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__part_listing_set_key(listing, key, key_len);
 }
 
@@ -91,7 +91,7 @@ static inline void
 __part_listing_set_upload_id(
 		oss_part_listing_t *listing,
 		const char *upload_id,
-		size_t upload_id_len)
+		unsigned int upload_id_len)
 {
 	if (listing->upload_id != NULL) {
 		free(listing->upload_id);
@@ -109,7 +109,7 @@ _part_listing_set_upload_id(
 {
 	assert(upload_id != NULL);
 
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 	__part_listing_set_upload_id(listing, upload_id, upload_id_len);
 }
 
@@ -123,7 +123,7 @@ static inline void
 __part_listing_set_storage_class(
 		oss_part_listing_t *listing,
 		const char *storage_class,
-		size_t storage_class_len)
+		unsigned int storage_class_len)
 {
 	if (listing->storage_class != NULL) {
 		free(listing->storage_class);
@@ -142,7 +142,7 @@ _part_listing_set_storage_class(
 {
 	assert(storage_class != NULL);
 
-	size_t storage_class_len = strlen(storage_class);
+	unsigned int storage_class_len = strlen(storage_class);
 	__part_listing_set_storage_class(listing, storage_class, storage_class_len);
 }
 
@@ -163,12 +163,12 @@ _part_listing_set_initiator(
 	//	owner_finalize(listing->initiator);
 
 	listing->initiator = initiator;
-	//size_t display_name_len = strlen(initiator->display_name);
+	//unsigned int display_name_len = strlen(initiator->display_name);
 	//listing->initiator->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
 	//strncpy(listing->initiator->display_name, initiator->display_name, display_name_len);
 	//(listing->initiator->display_name)[display_name_len] = '\0';
 
-	//size_t id_len = strlen(initiator->id);
+	//unsigned int id_len = strlen(initiator->id);
 	//listing->initiator->id = (char *)malloc(sizeof(char) * id_len + 1);
 	//strncpy(listing->initiator->id, initiator->id, id_len);
 	//(listing->initiator->id)[id_len] = '\0';
@@ -232,12 +232,12 @@ _part_listing_set_owner(
 	//	owner_finalize(listing->owner);
 
 	listing->owner = owner;
-	//size_t display_name_len = strlen(owner->display_name);
+	//unsigned int display_name_len = strlen(owner->display_name);
 	//listing->owner->display_name = (char *)malloc(sizeof(char) * display_name_len + 1);
 	//strncpy(listing->owner->display_name, owner->display_name, display_name_len);
 	//(listing->owner->display_name)[display_name_len] = '\0';
 
-	//size_t id_len = strlen(owner->id);
+	//unsigned int id_len = strlen(owner->id);
 	//listing->owner->id = (char *)malloc(sizeof(char) * id_len + 1);
 	//strncpy(listing->owner->id, owner->id, id_len);
 	//(listing->owner->id)[id_len] = '\0';

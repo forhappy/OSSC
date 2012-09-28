@@ -27,7 +27,7 @@ int main()
 	const char *bucket_name = "bucketname001";       //设置bucket_name
 	const char *key         = "glib-2.32.4.tar.xz";      //设置下载 key
 	const char *local_file  = "local-file.data";         //设置需要保存到本地的文件名
-	size_t file_len = -1; /**< 远程文件的长度  */
+	unsigned int file_len = -1; /**< 远程文件的长度  */
 	void *buffer = NULL; /* 存放文件内容的缓冲区首指针 */
 
 	FILE *fp = fopen(local_file, "w");

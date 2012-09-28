@@ -38,7 +38,7 @@ oss_compression_header_t *
 oss_read_compression_header(FILE *fp)
 {
 	assert(fp != NULL);
-	size_t ret = 0;
+	unsigned int ret = 0;
 
 	/** 头部长度最长为 255.*/
 	char *header_buf = (char *)malloc(sizeof(char) * 256);
@@ -107,8 +107,8 @@ oss_read_compression_header_in_memory(char *buffer)
  * */
 static int 
 _decompress_block_with_lz4(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len/** 输出参数，必须预先分配空间 */
 		)
 {
 	assert(inbuf != NULL);
@@ -123,8 +123,8 @@ _decompress_block_with_lz4(
  * */
 static int 
 _decompress_block_with_lz4_2nd(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len/** 输出参数，必须预先分配空间 */
 		)
 {
 	assert(inbuf != NULL);
@@ -144,7 +144,7 @@ static void _decompress_file_with_lz4(
 	char* inbuf = NULL;
 	char* outbuf = NULL;
 	unsigned int chunk_size = 0;
-	size_t ret;
+	unsigned int ret;
 	int decode_len;
 
 	inbuf = (char*)malloc(LZ4_compressBound(OSS_CHUNK_SIZE));
@@ -182,8 +182,8 @@ static void _decompress_file_with_lz4(
  * */
 int
 oss_decompress_block(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm /** 压缩算法 */
 		)
 {
@@ -205,8 +205,8 @@ oss_decompress_block(
  * */
 int
 oss_decompress_block_2nd(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len/** 输出参数，必须预先分配空间 */
 		)
 {
 
@@ -214,7 +214,7 @@ oss_decompress_block_2nd(
 	assert(outbuf != NULL);
 
 	int ret = 0;
-	size_t header_len = 0;
+	unsigned int header_len = 0;
 
 	oss_compression_header_t *header =
 		oss_read_compression_header_in_memory(inbuf);
@@ -266,7 +266,7 @@ void oss_decompress_file(
 
 	if (header != NULL) {
 		if (header->algorithm == OSS_LZ4) {
-			size_t header_len = header->length;
+			unsigned int header_len = header->length;
 			fseek(fin, header_len, SEEK_SET); /**< 从头部开始往后读*/
 			_decompress_file_with_lz4(fin, fout);
 		}

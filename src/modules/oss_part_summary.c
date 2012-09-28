@@ -26,7 +26,7 @@ static inline void
 __part_summary_set_etag(
 		oss_part_summary_t *summary,
 		const char *etag,
-		size_t etag_len)
+		unsigned int etag_len)
 {
 	if (summary->etag != NULL) {
 		free(summary->etag);
@@ -45,7 +45,7 @@ _part_summary_set_etag(
 {
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__part_summary_set_etag(summary, etag, etag_len);
 }
 
@@ -59,7 +59,7 @@ static inline void
 __part_summary_set_last_modified(
 		oss_part_summary_t *summary,
 		const char *last_modified,
-		size_t last_modified_len)
+		unsigned int last_modified_len)
 {
 	if (summary->last_modified != NULL) {
 		free(summary->last_modified);
@@ -77,7 +77,7 @@ _part_summary_set_last_modified(
 {
 	assert(last_modified != NULL);
 
-	size_t last_modified_len = strlen(last_modified);
+	unsigned int last_modified_len = strlen(last_modified);
 	__part_summary_set_last_modified(summary, last_modified, last_modified_len);
 }
 

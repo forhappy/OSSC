@@ -27,8 +27,8 @@
 #define OPAD 0x5c
 
 int
-hmac_sha1 (const void *key, size_t keylen,
-           const void *in, size_t inlen, void *resbuf)
+hmac_sha1 (const void *key, unsigned int keylen,
+           const void *in, unsigned int inlen, void *resbuf)
 {
   struct sha1_ctx inner;
   struct sha1_ctx outer;

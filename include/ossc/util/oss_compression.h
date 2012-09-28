@@ -56,14 +56,14 @@ extern void oss_compress_file(
 		int level);
 
 extern int oss_compress_block(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */
 		int level /**< 该压缩算法的压缩等级*/);
 
 extern int oss_compress_block_2nd(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */
 		char flag, /**< 标识位，0 不检查原文件MD5，1 检查原文件MD5值 */
 		int level /**< 该压缩算法的压缩等级*/);

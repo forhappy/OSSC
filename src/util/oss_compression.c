@@ -71,7 +71,7 @@ oss_write_compression_header(FILE *fp,
 		char md5[])
 {
 	assert(fp != NULL);
-	size_t ret = 0;
+	unsigned int ret = 0;
 	
 	oss_compression_header_t *header =
 		(oss_compression_header_t *)malloc(sizeof(oss_compression_header_t));
@@ -103,8 +103,8 @@ oss_write_compression_header(FILE *fp,
  * */
 static int
 _compress_block_with_lz4(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		int level /**< 压缩等级*/)
 {
 
@@ -134,8 +134,8 @@ _compress_block_with_lz4(
  * */
 static int
 _compress_block_with_lz4_2nd(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		char flag, /**< 标志位 */
 		int level /**< 压缩等级*/)
 {
@@ -220,7 +220,7 @@ static void _compress_file_with_lz4(
 		/**< compression output size. */
 		int cout_size; 
 		/** compression input size */
-	    int cin_size = (int)fread(inbuf, (size_t)1, (size_t)OSS_CHUNK_SIZE, fin);
+	    int cin_size = (int)fread(inbuf, (unsigned int)1, (unsigned int)OSS_CHUNK_SIZE, fin);
 		if( cin_size <= 0 ) break;
 
 		cout_size = compression(inbuf, outbuf+4, cin_size);
@@ -243,8 +243,8 @@ static void _compress_file_with_lz4(
  * 压缩内存块
  * */
 int oss_compress_block(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */
 		int level /**< 该压缩算法的压缩等级*/)
 {
@@ -264,8 +264,8 @@ int oss_compress_block(
  * 压缩内存块，同时加上压缩文件的头部内容
  * */
 int oss_compress_block_2nd(
-		char *inbuf, size_t inbuf_len, /** 输入参数，必须预先分配空间 */
-		char *outbuf, size_t outbuf_len,/** 输出参数，必须预先分配空间 */
+		char *inbuf, unsigned int inbuf_len, /** 输入参数，必须预先分配空间 */
+		char *outbuf, unsigned int outbuf_len,/** 输出参数，必须预先分配空间 */
 		char algorithm, /**< 压缩算法  */
 		char flag, /**< 标识位，0 不检查原文件MD5，1 检查原文件MD5值 */
 		int level /**< 该压缩算法的压缩等级*/)

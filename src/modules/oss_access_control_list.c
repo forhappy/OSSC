@@ -41,7 +41,7 @@ _access_control_list_get_grant(oss_access_control_list_t *acl)
 static inline void 
 __access_control_list_set_grant(oss_access_control_list_t *acl,
 		const char *grant,
-		size_t grant_len)
+		unsigned int grant_len)
 {
 	assert(grant != NULL);
 
@@ -62,7 +62,7 @@ _access_control_list_set_grant(oss_access_control_list_t *acl,
 	assert(acl != NULL);
 	assert(grant != NULL);
 
-	size_t grant_len = strlen(grant);
+	unsigned int grant_len = strlen(grant);
 	__access_control_list_set_grant(acl, grant, grant_len);
 }
 

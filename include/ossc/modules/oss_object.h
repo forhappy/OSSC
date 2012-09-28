@@ -52,7 +52,7 @@ struct oss_object_s {
 	char *key;                               /**< Object的名称 */
 	char *object_content;                    /**< Object的内容 */
 	oss_object_metadata_t *object_metadata;  /**< Object的元数据 */
-	size_t object_content_len;               /**< Object的内容长度 */
+	unsigned int object_content_len;               /**< Object的内容长度 */
 
 	/**
 	 * 获得Object的所在Bucket的名称
@@ -77,7 +77,7 @@ struct oss_object_s {
 	 * @return Object的内容
 	 * @retval const char *
 	 */
-	const char * (*get_object_content)(oss_object_t *object, size_t *object_content_len);
+	const char * (*get_object_content)(oss_object_t *object, unsigned int *object_content_len);
 
 	/**
 	 * 获得Object的元数据
@@ -113,7 +113,7 @@ struct oss_object_s {
 	 */
 	void (*set_object_content)(oss_object_t *object,
 			const char *object_content,
-			size_t object_content_len);
+			unsigned int object_content_len);
 
 	/**
 	 * 设置Object的元数据

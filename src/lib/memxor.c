@@ -20,7 +20,7 @@
 #include "memxor.h"
 
 void *
-memxor (void *dest, const void *src, size_t n)
+memxor (void *dest, const void *src, unsigned int n)
 {
   char const *s = src;
   char *d = dest;

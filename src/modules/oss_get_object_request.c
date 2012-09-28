@@ -26,7 +26,7 @@ static inline void
 __get_object_request_set_bucket_name(
 		oss_get_object_request_t *request,
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (request->bucket_name != NULL) {
 		free(request->bucket_name);
@@ -44,7 +44,7 @@ _get_object_request_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__get_object_request_set_bucket_name(request, bucket_name, bucket_name_len);
 }
 
@@ -58,7 +58,7 @@ static inline void
 __get_object_request_set_key(
 		oss_get_object_request_t *request,
 		const char *key,
-		size_t key_len)
+		unsigned int key_len)
 {
 	if (request->key != NULL) {
 		free(request->key);
@@ -77,7 +77,7 @@ _get_object_request_set_key(
 {
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__get_object_request_set_key(request, key, key_len);
 }
 
@@ -92,7 +92,7 @@ static inline void
 __get_object_request_set_modified_since_constraint(
 		oss_get_object_request_t *request,
 		const char *modified_since_constraint,
-		size_t modified_since_constraint_len)
+		unsigned int modified_since_constraint_len)
 {
 	if (request->modified_since_constraint != NULL) {
 		free(request->modified_since_constraint);
@@ -112,7 +112,7 @@ _get_object_request_set_modified_since_constraint(
 {
 	assert(modified_since_constraint != NULL);
 
-	size_t modified_since_constraint_len = strlen(modified_since_constraint);
+	unsigned int modified_since_constraint_len = strlen(modified_since_constraint);
 	__get_object_request_set_modified_since_constraint(request, modified_since_constraint, modified_since_constraint_len);
 }
 
@@ -166,7 +166,7 @@ static inline void
 __get_object_request_set_unmodified_since_constraint(
 		oss_get_object_request_t *request,
 		const char *unmodified_since_constraint,
-		size_t unmodified_since_constraint_len)
+		unsigned int unmodified_since_constraint_len)
 {
 	if (request->unmodified_since_constraint != NULL) {
 		free(request->unmodified_since_constraint);
@@ -186,7 +186,7 @@ _get_object_request_set_unmodified_since_constraint(
 {
 	assert(unmodified_since_constraint != NULL);
 
-	size_t unmodified_since_constraint_len = strlen(unmodified_since_constraint);
+	unsigned int unmodified_since_constraint_len = strlen(unmodified_since_constraint);
 	__get_object_request_set_unmodified_since_constraint(request, unmodified_since_constraint, unmodified_since_constraint_len);
 
 }
@@ -226,8 +226,8 @@ _get_object_request_set_matching_etag_constraints(
 	 * If request->no_matching_etag_constraints != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = request->_counts_matching_etag_constraints;
+	unsigned int j = 0;
+	unsigned int total = request->_counts_matching_etag_constraints;
 	if (request->matching_etag_constraints != NULL) {
 
 		for (j = 0; j < total; j++) {
@@ -238,13 +238,13 @@ _get_object_request_set_matching_etag_constraints(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const char **pnmec = matching_etag_constraints;
 
 	request->matching_etag_constraints = (char **)malloc(sizeof(char *) * counts);
 	
 	for (i = 0; i < counts; i++) {
-		size_t len = strlen(*(pnmec + i));
+		unsigned int len = strlen(*(pnmec + i));
 		*(request->matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(request->matching_etag_constraints + i), 0, len + 1);
 		strncpy(*(request->matching_etag_constraints + i), *(pnmec + i), len);
@@ -265,8 +265,8 @@ _get_object_request_set_no_matching_etag_constraints(
 	 * If request->no_matching_etag_constraints != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = request->_counts_no_matching_etag_constraints;
+	unsigned int j = 0;
+	unsigned int total = request->_counts_no_matching_etag_constraints;
 	if (request->no_matching_etag_constraints != NULL) {
 
 		for (j = 0; j < total; j++) {
@@ -277,13 +277,13 @@ _get_object_request_set_no_matching_etag_constraints(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const char **pnmec = no_matching_etag_constraints;
 
 	request->no_matching_etag_constraints = (char **)malloc(sizeof(char *) * counts);
 	
 	for (i = 0; i < counts; i++) {
-		size_t len = strlen(*(pnmec + i));
+		unsigned int len = strlen(*(pnmec + i));
 		*(request->no_matching_etag_constraints + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(request->no_matching_etag_constraints + i), 0, len + 1);
 		strncpy(*(request->no_matching_etag_constraints + i), *(pnmec + i), len);
@@ -292,7 +292,7 @@ _get_object_request_set_no_matching_etag_constraints(
 }
 
 oss_get_object_request_t *
-_get_object_request_initialize(const char *bucket_name, size_t bucket_name_len, const char *key, size_t key_len)
+_get_object_request_initialize(const char *bucket_name, unsigned int bucket_name_len, const char *key, unsigned int key_len)
 {
 	oss_get_object_request_t *request;
 	request = (oss_get_object_request_t *)malloc(sizeof(oss_get_object_request_t));
@@ -339,8 +339,8 @@ get_object_request_initialize(const char *bucket_name, const char *key)
 	assert(bucket_name != NULL);
 	assert(key != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 
 	return _get_object_request_initialize(bucket_name, bucket_name_len, key, key_len);
 }
@@ -365,8 +365,8 @@ get_object_request_finalize(oss_get_object_request_t *request)
 			request->response_headers = NULL;
 		}
 		if (request->matching_etag_constraints != NULL) {
-			size_t j = 0;
-			size_t total = request->_counts_matching_etag_constraints;
+			unsigned int j = 0;
+			unsigned int total = request->_counts_matching_etag_constraints;
 			if (request->matching_etag_constraints != NULL) {
 				for (j = 0; j < total; j++) {
 					if (*(request->matching_etag_constraints + j) != NULL) {
@@ -378,8 +378,8 @@ get_object_request_finalize(oss_get_object_request_t *request)
 		}
 
 		if (request->no_matching_etag_constraints != NULL) {
-			size_t j = 0;
-			size_t total = request->_counts_no_matching_etag_constraints;
+			unsigned int j = 0;
+			unsigned int total = request->_counts_no_matching_etag_constraints;
 			if (request->no_matching_etag_constraints != NULL) {
 				for (j = 0; j < total; j++) {
 					if (*(request->no_matching_etag_constraints + j) != NULL) {

@@ -34,7 +34,7 @@ _multipart_object_group_get_part_number(oss_multipart_object_group_t *group)
 	return group->part_number;
 }
 
-static inline size_t
+static inline unsigned int
 _multipart_object_group_get_part_size(oss_multipart_object_group_t *group)
 {
 	return group->part_size;
@@ -42,7 +42,7 @@ _multipart_object_group_get_part_size(oss_multipart_object_group_t *group)
 
 static inline void 
 __multipart_object_group_set_etag(oss_multipart_object_group_t *group,
-		const char *etag, size_t etag_len)
+		const char *etag, unsigned int etag_len)
 {
 	assert(group != NULL);
 	if (group->etag != NULL) {
@@ -60,13 +60,13 @@ _multipart_object_group_set_etag(oss_multipart_object_group_t *group, const char
 	assert(group != NULL);
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__multipart_object_group_set_etag(group, etag, etag_len);
 }
 
 static inline void 
 __multipart_object_group_set_part_name(oss_multipart_object_group_t *group,
-		const char *part_name, size_t part_name_len)
+		const char *part_name, unsigned int part_name_len)
 {
 	assert(group != NULL);
 	if (group->part_name!= NULL) {
@@ -84,7 +84,7 @@ _multipart_object_group_set_part_name(oss_multipart_object_group_t *group, const
 	assert(group != NULL);
 	assert(part_name != NULL);
 
-	size_t part_name_len = strlen(part_name);
+	unsigned int part_name_len = strlen(part_name);
 	__multipart_object_group_set_part_name(group, part_name, part_name_len);
 }
 
@@ -97,7 +97,7 @@ _multipart_object_group_set_part_number(oss_multipart_object_group_t *group, int
 }
 
 static inline void
-_multipart_object_group_set_part_size(oss_multipart_object_group_t *group, size_t part_size)
+_multipart_object_group_set_part_size(oss_multipart_object_group_t *group, unsigned int part_size)
 {
 	assert(group != NULL);
 	group->part_size = part_size;

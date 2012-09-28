@@ -19,7 +19,7 @@
 static inline void
 __list_parts_request_set_bucket_name(
 		oss_list_parts_request_t *request,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(bucket_name != NULL);
 	assert(bucket_name_len > 0);
@@ -37,7 +37,7 @@ __list_parts_request_set_bucket_name(
 static inline void
 __list_parts_request_set_upload_id(
 		oss_list_parts_request_t *request,
-		const char *upload_id, size_t upload_id_len)
+		const char *upload_id, unsigned int upload_id_len)
 {
 
 	assert(upload_id != NULL);
@@ -57,7 +57,7 @@ __list_parts_request_set_upload_id(
 static inline void
 __list_parts_request_set_key(
 		oss_list_parts_request_t *request,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 
 	assert(key!= NULL);
@@ -113,7 +113,7 @@ _list_parts_request_set_bucket_name(
 		oss_list_parts_request_t *request,
 		const char *bucket_name)
 {
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 
 	__list_parts_request_set_bucket_name(request,
 			bucket_name, bucket_name_len);
@@ -124,7 +124,7 @@ _list_parts_request_set_upload_id(
 		oss_list_parts_request_t *request,
 		const char *upload_id)
 {
-	size_t upload_id_len = strlen(upload_id);
+	unsigned int upload_id_len = strlen(upload_id);
 
 	__list_parts_request_set_upload_id(request,
 			upload_id, upload_id_len);
@@ -143,7 +143,7 @@ _list_parts_request_set_key(
 		oss_list_parts_request_t *request,
 		const char *key)
 {
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 
 	__list_parts_request_set_key(request,
 			key, key_len);
@@ -162,11 +162,11 @@ _list_parts_request_set_part_number_marker(
  */
 static inline oss_list_parts_request_t *
 _list_parts_request_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *key, size_t key_len,
-		const char *upload_id, size_t upload_id_len)
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *key, unsigned int key_len,
+		const char *upload_id, unsigned int upload_id_len)
 {
-	size_t byte_of_char = sizeof(char);
+	unsigned int byte_of_char = sizeof(char);
 
 	oss_list_parts_request_t * request = NULL;
 
@@ -214,9 +214,9 @@ list_parts_request_initialize(const char *bucket_name,
 	assert(upload_id != NULL);
 	assert(key != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t upload_id_len = strlen(upload_id);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int upload_id_len = strlen(upload_id);
+	unsigned int key_len = strlen(key);
 
 	return _list_parts_request_initialize(bucket_name, bucket_name_len,
 			key, key_len,

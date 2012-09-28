@@ -26,7 +26,7 @@ static inline void
 __grant_set_identifier(
 		oss_grant_t *grant, 
 		const char *identifier,
-		size_t identifier_len)
+		unsigned int identifier_len)
 {
 	if (grant->identifier != NULL) {
 		free(grant->identifier);
@@ -44,7 +44,7 @@ _grant_set_identifier(
 {
 	assert(identifier != NULL);
 
-	size_t identifier_len = strlen(identifier);
+	unsigned int identifier_len = strlen(identifier);
 	__grant_set_identifier(grant, identifier, identifier_len);
 }
 
@@ -58,7 +58,7 @@ static inline void
 __grant_set_permission(
 		oss_grant_t *grant, 
 		const char *permission,
-		size_t permission_len)
+		unsigned int permission_len)
 {
 	if (grant->permission != NULL) {
 		free(grant->permission);
@@ -76,15 +76,15 @@ _grant_set_permission(
 {
 	assert(permission != NULL);
 
-	size_t permission_len = strlen(permission);
+	unsigned int permission_len = strlen(permission);
 	__grant_set_permission(grant, permission, permission_len);
 }
 
 oss_grant_t *
 _grant_initialize(const char *identifier,
-		size_t identifier_len,
+		unsigned int identifier_len,
 		const char *permission,
-		size_t permission_len)
+		unsigned int permission_len)
 {
 	oss_grant_t *grant;
 	grant = (oss_grant_t *)malloc(sizeof(oss_grant_t));
@@ -113,8 +113,8 @@ grant_initialize(const char *identifier, const char *permission)
 	assert(identifier != NULL);
 	assert(permission != NULL);
 
-	size_t identifier_len = strlen(identifier);
-	size_t permission_len = strlen(permission);
+	unsigned int identifier_len = strlen(identifier);
+	unsigned int permission_len = strlen(permission);
 
 	return _grant_initialize(identifier, identifier_len, permission, permission_len);
 }

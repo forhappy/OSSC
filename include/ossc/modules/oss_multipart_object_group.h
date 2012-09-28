@@ -40,7 +40,7 @@ struct oss_multipart_object_group_s {
 	char *etag;              /**< Object的etag */
 	char *part_name;         /**< Object的name */
 	int part_number;         /**< Object的number */
-	size_t part_size;        /**< Object的size */
+	unsigned int part_size;        /**< Object的size */
 
 	/**
 	 * 获得Object的etag
@@ -94,9 +94,9 @@ struct oss_multipart_object_group_s {
 	 * 获得Object的size
 	 * @param group [in] 标识一个oss_multipart_object_group_t结构指针
 	 * @return Object的size
-	 * @retval size_t
+	 * @retval unsigned int
 	 */
-	size_t (*get_part_size)(oss_multipart_object_group_t *group);
+	unsigned int (*get_part_size)(oss_multipart_object_group_t *group);
 
 	/**
 	 * 设置Object的size
@@ -104,7 +104,7 @@ struct oss_multipart_object_group_s {
 	 * @param part_size [in] Object的size
 	 * @retval void
 	 */
-	void (*set_part_size)(oss_multipart_object_group_t *group, size_t part_size);
+	void (*set_part_size)(oss_multipart_object_group_t *group, unsigned int part_size);
 
 };
 

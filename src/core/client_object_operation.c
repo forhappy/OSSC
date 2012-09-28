@@ -318,8 +318,8 @@ client_put_object_from_file(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 16);
 	char *url = (char *)malloc(sizeof(char) * 
 			(bucket_name_len + key_len + strlen(client->endpoint) + 8 ));
@@ -456,10 +456,10 @@ client_put_compressed_object_from_file(oss_client_t *client,
 	assert(bucket_name != NULL);
 	assert(key != NULL);
 	FILE *fp = (FILE *)input;
-	size_t file_size = oss_get_file_size(fp);
+	unsigned int file_size = oss_get_file_size(fp);
 	if (file_size < 200 * 1024 * 1024) {/* 如果文件过大，不建议一次性读入内存 */
 		char *tmpbuf = (char *)malloc(file_size);
-		size_t ret = fread(tmpbuf, 1, file_size, fp);
+		unsigned int ret = fread(tmpbuf, 1, file_size, fp);
 		if (ret != file_size) return NULL;
 		oss_put_object_result_t *result = 
 			client_put_compressed_object_from_buffer(client, bucket_name, key,
@@ -510,8 +510,8 @@ client_put_object_from_buffer(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 	char *resource = (char *)malloc(sizeof(char) * 
 			(bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) * 
@@ -621,7 +621,7 @@ client_put_compressed_object_from_buffer(oss_client_t *client,
 		const char *key,
 		oss_object_metadata_t *metadata,
 		void *input, 
-		size_t input_len,
+		unsigned int input_len,
 		char algorithm,
 		char flag,
 		char level,
@@ -636,7 +636,7 @@ client_put_compressed_object_from_buffer(oss_client_t *client,
 	int new_size = 0;
 
 #define LZ4_compressBound(isize)   (isize + (isize/255) + 16)
-	size_t outbuf_len = LZ4_compressBound(input_len);
+	unsigned int outbuf_len = LZ4_compressBound(input_len);
 #undef LZ4_compressBound
 	char *outbuf = (char*)malloc(sizeof(char) * outbuf_len);
 	if (outbuf == NULL) return NULL;
@@ -680,9 +680,9 @@ client_get_object_to_file(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 	
-	size_t bucket_name_len = strlen(request->get_bucket_name(request));
-	size_t key_len = strlen(request->get_key(request));
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
+	unsigned int key_len = strlen(request->get_key(request));
+	unsigned int sign_len = 0;
 
 	/** 
 	 * Resource: "/" + bucket_name
@@ -807,7 +807,7 @@ client_get_compressed_object_to_file(oss_client_t *client,
 	assert(file != NULL);
 
 	char *buffer= NULL;
-	size_t file_len = 0;
+	unsigned int file_len = 0;
 
 	oss_object_metadata_t *metadata =
 		client_get_compressed_object_to_buffer(client, request, (void **)&buffer, &file_len, retcode);
@@ -824,7 +824,7 @@ oss_object_metadata_t *
 client_get_object_to_buffer(oss_client_t *client,
 		oss_get_object_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode)
 {
 
@@ -851,9 +851,9 @@ client_get_object_to_buffer(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 	
-	size_t bucket_name_len = strlen(request->get_bucket_name(request));
-	size_t key_len = strlen(request->get_key(request));
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
+	unsigned int key_len = strlen(request->get_key(request));
+	unsigned int sign_len = 0;
 	long start = 0; /**< Range 起始字节位置*/
 	long length = 0; /**< Range 长度*/
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
@@ -957,7 +957,7 @@ oss_object_metadata_t *
 client_get_object_to_buffer_2nd(oss_client_t *client,
 		oss_get_object_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode)
 {
 
@@ -982,9 +982,9 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(request->get_bucket_name(request));
-	size_t key_len = strlen(request->get_key(request));
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
+	unsigned int key_len = strlen(request->get_key(request));
+	unsigned int sign_len = 0;
 	long start = 0; /**< Range 起始字节位置*/
 	long length = 0; /**< Range 长度*/
 	/** 
@@ -1094,14 +1094,14 @@ client_get_compressed_object_to_buffer(
 		oss_client_t *client,
 		oss_get_object_request_t *request,
 		void **output,
-		size_t *output_len,
+		unsigned int *output_len,
 		unsigned short *retcode)
 {
 	assert(client != NULL);
 	assert(request != NULL);
 
 	char *tmpbuf = NULL;
-	size_t tmpbuf_len = 0;
+	unsigned int tmpbuf_len = 0;
 
 	oss_object_metadata_t *metadata =
 		client_get_object_to_buffer_2nd(client,
@@ -1158,11 +1158,11 @@ client_copy_object_ext(oss_client_t *client,
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
 
-	size_t destination_bucket_name_len = strlen(destination_bucket_name);
-	size_t destination_key_len = strlen(destination_key);
-	size_t source_bucket_name_len = strlen(source_bucket_name);
-	size_t source_key_len = strlen(source_key);
-	size_t sign_len = 0;
+	unsigned int destination_bucket_name_len = strlen(destination_bucket_name);
+	unsigned int destination_key_len = strlen(destination_key);
+	unsigned int source_bucket_name_len = strlen(source_bucket_name);
+	unsigned int source_key_len = strlen(source_key);
+	unsigned int sign_len = 0;
 
 	char *resource = (char *)malloc(sizeof(char) *
 			(destination_bucket_name_len + destination_key_len + 16));
@@ -1183,7 +1183,7 @@ client_copy_object_ext(oss_client_t *client,
 	char *now; /**< Fri, 24 Feb 2012 02:58:28 GMT */
 	char header_auth[128] = {0};
 	
-	size_t copy_source_len = strlen(copy_source);
+	unsigned int copy_source_len = strlen(copy_source);
 	char *header_copy_source = 
 		(char *)malloc(sizeof(char) * (copy_source_len + 64));
 	memset(header_copy_source, 0, (copy_source_len + 64));
@@ -1279,12 +1279,12 @@ client_copy_object(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t destination_bucket_name_len = strlen(request->get_destination_bucket_name(request));
-	size_t destination_key_len = strlen(request->get_destination_key(request));
-	size_t source_bucket_name_len = strlen(request->get_source_bucket_name(request));
-	size_t source_key_len = strlen(request->get_source_key(request));
+	unsigned int destination_bucket_name_len = strlen(request->get_destination_bucket_name(request));
+	unsigned int destination_key_len = strlen(request->get_destination_key(request));
+	unsigned int source_bucket_name_len = strlen(request->get_source_bucket_name(request));
+	unsigned int source_key_len = strlen(request->get_source_key(request));
 
-	size_t sign_len = 0;
+	unsigned int sign_len = 0;
 	char *resource = (char *)malloc(sizeof(char) *
 			(destination_bucket_name_len + destination_key_len + 16));
 	/** 
@@ -1307,7 +1307,7 @@ client_copy_object(oss_client_t *client,
 	char *now; /**< Fri, 24 Feb 2012 02:58:28 GMT */
 	char header_auth[128] = {0};
 	
-	size_t copy_source_len = strlen(copy_source);
+	unsigned int copy_source_len = strlen(copy_source);
 	char *header_copy_source = 
 		(char *)malloc(sizeof(char) * (copy_source_len + 64));
 	memset(header_copy_source, 0, (copy_source_len + 64));
@@ -1427,9 +1427,9 @@ client_get_object_metadata(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
+	unsigned int sign_len = 0;
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) *
 			(key_len + bucket_name_len + strlen(client->endpoint) + 8));
@@ -1544,9 +1544,9 @@ client_delete_object(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
-	size_t sign_len = 0;
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
+	unsigned int sign_len = 0;
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) *
 			(key_len + bucket_name_len + strlen(client->endpoint) + 8));
@@ -1636,7 +1636,7 @@ client_delete_multiple_object(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	size_t bucket_name_len = strlen(request->get_bucket_name(request));
+	unsigned int bucket_name_len = strlen(request->get_bucket_name(request));
 	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + 16));
 	char *url = (char *)malloc(sizeof(char) *
 			(bucket_name_len + strlen(client->endpoint) + 8));

@@ -26,7 +26,7 @@ _post_object_group_request_get_bucket_name(
 static inline void 
 __post_object_group_request_set_bucket_name(
 		oss_post_object_group_request_t *request,
-		const char *bucket_name, size_t bucket_name_len)
+		const char *bucket_name, unsigned int bucket_name_len)
 {
 	assert(request != NULL);
 	if (request->bucket_name != NULL) {
@@ -45,7 +45,7 @@ _post_object_group_request_set_bucket_name(
 	assert(request != NULL);
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__post_object_group_request_set_bucket_name(request, bucket_name, bucket_name_len);
 }
 
@@ -57,7 +57,7 @@ _post_object_group_request_get_key(oss_post_object_group_request_t *request)
 
 static inline void 
 __post_object_group_request_set_key(oss_post_object_group_request_t *request,
-		const char *key, size_t key_len)
+		const char *key, unsigned int key_len)
 {
 	assert(request != NULL);
 	if (request->key!= NULL) {
@@ -75,7 +75,7 @@ _post_object_group_request_set_key(oss_post_object_group_request_t *request, con
 	assert(request != NULL);
 	assert(key != NULL);
 
-	size_t key_len = strlen(key);
+	unsigned int key_len = strlen(key);
 	__post_object_group_request_set_key(request, key, key_len);
 }
 
@@ -99,8 +99,8 @@ _post_object_group_request_set_items(oss_post_object_group_request_t *request,
 
 static inline oss_post_object_group_request_t *
 _post_object_group_request_initialize(
-		const char *bucket_name, size_t bucket_name_len,
-		const char *key, size_t key_len,
+		const char *bucket_name, unsigned int bucket_name_len,
+		const char *key, unsigned int key_len,
 		oss_object_group_item_t **items,
 		int itemnums)
 {
@@ -138,8 +138,8 @@ post_object_group_request_initialize(
 	assert(key != NULL);
 	assert(items != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
-	size_t key_len = strlen(key);
+	unsigned int bucket_name_len = strlen(bucket_name);
+	unsigned int key_len = strlen(key);
 
 	return _post_object_group_request_initialize(bucket_name, bucket_name_len,
 			key, key_len, items, itemnums);

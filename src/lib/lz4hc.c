@@ -149,7 +149,7 @@ typedef struct _U64_S { U64 v; } U64_S;
 #define MAX_NB_ATTEMPTS 256
 
 #define ML_BITS  4
-#define ML_MASK  (size_t)((1U<<ML_BITS)-1)
+#define ML_MASK  (unsigned int)((1U<<ML_BITS)-1)
 #define RUN_BITS (8-ML_BITS)
 #define RUN_MASK ((1U<<RUN_BITS)-1)
 
@@ -210,9 +210,9 @@ typedef struct
 #define HASH_FUNCTION(i)	(((i) * 2654435761U) >> ((MINMATCH*8)-HASH_LOG))
 #define HASH_VALUE(p)		HASH_FUNCTION(*(U32*)(p))
 #define HASH_POINTER(p)		(HashTable[HASH_VALUE(p)] + base)
-#define DELTANEXT(p)		chainTable[(size_t)(p) & MAXD_MASK] 
-#define GETNEXT(p)			((p) - (size_t)DELTANEXT(p))
-#define ADD_HASH(p)			{ size_t delta = (p) - HASH_POINTER(p); if (delta>MAX_DISTANCE) delta = MAX_DISTANCE; DELTANEXT(p) = (U16)delta; HashTable[HASH_VALUE(p)] = (p) - base; }
+#define DELTANEXT(p)		chainTable[(unsigned int)(p) & MAXD_MASK] 
+#define GETNEXT(p)			((p) - (unsigned int)DELTANEXT(p))
+#define ADD_HASH(p)			{ unsigned int delta = (p) - HASH_POINTER(p); if (delta>MAX_DISTANCE) delta = MAX_DISTANCE; DELTANEXT(p) = (U16)delta; HashTable[HASH_VALUE(p)] = (p) - base; }
 
 
 //**************************************

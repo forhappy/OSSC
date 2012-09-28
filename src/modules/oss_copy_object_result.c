@@ -26,7 +26,7 @@ static inline void
 __copy_object_result_set_etag(
 		oss_copy_object_result_t *result,
 		const char *etag,
-		size_t etag_len)
+		unsigned int etag_len)
 {
 	if (result->etag != NULL) {
 		free(result->etag);
@@ -45,7 +45,7 @@ _copy_object_result_set_etag(
 {
 	assert(etag != NULL);
 
-	size_t etag_len = strlen(etag);
+	unsigned int etag_len = strlen(etag);
 	__copy_object_result_set_etag(result, etag, etag_len);
 }
 
@@ -59,7 +59,7 @@ static inline void
 __copy_object_result_set_last_modified(
 		oss_copy_object_result_t *result,
 		const char *last_modified,
-		size_t last_modified_len)
+		unsigned int last_modified_len)
 {
 	if (result->last_modified != NULL) {
 		free(result->last_modified);
@@ -78,7 +78,7 @@ _copy_object_result_set_last_modified(
 {
 	assert(last_modified != NULL);
 
-	size_t last_modified_len = strlen(last_modified);
+	unsigned int last_modified_len = strlen(last_modified);
 	__copy_object_result_set_last_modified(result, last_modified, last_modified_len);
 }
 

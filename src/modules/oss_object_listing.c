@@ -26,7 +26,7 @@ static inline void
 __object_listing_set_bucket_name(
 		oss_object_listing_t *listing,
 		const char *bucket_name,
-		size_t bucket_name_len)
+		unsigned int bucket_name_len)
 {
 	if (listing->bucket_name != NULL) {
 		free(listing->bucket_name);
@@ -44,7 +44,7 @@ _object_listing_set_bucket_name(
 {
 	assert(bucket_name != NULL);
 
-	size_t bucket_name_len = strlen(bucket_name);
+	unsigned int bucket_name_len = strlen(bucket_name);
 	__object_listing_set_bucket_name(listing, bucket_name, bucket_name_len);
 }
 
@@ -58,7 +58,7 @@ static inline void
 __object_listing_set_marker(
 		oss_object_listing_t *listing,
 		const char *marker,
-		size_t marker_len)
+		unsigned int marker_len)
 {
 	if (listing->marker != NULL) {
 		free(listing->marker);
@@ -76,7 +76,7 @@ _object_listing_set_marker(
 {
 	assert(marker != NULL);
 
-	size_t marker_len = strlen(marker);
+	unsigned int marker_len = strlen(marker);
 	__object_listing_set_marker(listing, marker, marker_len);
 }
 
@@ -90,7 +90,7 @@ static inline void
 __object_listing_set_next_marker(
 		oss_object_listing_t *listing,
 		const char *next_marker,
-		size_t next_marker_len)
+		unsigned int next_marker_len)
 {
 	if (listing->next_marker != NULL) {
 		free(listing->next_marker);
@@ -108,7 +108,7 @@ _object_listing_set_next_marker(
 {
 	assert(next_marker != NULL);
 
-	size_t next_marker_len = strlen(next_marker);
+	unsigned int next_marker_len = strlen(next_marker);
 	__object_listing_set_next_marker(listing, next_marker, next_marker_len);
 }
 
@@ -150,7 +150,7 @@ static inline void
 __object_listing_set_delimiter(
 		oss_object_listing_t *listing,
 		const char *delimiter,
-		size_t delimiter_len)
+		unsigned int delimiter_len)
 {
 	if (listing->delimiter != NULL) {
 		free(listing->delimiter);
@@ -169,7 +169,7 @@ _object_listing_set_delimiter(
 {
 	assert(delimiter != NULL);
 
-	size_t delimiter_len = strlen(delimiter);
+	unsigned int delimiter_len = strlen(delimiter);
 	__object_listing_set_delimiter(listing, delimiter, delimiter_len);
 }
 
@@ -183,7 +183,7 @@ static inline void
 __object_listing_set_prefix(
 		oss_object_listing_t *listing,
 		const char *prefix,
-		size_t prefix_len)
+		unsigned int prefix_len)
 {
 	if (listing->prefix != NULL) {
 		free(listing->prefix);
@@ -201,7 +201,7 @@ _object_listing_set_prefix(
 {
 	assert(prefix != NULL);
 
-	size_t prefix_len = strlen(prefix);
+	unsigned int prefix_len = strlen(prefix);
 	__object_listing_set_prefix(listing, prefix, prefix_len);
 }
 
@@ -227,8 +227,8 @@ void _object_listing_set_common_prefixes(
 	 * If listing->common_prefixes != NULL,
 	 * free it one by one.
 	 * */
-	size_t j = 0;
-	size_t total = listing->_counts_common_prefixes;
+	unsigned int j = 0;
+	unsigned int total = listing->_counts_common_prefixes;
 	if (listing->common_prefixes != NULL) {
 
 		for (j = 0; j < total; j++) {
@@ -239,13 +239,13 @@ void _object_listing_set_common_prefixes(
 		}
 	}
 
-	size_t i = 0;
+	unsigned int i = 0;
 	const char **pnmec = common_prefixes;
 
 	listing->common_prefixes = (char **)malloc(sizeof(char *) * counts);
 	
 	for (i = 0; i < counts; i++) {
-		size_t len = strlen(*(pnmec + i));
+		unsigned int len = strlen(*(pnmec + i));
 		*(listing->common_prefixes + i) = (char *)malloc(sizeof(char) * len + 1);
 		memset(*(listing->common_prefixes + i), 0, len + 1);
 		strncpy(*(listing->common_prefixes + i), *(pnmec + i), len);
@@ -330,8 +330,8 @@ object_listing_finalize(oss_object_listing_t *listing)
 	}
 
 	if (listing->common_prefixes != NULL) {
-		size_t j = 0;
-		size_t total = listing->_counts_common_prefixes;
+		unsigned int j = 0;
+		unsigned int total = listing->_counts_common_prefixes;
 		if (listing->common_prefixes != NULL) {
 			for (; j < total; j++) {
 				if (*(listing->common_prefixes + j) != NULL) {
