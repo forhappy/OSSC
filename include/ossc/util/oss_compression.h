@@ -29,8 +29,8 @@ typedef enum oss_compression_algorithm_e oss_compression_algorithm_t;
 enum oss_compression_algorithm_e {
 	OSS_LZ4 = 0x01,
 	OSS_LZO = 0x02,
-	OSS_QLZ = 0x03,
-	OSS_SNAPPY = 0x04
+	OSS_QLZ = 0x03, /** QuickLZ compression algorithm not implemented right now */
+	OSS_SNAPPY = 0x04 /** Google Snappy compression algorithm not implemented right now */
 };
 
 typedef struct oss_compression_header_s oss_compression_header_t;
@@ -38,7 +38,7 @@ typedef struct oss_compression_header_s oss_compression_header_t;
 struct oss_compression_header_s {
 	char magic[4];  /**< 4 Bytes，魔数，"OSSC"：\117\123\123\103 */
 	char version;   /**< 1 Byte，压缩文件格式版本，目前为 1 */
-	char algorithm; /**< 1 Bytes，压缩算法，1：LZO，2：LZ4，3：LZF */
+	char algorithm; /**< 1 Bytes，压缩算法，1：LZ4，2：LZO，3：QLZ，4：Snappy */
 	char flag;      /**< 1 Bytes，标志位 */
 	char length;    /**< 1 Bytes，首部长度，最长255字节, 该字段便于今后扩展首部 */
 	char md5[16];   /**< 16 Bytes，原始文件的MD5值 */

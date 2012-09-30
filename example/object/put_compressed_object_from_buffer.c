@@ -58,8 +58,23 @@ int main()
 	metadata->set_expiration_time(metadata, "Thu, 13 Sep 2012 21:08:42 GMT");
 
 	/* 将内存中的内容上传至云服务器中 */
+#if 0
 	oss_put_object_result_t *result =
-		client_put_compressed_object_from_buffer(client, bucket_name, key, metadata, (void *)buffer, file_len, OSS_LZ4, 0, 0, &retcode);
+		client_put_compressed_object_from_buffer(
+				client, bucket_name, key, metadata, (void *)buffer, file_len, 
+				OSS_LZ4, /* 压缩算法LZ4 */
+				0, /* Flag */
+				0, /* 压缩等级 */
+				&retcode);
+#else
+	oss_put_object_result_t *result =
+		client_put_compressed_object_from_buffer(
+				client, bucket_name, key, metadata, (void *)buffer, file_len, 
+				OSS_LZO, /* 压缩算法LZO */
+				0, /* Flag */
+				0, /* 压缩等级 */
+				&retcode);
+#endif
 	if (retcode == OK) {
 		printf("put object from file successfully.\n");
 	} else {

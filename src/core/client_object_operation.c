@@ -635,9 +635,9 @@ client_put_compressed_object_from_buffer(oss_client_t *client,
 
 	int new_size = 0;
 
-#define LZ4_compressBound(isize)   (isize + (isize/255) + 16)
-	unsigned int outbuf_len = LZ4_compressBound(input_len);
-#undef LZ4_compressBound
+#define LZX_compressBound(isize)   ((isize) + (isize) / 16 + 64 + 3)
+	unsigned int outbuf_len = LZX_compressBound(input_len);
+#undef LZX_compressBound
 	char *outbuf = (char*)malloc(sizeof(char) * outbuf_len);
 	if (outbuf == NULL) return NULL;
 	memset(outbuf, 0, outbuf_len);
@@ -1116,11 +1116,11 @@ client_get_compressed_object_to_buffer(
 
 	if ((retcode != NULL && *retcode == OK)
 			|| metadata != NULL) {
-#define LZ4_compressBound(isize)   (isize + (isize/255) + 16)
-		char *decompressed_buf = (char *)malloc(3 * LZ4_compressBound(tmpbuf_len));
+#define LZX_compressBound(isize)   ((isize) + (isize) / 16 + 64 + 3)
+		char *decompressed_buf = (char *)malloc(3 * LZX_compressBound(tmpbuf_len));
 		int decompressed_len = oss_decompress_block_2nd(tmpbuf, tmpbuf_len,
-				decompressed_buf, (3 * LZ4_compressBound(tmpbuf_len)));
-#undef LZ4_compressBound
+				decompressed_buf, (3 * LZX_compressBound(tmpbuf_len)));
+#undef LZX_compressBound
 		*output = decompressed_buf;
 		*output_len = decompressed_len;
 	
