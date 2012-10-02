@@ -86,8 +86,11 @@
 * @note 如果需要设置编译选项，可以参考CMake文档，目前默认的编译模式为 Release，如果需要调试OSSC，
 * 请将编译模式设置为Debug。
 *
-* OSSC默认安装在 /usr/local目录下，当然你可以在 cmake 中设置。
-*
+* OSSC默认安装在 /usr/local目录下，当然你可以在 cmake 中设置，方法如下：
+* @code
+* cmake -DCMAKE_INSTALL_PREFIX=/your-path ../.
+* @endcode
+
 * @subsection 在你的程序中使用OSSC
 * OSSC以程序库的形式提供给上层开发者使用，因此如果你想基于OSSC开发上层应用，必须链接OSSC程序库，OSSC大部分都集中到了 osscore 中，\n
 * 只是支持多线程调用模式的API单独放在 ossextra库中（目前多线程只支持 pthread 线程库，后期会考虑在 Windows 下也支持多线程）\n
@@ -245,7 +248,10 @@
 * -# 创建 build 目录，进入到该目录，执行 cmake ../.
 * -# 编译和安装 make && make install
 *
-* OSSC默认安装在 /usr/local目录下，当然你可以在 cmake 中设置。
+* OSSC默认安装在 /usr/local目录下，当然你可以在 cmake 中设置。方法如下：
+* @code
+* cmake -DCMAKE_INSTALL_PREFIX=/your-path ../.
+* @endcode
 *
 * @subsection 在你的程序中使用OSSC
 * OSSC以程序库的形式提供给上层开发者使用，因此如果你想基于OSSC开发上层应用，必须链接OSSC程序库，OSSC大部分都集中到了 osscore 中，\n

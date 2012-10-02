@@ -6,7 +6,7 @@ PROJECT(OSSC)
 
 # Default build type
 IF(NOT CMAKE_BUILD_TYPE)
-	SET(CMAKE_BUILD_TYPE Debug CACHE STRING
+	SET(CMAKE_BUILD_TYPE Release CACHE STRING
       "Choose the type of build, options are: Debug Release"
       FORCE)
 ENDIF(NOT CMAKE_BUILD_TYPE)
