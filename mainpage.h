@@ -150,7 +150,7 @@
 * @subpage OSSC_API_EXAMPLE
 *******************************************************************************
 * @section 关于OSSC授权
-* OSSC 采用 LGPL（GNU Lesser General Public License：GNU 宽通用公共许可证）授权形式发布，有关 LGPL 你可以查阅 GNU 官方文档：
+* OSSC 采用 LGPL（GNU Lesser General Public License：GNU 宽通用公共许可证）授权形式发布，有关 LGPL 可以查阅 GNU 官方文档：
 * http://www.gnu.org/licenses/lgpl.html
 *******************************************************************************
 * @section 关于作者

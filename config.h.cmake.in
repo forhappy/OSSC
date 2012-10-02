@@ -18,7 +18,7 @@
 
 #define REPORT_BUGS_TO		"haipingf@gmail.com && wangwei881116@gmail.com"
 
-#define PROJECT_VERSION		"OSSC 0.1.4"
+#define PROJECT_VERSION		"OSSC 0.1.5"
 
 #define __mkstr1(___a)		#___a
 #define __mkstr2(___a)		__mkstr1(___a)
