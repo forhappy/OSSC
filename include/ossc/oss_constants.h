@@ -89,7 +89,10 @@ typedef enum _OSS_ERROR_CODE {
 	/* 没有被修改 */
 	NOT_MODIFIED,
 	/* 文件过大 */
-	FILE_TOO_LARGE
+	FILE_TOO_LARGE,
+	/* IO 错误 */
+	IO_ERROR
+
 }OSS_ERROR_CODE;
 
 typedef enum _OSS_PERMISSION {
