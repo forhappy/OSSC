@@ -26,7 +26,8 @@ int main()
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
 	const char *source_bucket_name = "bucketname001";
-	const char *destination_bucket_name = "bucketname002";
+	//const char *destination_bucket_name = "bucketname002";
+	const char *destination_bucket_name = "bucket_example";
 	const char *source_key = "glib-2.32.4.tar.xz";
 	const char *destination_key = "copy-of-glib-2.32.4.tar.xz";
 

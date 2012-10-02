@@ -1,3 +1,8 @@
+#########################################################
+# 注意：强烈建议用户首先阅读 doc/html 目录中的相关页面，#
+# 获取更多有关 OSSC 编码规范，实现原理和 API 示例等内容 #
+#########################################################
+
 # 项目简介 #
 本项目为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，取名为OSSC，
 目前OSSC提供了OSS开放接口中所描述的所有功能, 基本特点包括：
@@ -7,7 +12,8 @@
 	3. Multipart Upload操作，初始化Multipart Upload，上传Part，终止Multipart Upload，
 		查看Multipart Upload。
 	4. Object Group操作，创建Object Group，获取Object Group，删除Object Group。
-更多文档请参考 doc/html目录中的页面
+
+# 更多文档请参考 doc/html目录中的页面。#
 
 # 安装与体验 #
   ## 编译步骤 ##

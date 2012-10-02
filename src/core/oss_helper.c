@@ -175,6 +175,8 @@ oss_get_error_message_from_retcode(unsigned short retcode)
 		return "NotModified";
 	} else if(retcode == FILE_TOO_LARGE) {
 		return "FileTooLarge";
+	} else if(retcode == IO_ERROR) {
+		return "IOError";
 	} else {
 		return "UnknowError";
 	}
@@ -267,7 +269,9 @@ oss_get_retcode_from_retinfo(const char *retinfo)
 		retcode = NOT_MODIFIED;
 	} else if(strcmp(retinfo, "FileTooLarge") == 0) {
 		retcode = FILE_TOO_LARGE;
-	} else {
+	} else if(strcmp(retinfo, "IOError") == 0) {
+		retcode = IO_ERROR;
+	}else {
 		retcode = 1000;
 	}
 	return retcode;

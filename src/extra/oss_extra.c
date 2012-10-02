@@ -465,7 +465,10 @@ client_extra_put_object(oss_client_t *client,
 	unsigned int read_file_sz = 0;
 
 	FILE *fp = fopen(local_file, "r");
-	if (fp == NULL) return;
+	if (fp == NULL) {
+		if (retcode != NULL) *retcode = IO_ERROR;
+		return;
+	}
 	unsigned int file_len = oss_get_file_size(fp);
 
 	/* 
@@ -506,10 +509,14 @@ client_extra_put_object(oss_client_t *client,
 		FILE *upload_id_fp = fopen(upload_id_filename, "r");
 		if (upload_id_fp == NULL) {
 			fprintf(stderr, "Error, cannot find upload-id file\n");
+			if (retcode != NULL) *retcode = IO_ERROR;
 			return;
 		}
 		unsigned int ret = fread(upload_id, 48, 1, upload_id_fp);
-		if (ret < 0) return;
+		if (ret < 0){
+			if (retcode != NULL) *retcode = IO_ERROR;
+			return;
+		}
 		free(upload_id_filename);
 		fclose(upload_id_fp);
 
@@ -562,7 +569,11 @@ client_extra_put_object(oss_client_t *client,
 					memset(user_data->send_buffer->ptr, 0, PART_SIZE);
 					fseek(fp, part_number * PART_SIZE, SEEK_SET);
 					read_file_sz = fread(user_data->send_buffer->ptr, PART_SIZE, 1, fp);
-					if (read_file_sz != 1) {read_file_sz = 0;return;}
+					if (read_file_sz != 1) {
+						if (retcode != NULL) *retcode = IO_ERROR;
+						read_file_sz = 0;
+						return;
+					}
 					user_data->send_buffer->left = PART_SIZE;
 					user_data->send_buffer->allocated = PART_SIZE;
 					user_data->send_buffer->code = 0;
@@ -574,7 +585,11 @@ client_extra_put_object(oss_client_t *client,
 					user_data->send_buffer->unmovable_buffer_ptr =  user_data->send_buffer->ptr;
 					fseek(fp, part_number * PART_SIZE, SEEK_SET);
 					read_file_sz = fread(user_data->send_buffer->ptr, file_len - part_number * PART_SIZE, 1, fp);
-					if (read_file_sz != 1) {read_file_sz = 0;return;}
+					if (read_file_sz != 1) {
+						if (retcode != NULL) *retcode = IO_ERROR;
+						read_file_sz = 0;
+						return;
+					}
 					user_data->send_buffer->left = file_len - part_number * PART_SIZE;
 					user_data->send_buffer->allocated = file_len - part_number * PART_SIZE;
 					user_data->send_buffer->code = 0;
@@ -661,7 +676,11 @@ client_extra_put_object(oss_client_t *client,
 				memset(user_data->send_buffer->ptr, 0, PART_SIZE);
 				fseek(fp, part_number * PART_SIZE, SEEK_SET);
 				read_file_sz = fread(user_data->send_buffer->ptr, PART_SIZE, 1, fp);
-				if (read_file_sz != 1) {read_file_sz = 0;return;}
+				if (read_file_sz != 1) {
+					if (retcode != NULL) *retcode = IO_ERROR;
+					read_file_sz = 0;
+					return;
+				}
 				user_data->send_buffer->left = PART_SIZE;
 				user_data->send_buffer->allocated = PART_SIZE;
 				user_data->send_buffer->code = 0;
@@ -674,7 +693,11 @@ client_extra_put_object(oss_client_t *client,
 				memset(user_data->send_buffer->ptr, 0, (file_len - part_number * PART_SIZE));
 				fseek(fp, part_number * PART_SIZE, SEEK_SET);
 				read_file_sz = fread(user_data->send_buffer->ptr, file_len - part_number * PART_SIZE, 1, fp);
-				if (read_file_sz != 1) {read_file_sz = 0;return;}
+				if (read_file_sz != 1) {
+					if (retcode != NULL) *retcode = IO_ERROR;
+					read_file_sz = 0;
+					return;
+				}
 				user_data->send_buffer->left = file_len - part_number * PART_SIZE;
 				user_data->send_buffer->allocated = file_len - part_number * PART_SIZE;
 				user_data->send_buffer->code = 0;

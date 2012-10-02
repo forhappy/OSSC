@@ -1249,6 +1249,9 @@ client_copy_object_ext(oss_client_t *client,
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_copy_object_response(user_data);
+	} else if(user_data->header_buffer->code == 304) {
+		if (retcode != NULL) *retcode = NOT_MODIFIED;
+		oss_free_user_data(user_data);
 	} else {
 		if (retcode != NULL)
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
@@ -1395,7 +1398,10 @@ client_copy_object(oss_client_t *client,
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_copy_object_response(user_data);
-	} else  {
+	} else if(user_data->header_buffer->code == 304) {
+		if (retcode != NULL) *retcode = NOT_MODIFIED;
+		oss_free_user_data(user_data);
+	} else {
 		if (retcode != NULL)
 			*retcode = oss_get_retcode_from_response(user_data->recv_buffer->ptr);
 		oss_free_user_data(user_data);

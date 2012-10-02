@@ -311,6 +311,7 @@ oss_decompress_block_2nd(
 				return 0;
 			}
 		}
+		free(header);
 	}
 
 	return ret;
@@ -351,9 +352,9 @@ void oss_decompress_file(
 			fseek(fin, header_len, SEEK_SET); /**< 从头部开始往后读*/
 			_decompress_file_with_lzo(fin, fout);
 		}
+		free(header);
 	}
 
-	free(header);
 	fclose(fin);
 	fclose(fout);
 	return;

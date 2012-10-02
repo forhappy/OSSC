@@ -12,17 +12,17 @@
 
 /** @mainpage OSSC 开发者手册
 *******************************************************************************
-* @section OSSC介绍 
+* @section What_is_OSSC OSSC介绍 (OSS C SDK)
+* OSSC(Aliyun Open Storage Service C SDK)为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，并取名为 OSSC。
 * @subpage OSSC_INTRO
 * @subsection 关于OSS
-* 阿里云存储服务(OpenStorageService,简称 OSS)，是阿里云对外提供的海量，安全，低成本，高可靠的云存储服务。
+* 阿里云存储服务(Open Storage Service,简称 OSS)，是阿里云对外提供的海量，安全，低成本，高可靠的云存储服务。
 * 用户可以通过简单的 REST 接口，在任何时间、任何地点、任何互联网设备上进行上传和下载数据，
 * 也可以使用WEB 页面对数据进行管理。同时，OSS 提供 Java、Python、PHP SDK,简化用户的编程。
 * 基于 OSS，用户可以搭建出各种多媒体分享网站、网盘、个人企业数据备份等基于大规模数据的服务。
 * 【摘自《OSS API 开放接口规范文档》】。
 *
 * @subsection 我们为OSS做了什么？
-* 本项目为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，并取名为 OSSC，
 * 目前 OSSC 提供了 OSS 开放接口中所描述的所有功能, 特点包括：
 * -# Bucket 所有操作，如创建 Bucket、删除 Bucket、获取某个 Bucket 访问权限、设置 Bucket 访问权限、获取所有 Bucket 信息、
 * 获取 Bucket 中所有 Object 的信息。
@@ -31,12 +31,20 @@
 * -# Multipart Upload 操作，初始化 Multipart Upload、上传 Part、完成 Multipart 上传、终止 Multipart Upload、查看 Multipart Upload，查看正在上传的 Part。
 * -# Object Group 操作，创建 Object Group，获取 Object Group，获取 Object Group 中的 Object List 信息、获取 Object Group 元信息，删除 Object Group。
 *
+* @subsection oss_compression_format OSS 文件压缩格式
+* 我们为OSS设计了一种可支持多种实时压缩算法(如LZO, LZ4，LZF)的文件存储格式，并实现了LZO,LZ4两种压缩算法(今后可能支持更多)的文件和内存块的实时压缩上传和下载解压缩功能，用户在压缩上传文件时需要指定压缩算法(目前只能指定OSS_LZ4, OSS_LZO)，但是在下载解压缩时并不需要指定解压缩算法，OSSC会自动根据文件格式选择适当的解压缩算法对文件或内存块进行解压缩。
+*
+* 该压缩存储格式文件名称以.ossz结尾，但是不强制使用.ossz后缀，事实上，你可以使用任意文件名和后缀，OSSC会自动检查文件是否为合法的压缩格式。
+* 另外，我们为文件和内存块的实时压缩上传和下载解压缩分别提供了相应的API，我们建议压缩上传和下载API成对使用，即上传时如果采用压缩上传，下载最好采用压缩下载的API进行文件下载，以免在下载解压缩时不必要的文件格式检查，更详细的原理可以参考《OSSC 实现原理》一节，或源码 src/util/oss_compression.c, src/util/oss_decompress 或 src/core/client_object_operation.c。
+*
 * @subsection OSSC亮点
 * 目前 OSSC 除了提供 OSS 开放接口中所描述的所有功能以外，还包括以下亮点：
-* - 多线程断点上传功能(由于设置Range参数时获取Ojbect请求会出现："connection reset by peer"，无法进行测试，所以多线程断点下载功能未经过测试，没集成到代码库中)
+* - 多线程断点上传功能;
 * - 文件实时压缩上传和实时解压缩下载;
 * - 内存块实时压缩上传和实时解压缩下载;
-* - 简易的文件夹同步上传和同步下载功能
+* - 简易的文件夹同步上传和同步下载功能。
+*
+* @note 由于在Get Object操作设置HTTP的Range请求参数时会出现："connection reset by peer"，无法进行测试，所以多线程断点下载功能未经过测试，没有集成到代码库中。
 *******************************************************************************
 * @section OSSC安装细节
 * @subpage OSSC_INSTALL
@@ -72,8 +80,11 @@
 *
 * OSSC采用 CMake 管理构建过程，应该先安装CMake，
 * -# 安装CMake。
-* -# 创建 build 目录，进入到该目录，执行 cmake ../.
+* -# 创建 build 目录，进入到该目录，mkdir build && cd build
+* -# 执行 cmake ../.
 * -# 编译和安装 make && make install
+* @note 如果需要设置编译选项，可以参考CMake文档，目前默认的编译模式为 Release，如果需要调试OSSC，
+* 请将编译模式设置为Debug。
 *
 * OSSC默认安装在 /usr/local目录下，当然你可以在 cmake 中设置。
 *
@@ -82,7 +93,7 @@
 * 只是支持多线程调用模式的API单独放在 ossextra库中（目前多线程只支持 pthread 线程库，后期会考虑在 Windows 下也支持多线程）\n
 * 以下是你的程序需要连接OSSC，链接参数为：-L/path-to-your-ossc-installation -losscore.
 *
-* 另外需要注意的是，OSSC支持多线程断点续传模式下上传和下载文件，如果你想体验该功能，你需要链接如下库：
+* 另外需要注意的是，OSSC支持多线程断点续传模式下上传文件，如果你想体验该功能，你需要链接如下库：
 * -L/path-to-your-ossc-installation -lossextra.
 *******************************************************************************
 * @section OSSC编码规范
@@ -138,8 +149,10 @@
 *
 *******************************************************************************
 * @section OSSC高级模块Extra库
-* OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，希望今后会有其他开发者实现
-* 这一功能。
+* OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能，
+* 希望今后会有其他开发者实现这一功能。
+*
+* 另外 Extra 库还支持简单的文件夹上传同步和下载同步的功能，希望该API对其他开发者有用。
 *
 * OSSC 采用了POSIX多线程标准库 pthread,理论上只要你的操作系统支持 pthread都可以使用 OSSC 的 extra 库中的 API。
 
@@ -150,6 +163,14 @@
 * @subpage OSSC_API_EXAMPLE
 *******************************************************************************
 * @section 关于OSSC授权
+* OSSC 使用的开源程序：
+* -# GNUlib 中的 base64, sha1, hmac-sha1等模块，并进行了适当改造。
+* -# CCAN 的 ttxml，一个极简单的 xml 文件只读库
+* -# Glib 的 GString，进行了适当的改造，在此基础上实现了 tstring_t，一个类似 C++ 的 std::string实现
+* -# UThash, A hash table for C structure, http://uthash.sourceforge.net/
+* -# LZ4: http://code.google.com/p/lz4/
+* -# miniLZO: http://www.oberhumer.com/opensource/lzo/
+* 
 * OSSC 采用 LGPL（GNU Lesser General Public License：GNU 宽通用公共许可证）授权形式发布，有关 LGPL 可以查阅 GNU 官方文档：
 * http://www.gnu.org/licenses/lgpl.html
 *******************************************************************************
@@ -2208,5 +2229,6 @@
 * }
 * @endcode
 */
+
 
 
