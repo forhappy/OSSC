@@ -26,7 +26,7 @@ int main()
 	const char *key         = "multipart-upload.data";      //设置key
 
 	 /* TODO: 此处设置Upload ID */
-	const char *upload_id = "0004CA5F502B4C6AEE20E8B4ED6E2002"; 
+	const char *upload_id = "0004CB0D72FB6328EC8EF60A3717BE90"; 
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 

@@ -61,6 +61,12 @@ int main()
 		retinfo = oss_get_error_message_from_retcode(retcode);
 		printf("%s\n", retinfo);
 	}
+
+	/* 释放空间 */
+	for (i = 0; i < parts; i++) {
+		part_etag_finalize(*(part_etag + i));
+	}
+	free(part_etag);
 	complete_multipart_upload_request_finalize(request);
 	if (result != NULL) complete_multipart_upload_result_finalize(result);
 	client_finalize(client);

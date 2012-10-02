@@ -56,6 +56,9 @@ int main()
 		printf("%s\n", retinfo);
 	}
 
+	initiate_multipart_upload_result_finalize(result);
+	initiate_multipart_upload_request_finalize(request);
+	object_metadata_finalize(metadata);
 	client_finalize(client);
 
 	return 0;

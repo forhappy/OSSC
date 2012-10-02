@@ -44,6 +44,7 @@ construct_initiate_multipart_upload_response(curl_request_param_t *user_data)
 	tmp = xml_find(xml, "UploadId");
 	result->set_upload_id(result, *(tmp->child->attrib));
 
+	xml_free(xml);
 	oss_free_user_data(user_data);
 	return result;
 }
@@ -75,6 +76,8 @@ construct_complete_multipart_upload_response(curl_request_param_t *user_data)
 	result->set_key(result, *(tmp->child->attrib));
 	tmp = xml_find(xml, "ETag");
 	result->set_etag(result, *(tmp->child->attrib));
+
+	xml_free(xml);
 	oss_free_user_data(user_data);
 
 	return result;
@@ -161,6 +164,8 @@ construct_list_multipart_uploads_response(curl_request_param_t *user_data)
 	}
 
 	listing->set_multipart_uploads(listing, uploads, upload_counts);
+
+	xml_free(xml);
 	oss_free_user_data(user_data);
 	return listing;
 }
@@ -222,26 +227,30 @@ construct_list_parts_response(curl_request_param_t *user_data)
 	tmp = xml_find(xml, "Part");
 	unsigned int part_counts = 0;
 	tmp2 = tmp;
-	if (tmp2 != NULL) part_counts = 1;
-	while (tmp2->next != NULL) {
-		tmp2 = tmp2->next;
-		part_counts++;
+	if (tmp2 != NULL) {
+		part_counts = 1;
+		while (tmp2->next != NULL) {
+			tmp2 = tmp2->next;
+			part_counts++;
+		}
+
+		oss_part_summary_t **parts = (oss_part_summary_t **)
+			malloc(sizeof(oss_part_summary_t *) * part_counts);
+
+		tmp2 = tmp;
+		for (i = 0; i < part_counts; i++) {
+			*(parts + i) = part_summary_initialize();
+			(*(parts + i))->set_part_number((*(parts + i)), atoi(*(tmp2->child->child->attrib)));
+			(*(parts + i))->set_last_modified((*(parts + i)), *(tmp2->child->next->child->attrib));
+			(*(parts + i))->set_etag((*(parts + i)), *(tmp2->child->next->next->child->attrib));
+			(*(parts + i))->set_size((*(parts + i)), atoi(*(tmp2->child->next->next->next->child->attrib)));
+			tmp2 = tmp2->next;
+		}
+
+		listing->set_parts(listing, parts, part_counts);
 	}
 
-	oss_part_summary_t **parts = (oss_part_summary_t **)
-		malloc(sizeof(oss_part_summary_t *) * part_counts);
-
-	tmp2 = tmp;
-	for (i = 0; i < part_counts; i++) {
-		*(parts + i) = part_summary_initialize();
-		(*(parts + i))->set_part_number((*(parts + i)), atoi(*(tmp2->child->child->attrib)));
-		(*(parts + i))->set_last_modified((*(parts + i)), *(tmp2->child->next->child->attrib));
-		(*(parts + i))->set_etag((*(parts + i)), *(tmp2->child->next->next->child->attrib));
-		(*(parts + i))->set_size((*(parts + i)), atoi(*(tmp2->child->next->next->next->child->attrib)));
-		tmp2 = tmp2->next;
-	}
-
-	listing->set_parts(listing, parts, part_counts);
+	xml_free(xml);
 	oss_free_user_data(user_data);
 	return listing;
 }
@@ -486,7 +495,7 @@ client_initiate_multipart_upload(oss_client_t *client,
 	/**
 	 * 生成签名值
 	 */
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_POST,
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_POST,
 			default_headers, user_headers, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -532,6 +541,11 @@ client_initiate_multipart_upload(oss_client_t *client,
 	oss_map_delete(default_headers);
 	oss_map_delete(user_headers);
 
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	if (resource != NULL) free(resource);
+	if (url != NULL) free(url);
+
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_initiate_multipart_upload_response(user_data);
@@ -574,8 +588,8 @@ client_upload_part(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	char resource[256]     = {0};
-	char url[256]          = {0};
+	char resource[512]     = {0};
+	char url[512]          = {0};
 	char header_host[256]  = {0};
 	char header_date[64]  = {0};
 	char *now;
@@ -598,7 +612,7 @@ client_upload_part(oss_client_t *client,
 	oss_map_put(default_headers, OSS_DATE, now);
 	oss_map_put(default_headers, OSS_CONTENT_TYPE, "application/octet-stream");
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_PUT,
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_PUT,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -616,6 +630,8 @@ client_upload_part(oss_client_t *client,
 	
 	curl_slist_free_all(http_headers);
 	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
 
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
@@ -661,7 +677,7 @@ client_complete_multipart_upload(oss_client_t *client,
 	char url[512]          = {0};
 	char header_host[256]  = {0};
 	char header_date[64]  = {0};
-	char now[48]          = {0};
+	char *now = NULL;
 	char header_auth[128]  = {0};
 	char part[512] = {0};
 	unsigned int sign_len = 0;
@@ -673,13 +689,13 @@ client_complete_multipart_upload(oss_client_t *client,
 	sprintf(url, "%s/%s/%s?uploadId=%s", client->endpoint, request->get_bucket_name(request),
 			request->get_key(request), request->get_upload_id(request));
 	sprintf(header_host,"Host: %s", client->endpoint);
-	sprintf(now, "%s", oss_get_gmt_time());
+	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
 	oss_map_put(default_headers, OSS_CONTENT_TYPE, "application/x-www-form-urlencoded");
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_POST,
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_POST,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -695,7 +711,9 @@ client_complete_multipart_upload(oss_client_t *client,
 	tstring_append(tstr_part_etag, "</CompleteMultipartUpload>");
 
 	user_data->send_buffer = (param_buffer_t *)malloc(sizeof(param_buffer_t));
-	user_data->send_buffer->ptr = tstring_data(tstr_part_etag);
+	user_data->send_buffer->ptr = (char *)malloc(sizeof(char) * (tstring_size(tstr_part_etag) + 1));
+	memset(user_data->send_buffer->ptr, 0, (tstring_size(tstr_part_etag) + 1));
+	memcpy(user_data->send_buffer->ptr, tstring_data(tstr_part_etag), tstring_size(tstr_part_etag));
 	user_data->send_buffer->left = tstring_size(tstr_part_etag);
 	user_data->send_buffer->allocated = tstring_size(tstr_part_etag);
 
@@ -711,6 +729,9 @@ client_complete_multipart_upload(oss_client_t *client,
 
 	curl_slist_free_all(http_headers);
 	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+	tstring_free(tstr_part_etag);
 
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
@@ -753,11 +774,11 @@ client_abort_multipart_upload(oss_client_t *client,
 	user_data->header_buffer->allocated = MAX_HEADER_BUFFER_SIZE;
 	memset(user_data->header_buffer->ptr, 0, MAX_HEADER_BUFFER_SIZE);
 
-	char resource[256]     = {0};
-	char url[256]          = {0};
+	char resource[512]     = {0};
+	char url[512]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
-	char now[128]          = {0};
+	char *now = NULL;
 	char header_auth[512]  = {0};
 	unsigned int sign_len = 0;
 	oss_map_t *default_headers = oss_map_new(16);
@@ -767,11 +788,11 @@ client_abort_multipart_upload(oss_client_t *client,
 	sprintf(url, "%s/%s/%s?uploadId=%s", client->endpoint, request->get_bucket_name(request),
 			request->get_key(request), request->get_upload_id(request));
 	sprintf(header_host,"Host: %s", client->endpoint);
-	sprintf(now, "%s", oss_get_gmt_time());
+	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 	oss_map_put(default_headers, OSS_DATE, now);
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_DELETE,
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_DELETE,
 			default_headers, NULL, resource, &sign_len);
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
 
@@ -786,6 +807,8 @@ client_abort_multipart_upload(oss_client_t *client,
 
 	curl_slist_free_all(http_headers);
 	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
 
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
@@ -825,7 +848,7 @@ client_list_parts(oss_client_t *client,
 	char url[512]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
-	char now[64]          = {0};
+	char *now = NULL;
 	char header_auth[128]  = {0};
 	unsigned int sign_len = 0;
 	oss_map_t *default_headers = oss_map_new(16);
@@ -851,13 +874,14 @@ client_list_parts(oss_client_t *client,
 		sprintf(url, "%s/%s/%s?uploadId=%s", client->endpoint, request->get_bucket_name(request),
 			request->get_key(request), request->get_upload_id(request));
 	}
+	tstring_free(resource_params);
 
 	sprintf(header_host,"Host: %s", client->endpoint);
-	sprintf(now, "%s", oss_get_gmt_time());
+	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_GET,
 			default_headers, NULL, resource, &sign_len);
 
 	sprintf(header_auth, "Authorization: OSS %s:%s", client->access_id, sign);
@@ -874,6 +898,8 @@ client_list_parts(oss_client_t *client,
 
 	curl_slist_free_all(http_headers);
 	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
 
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
@@ -915,7 +941,7 @@ client_list_multipart_uploads(oss_client_t *client,
 	char url[256]          = {0};
 	char header_host[256]  = {0};
 	char header_date[128]  = {0};
-	char now[64]          = {0};
+	char *now = NULL;
 	char header_auth[128]  = {0};
 	unsigned int sign_len = 0;
 	oss_map_t *default_headers = oss_map_new(16);
@@ -945,14 +971,15 @@ client_list_multipart_uploads(oss_client_t *client,
 		sprintf(resource, "/%s?uploads", request->get_bucket_name(request));
 		sprintf(url, "%s/%s?uploads", client->endpoint, request->get_bucket_name(request));
 	}
+	tstring_free(resource_params);
 
 	sprintf(header_host,"Host: %s", client->endpoint);
-	sprintf(now, "%s", oss_get_gmt_time());
+	now = (char *)oss_get_gmt_time();
 	sprintf(header_date, "Date: %s", now);
 
 	oss_map_put(default_headers, OSS_DATE, now);
 	
-	const char *sign = generate_authentication(client->access_key, OSS_HTTP_GET,
+	char *sign = (char *)generate_authentication(client->access_key, OSS_HTTP_GET,
 			default_headers, NULL, resource, &sign_len);
 
 
@@ -970,6 +997,10 @@ client_list_multipart_uploads(oss_client_t *client,
 	multipart_upload_curl_operation(OSS_HTTP_GET, resource, url, http_headers, user_data);
 
 	curl_slist_free_all(http_headers);
+	oss_map_delete(default_headers);
+	if (now != NULL) free(now);
+	if (sign != NULL) free(sign);
+
 	if (user_data->header_buffer->code == 200) {
 		if (retcode != NULL) *retcode = 0;
 		return construct_list_multipart_uploads_response(user_data);

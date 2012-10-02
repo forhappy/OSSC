@@ -31,6 +31,10 @@ int main()
 	const char *upload_id = "0004CA5FAC0DD11BFCEE7E76679BD09D"; 
 
 	FILE *fp= fopen("mysql-5.1.52.tar.gz", "r"); /* 需要通过multipart upload上传的文件 */
+	if (fp == NULL) {
+		fprintf(stderr, "error in opening file...\nplease check again before upload part !\n");
+		return -1;
+	}
 	unsigned int file_len = oss_get_file_size(fp); /* 获取文件大小 */
 	
 	char *buffer = (char *)malloc(sizeof(char) * file_len + 1);

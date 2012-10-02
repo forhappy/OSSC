@@ -47,13 +47,15 @@ int main()
 			printf("UPLOAD ID: %s\n", (*(uploads + i))->get_upload_id(*(uploads + i)));
 			printf("STORAGE CLASS: %s\n", (*(uploads + i))->get_storage_class(*(uploads + i)));
 			printf("INITIATED: %s\n", (*(uploads + i))->get_initiated(*(uploads + i)));
+
+			/* 释放空间，否则会少量的内存泄漏 */
+			multipart_upload_finalize(*(uploads + i));
 		}
+		if (uploads != NULL) free(uploads);
 	} else {
 		retinfo = oss_get_error_message_from_retcode(retcode);
 		printf("%s\n", retinfo);
 	}
-
-
 
 	list_multipart_uploads_request_finalize(request);
 	if (listing != NULL) multipart_upload_listing_finalize(listing);

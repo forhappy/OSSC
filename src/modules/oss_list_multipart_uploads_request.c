@@ -312,7 +312,11 @@ list_multipart_uploads_request_finalize(
 		free(request->delimiter);
 		request->delimiter= NULL;
 	}
-
+	
+	if (request->upload_id_marker!= NULL) {
+		free(request->upload_id_marker);
+		request->upload_id_marker = NULL;
+	}
 	free(request);
 }
 
