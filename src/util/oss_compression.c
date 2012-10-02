@@ -161,8 +161,8 @@ _compress_block_with_lzo(
 	/**< compression output size. */
 	int cout_size; 
 
-	r = compression((const unsigned char *)inbuf, inbuf_len, 
-			(unsigned char *)outbuf + 4, (lzo_uint *)&cout_size, wrkmem);
+	r = compression((const lzo_bytep)inbuf, (lzo_uint)inbuf_len, 
+			(lzo_bytep)(outbuf + 4), (lzo_uint *)&cout_size, (lzo_voidp)wrkmem);
     if (r != LZO_E_OK) {
         /* this should NEVER happen */
         fprintf(stderr, "internal error - compression failed: %d\n", r);
@@ -246,9 +246,9 @@ _compress_block_with_lzo_2nd(
 	/**< compression output size. */
 	int cout_size; 
 
-	r = compression((const unsigned char *)inbuf, inbuf_len, 
-			(unsigned char *)(outbuf + sizeof(oss_compression_header_t) + 4),
-			(lzo_uint *)&cout_size, wrkmem);
+	r = compression((const lzo_bytep)inbuf, (lzo_uint)inbuf_len, 
+			(lzo_bytep)(outbuf + sizeof(oss_compression_header_t) + 4),
+			(lzo_uint *)&cout_size, (lzo_voidp)wrkmem);
     if (r != LZO_E_OK) {
         /* this should NEVER happen */
         fprintf(stderr, "internal error - compression failed: %d\n", r);
@@ -388,8 +388,8 @@ static void _compress_file_with_lzo(
 	    int cin_size = (int)fread(inbuf, (unsigned int)1, (unsigned int)OSS_CHUNK_SIZE, fin);
 		if( cin_size <= 0 ) break;
 
-		r = compression((const unsigned char *)inbuf, cin_size, (unsigned char *)(outbuf+4),
-				(lzo_uint *)&cout_size, wrkmem);
+		r = compression((const lzo_bytep)inbuf, (lzo_uint)cin_size, (lzo_bytep)(outbuf+4),
+				(lzo_uint *)&cout_size, (lzo_voidp)wrkmem);
 		if (r != LZO_E_OK) {
 			/* this should NEVER happen */
 			fprintf(stderr, "internal error - compression failed: %d\n", r);
