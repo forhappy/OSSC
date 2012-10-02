@@ -130,7 +130,7 @@ _decompress_block_with_lzo(
 	assert(outbuf != NULL);
 
 	return lzo1x_decompress((const lzo_bytep)inbuf, 
-			(lzo_uint)inbuf_len, (lzo_bytep)outbuf, (lzo_uint *)outbuf_len, NULL);
+			(lzo_uint)inbuf_len, (lzo_bytep)outbuf, (lzo_uintp)outbuf_len, NULL);
 }
 
 static int 
@@ -156,7 +156,7 @@ _decompress_block_with_lzo_2nd(
 	assert(outbuf != NULL);
 
 	return lzo1x_decompress((const lzo_bytep)inbuf, (lzo_uint)inbuf_len,
-			(lzo_bytep)outbuf, (lzo_uint *)outbuf_len, NULL);
+			(lzo_bytep)outbuf, (lzo_uintp)outbuf_len, NULL);
 }
 /**
  * 解压缩文件
@@ -231,7 +231,7 @@ static void _decompress_file_with_lzo(
 	    ret = fread(inbuf, 1, chunk_size, fin);
 
 		r = lzo1x_decompress((const lzo_bytep)inbuf, (lzo_uint)chunk_size,
-				(lzo_bytep)outbuf, (lzo_uint *)&decode_len, NULL);
+				(lzo_bytep)outbuf, (lzo_uintp)&decode_len, NULL);
 		if (r != LZO_E_OK) {
     	    /* this should NEVER happen */
     	    printf("internal error - decompression failed: %d\n", r);
