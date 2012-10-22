@@ -1,0 +1,513 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_object_s结构参考</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li class="current"><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../classes.html"><span>数据结构索引</span></a></li>
+      <li><a href="../../functions.html"><span>数据字段</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d7/df5/structoss__object__s.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">数据成员</a>  </div>
+  <div class="headertitle">
+<div class="title">oss_object_s结构参考<div class="ingroups"><a class="el" href="../../d2/d21/group__oss__object__t.html">oss_object_t</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="oss_object_s" -->
+<p>表示OSS中的Object<br/>
+  
+ <a href="../../d7/df5/structoss__object__s.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+数据成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Object的所在Bucket的名称  <a href="#a9c4511a2051789ad75fa5703cf45ed21"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Object的名称  <a href="#a5892a9181e6a332f84d27aecd41dcd12"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a146ca8c7fb0d1d853c851fe9d60c8114">object_content</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Object的内容  <a href="#a146ca8c7fb0d1d853c851fe9d60c8114"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Object的元数据  <a href="#ae52e96502d05fae1bbf164d806c47142"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a96412a448f3caf2b17cd9551d56aba34">object_content_len</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Object的内容长度  <a href="#a96412a448f3caf2b17cd9551d56aba34"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a2ed0859f641aede6e28f6536cdf9a3f1">get_bucket_name</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得Object的所在Bucket的名称  <a href="#a2ed0859f641aede6e28f6536cdf9a3f1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#ab6040e25ca41dda07663a7dac592f153">get_key</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得Object的名称  <a href="#ab6040e25ca41dda07663a7dac592f153"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#ae3db865f200aea13dea44dad97647ee8">get_object_content</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, unsigned int *<a class="el" href="../../d7/df5/structoss__object__s.html#a96412a448f3caf2b17cd9551d56aba34">object_content_len</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得Object的内容  <a href="#ae3db865f200aea13dea44dad97647ee8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a2db38e58ce02a131cdd36fd896e2a155">get_object_metadata</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得Object的元数据  <a href="#a2db38e58ce02a131cdd36fd896e2a155"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a60252cb33e79d4c9c58f3d1281fd6ed6">set_bucket_name</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, const char *<a class="el" href="../../d7/df5/structoss__object__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Object的所在Bucket的名称  <a href="#a60252cb33e79d4c9c58f3d1281fd6ed6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a593cbae626491c1ace4fbe2d8c1a1e4d">set_key</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, const char *<a class="el" href="../../d7/df5/structoss__object__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Object的名称  <a href="#a593cbae626491c1ace4fbe2d8c1a1e4d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a2650da251194b62c456c4cbe46a89331">set_object_content</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, const char *<a class="el" href="../../d7/df5/structoss__object__s.html#a146ca8c7fb0d1d853c851fe9d60c8114">object_content</a>, unsigned int <a class="el" href="../../d7/df5/structoss__object__s.html#a96412a448f3caf2b17cd9551d56aba34">object_content_len</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Object的内容  <a href="#a2650da251194b62c456c4cbe46a89331"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/df5/structoss__object__s.html#a599286af7e986c9c412ab8ab115e8ebd">set_object_metadata</a> )(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, <a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *<a class="el" href="../../d7/df5/structoss__object__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Object的元数据  <a href="#a599286af7e986c9c412ab8ab115e8ebd"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>详细描述</h2>
+<div class="textblock"><p>表示OSS中的Object<br/>
+ </p>
+<p>在 OSS 中，用户的每个文件都是一个 Object，每个文件需小于 5G。 Object包含key、data和user meta。其中，key是Object 的名字； data是Object 的数据；user meta是用户对该object的描述。</p>
+<p>Object 命名规范:</p>
+<ul>
+<li>使用UTF-8编码</li>
+<li>规则长度必须在 1-1023字节之间 </li>
+</ul>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00050">50</a>行定义。</p>
+</div><hr/><h2>字段文档</h2>
+<a class="anchor" id="a9c4511a2051789ad75fa5703cf45ed21"></a><!-- doxytag: member="oss_object_s::bucket_name" ref="a9c4511a2051789ad75fa5703cf45ed21" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d7/df5/structoss__object__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Object的所在Bucket的名称 </p>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00051">51</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a2ed0859f641aede6e28f6536cdf9a3f1"></a><!-- doxytag: member="oss_object_s::get_bucket_name" ref="a2ed0859f641aede6e28f6536cdf9a3f1" args=")(oss_object_t *object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d7/df5/structoss__object__s.html#a2ed0859f641aede6e28f6536cdf9a3f1">get_bucket_name</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得Object的所在Bucket的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Object的所在Bucket的名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00063">63</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab6040e25ca41dda07663a7dac592f153"></a><!-- doxytag: member="oss_object_s::get_key" ref="ab6040e25ca41dda07663a7dac592f153" args=")(oss_object_t *object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d7/df5/structoss__object__s.html#ab6040e25ca41dda07663a7dac592f153">get_key</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得Object的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Object的名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00071">71</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ae3db865f200aea13dea44dad97647ee8"></a><!-- doxytag: member="oss_object_s::get_object_content" ref="ae3db865f200aea13dea44dad97647ee8" args=")(oss_object_t *object, unsigned int *object_content_len)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d7/df5/structoss__object__s.html#ae3db865f200aea13dea44dad97647ee8">get_object_content</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, unsigned int *<a class="el" href="../../d7/df5/structoss__object__s.html#a96412a448f3caf2b17cd9551d56aba34">object_content_len</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得Object的内容 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+    <tr><td class="paramname">object_content_len</td><td>[out] Object的内容长度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Object的内容 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00080">80</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a2db38e58ce02a131cdd36fd896e2a155"></a><!-- doxytag: member="oss_object_s::get_object_metadata" ref="a2db38e58ce02a131cdd36fd896e2a155" args=")(oss_object_t *object)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>*(* <a class="el" href="../../d7/df5/structoss__object__s.html#a2db38e58ce02a131cdd36fd896e2a155">get_object_metadata</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得Object的元数据 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00089">89</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a5892a9181e6a332f84d27aecd41dcd12"></a><!-- doxytag: member="oss_object_s::key" ref="a5892a9181e6a332f84d27aecd41dcd12" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d7/df5/structoss__object__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Object的名称 </p>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00052">52</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a146ca8c7fb0d1d853c851fe9d60c8114"></a><!-- doxytag: member="oss_object_s::object_content" ref="a146ca8c7fb0d1d853c851fe9d60c8114" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d7/df5/structoss__object__s.html#a146ca8c7fb0d1d853c851fe9d60c8114">object_content</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Object的内容 </p>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00053">53</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a96412a448f3caf2b17cd9551d56aba34"></a><!-- doxytag: member="oss_object_s::object_content_len" ref="a96412a448f3caf2b17cd9551d56aba34" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="../../d7/df5/structoss__object__s.html#a96412a448f3caf2b17cd9551d56aba34">object_content_len</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Object的内容长度 </p>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00055">55</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ae52e96502d05fae1bbf164d806c47142"></a><!-- doxytag: member="oss_object_s::object_metadata" ref="ae52e96502d05fae1bbf164d806c47142" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d7/df5/structoss__object__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Object的元数据 </p>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00054">54</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a60252cb33e79d4c9c58f3d1281fd6ed6"></a><!-- doxytag: member="oss_object_s::set_bucket_name" ref="a60252cb33e79d4c9c58f3d1281fd6ed6" args=")(oss_object_t *object, const char *bucket_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d7/df5/structoss__object__s.html#a60252cb33e79d4c9c58f3d1281fd6ed6">set_bucket_name</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, const char *<a class="el" href="../../d7/df5/structoss__object__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Object的所在Bucket的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] Object的所在Bucket的名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00097">97</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a593cbae626491c1ace4fbe2d8c1a1e4d"></a><!-- doxytag: member="oss_object_s::set_key" ref="a593cbae626491c1ace4fbe2d8c1a1e4d" args=")(oss_object_t *object, const char *key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d7/df5/structoss__object__s.html#a593cbae626491c1ace4fbe2d8c1a1e4d">set_key</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, const char *<a class="el" href="../../d7/df5/structoss__object__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Object的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+    <tr><td class="paramname">key</td><td>[in] Object的名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00105">105</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a2650da251194b62c456c4cbe46a89331"></a><!-- doxytag: member="oss_object_s::set_object_content" ref="a2650da251194b62c456c4cbe46a89331" args=")(oss_object_t *object, const char *object_content, unsigned int object_content_len)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d7/df5/structoss__object__s.html#a2650da251194b62c456c4cbe46a89331">set_object_content</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, const char *<a class="el" href="../../d7/df5/structoss__object__s.html#a146ca8c7fb0d1d853c851fe9d60c8114">object_content</a>, unsigned int <a class="el" href="../../d7/df5/structoss__object__s.html#a96412a448f3caf2b17cd9551d56aba34">object_content_len</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Object的内容 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+    <tr><td class="paramname">object_content</td><td>[in] Object的内容 </td></tr>
+    <tr><td class="paramname">object_content_len</td><td>[in] Object的内容长度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00114">114</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a599286af7e986c9c412ab8ab115e8ebd"></a><!-- doxytag: member="oss_object_s::set_object_metadata" ref="a599286af7e986c9c412ab8ab115e8ebd" args=")(oss_object_t *object, oss_object_metadata_t *object_metadata)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d7/df5/structoss__object__s.html#a599286af7e986c9c412ab8ab115e8ebd">set_object_metadata</a>)(<a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *object, <a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *<a class="el" href="../../d7/df5/structoss__object__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Object的元数据 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">object</td><td>[in] 标识一个oss_object_t结构指针 </td></tr>
+    <tr><td class="paramname">object_metadata</td><td>[in] Object的元数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a>第<a class="el" href="../../d4/d24/oss__object_8h_source.html#l00124">124</a>行定义。</p>
+
+</div>
+</div>
+<hr/>该结构的文档由以下文件生成：<ul>
+<li><a class="el" href="../../d4/d24/oss__object_8h_source.html">oss_object.h</a></li>
+</ul>
+</div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d7/df5/structoss__object__s.html">oss_object_s</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

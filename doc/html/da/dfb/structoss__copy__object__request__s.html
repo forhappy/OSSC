@@ -1,0 +1,940 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_copy_object_request_s结构参考</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li class="current"><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../classes.html"><span>数据结构索引</span></a></li>
+      <li><a href="../../functions.html"><span>数据字段</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('da/dfb/structoss__copy__object__request__s.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">数据成员</a>  </div>
+  <div class="headertitle">
+<div class="title">oss_copy_object_request_s结构参考<div class="ingroups"><a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html">oss_copy_object_request_t</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="oss_copy_object_request_s" -->
+<p>拷贝一个在OSS上已经存在的Object成另外一个Object的请求参数  
+ <a href="../../da/dfb/structoss__copy__object__request__s.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+数据成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a899dcfbd498016512b5bd07e8e76431a">destination_bucket_name</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">目标Bucket的名称  <a href="#a899dcfbd498016512b5bd07e8e76431a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aff12ab3e57bc15a9a45b0858c637016f">destination_key</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">目标Object的名称  <a href="#aff12ab3e57bc15a9a45b0858c637016f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a580b746fd458bf87a8049b7ae3361959">matching_etag_constraints</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">ETag限定值的列表  <a href="#a580b746fd458bf87a8049b7ae3361959"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad2e8fb48c73add7d39506e11d285531e">modified_since_constraints</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">一个时间，如果源Object自从该时间以后被修改过，则执行拷贝操作； 否则抛出异常  <a href="#ad2e8fb48c73add7d39506e11d285531e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">目标Object的ObjectMetadata信息  <a href="#ae52e96502d05fae1bbf164d806c47142"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a98bac95dc648f0e6f6977466d85cad34">no_matching_etag_constraints</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">限定Object的ETag限定必须不匹配给定值的列表  <a href="#a98bac95dc648f0e6f6977466d85cad34"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#abbb9a19b88b899dd1ee6b8a41864691d">source_bucket_name</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">源Bucket的名称  <a href="#abbb9a19b88b899dd1ee6b8a41864691d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a4587e7e40981b3814e6cfe77ed7b96c6">source_key</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">源Object的名称  <a href="#a4587e7e40981b3814e6cfe77ed7b96c6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad81d77ff7cb8f5835ea9eeac5f86fe81">unmodified_since_constraints</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">一个时间，如果该时间等于或者晚于文件实际修改时间，则正常传输文件； 否则抛出异常  <a href="#ad81d77ff7cb8f5835ea9eeac5f86fe81"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a1d7322d3a1e53f4418174717a226b2a8">_counts_matching_etag_constraints</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">ETag限定值的列表的个数  <a href="#a1d7322d3a1e53f4418174717a226b2a8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aab32e30a1b129b9bfb32a052b9782f7d">_counts_no_matching_etag_constraints</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">限定Object的ETag限定必须不匹配给定值的列表的个数  <a href="#aab32e30a1b129b9bfb32a052b9782f7d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a03ec1ff845b7fae6392c609c112e5020">get_destination_bucket_name</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得目标Bucket的名称  <a href="#a03ec1ff845b7fae6392c609c112e5020"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a7080133fb1d6571c59d0d0db84fa3898">get_destination_key</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得目标Object的名称  <a href="#a7080133fb1d6571c59d0d0db84fa3898"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char **(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ac9652a61e3f0b9cbad89a445c41b8b34">get_matching_etag_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, unsigned int *counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得ETag限定值的列表  <a href="#ac9652a61e3f0b9cbad89a445c41b8b34"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a67116ae1d1b023bef03fd6cbf95b4ce4">get_modified_since_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得modified_since_constraints时间  <a href="#a67116ae1d1b023bef03fd6cbf95b4ce4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aeba858e9c7890c5e3114f2c4b68ca332">get_object_metadata</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得目标Object的ObjectMetadata信息  <a href="#aeba858e9c7890c5e3114f2c4b68ca332"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char **(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad7dd7d794321576f2f7a5d64dd5585c4">get_no_matching_etag_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, unsigned int *counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得限定Object的ETag限定必须不匹配给定值的列表  <a href="#ad7dd7d794321576f2f7a5d64dd5585c4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a213ded873265f3ee16f20a29f5d80f6d">get_source_bucket_name</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得源Bucket的名称  <a href="#a213ded873265f3ee16f20a29f5d80f6d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a1b846cbc5041325f57415b21c26da9e9">get_source_key</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得源Object的名称  <a href="#a1b846cbc5041325f57415b21c26da9e9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a0e5a38cdada9122fb64011b1227a8b2c">get_unmodified_since_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得unmodified_since_constraints时间  <a href="#a0e5a38cdada9122fb64011b1227a8b2c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aaf6232ae6d3fb35f47b3393a226b8283">set_destination_bucket_name</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a899dcfbd498016512b5bd07e8e76431a">destination_bucket_name</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置目标Bucket的名称  <a href="#aaf6232ae6d3fb35f47b3393a226b8283"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ac0e072cf4945697249aa8ea802836e19">set_destination_key</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aff12ab3e57bc15a9a45b0858c637016f">destination_key</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置目标Object的名称  <a href="#ac0e072cf4945697249aa8ea802836e19"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a77c07dd1f7ca5c49e626cfc5ea9a2479">set_matching_etag_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char **<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a580b746fd458bf87a8049b7ae3361959">matching_etag_constraints</a>, unsigned int counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置ETag限定值的列表  <a href="#a77c07dd1f7ca5c49e626cfc5ea9a2479"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a578aa526725173b70caeb74b5c141a13">set_modified_since_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad2e8fb48c73add7d39506e11d285531e">modified_since_constraints</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置modified_since_constraints时间  <a href="#a578aa526725173b70caeb74b5c141a13"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a86b39570289c28d63ee51b22cf6838f4">set_new_object_metadata</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, <a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置目标Object的ObjectMetadata信息  <a href="#a86b39570289c28d63ee51b22cf6838f4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ae39315c9bf4c9b01a0aee017fe6b9e9b">set_no_matching_etag_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char **<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a98bac95dc648f0e6f6977466d85cad34">no_matching_etag_constraints</a>, unsigned counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置限定Object的ETag限定必须不匹配给定值的列表  <a href="#ae39315c9bf4c9b01a0aee017fe6b9e9b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a621ecc3856e778959274bbab3e374e89">set_source_bucket_name</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#abbb9a19b88b899dd1ee6b8a41864691d">source_bucket_name</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置源Bucket的名称  <a href="#a621ecc3856e778959274bbab3e374e89"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a9a0514f5c4f04cc850551bc9c8956c45">set_source_key</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a4587e7e40981b3814e6cfe77ed7b96c6">source_key</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置源Object的名称  <a href="#a9a0514f5c4f04cc850551bc9c8956c45"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a4e20daccabfd4da59caae33907e2cb5b">set_unmodified_since_constraints</a> )(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad81d77ff7cb8f5835ea9eeac5f86fe81">unmodified_since_constraints</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置unmodified_since_constraints时间  <a href="#a4e20daccabfd4da59caae33907e2cb5b"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>详细描述</h2>
+<div class="textblock"><p>拷贝一个在OSS上已经存在的Object成另外一个Object的请求参数 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00043">43</a>行定义。</p>
+</div><hr/><h2>字段文档</h2>
+<a class="anchor" id="a1d7322d3a1e53f4418174717a226b2a8"></a><!-- doxytag: member="oss_copy_object_request_s::_counts_matching_etag_constraints" ref="a1d7322d3a1e53f4418174717a226b2a8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a1d7322d3a1e53f4418174717a226b2a8">_counts_matching_etag_constraints</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>ETag限定值的列表的个数 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00054">54</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aab32e30a1b129b9bfb32a052b9782f7d"></a><!-- doxytag: member="oss_copy_object_request_s::_counts_no_matching_etag_constraints" ref="aab32e30a1b129b9bfb32a052b9782f7d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aab32e30a1b129b9bfb32a052b9782f7d">_counts_no_matching_etag_constraints</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>限定Object的ETag限定必须不匹配给定值的列表的个数 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00055">55</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a899dcfbd498016512b5bd07e8e76431a"></a><!-- doxytag: member="oss_copy_object_request_s::destination_bucket_name" ref="a899dcfbd498016512b5bd07e8e76431a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a899dcfbd498016512b5bd07e8e76431a">destination_bucket_name</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>目标Bucket的名称 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00044">44</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aff12ab3e57bc15a9a45b0858c637016f"></a><!-- doxytag: member="oss_copy_object_request_s::destination_key" ref="aff12ab3e57bc15a9a45b0858c637016f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aff12ab3e57bc15a9a45b0858c637016f">destination_key</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>目标Object的名称 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00045">45</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a03ec1ff845b7fae6392c609c112e5020"></a><!-- doxytag: member="oss_copy_object_request_s::get_destination_bucket_name" ref="a03ec1ff845b7fae6392c609c112e5020" args=")(oss_copy_object_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a03ec1ff845b7fae6392c609c112e5020">get_destination_bucket_name</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得目标Bucket的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>目标Bucket的名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00063">63</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a7080133fb1d6571c59d0d0db84fa3898"></a><!-- doxytag: member="oss_copy_object_request_s::get_destination_key" ref="a7080133fb1d6571c59d0d0db84fa3898" args=")(oss_copy_object_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a7080133fb1d6571c59d0d0db84fa3898">get_destination_key</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得目标Object的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>目标Object的名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00071">71</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ac9652a61e3f0b9cbad89a445c41b8b34"></a><!-- doxytag: member="oss_copy_object_request_s::get_matching_etag_constraints" ref="ac9652a61e3f0b9cbad89a445c41b8b34" args=")(oss_copy_object_request_t *request, unsigned int *counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char**(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ac9652a61e3f0b9cbad89a445c41b8b34">get_matching_etag_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, unsigned int *counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得ETag限定值的列表 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>ETag限定值的列表 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char ** </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00079">79</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a67116ae1d1b023bef03fd6cbf95b4ce4"></a><!-- doxytag: member="oss_copy_object_request_s::get_modified_since_constraints" ref="a67116ae1d1b023bef03fd6cbf95b4ce4" args=")(oss_copy_object_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a67116ae1d1b023bef03fd6cbf95b4ce4">get_modified_since_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得modified_since_constraints时间 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>modified_since_constraints时间 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00088">88</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ad7dd7d794321576f2f7a5d64dd5585c4"></a><!-- doxytag: member="oss_copy_object_request_s::get_no_matching_etag_constraints" ref="ad7dd7d794321576f2f7a5d64dd5585c4" args=")(oss_copy_object_request_t *request, unsigned int *counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char**(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad7dd7d794321576f2f7a5d64dd5585c4">get_no_matching_etag_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, unsigned int *counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得限定Object的ETag限定必须不匹配给定值的列表 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>限定Object的ETag限定必须不匹配给定值的列表 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char ** </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00106">106</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aeba858e9c7890c5e3114f2c4b68ca332"></a><!-- doxytag: member="oss_copy_object_request_s::get_object_metadata" ref="aeba858e9c7890c5e3114f2c4b68ca332" args=")(oss_copy_object_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>*(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aeba858e9c7890c5e3114f2c4b68ca332">get_object_metadata</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得目标Object的ObjectMetadata信息 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>目标Object的ObjectMetadata信息 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">返回一个oss_object_metadata_t的结构指针</td><td></td></tr>
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00098">98</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a213ded873265f3ee16f20a29f5d80f6d"></a><!-- doxytag: member="oss_copy_object_request_s::get_source_bucket_name" ref="a213ded873265f3ee16f20a29f5d80f6d" args=")(oss_copy_object_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a213ded873265f3ee16f20a29f5d80f6d">get_source_bucket_name</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得源Bucket的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>源Bucket的名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00115">115</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b846cbc5041325f57415b21c26da9e9"></a><!-- doxytag: member="oss_copy_object_request_s::get_source_key" ref="a1b846cbc5041325f57415b21c26da9e9" args=")(oss_copy_object_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a1b846cbc5041325f57415b21c26da9e9">get_source_key</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得源Object的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>源Object的名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00123">123</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e5a38cdada9122fb64011b1227a8b2c"></a><!-- doxytag: member="oss_copy_object_request_s::get_unmodified_since_constraints" ref="a0e5a38cdada9122fb64011b1227a8b2c" args=")(oss_copy_object_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a0e5a38cdada9122fb64011b1227a8b2c">get_unmodified_since_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得unmodified_since_constraints时间 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>unmodified_since_constraints时间 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00131">131</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a580b746fd458bf87a8049b7ae3361959"></a><!-- doxytag: member="oss_copy_object_request_s::matching_etag_constraints" ref="a580b746fd458bf87a8049b7ae3361959" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a580b746fd458bf87a8049b7ae3361959">matching_etag_constraints</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>ETag限定值的列表 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00046">46</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2e8fb48c73add7d39506e11d285531e"></a><!-- doxytag: member="oss_copy_object_request_s::modified_since_constraints" ref="ad2e8fb48c73add7d39506e11d285531e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad2e8fb48c73add7d39506e11d285531e">modified_since_constraints</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>一个时间，如果源Object自从该时间以后被修改过，则执行拷贝操作； 否则抛出异常 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00047">47</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a98bac95dc648f0e6f6977466d85cad34"></a><!-- doxytag: member="oss_copy_object_request_s::no_matching_etag_constraints" ref="a98bac95dc648f0e6f6977466d85cad34" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a98bac95dc648f0e6f6977466d85cad34">no_matching_etag_constraints</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>限定Object的ETag限定必须不匹配给定值的列表 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00049">49</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ae52e96502d05fae1bbf164d806c47142"></a><!-- doxytag: member="oss_copy_object_request_s::object_metadata" ref="ae52e96502d05fae1bbf164d806c47142" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>目标Object的ObjectMetadata信息 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00048">48</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aaf6232ae6d3fb35f47b3393a226b8283"></a><!-- doxytag: member="oss_copy_object_request_s::set_destination_bucket_name" ref="aaf6232ae6d3fb35f47b3393a226b8283" args=")(oss_copy_object_request_t *request, const char *destination_bucket_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aaf6232ae6d3fb35f47b3393a226b8283">set_destination_bucket_name</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a899dcfbd498016512b5bd07e8e76431a">destination_bucket_name</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置目标Bucket的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">destination_bucket_name</td><td>[in] 目标Bucket的名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00140">140</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ac0e072cf4945697249aa8ea802836e19"></a><!-- doxytag: member="oss_copy_object_request_s::set_destination_key" ref="ac0e072cf4945697249aa8ea802836e19" args=")(oss_copy_object_request_t *request, const char *destination_key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ac0e072cf4945697249aa8ea802836e19">set_destination_key</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#aff12ab3e57bc15a9a45b0858c637016f">destination_key</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置目标Object的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">destination_key</td><td>[in] 目标Object的名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00149">149</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a77c07dd1f7ca5c49e626cfc5ea9a2479"></a><!-- doxytag: member="oss_copy_object_request_s::set_matching_etag_constraints" ref="a77c07dd1f7ca5c49e626cfc5ea9a2479" args=")(oss_copy_object_request_t *request, const char **matching_etag_constraints, unsigned int counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a77c07dd1f7ca5c49e626cfc5ea9a2479">set_matching_etag_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char **<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a580b746fd458bf87a8049b7ae3361959">matching_etag_constraints</a>, unsigned int counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置ETag限定值的列表 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">matching_etag_constraints</td><td>[in] ETag限定值的列表 </td></tr>
+    <tr><td class="paramname">counts</td><td>[in] ETag限定值的列表的个数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00159">159</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a578aa526725173b70caeb74b5c141a13"></a><!-- doxytag: member="oss_copy_object_request_s::set_modified_since_constraints" ref="a578aa526725173b70caeb74b5c141a13" args=")(oss_copy_object_request_t *request, const char *modified_since_constraints)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a578aa526725173b70caeb74b5c141a13">set_modified_since_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad2e8fb48c73add7d39506e11d285531e">modified_since_constraints</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置modified_since_constraints时间 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">modified_since_constraints</td><td>[in] modified_since_constraints时间 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00168">168</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a86b39570289c28d63ee51b22cf6838f4"></a><!-- doxytag: member="oss_copy_object_request_s::set_new_object_metadata" ref="a86b39570289c28d63ee51b22cf6838f4" args=")(oss_copy_object_request_t *request, oss_object_metadata_t *object_metadata)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a86b39570289c28d63ee51b22cf6838f4">set_new_object_metadata</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, <a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ae52e96502d05fae1bbf164d806c47142">object_metadata</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置目标Object的ObjectMetadata信息 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">object_metadata</td><td>[in] 目标Object的ObjectMetadata信息 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00177">177</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ae39315c9bf4c9b01a0aee017fe6b9e9b"></a><!-- doxytag: member="oss_copy_object_request_s::set_no_matching_etag_constraints" ref="ae39315c9bf4c9b01a0aee017fe6b9e9b" args=")(oss_copy_object_request_t *request, const char **no_matching_etag_constraints, unsigned counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ae39315c9bf4c9b01a0aee017fe6b9e9b">set_no_matching_etag_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char **<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a98bac95dc648f0e6f6977466d85cad34">no_matching_etag_constraints</a>, unsigned counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置限定Object的ETag限定必须不匹配给定值的列表 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">no_matching_etag_constraints</td><td>[in] 限定Object的ETag限定必须不匹配给定值的列表 </td></tr>
+    <tr><td class="paramname">counts</td><td>限定Object的ETag限定必须不匹配给定值的列表的个数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00187">187</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a621ecc3856e778959274bbab3e374e89"></a><!-- doxytag: member="oss_copy_object_request_s::set_source_bucket_name" ref="a621ecc3856e778959274bbab3e374e89" args=")(oss_copy_object_request_t *request, const char *source_bucket_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a621ecc3856e778959274bbab3e374e89">set_source_bucket_name</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#abbb9a19b88b899dd1ee6b8a41864691d">source_bucket_name</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置源Bucket的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">source_bucket_name</td><td>[in] 源Bucket的名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00196">196</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a0514f5c4f04cc850551bc9c8956c45"></a><!-- doxytag: member="oss_copy_object_request_s::set_source_key" ref="a9a0514f5c4f04cc850551bc9c8956c45" args=")(oss_copy_object_request_t *request, const char *source_key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a9a0514f5c4f04cc850551bc9c8956c45">set_source_key</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a4587e7e40981b3814e6cfe77ed7b96c6">source_key</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置源Object的名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">source_key</td><td>[in] 源Object的名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00205">205</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a4e20daccabfd4da59caae33907e2cb5b"></a><!-- doxytag: member="oss_copy_object_request_s::set_unmodified_since_constraints" ref="a4e20daccabfd4da59caae33907e2cb5b" args=")(oss_copy_object_request_t *request, const char *unmodified_since_constraints)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a4e20daccabfd4da59caae33907e2cb5b">set_unmodified_since_constraints</a>)(<a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, const char *<a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad81d77ff7cb8f5835ea9eeac5f86fe81">unmodified_since_constraints</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置unmodified_since_constraints时间 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">unmodified_since_constraints</td><td>[in] unmodified_since_constraints时间 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00214">214</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="abbb9a19b88b899dd1ee6b8a41864691d"></a><!-- doxytag: member="oss_copy_object_request_s::source_bucket_name" ref="abbb9a19b88b899dd1ee6b8a41864691d" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#abbb9a19b88b899dd1ee6b8a41864691d">source_bucket_name</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>源Bucket的名称 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00050">50</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a4587e7e40981b3814e6cfe77ed7b96c6"></a><!-- doxytag: member="oss_copy_object_request_s::source_key" ref="a4587e7e40981b3814e6cfe77ed7b96c6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#a4587e7e40981b3814e6cfe77ed7b96c6">source_key</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>源Object的名称 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00051">51</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ad81d77ff7cb8f5835ea9eeac5f86fe81"></a><!-- doxytag: member="oss_copy_object_request_s::unmodified_since_constraints" ref="ad81d77ff7cb8f5835ea9eeac5f86fe81" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../da/dfb/structoss__copy__object__request__s.html#ad81d77ff7cb8f5835ea9eeac5f86fe81">unmodified_since_constraints</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>一个时间，如果该时间等于或者晚于文件实际修改时间，则正常传输文件； 否则抛出异常 </p>
+
+<p>在文件<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a>第<a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html#l00052">52</a>行定义。</p>
+
+</div>
+</div>
+<hr/>该结构的文档由以下文件生成：<ul>
+<li><a class="el" href="../../d6/dce/oss__copy__object__request_8h_source.html">oss_copy_object_request.h</a></li>
+</ul>
+</div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../da/dfb/structoss__copy__object__request__s.html">oss_copy_object_request_s</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

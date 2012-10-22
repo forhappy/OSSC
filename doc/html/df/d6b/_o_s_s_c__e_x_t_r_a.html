@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: OSSC高级模块Extra库</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('df/d6b/_o_s_s_c__e_x_t_r_a.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">OSSC高级模块Extra库 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="OSSC高级模块Extra简介"></a>
+OSSC高级模块Extra简介</h2>
+<p>OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，我们目前并没有实现 Windows 平台的多线程上传下载功能，以后我们会对此进行改进。 另外还支持简单的文件夹上传同步和下载同步的功能，希望该API对其他开发者有用。</p>
+<p>OSSC 采用了POSIX多线程标准库 pthread,理论上只要你的操作系统支持 pthread都可以使用 OSSC 的 extra 库中的 API。</p>
+<h2><a class="anchor" id="OSSC_EXTRA_API_INTRO"></a>
+OSSC Extra API 介绍</h2>
+<p>OSSC Extra API 提供了有关多线程上传的 API，该 API 支持断点续传 </p>
+<div class="fragment"><pre class="fragment"> <span class="keyword">extern</span> <span class="keywordtype">void</span>
+ client_extra_put_object(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *local_file,
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+</pre></div><p> 另外该库里面还包含了文件夹上传同步和下载同步的功能，API如下： </p>
+<div class="fragment"><pre class="fragment"> <span class="comment">//同步上传</span>
+ <span class="comment">//该函数功能是将dir目录下的所有文件同步到远程bucket_name所标识的Bucket中</span>
+ <span class="keyword">extern</span> <span class="keywordtype">int</span>
+ oss_sync_upload(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> * client,
+                <span class="keyword">const</span> <span class="keywordtype">char</span> * dir, <span class="comment">//本地目录</span>
+                <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name <span class="comment">// 远程Bucket Name</span>
+                );
+</pre></div><div class="fragment"><pre class="fragment"> <span class="comment">//同步上传</span>
+ <span class="comment">//该函数功能是将远程的Bucket中所有文件下载到本地dir目录</span>
+ <span class="keyword">extern</span> <span class="keywordtype">int</span>
+ oss_sync_download(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> * client,
+                <span class="keyword">const</span> <span class="keywordtype">char</span> *dir, 
+                <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name);
+</pre></div><h2><a class="anchor" id="OSSC_EXTRA_API_INTERNAL"></a>
+OSSC Extra API 实现原理</h2>
+<h3><a class="anchor" id="多线程断点续传上传大文件功能实现"></a>
+多线程断点续传上传大文件功能实现</h3>
+<p>OSSC Extra库提供的另外一个有用的功能是多线程断点续传模式上传大文件，该功能主要利用了OSS的 Multipart Upload来实现。</p>
+<p>首次调用多线程上传功能的函数时，会在当前目录创建一个新的文件夹用来保存上传信息， 该文件夹的名称是需要上传文件的起始4096字节的MD5值经过BASE64编码后的字符串（可以确保目录名称唯一性）， 文件夹内存放了此次上传的Upload ID，以及每个已经成功上传的Part块(8MB)的记录，每个Part的记录方式均采用一个文件来标识， 文件名即该Part的PartNumber，内容是该Part的ETag值，如果某次上传网络连接断开， 再次启动大文件上传时程序会寻找相应的保存了该文件上传信息的目录，找到Upload ID，扫描Part记录文件，便可以确定哪些Part已经成功上传， 然后再用一个位图标识那些成功上传的Part，剩下未上传的Part则在此次启动后被上传，直到整个文件上传完毕。另外，在大文件上传的过程中可以多次中止和启动上传过程，文件上传成功以后，用于保存上传信息的文件夹将被删除。</p>
+<dl class="attention"><dt><b>注意:</b></dt><dd>在上传过程中请不要删除保存上传信息的文件夹，待文件上传成功后该文件夹会自动删除。</dd></dl>
+<p>综上所述，大文件上传的整个流程如下：</p>
+<ol type="1">
+<li>首先根据参数提供的本地大文件路径获取该大文件的基本信息，主要是该文件大小，以便计算需要多少个Part；</li>
+<li>初始化线程池，目前线程池中线程数目固定为4；</li>
+<li>检查该文件是否为上次未完成上传的文件(方法：读取文件起始4096字节，计算MD5，获取其BASE64值，查找改目录下是否存在与此文件对应的上传信息目录，如果不存在，则是首次上传，如果存在，则是断点续传)；</li>
+<li>如果该文件是首次上传，则新建该文件的上传信息目录，然后初始化一次Multipart Upload，并将upload id保存在该目录中的ID文件中；</li>
+<li>然后由主线程将上传任务放到任务队列中，线程池中的各个线程再从任务队列中取上传任务并执行，注意，为了防止任务过多而消耗过多内存，目前任务队列中任务数目是线程池中线程数目的2倍；</li>
+<li>主线程将所有的任务添加到任务队列后在创建一个新的线程，该线程监视线程池中的线程是否已经完成了所有的上传任务，如果文件已经上传完毕，则由该线程清理掉线程池；</li>
+<li>最后主线程完成上传请求，向OSS发送Complete multipart upload请求，并删除该文件的上传信息目录；</li>
+<li>如果该文件是断点续传，则遍历该文件上传信息目录，找到各个Part记录文件，确定哪些Part已经成功上传；</li>
+<li>对于已经成功上传的文件，在位图中将该Part的位置“1”；</li>
+<li>继续上传未完成的Part，剩下的步骤和第5、6、7步流程相同。</li>
+</ol>
+<h3><a class="anchor" id="简单文件夹同步功能原理"></a>
+简单文件夹同步功能原理</h3>
+<p>目前文件夹同步上传和下载都实现的比较简单，核心思想是对比本地和远程文件的MD5值，避免重复上传和下载，减少数据冗余和网络流量， 原理如下： </p>
+<h4><a class="anchor" id="同步上传功能实现"></a>
+同步上传功能实现</h4>
+<ol type="1">
+<li>oss_sync_upload首先根据bucket_name参数提供的Bucket名称尝试获取该Bucket的所有对象Object;</li>
+<li>如果远程没有该Bucket，则根据本地目录名称创建一个新的Bucket，然后在将本地文件夹下的所有文件同步到该目录中;</li>
+<li>如果远程存在该Bucket，则获取它的所有对象；</li>
+<li>遍历本地需要同步的文件夹，然后对于每个等待上传的文件，计算其MD5值，如果在远程也存在相同MD5值的对象，则该文件不上传;</li>
+<li>如果远程没有与该文件MD5值相同的对象，则上传该文件。</li>
+</ol>
+<h4><a class="anchor" id="同步下载功能实现"></a>
+同步下载功能实现</h4>
+<ol type="1">
+<li>oss_sync_download首先根据bucket_name参数提供的Bucket名称尝试获取该Bucket的所有对象Object;</li>
+<li>如果远程没有该Bucket，则直接返回;</li>
+<li>如果远程存在该Bucket，则获取它的所有对象；</li>
+<li>对于远程需要下载的每个文件，获取其MD5值，如果在本地也存在相同MD5值的对象，则该文件不下载;</li>
+<li>如果本地没有与该文件MD5值相同的对象，则下载该文件。</li>
+</ol>
+<h2><a class="anchor" id="OSSC_EXTRA_API_USAGE"></a>
+OSSC Extra API使用</h2>
+<p>以下是OSSC Extra 库的使用： </p>
+<h3><a class="anchor" id="多线程断点上传大文件"></a>
+多线程断点上传大文件</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/oss_extra.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/oss_helper.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 多线程断点续传，将本地大文件(&gt; 5M)上传至云服务器中 </span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucketexample&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;upload-mt.data&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *local_file = <span class="stringliteral">&quot;mysql-5.5.27-linux2.6-x86_64.tar.gz&quot;</span>;
+        <span class="comment">//const char *local_file = &quot;mysql-5.1.52.tar.gz&quot;;</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        
+        <span class="comment">// 多线程断点续传，将本地大文件上传至云服务器中 </span>
+        client_extra_put_object(client, bucket_name, key, local_file, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;put object with multithreaded mode successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ }
+</pre></div><h3><a class="anchor" id="文件夹同步上传示例"></a>
+文件夹同步上传示例</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/oss_extra.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_name_test&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keywordflow">if</span>(oss_sync_upload(client, <span class="stringliteral">&quot;/home/wangwei/Documents/upload_test/&quot;</span>, bucket_name) == 0) {
+                printf(<span class="stringliteral">&quot;sync_upload success.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                printf(<span class="stringliteral">&quot;sync_upload failed.\n&quot;</span>);
+        }
+ }
+</pre></div><h3><a class="anchor" id="文件夹同步下载示例"></a>
+文件夹同步下载示例</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/oss_extra.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="keywordtype">int</span> main()
+ {
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_name_test&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keywordflow">if</span>(oss_sync_download(client, <span class="stringliteral">&quot;/home/wangwei/Documents/download_test/&quot;</span>,bucket_name) == 0) {
+                printf(<span class="stringliteral">&quot;sync_download success.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                printf(<span class="stringliteral">&quot;sync_download failed.\n&quot;</span>);
+        }
+ }
+</pre></div> </div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../index.html">OSSC 开发者手册</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

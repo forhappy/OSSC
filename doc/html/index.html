@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: OSSC 开发者手册</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li class="current"><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>数据结构</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('index.html','');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">OSSC 开发者手册 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="What_is_OSSC"></a>
+OSSC介绍 (OSS C SDK)</h2>
+<p>OSSC(Aliyun Open Storage Service C SDK)为阿里云开放存储服务（OSS）提供了一套完整易用的 C SDK，并取名为 OSSC。 <a class="el" href="d2/d96/_o_s_s_c__i_n_t_r_o.html">OSSC详细介绍</a> </p>
+<h3><a class="anchor" id="关于OSS"></a>
+关于OSS</h3>
+<p>阿里云存储服务(Open Storage Service,简称 OSS)，是阿里云对外提供的海量，安全，低成本，高可靠的云存储服务。 用户可以通过简单的 REST 接口，在任何时间、任何地点、任何互联网设备上进行上传和下载数据， 也可以使用WEB 页面对数据进行管理。同时，OSS 提供 Java、Python、PHP SDK,简化用户的编程。 基于 OSS，用户可以搭建出各种多媒体分享网站、网盘、个人企业数据备份等基于大规模数据的服务。 【摘自《OSS API 开放接口规范文档》】。</p>
+<h3><a class="anchor" id="我们为OSS做了什么？"></a>
+我们为OSS做了什么？</h3>
+<p>目前 OSSC 提供了 OSS 开放接口中所描述的所有功能, 特点包括：</p>
+<ol type="1">
+<li>Bucket 所有操作，如创建 Bucket、删除 Bucket、获取某个 Bucket 访问权限、设置 Bucket 访问权限、获取所有 Bucket 信息、 获取 Bucket 中所有 Object 的信息。</li>
+<li>Object 所有操作，创建 Object（PUT），获取 Object，删除 Object，获取 Object 元信息，拷贝 Object，一次性删除多个 Object，另外，还在此基础上<br/>
+ 实现了从文件上传 Object、从内存缓冲区上传 Object、下载 Object 至文件、下载 Object 至内存缓冲区、多线程断点续传上传大文件。</li>
+<li>Multipart Upload 操作，初始化 Multipart Upload、上传 Part、完成 Multipart 上传、终止 Multipart Upload、查看 Multipart Upload，查看正在上传的 Part。</li>
+<li>Object Group 操作，创建 Object Group，获取 Object Group，获取 Object Group 中的 Object List 信息、获取 Object Group 元信息，删除 Object Group。</li>
+</ol>
+<h3><a class="anchor" id="oss_compression_format"></a>
+OSS 文件压缩格式</h3>
+<p>我们为OSS设计了一种可支持多种实时压缩算法(如LZO, LZ4，LZF)的文件存储格式，并实现了LZO,LZ4两种压缩算法(今后可能支持更多)的文件和内存块的实时压缩上传和下载解压缩功能，用户在压缩上传文件时需要指定压缩算法(目前只能指定OSS_LZ4, OSS_LZO)，但是在下载解压缩时并不需要指定解压缩算法，OSSC会自动根据文件格式选择适当的解压缩算法对文件或内存块进行解压缩。</p>
+<p>该压缩存储格式文件名称以.ossz结尾，但是不强制使用.ossz后缀，事实上，你可以使用任意文件名和后缀，OSSC会自动检查文件是否为合法的压缩格式。 另外，我们为文件和内存块的实时压缩上传和下载解压缩分别提供了相应的API，我们建议压缩上传和下载API成对使用，即上传时如果采用压缩上传，下载最好采用压缩下载的API进行文件下载，以免在下载解压缩时不必要的文件格式检查，更详细的原理可以参考《OSSC 实现原理》一节，或源码 src/util/oss_compression.c, src/util/oss_decompress 或 src/core/client_object_operation.c。</p>
+<h3><a class="anchor" id="OSSC亮点"></a>
+OSSC亮点</h3>
+<p>目前 OSSC 除了提供 OSS 开放接口中所描述的所有功能以外，还包括以下亮点：</p>
+<ul>
+<li>多线程断点上传功能;</li>
+<li>文件实时压缩上传和实时解压缩下载;</li>
+<li>内存块实时压缩上传和实时解压缩下载;</li>
+<li>简易的文件夹同步上传和同步下载功能。</li>
+</ul>
+<dl class="note"><dt><b>注解:</b></dt><dd>由于在Get Object操作设置HTTP的Range请求参数时会出现："connection reset by peer"，无法进行测试，所以多线程断点下载功能未经过测试，没有集成到代码库中。</dd></dl>
+<h2><a class="anchor" id="OSSC安装细节"></a>
+OSSC安装细节</h2>
+<p><a class="el" href="da/d11/_o_s_s_c__i_n_s_t_a_l_l.html">OSSC安装步骤</a> </p>
+<h3><a class="anchor" id="操作系统"></a>
+操作系统</h3>
+<p>OSSC 在 Ubuntu 12.04 上开发，我们测试了OSSC在不同Linux操作系统发行版的稳定性，以下是OSSC经过测试操作系统：</p>
+<ul>
+<li>Ubuntu 12.04, 11.10, 11.04, 10.10, 10.04</li>
+<li>CentOS 5.5</li>
+<li>Fedora 15, 16, 17</li>
+<li>openSUSE 12.2</li>
+</ul>
+<dl class="attention"><dt><b>注意:</b></dt><dd>目前我们没有在Windows上经过严格测试，虽然 OSSC 是标准C (C99) 写的，理论上也可以在 Windows 上编译运行，但是目前不建议在Windows系统下使用 OSSC，我们以后会对此改进。</dd></dl>
+<h3><a class="anchor" id="OSSC依赖库"></a>
+OSSC依赖库</h3>
+<p>OSSC 采用 CURL 库处理 HTTP 请求，因此在编译 OSSC 之前你需要安装 CURL，CURL 源码中包含了C调用API，最新版 CURL下载地址：http://curl.haxx.se/libcurl/。 除此之外，OSSC 不依赖任何其他程序库。</p>
+<h4><a class="anchor" id="CURL安装"></a>
+CURL安装</h4>
+<p>本节介绍如何编译 CURL</p>
+<ol type="1">
+<li>下载 CURL，http://curl.haxx.se/download.html</li>
+<li>安装 CURL，在Unix/Linux按照如下步骤， <div class="fragment"><pre class="fragment"> $ ./configure
+ $ make
+ $ make test (optional)
+ $ make install(需root用户权限)
+</pre></div> 你也可以参考 CURL 的官方安装文档，http://curl.haxx.se/docs/install.html</li>
+<li>完成依赖库安装后执行 ldconfig（需root用户权限）</li>
+</ol>
+<h3><a class="anchor" id="OSSC编译步骤"></a>
+OSSC编译步骤</h3>
+<p>本节介绍如何编译OSSC。</p>
+<p>OSSC采用 CMake 管理构建过程，应该先安装CMake，</p>
+<ol type="1">
+<li>安装CMake。</li>
+<li>创建 build 目录，进入到该目录，mkdir build &amp;&amp; cd build</li>
+<li>执行 cmake ../.</li>
+<li>编译和安装 make &amp;&amp; make install <dl class="note"><dt><b>注解:</b></dt><dd>如果需要设置编译选项，可以参考CMake文档，目前默认的编译模式为 Release，如果需要调试OSSC， 请将编译模式设置为Debug。</dd></dl>
+OSSC默认安装在 /usr/local目录下，当然你可以在 cmake 中设置，方法如下： <div class="fragment"><pre class="fragment"> cmake -DCMAKE_INSTALL_PREFIX=/your-path ../.
+</pre></div></li>
+</ol>
+<h3><a class="anchor" id="在你的程序中使用OSSC"></a>
+在你的程序中使用OSSC</h3>
+<p>OSSC以程序库的形式提供给上层开发者使用，因此如果你想基于OSSC开发上层应用，必须链接OSSC程序库，OSSC大部分都集中到了 osscore 中，<br/>
+ 只是支持多线程调用模式的API单独放在 ossextra库中（目前多线程只支持 pthread 线程库，后期会考虑在 Windows 下也支持多线程）<br/>
+ 以下是你的程序需要连接OSSC，链接参数为：-L/path-to-your-ossc-installation -losscore.</p>
+<p>另外需要注意的是，OSSC支持多线程断点续传模式下上传文件，如果你想体验该功能，你需要链接如下库： -L/path-to-your-ossc-installation -lossextra.</p>
+<h2><a class="anchor" id="OSSC编码规范"></a>
+OSSC编码规范</h2>
+<p><a class="el" href="d0/d9d/_o_s_s_c__c_o_d_i_n_g__s_t_y_l_e.html">OSSC编码规范详述</a></p>
+<p>一个优秀的项目必须遵循良好的编码规范，良好的编码风格可以促进团队协作，减少 BUG 产生几率，有助于开发后的代码审查，降低后期维护成本。</p>
+<p>OSSC虽然只是我们在业余时间完成的小项目，但是也注重了编码风格的一致性，我们强烈建议那些希望基于OSSC做二次开发的编码人员阅读本规范， 相信本规范能够让你快速熟悉 OSSC 的整体结构和OSSC API 的使用方法。</p>
+<h2><a class="anchor" id="OSSC实现原理"></a>
+OSSC实现原理</h2>
+<p>OSSC详细的实现原理请参考： <a class="el" href="d5/db2/_o_s_s_c__i_n_t_e_r_n_a_l.html">OSSC实现原理</a></p>
+<h3><a class="anchor" id="概括"></a>
+概括</h3>
+<p>OSSC（OSS-C-SDK）完全采用C语言开发，并实现了类似面向对象的调用方式，即“对象（struct 结构）”的“成员函数（函数指针）“采用函数指针形式实现， 我们尽量和OSS-JAVA的使用方式切合，每个对象都有相关的头文件和实现文件，并存放在modules目录下，其中与oss功能相关的所有的文件名均以oss_为前缀，<br/>
+ 每个文件实现了一个对象（即模块），另外，为了方便开发人员记忆，OSSC中的所有结构和函数我们采用如下命名；</p>
+<ol type="1">
+<li>类名（本文指代struct 结构）以 “oss_” 为前缀，并以 “_t” 为后缀，名字中间的单词用来标识该结构的用途，单词以下划线“_”连接，比如：包含终止一个Multipart上传事件的请求参数被命名为 <br/>
+ oss_abort_multipart_upload_request_t，或者包含访问阿里云开放存储服务的入口“类”被命名为 oss_client_t，其他以此类推。</li>
+<li>与各个类（struct 结构指针，以下均以“类”指代）对应的函数均以函数指针的形式调用（除了oss_client_t），比如oss_abort_multipart_upload_request_t中设置 Bucket 名称可以按照如下方式调用， <div class="fragment"><pre class="fragment"> request-&gt;<a class="code" href="de/d4e/structoss__get__object__group__request__s.html#a6330911e17d5941fbf1a8d72e818981c" title="设置Bucket名称">set_bucket_name</a>(request，<span class="stringliteral">&quot;bucket-name-001&quot;</span>);
+</pre></div></li>
+<li>所有类对外均提供初始化函数和析构函数，其它与该类相关的操作均通过该类的函数指针调用，其中初始化函数命名规则为：该类的(BARE)类名（即类名去掉“oss_”前缀和“_t”后缀）+initialize， 析构函数为该类的(BARE)类名（即类名去掉“oss_”前缀和“_t”后缀）+finalize。</li>
+<li>访问阿里云开放存储服务（Open Storage Service， OSS）的入口“类”是 oss_client_t，与此对应的所有函数均以client_前缀开头，并且第一个参数都是指向client结构的指针。</li>
+</ol>
+<p>比如上传一个对象，你需要定义标识上传对象的请求结构（oss_put_object_request_t *request）和<br/>
+ 上传对象之后返回信息的结构(oss_put_object_result_t *result)，然后将request作为参数传递给上传对象函数中（client_put_object_from_file(）<br/>
+ 或者client_put_object()中），最后返回值会保存在result指针所指向的结构中。</p>
+<p>下面的代码概括了使用 OSSC 的步骤(单线程上传文件示例)： </p>
+<div class="fragment"><pre class="fragment"> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSGmv9fkV1TDO9L&quot;</span>;<span class="comment">// Access ID</span>
+ <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsje2&quot;</span>; <span class="comment">// Access key</span>
+ <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>; <span class="comment">//Bucket 名称</span>
+ <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;put-test.data&quot;</span>; <span class="comment">// Key, Object 名称</span>
+
+ FILE *file = fopen(<span class="stringliteral">&quot;proactor.pdf&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>); <span class="comment">//打开需要上传的文件</span>
+ <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = 0; <span class="comment">//设置返回码，关于返回码的定义将在后文中详细介绍</span>
+ <a class="code" href="de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="d9/df5/group__oss__client__t.html#gac8e10d72fa74fc528e57370eb26a61df" title="oss_client_t 的构造函数">client_initialize</a>(access_id, access_key); <span class="comment">// 初始化 oss_client_t *clien</span>
+
+ <a class="code" href="d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata = <a class="code" href="d2/d08/group__oss__object__metadata__t.html#ga2225ebea2328d99d9e8c1fe6e2a36595" title="oss_object_metadata_t构造函数">object_metadata_initialize</a>(); <span class="comment">// 初始化 oss_object_metadata_t *metadata</span>
+ metadata-&gt;<a class="code" href="d5/d38/structoss__object__metadata__s.html#a16c10494ef53757df8552b22c3209c2e" title="设置Content-Length请求头，表示Object内容的大小">set_content_length</a>(metadata, file_len); <span class="comment">// 设置 metadata 元信息</span>
+ metadata-&gt;<a class="code" href="d5/d38/structoss__object__metadata__s.html#ae0f98e418a6a443881054ffe8db76e9c" title="获取Content-Type请求头，表示Object内容的类型，为标准的MIME类型">set_content_type</a>(metadata, <span class="stringliteral">&quot;application/octet-stream&quot;</span>); <span class="comment">// 设置 metadata 元信息</span>
+
+ <a class="code" href="d9/df5/group__oss__client__t.html#gaca22eacd908d77a7db2bae19e7041cc5" title="上传指定的 OSSObject 到 OSS 中指定的 Bucket">client_put_object_from_file</a>(client, bucket_name, key, file, metadata, &amp;retcode);<span class="comment">// 核心操作：调用上传对象API</span>
+ <a class="code" href="d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client); <span class="comment">//使用以后程序退出时需要释放 oss_client_t *client 分配的空间</span>
+</pre></div><h2><a class="anchor" id="OSSC高级模块Extra库"></a>
+OSSC高级模块Extra库</h2>
+<p>OSSC 高级模块中包含了多线程上传大文件的 API，并支持断点续传，由于时间和精力有限，我们目前并没有实现 Windows 平台的多线程上传下载功能， 希望今后会有其他开发者实现这一功能。</p>
+<p>另外 Extra 库还支持简单的文件夹上传同步和下载同步的功能，希望该API对其他开发者有用。</p>
+<p>OSSC 采用了POSIX多线程标准库 pthread,理论上只要你的操作系统支持 pthread都可以使用 OSSC 的 extra 库中的 API。</p>
+<p><a class="el" href="df/d6b/_o_s_s_c__e_x_t_r_a.html">OSSC高级模块Extra库</a></p>
+<h2><a class="anchor" id="API使用示例"></a>
+API使用示例</h2>
+<p><a class="el" href="d3/df4/_o_s_s_c__a_p_i__e_x_a_m_p_l_e.html">OSSC API 使用示例</a></p>
+<h2><a class="anchor" id="关于OSSC授权"></a>
+关于OSSC授权</h2>
+<p>OSSC 使用的开源程序：</p>
+<ol type="1">
+<li>GNUlib 中的 base64, sha1, hmac-sha1等模块，并进行了适当改造。</li>
+<li>CCAN 的 ttxml，一个极简单的 xml 文件只读库</li>
+<li>Glib 的 GString，进行了适当的改造，在此基础上实现了 tstring_t，一个类似 C++ 的 std::string实现</li>
+<li>UThash, A hash table for C structure, <a href="http://uthash.sourceforge.net/">http://uthash.sourceforge.net/</a></li>
+<li>LZ4: <a href="http://code.google.com/p/lz4/">http://code.google.com/p/lz4/</a></li>
+<li>miniLZO: <a href="http://www.oberhumer.com/opensource/lzo/">http://www.oberhumer.com/opensource/lzo/</a></li>
+</ol>
+<p>OSSC 采用 LGPL（GNU Lesser General Public License：GNU 宽通用公共许可证）授权形式发布，有关 LGPL 可以查阅 GNU 官方文档： <a href="http://www.gnu.org/licenses/lgpl.html">http://www.gnu.org/licenses/lgpl.html</a></p>
+<h2><a class="anchor" id="关于作者"></a>
+关于作者</h2>
+<p>傅海平：中国科学院计算技术研究所网络数据中心(<a href="mailto:haipingf@gmail.com">haipingf@gmail.com</a>)<br/>
+ 王 维：中国科院学计算技术研究所网络数据中心(<a href="mailto:wangwei881116@gmail.com">wangwei881116@gmail.com</a>) </p>
+</div></div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

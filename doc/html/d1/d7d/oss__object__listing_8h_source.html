@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_object_listing.h源文件</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d1/d7d/oss__object__listing_8h.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">oss_object_listing.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d1/d7d/oss__object__listing_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =============================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  oss_object_listing.h</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  oss_object_listing.</span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Created:  09/04/2012 08:57:48 PM</span>
+<a name="l00009"></a>00009 <span class="comment"> *</span>
+<a name="l00010"></a>00010 <span class="comment"> *        Company:  ICT ( Institute Of Computing Technology, CAS )</span>
+<a name="l00011"></a>00011 <span class="comment"> *</span>
+<a name="l00012"></a>00012 <span class="comment"> *</span>
+<a name="l00013"></a>00013 <span class="comment"> * =============================================================================</span>
+<a name="l00014"></a>00014 <span class="comment"> */</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#ifndef _OSS_OBJECT_LISTING_H</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor"># error Never include &lt;ossc/modules/oss_object_listing.h&gt; directly, use &lt;ossc/client.h&gt; instead.</span>
+<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00019"></a>00019 <span class="preprocessor">#ifndef OSS_OBJECT_LISTING_H</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#define OSS_OBJECT_LISTING_H</span>
+<a name="l00021"></a><a class="code" href="../../d1/d7d/oss__object__listing_8h.html#a3ab21828f1741db61fd73baa775f66f2">00021</a> <span class="preprocessor"></span><span class="preprocessor">#define _OSS_OBJECT_SUMMARY_H</span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d55/oss__object__summary_8h.html">ossc/modules/oss_object_summary.h</a>&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#undef _OSS_OBJECT_SUMMARY_H</span>
+<a name="l00024"></a>00024 <span class="preprocessor"></span><span class="preprocessor">#include &lt;ossc/ossc-config.h&gt;</span>
+<a name="l00025"></a>00025 
+<a name="l00026"></a>00026 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00027"></a>00027 <span class="preprocessor">#include &lt;string.h&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#include &lt;assert.h&gt;</span>
+<a name="l00030"></a>00030 
+<a name="l00031"></a>00031 <span class="preprocessor">#ifdef HAVE_STDBOOL_H</span>
+<a name="l00032"></a>00032 <span class="preprocessor"></span><span class="preprocessor">#include &lt;stdbool.h&gt;</span>
+<a name="l00033"></a>00033 <span class="preprocessor">#endif</span>
+<a name="l00034"></a>00034 <span class="preprocessor"></span>
+<a name="l00044"></a><a class="code" href="../../da/d78/group__oss__object__listing__t.html#gae5dfa8244d84e55938131b5816c6c18a">00044</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_s</a> <a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a>;
+<a name="l00045"></a>00045 
+<a name="l00049"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html">00049</a> <span class="keyword">struct </span><a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_s</a> {
+<a name="l00050"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21">00050</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket名称">bucket_name</a>;       
+<a name="l00051"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a77302ae8ca02ef6fca6f39dfc961a061">00051</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a77302ae8ca02ef6fca6f39dfc961a061" title="如果因为 max-keys 的设定无法一次完成 listing,返回结果会附加一个NextMarker">next_marker</a>;       
+<a name="l00052"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f">00052</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f" title="前缀">prefix</a>;            
+<a name="l00053"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#aee481970ba654213bf28035c508259bc">00053</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aee481970ba654213bf28035c508259bc" title="标识表示从哪里返回列表">marker</a>;            
+<a name="l00054"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a3cd30021306af3e4fc23061b86f8ab21">00054</a>         <span class="keywordtype">int</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html#a3cd30021306af3e4fc23061b86f8ab21" title="返回 object 的最大数">max_keys</a>;            
+<a name="l00055"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#aac0782d159773b2ffc74276d33b81d3c">00055</a>         <span class="keywordtype">char</span> * <a class="code" href="../../d8/d42/structoss__object__listing__s.html#aac0782d159773b2ffc74276d33b81d3c" title="分隔符">delimiter</a>;        
+<a name="l00056"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a">00056</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a" title="标识是否有未显示的Object">is_truncated</a>;       
+<a name="l00058"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3">00058</a>         <a class="code" href="../../df/d44/structoss__object__summary__s.html" title="OSSObject摘要信息">oss_object_summary_t</a> **<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>;      
+<a name="l00059"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#af095c68bc6123af7787610110d2940e4">00059</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html#af095c68bc6123af7787610110d2940e4" title="Object的数目">_counts_summaries</a>;        
+<a name="l00061"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a8fc0681d7265cb78145181206a267572">00061</a>         <span class="keywordtype">char</span> **<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a8fc0681d7265cb78145181206a267572" title="名字包含指定的前缀且第一次出现 delimiter 字符之间的 object">common_prefixes</a>;                 
+<a name="l00062"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a7e595ce8833f237b60ee0ef22f3b7c91">00062</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html#a7e595ce8833f237b60ee0ef22f3b7c91" title="common_prefixes的数目">_counts_common_prefixes</a>;   
+<a name="l00070"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a69dca4aff96d13ffdbd75329f81c5be0">00070</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_bucket_name)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00071"></a>00071 
+<a name="l00078"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a68653b2c9e09bee6d3d1a0b48fd69360">00078</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a68653b2c9e09bee6d3d1a0b48fd69360" title="设置Bucket名称">set_bucket_name</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket名称">bucket_name</a>);
+<a name="l00079"></a>00079 
+<a name="l00086"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#adf1b553e18a4cdaa798e970a34e0058b">00086</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_next_marker)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00087"></a>00087 
+<a name="l00094"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a34e9415a942561ea9a87698097755baf">00094</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a34e9415a942561ea9a87698097755baf" title="设置next_marker">set_next_marker</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a77302ae8ca02ef6fca6f39dfc961a061" title="如果因为 max-keys 的设定无法一次完成 listing,返回结果会附加一个NextMarker">next_marker</a>);
+<a name="l00095"></a>00095 
+<a name="l00102"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a4dffb42e9de7ff9eb0c7f5b0631fab96">00102</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_prefix)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00103"></a>00103 
+<a name="l00110"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#ae67d20c5cae2231dc6bafa748ce107d2">00110</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#ae67d20c5cae2231dc6bafa748ce107d2" title="设置前缀">set_prefix</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f" title="前缀">prefix</a>);
+<a name="l00111"></a>00111 
+<a name="l00118"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a483422e7a6b4ba1634b16428d51fe8d3">00118</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_marker)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00119"></a>00119 
+<a name="l00126"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a4b8b39c397c8d193912858258cb58d28">00126</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a4b8b39c397c8d193912858258cb58d28" title="设置marker">set_marker</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aee481970ba654213bf28035c508259bc" title="标识表示从哪里返回列表">marker</a>);
+<a name="l00127"></a>00127 
+<a name="l00134"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#afac833a9fc0a6cbc547f55b1355cbd59">00134</a>         int (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#afac833a9fc0a6cbc547f55b1355cbd59" title="获得max_keys">get_max_keys</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00135"></a>00135 
+<a name="l00142"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#aec49535e7e86efcaa1b29c17206973cf">00142</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aec49535e7e86efcaa1b29c17206973cf" title="设置max_keys">set_max_keys</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing, <span class="keywordtype">int</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html#a3cd30021306af3e4fc23061b86f8ab21" title="返回 object 的最大数">max_keys</a>);
+<a name="l00143"></a>00143 
+<a name="l00150"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1c47f1020be32ba2bbb94bc3bf89cb92">00150</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_delimiter)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00151"></a>00151 
+<a name="l00158"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#af2c38e99b694b0e43917d37c8998fc1d">00158</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#af2c38e99b694b0e43917d37c8998fc1d" title="设置分隔符">set_delimiter</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aac0782d159773b2ffc74276d33b81d3c" title="分隔符">delimiter</a>);
+<a name="l00159"></a>00159 
+<a name="l00166"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1f27dade04ae517cc38abbebb24aa16c">00166</a>         bool (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1f27dade04ae517cc38abbebb24aa16c" title="获得is_truncated">get_is_truncated</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00167"></a>00167 
+<a name="l00174"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a04aa31bbbdec19fa052e79638b6c8138">00174</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a04aa31bbbdec19fa052e79638b6c8138" title="设置is_truncated">set_is_truncated</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing, <span class="keywordtype">bool</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a" title="标识是否有未显示的Object">is_truncated</a>);
+<a name="l00175"></a>00175 
+<a name="l00183"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#a0c86ae4e13cad8bf43dd853d93177ede">00183</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> ** (*get_common_prefixes)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing,
+<a name="l00184"></a>00184                         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *counts);
+<a name="l00185"></a>00185 
+<a name="l00193"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#ae2ddb74fd02f6e98d5a867cdc7d19062">00193</a>         void (*<a class="code" href="../../d8/d42/structoss__object__listing__s.html#ae2ddb74fd02f6e98d5a867cdc7d19062" title="设置common_prefixes">set_common_prefixes</a>)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing,
+<a name="l00194"></a>00194                         <span class="keyword">const</span> <span class="keywordtype">char</span> **<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a8fc0681d7265cb78145181206a267572" title="名字包含指定的前缀且第一次出现 delimiter 字符之间的 object">common_prefixes</a>,
+<a name="l00195"></a>00195                         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> counts);
+<a name="l00196"></a>00196 
+<a name="l00205"></a><a class="code" href="../../d8/d42/structoss__object__listing__s.html#ac189fbfeee07587c495c9d945221134a">00205</a>         <a class="code" href="../../df/d44/structoss__object__summary__s.html" title="OSSObject摘要信息">oss_object_summary_t</a> ** (*get_summaries)(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing,
+<a name="l00206"></a>00206                         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *counts);
+<a name="l00207"></a>00207 };
+<a name="l00208"></a>00208 
+<a name="l00216"></a>00216 <span class="keyword">extern</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *
+<a name="l00217"></a>00217 <a class="code" href="../../da/d78/group__oss__object__listing__t.html#gaa37f36e056773601fc31896b9428791b" title="oss_object_listing_t构造函数">object_listing_initialize</a>(<span class="keywordtype">void</span>);
+<a name="l00218"></a>00218 
+<a name="l00225"></a>00225 <span class="keyword">extern</span> <span class="keywordtype">void</span> 
+<a name="l00226"></a>00226 <a class="code" href="../../da/d78/group__oss__object__listing__t.html#ga5cd86e5fc45ef72d6c68a1e4d82e4d22" title="oss_object_listing_t析构函数">object_listing_finalize</a>(<a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *listing);
+<a name="l00228"></a>00228 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d1/d7d/oss__object__listing_8h.html">oss_object_listing.h</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:19 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_upload_part_request.h源文件</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('db/d71/oss__upload__part__request_8h.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">oss_upload_part_request.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../db/d71/oss__upload__part__request_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =============================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  oss_upload_part_request.h</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  oss_upload_part_request.</span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Created:  09/04/2012 08:57:48 PM</span>
+<a name="l00009"></a>00009 <span class="comment"> *</span>
+<a name="l00010"></a>00010 <span class="comment"> *        Company:  ICT ( Institute Of Computing Technology, CAS )</span>
+<a name="l00011"></a>00011 <span class="comment"> *</span>
+<a name="l00012"></a>00012 <span class="comment"> *</span>
+<a name="l00013"></a>00013 <span class="comment"> * =============================================================================</span>
+<a name="l00014"></a>00014 <span class="comment"> */</span>
+<a name="l00015"></a>00015 <span class="preprocessor">#ifndef _OSS_UPLOAD_PART_REQUEST_H</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor"># error Never include &lt;ossc/modules/oss_upload_part_request.h&gt; directly, use &lt;ossc/client.h&gt; instead.</span>
+<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00019"></a>00019 <span class="preprocessor">#ifndef OSS_UPLOAD_PART_REQUEST_H</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#define OSS_UPLOAD_PART_REQUEST_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;string.h&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;assert.h&gt;</span>
+<a name="l00026"></a>00026 
+<a name="l00036"></a><a class="code" href="../../d8/da0/group__oss__upload__part__request__t.html#gabcc913e890834d7ac6e4b384f1f563df">00036</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_s</a> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a>;
+<a name="l00037"></a>00037 
+<a name="l00041"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html">00041</a> <span class="keyword">struct </span><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_s</a> {
+<a name="l00042"></a>00042 
+<a name="l00043"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a9c4511a2051789ad75fa5703cf45ed21">00043</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket名称">bucket_name</a>; 
+<a name="l00044"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#ac9cdca21b0de6315bf75cb294536a394">00044</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#ac9cdca21b0de6315bf75cb294536a394" title="包含上传分块内容的数据流">input_stream</a>; 
+<a name="l00045"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#ab00ad7ba59c56b6f456ad1dafad41a06">00045</a>         <span class="keywordtype">int</span> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#ab00ad7ba59c56b6f456ad1dafad41a06" title="包含上传分块内容的数据流的长度">input_stream_len</a>; 
+<a name="l00046"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5892a9181e6a332f84d27aecd41dcd12">00046</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5892a9181e6a332f84d27aecd41dcd12" title="OSSObject key.">key</a>; 
+<a name="l00047"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5f703dea24903ec30de7be6c0ddea277">00047</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5f703dea24903ec30de7be6c0ddea277" title="分块（Part）数据的MD5校验值">md5_digest</a>; 
+<a name="l00048"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#acc77b0d64ed7d3bb199fba2446d2949a">00048</a>         <span class="keywordtype">int</span> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#acc77b0d64ed7d3bb199fba2446d2949a" title="上传分块（Part）的标识号码（Part Number）">part_number</a>; 
+<a name="l00049"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a2dfbd5c9d4735432ce7a68ad01345199">00049</a>         <span class="keywordtype">long</span> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a2dfbd5c9d4735432ce7a68ad01345199" title="分块（Part）数据的字节数">part_size</a>; 
+<a name="l00050"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5755e07d2244386fcb4c521cfb09eed6">00050</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5755e07d2244386fcb4c521cfb09eed6" title="标识Multipart上传事件的Upload ID">upload_id</a>; 
+<a name="l00058"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a770a62b0767b310db2765d67c5657730">00058</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_bucket_name)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request);
+<a name="l00059"></a>00059 
+<a name="l00066"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af159fc3d3e9e40c9eb840ea72ac3b037">00066</a>         void (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af159fc3d3e9e40c9eb840ea72ac3b037" title="设置Bucket名称">set_bucket_name</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request,
+<a name="l00067"></a>00067                         <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket名称">bucket_name</a>);
+<a name="l00068"></a>00068 
+<a name="l00075"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a182f44d45d8af3562f5e78ed87ca14a1">00075</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_key)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request);
+<a name="l00076"></a>00076 
+<a name="l00083"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a0e9f53a142080f80401789d5b9363670">00083</a>         void (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a0e9f53a142080f80401789d5b9363670" title="设置OSSObject key">set_key</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5892a9181e6a332f84d27aecd41dcd12" title="OSSObject key.">key</a>);
+<a name="l00084"></a>00084 
+<a name="l00091"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#acbf894bbf56deddfcddf39322be31075">00091</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_md5_digest)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request);
+<a name="l00092"></a>00092 
+<a name="l00099"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af2c2a4a3f11ca4b60799a65febee5e54">00099</a>         void (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af2c2a4a3f11ca4b60799a65febee5e54" title="设置分块（Part）数据的MD5校验值">set_md5_digest</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5f703dea24903ec30de7be6c0ddea277" title="分块（Part）数据的MD5校验值">md5_digest</a>);
+<a name="l00100"></a>00100 
+<a name="l00108"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a9ca72bdc00722f47890d36adab12142a">00108</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_input_stream)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request, <span class="keywordtype">int</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#ab00ad7ba59c56b6f456ad1dafad41a06" title="包含上传分块内容的数据流的长度">input_stream_len</a>);
+<a name="l00109"></a>00109 
+<a name="l00117"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af63b3515f03e2ab711cddd3f9a7a6076">00117</a>         void (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af63b3515f03e2ab711cddd3f9a7a6076" title="设置包含上传分块内容的数据流">set_input_stream</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request,
+<a name="l00118"></a>00118                         <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#ac9cdca21b0de6315bf75cb294536a394" title="包含上传分块内容的数据流">input_stream</a>, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#ab00ad7ba59c56b6f456ad1dafad41a06" title="包含上传分块内容的数据流的长度">input_stream_len</a>);
+<a name="l00119"></a>00119 
+<a name="l00126"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a4a770b76bf34863e28e6cce38c890fde">00126</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_upload_id)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request);
+<a name="l00127"></a>00127 
+<a name="l00134"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#afb0942d1179c3c9882bdb0fd4daaac6d">00134</a>         void (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#afb0942d1179c3c9882bdb0fd4daaac6d" title="设置标识Multipart上传事件的Upload ID">set_upload_id</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5755e07d2244386fcb4c521cfb09eed6" title="标识Multipart上传事件的Upload ID">upload_id</a>);
+<a name="l00135"></a>00135 
+<a name="l00142"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a47d3c9d1ef15014fc70bcc6cce1ac03d">00142</a>         int (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a47d3c9d1ef15014fc70bcc6cce1ac03d" title="获得上传分块（Part）的标识号码（Part Number）">get_part_number</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request);
+<a name="l00143"></a>00143 
+<a name="l00150"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a7adc525796b060b2236e6270ab807fc4">00150</a>         void (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a7adc525796b060b2236e6270ab807fc4" title="设置上传分块（Part）的标识号码（Part Number）">set_part_number</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request, <span class="keywordtype">int</span> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#acc77b0d64ed7d3bb199fba2446d2949a" title="上传分块（Part）的标识号码（Part Number）">part_number</a>);
+<a name="l00151"></a>00151 
+<a name="l00158"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a490485cbfa9f7580182e92011871550f">00158</a>         long (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a490485cbfa9f7580182e92011871550f" title="返回分块（Part）数据的字节数">get_part_size</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request);
+<a name="l00159"></a>00159 
+<a name="l00166"></a><a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5a855b94cc896b5935ac44558eee5904">00166</a>         void (*<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5a855b94cc896b5935ac44558eee5904" title="设置返回分块（Part）数据的字节数">set_part_size</a>)(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request, <span class="keywordtype">long</span> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a2dfbd5c9d4735432ce7a68ad01345199" title="分块（Part）数据的字节数">part_size</a>);
+<a name="l00167"></a>00167 };
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 
+<a name="l00177"></a>00177 <span class="keyword">extern</span> <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *
+<a name="l00178"></a>00178 <a class="code" href="../../d8/da0/group__oss__upload__part__request__t.html#gad174cb7ec0de3bc7818f58726bd8c442" title="oss_upload_part_request_t 构造函数">upload_part_request_initialize</a>(<span class="keywordtype">void</span>);
+<a name="l00179"></a>00179 
+<a name="l00186"></a>00186 <span class="keyword">extern</span> <span class="keywordtype">void</span> 
+<a name="l00187"></a>00187 <a class="code" href="../../d8/da0/group__oss__upload__part__request__t.html#gaefdd8ce50a5b76c6ed73bec57c6e85f1" title="oss_upload_part_request_t 析构函数">upload_part_request_finalize</a>(<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request);
+<a name="l00188"></a>00188 
+<a name="l00190"></a>00190 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../db/d71/oss__upload__part__request_8h.html">oss_upload_part_request.h</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:19 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

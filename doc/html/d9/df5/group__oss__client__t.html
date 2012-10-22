@@ -1,0 +1,2572 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_client_t</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d9/df5/group__oss__client__t.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">数据结构</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">oss_client_t</div>  </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="nested-classes"></a>
+数据结构</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/da5/structoss__client__s.html">oss_client_s</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高可靠的云存储服务。用户可以通过简单的REST接口， 在任何时间、任何地点上传和下载数据， 也可以使用WEB页面对数据进行管理。 基于OSS，用户可以搭建出各种多媒体分享网站、网盘、个人企业数据备份等 基于大规模数据的服务。  <a href="../../de/da5/structoss__client__s.html#details">更多...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structparam__buffer__s.html">param_buffer_s</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">param_buffer_t中buffer的内容  <a href="../../d6/d3a/structparam__buffer__s.html#details">更多...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d00/structcurl__request__param__s.html">curl_request_param_s</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">http请求与接受的buffer总体结构  <a href="../../db/d00/structcurl__request__param__s.html#details">更多...</a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../de/da5/structoss__client__s.html">oss_client_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高可靠的云存储服务。用户可以通过简单的REST接口， 在任何时间、任何地点上传和下载数据， 也可以使用WEB页面对数据进行管理。 基于OSS，用户可以搭建出各种多媒体分享网站、网盘、个人企业数据备份等 基于大规模数据的服务。  <a href="#gaa929b4afc96e6e518346bd86fac4dada"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../db/d00/structcurl__request__param__s.html">curl_request_param_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga6a9a1725090d69d07c185065ea5733af">curl_request_param_t</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">struct <a class="el" href="../../db/d00/structcurl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_s</a> 内部使用 <br/>
+ curl_request_param_t 开发者使用  <a href="#ga6a9a1725090d69d07c185065ea5733af"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="../../d6/d3a/structparam__buffer__s.html">param_buffer_s</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga57ad693a63378607448a616cb07565a8">param_buffer_t</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">struct <a class="el" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_s</a> 内部使用 <br/>
+ param_buffer_t 开发者使用  <a href="#ga57ad693a63378607448a616cb07565a8"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+函数</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gac8e10d72fa74fc528e57370eb26a61df">client_initialize</a> (const char *access_id, const char *access_key)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">oss_client_t 的构造函数  <a href="#gac8e10d72fa74fc528e57370eb26a61df"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364">client_initialize_with_endpoint</a> (const char *access_id, const char *access_key, const char *endpoint)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">oss_client_t 带endpoint参数的构造函数  <a href="#ga4728b1e7040fa2af93a0716d116e2364"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd">client_finalize</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">oss_client_t 析构函数  <a href="#gaa1a9bf9172235ec17cc3b29c4a3f5bcd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa2fa80e558338b2a2ce05df33b33cb58">client_abort_multipart_upload</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../dd/dba/group__oss__abort__multipart__upload__request__t.html#ga951a22c058b66d8aaf7d95b7084b7407">oss_abort_multipart_upload_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">终止一个 Multipart 上传事件  <a href="#gaa2fa80e558338b2a2ce05df33b33cb58"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/dfa/group__oss__complete__multipart__upload__result__t.html#gab54e077b9f344a72fe97e8e47371edd8">oss_complete_multipart_upload_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga1168c7130724c93de0b59d20d1d5610d">client_complete_multipart_upload</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d4/d25/group__oss__complete__multipart__upload__request__t.html#gae1728bde46fba6b2eb503857f1a64cd5">oss_complete_multipart_upload_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">完成一个 Multipart 上传事件  <a href="#ga1168c7130724c93de0b59d20d1d5610d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d4f/group__oss__copy__object__result__t.html#gaeb342c550446cbd927698a20f723da50">oss_copy_object_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga1dcbb53c26489ebaec5a2997aad1f7f3">client_copy_object</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object  <a href="#ga1dcbb53c26489ebaec5a2997aad1f7f3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d4f/group__oss__copy__object__result__t.html#gaeb342c550446cbd927698a20f723da50">oss_copy_object_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga919f41dc5c7cf6481222849861dc1dac">client_copy_object_ext</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *source_bucket_name, const char *source_key, const char *destination_bucket_name, const char *destination_key, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object  <a href="#ga919f41dc5c7cf6481222849861dc1dac"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga0feb96409f1d8d499f6301ce1c730e23">client_create_bucket</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 Bucket  <a href="#ga0feb96409f1d8d499f6301ce1c730e23"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gab8d0395051c00765fed60a45010c4fcf">client_delete_bucket</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">删除 Bucket  <a href="#gab8d0395051c00765fed60a45010c4fcf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga94716e90889c88c2957f44a49d99a10b">client_delete_object</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">删除指定的 OSSObject  <a href="#ga94716e90889c88c2957f44a49d99a10b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/d7a/group__oss__delete__multiple__object__request__t.html#ga0a5b07cc5a38f31968acc228d0e4cb4c">oss_delete_multiple_object_request_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gace5b86b60714d92c386b3abf88ad7bbe">client_delete_multiple_object</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d3/d7a/group__oss__delete__multiple__object__request__t.html#ga0a5b07cc5a38f31968acc228d0e4cb4c">oss_delete_multiple_object_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">删除指定的多个 OSSObject  <a href="#gace5b86b60714d92c386b3abf88ad7bbe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga63a790da85e9b5531f584acace6c802f">client_generate_presigned_url_with_expiration</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, const char *expiration)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">生成一个用 HTTP GET 方法访问 OSSObject 的 URL  <a href="#ga63a790da85e9b5531f584acace6c802f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga7ef942f96b83754b7fa9466bd0e079af">client_generate_presigned_url_with_method</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, const char *expiration, const char *method)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">生成一个用指定 HTTP 方法访问 OSSObject 的 URL  <a href="#ga7ef942f96b83754b7fa9466bd0e079af"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaba6fad825439fed2aec0743e26a8a3d3">client_get_bucket_acl</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回给定 Bucket 的 Access Control List(oss_client_t *client, ACL)  <a href="#gaba6fad825439fed2aec0743e26a8a3d3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga48f4f21e8c6870df083eabd8b19ce091">client_get_endpoint</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回访问的OSS Endpoint  <a href="#ga48f4f21e8c6870df083eabd8b19ce091"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gadd5e0b9de089d3d40c9223559b15bd01">client_get_object_to_buffer</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *request, void **output, unsigned int *output_len, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存  <a href="#gadd5e0b9de089d3d40c9223559b15bd01"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga92b94814dc9c08a68acfcb44c09c030b">client_get_object_to_buffer_2nd</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *request, void **output, unsigned int *output_len, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存  <a href="#ga92b94814dc9c08a68acfcb44c09c030b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gafa9ba0e477167eb764e0e7b9cc859507">client_get_compressed_object_to_buffer</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *request, void **output, unsigned int *output_len, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到内存， 并在内存中实时解压缩  <a href="#gafa9ba0e477167eb764e0e7b9cc859507"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga9b2497ab1abf564dff29d44c524751a5">client_get_object_to_file</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *request, FILE *file, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">从 OSS 指定的 Bucket 中导出指定的 OSSObject 到目标文件  <a href="#ga9b2497ab1abf564dff29d44c524751a5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gabf0775f91ca8413535e3c87402227e31">client_get_compressed_object_to_file</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *request, FILE *file, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到目标文件  <a href="#gabf0775f91ca8413535e3c87402227e31"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga71ec90ffa8e78960784c0fa08d0f9541">client_get_object_with_bucket_name</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">从 OSS 指定的 Bucket 中导出 OSSObject  <a href="#ga71ec90ffa8e78960784c0fa08d0f9541"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga59ee0ee283ecf9584c9800373ef5a2f4">client_get_object_metadata</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回 OSSObject 的元数据  <a href="#ga59ee0ee283ecf9584c9800373ef5a2f4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d86/group__oss__initiate__multipart__upload__result__t.html#gafe435675c0a3f02b8945431426b4364c">oss_initiate_multipart_upload_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga79f3cfa10b7d45103c7a52bff6e9f76d">client_initiate_multipart_upload</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../db/dd9/group__oss__initiate__multipart__upload__request__t.html#ga71c6a356bdc280814caf5c7b2be643a7">oss_initiate_multipart_upload_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化一个 Multipart 上传事件  <a href="#ga79f3cfa10b7d45103c7a52bff6e9f76d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga259246e9430fb9adc473d6c77b4a792a">client_is_bucket_exist</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">判断给定 Bucket 是否存在  <a href="#ga259246e9430fb9adc473d6c77b4a792a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dc0/group__oss__bucket__t.html#gace35a746803a76c62b51772ff98a9bd7">oss_bucket_t</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gae8cadd850908dd027abcd0660c639be4">client_list_buckets</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, int *buckets_number, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回请求者拥有的所有 Bucket 的列表  <a href="#gae8cadd850908dd027abcd0660c639be4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga4f3e8c8c56e686e5d8a7cb461c2f625c">client_list_multipart_uploads</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d9/ded/group__oss__list__multipart__uploads__request__t.html#gaef4f92b98c629dad17270751d41453dc">oss_list_multipart_uploads_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">列出所有执行中的 Multipart 上传事件  <a href="#ga4f3e8c8c56e686e5d8a7cb461c2f625c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d78/group__oss__object__listing__t.html#gae5dfa8244d84e55938131b5816c6c18a">oss_object_listing_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa7f1d5cab74ad3ef99fd604b9d76facd">client_list_objects</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d6/d66/group__oss__list__objects__request__t.html#ga6483a1ad674014be88a24ab095e0f8b8">oss_list_objects_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">列出指定 Bucket 下的 OSSObject  <a href="#gaa7f1d5cab74ad3ef99fd604b9d76facd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d78/group__oss__object__listing__t.html#gae5dfa8244d84e55938131b5816c6c18a">oss_object_listing_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga95d436b7bd183a418d752c3cd052979b">client_list_objects_with_bucket_name</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">列出指定 Bucket 下的 OSSObject  <a href="#ga95d436b7bd183a418d752c3cd052979b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d78/group__oss__object__listing__t.html#gae5dfa8244d84e55938131b5816c6c18a">oss_object_listing_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gae9768ab399a39f85674ed21a86eab059">client_list_objects_with_prefix</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *prefix, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">列出指定 Bucket 下 key 以给定 prefix 开头的 OSSObject  <a href="#gae9768ab399a39f85674ed21a86eab059"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/def/group__oss__part__listing__t.html#gab35bcd3a362a86728786ad9209891a71">oss_part_listing_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaef32afbd6d84ed137f1526551e094286">client_list_parts</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">列出 multipart 中上传的所有 part 信息  <a href="#gaef32afbd6d84ed137f1526551e094286"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d1b/group__oss__put__object__result__t.html#gaf86e66ca429b5601749ac1fc769f0a75">oss_put_object_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaca22eacd908d77a7db2bae19e7041cc5">client_put_object_from_file</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, void *input, <a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *metadata, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">上传指定的 OSSObject 到 OSS 中指定的 Bucket  <a href="#gaca22eacd908d77a7db2bae19e7041cc5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d1b/group__oss__put__object__result__t.html#gaf86e66ca429b5601749ac1fc769f0a75">oss_put_object_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga929617069ab2d4a1f0260d930e5f595e">client_put_object_from_buffer</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, void *input, <a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *metadata, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">上传指定的 OSSObject 到 OSS 中指定的 Bucket  <a href="#ga929617069ab2d4a1f0260d930e5f595e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/d1b/group__oss__put__object__result__t.html#gaf86e66ca429b5601749ac1fc769f0a75">oss_put_object_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gafd2376a456f79f3e5b82445473ccf1fe">client_put_compressed_object_from_buffer</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, <a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *metadata, void *input, unsigned int input_len, char algorithm, char flag, char level, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">压缩并上传指定的 OSSObject 到 OSS 中指定的 Bucket  <a href="#gafd2376a456f79f3e5b82445473ccf1fe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga5a884b026b710145c7ad08409540808b">client_set_bucket_acl</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *acl, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置指定 Bucket 的 Access Control List(oss_client_t *client, ACL)  <a href="#ga5a884b026b710145c7ad08409540808b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/dc8/group__oss__upload__part__result__t.html#gad1454e9e93240f293552cc79782e84f5">oss_upload_part_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gad83268d0e71dd2717069b2158b6887ca">client_upload_part</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d8/da0/group__oss__upload__part__request__t.html#gabcc913e890834d7ac6e4b384f1f563df">oss_upload_part_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">上传一个分块（Part）到指定的的 Multipart 上传事件中  <a href="#gad83268d0e71dd2717069b2158b6887ca"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d6d/group__oss__post__object__group__result__t.html#ga077a4de071b1745fab88b0a7225e45a6">oss_post_object_group_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gafe387da8619004fabf71be7ac40e4591">client_post_object_group</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d9/de6/group__oss__post__object__group__request__t.html#ga70a458f413d39df43e7a8bac42221bc2">oss_post_object_group_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Post Object Group 操作将根据用户提供的 Object 信息,在 OSS 服务器端创建出一个新的 Object Group.  <a href="#gafe387da8619004fabf71be7ac40e4591"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gab4703b026554af88cd9ad8dc5facad4e">client_get_object_group_to_file</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga15c4ef4ce5a1060a70ea7d5edbaebf3e">oss_get_object_group_request_t</a> *request, FILE *file, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Object Group To File 操作将读取用户指定的Object Group到本地文件中  <a href="#gab4703b026554af88cd9ad8dc5facad4e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#ga782a4be8676609b34a38c8b0d4682687">client_get_object_group_to_buffer</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga15c4ef4ce5a1060a70ea7d5edbaebf3e">oss_get_object_group_request_t</a> *request, void **output, unsigned int *output_len, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Object Group To Buffer 操作将读取用户指定的Object Group到Buffer中  <a href="#ga782a4be8676609b34a38c8b0d4682687"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../db/dce/group__oss__get__object__group__index__result__t.html#gab12164b84f504d75d7a87fb5f95c5d19">oss_get_object_group_index_result_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gab95e25cca77c3bd53d34116419e532d6">client_get_object_group_index</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get Object Group Index 返回 Object Group 中的 Object List 信息  <a href="#gab95e25cca77c3bd53d34116419e532d6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gac8c3870bd348b84cad315a4d192d1fdb">client_head_object_group</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, <a class="el" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga15c4ef4ce5a1060a70ea7d5edbaebf3e">oss_get_object_group_request_t</a> *request, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Head Object Group 返回 指定Object Group 的 元信息，不返回文件内容。  <a href="#gac8c3870bd348b84cad315a4d192d1fdb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df5/group__oss__client__t.html#gad8285aa6adfec8c2a17ec1aacb588b53">client_delete_object_group</a> (<a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *client, const char *bucket_name, const char *key, unsigned short *retcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete Object Group 返回 指定Object Group 的 元信息，不返回文件内容。  <a href="#gad8285aa6adfec8c2a17ec1aacb588b53"></a><br/></td></tr>
+</table>
+<hr/><h2>类型定义文档</h2>
+<a class="anchor" id="ga6a9a1725090d69d07c185065ea5733af"></a><!-- doxytag: member="oss_client.h::curl_request_param_t" ref="ga6a9a1725090d69d07c185065ea5733af" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="../../db/d00/structcurl__request__param__s.html">curl_request_param_s</a> <a class="el" href="../../d9/df5/group__oss__client__t.html#ga6a9a1725090d69d07c185065ea5733af">curl_request_param_t</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>struct <a class="el" href="../../db/d00/structcurl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_s</a> 内部使用 <br/>
+ curl_request_param_t 开发者使用 </p>
+
+<p>在文件<a class="el" href="../../d0/df8/oss__client_8h_source.html">oss_client.h</a>第<a class="el" href="../../d0/df8/oss__client_8h_source.html#l00196">196</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="gaa929b4afc96e6e518346bd86fac4dada"></a><!-- doxytag: member="oss_client.h::oss_client_t" ref="gaa929b4afc96e6e518346bd86fac4dada" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="../../de/da5/structoss__client__s.html">oss_client_s</a> <a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高可靠的云存储服务。用户可以通过简单的REST接口， 在任何时间、任何地点上传和下载数据， 也可以使用WEB页面对数据进行管理。 基于OSS，用户可以搭建出各种多媒体分享网站、网盘、个人企业数据备份等 基于大规模数据的服务。 </p>
+
+</div>
+</div>
+<a class="anchor" id="ga57ad693a63378607448a616cb07565a8"></a><!-- doxytag: member="oss_client.h::param_buffer_t" ref="ga57ad693a63378607448a616cb07565a8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="../../d6/d3a/structparam__buffer__s.html">param_buffer_s</a> <a class="el" href="../../d9/df5/group__oss__client__t.html#ga57ad693a63378607448a616cb07565a8">param_buffer_t</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>struct <a class="el" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_s</a> 内部使用 <br/>
+ param_buffer_t 开发者使用 </p>
+
+<p>在文件<a class="el" href="../../d0/df8/oss__client_8h_source.html">oss_client.h</a>第<a class="el" href="../../d0/df8/oss__client_8h_source.html#l00213">213</a>行定义。</p>
+
+</div>
+</div>
+<hr/><h2>函数文档</h2>
+<a class="anchor" id="gaa2fa80e558338b2a2ce05df33b33cb58"></a><!-- doxytag: member="oss_client.h::client_abort_multipart_upload" ref="gaa2fa80e558338b2a2ce05df33b33cb58" args="(oss_client_t *client, oss_abort_multipart_upload_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d9/df5/group__oss__client__t.html#gaa2fa80e558338b2a2ce05df33b33cb58">client_abort_multipart_upload</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../dd/dba/group__oss__abort__multipart__upload__request__t.html#ga951a22c058b66d8aaf7d95b7084b7407">oss_abort_multipart_upload_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>终止一个 Multipart 上传事件 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_abort_multipart_upload_request的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga1168c7130724c93de0b59d20d1d5610d"></a><!-- doxytag: member="oss_client.h::client_complete_multipart_upload" ref="ga1168c7130724c93de0b59d20d1d5610d" args="(oss_client_t *client, oss_complete_multipart_upload_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/dfa/group__oss__complete__multipart__upload__result__t.html#gab54e077b9f344a72fe97e8e47371edd8">oss_complete_multipart_upload_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga1168c7130724c93de0b59d20d1d5610d">client_complete_multipart_upload</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d4/d25/group__oss__complete__multipart__upload__request__t.html#gae1728bde46fba6b2eb503857f1a64cd5">oss_complete_multipart_upload_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>完成一个 Multipart 上传事件 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_complete_multipart_upload_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_complete_multipart_upload_result_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga1dcbb53c26489ebaec5a2997aad1f7f3"></a><!-- doxytag: member="oss_client.h::client_copy_object" ref="ga1dcbb53c26489ebaec5a2997aad1f7f3" args="(oss_client_t *client, oss_copy_object_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d4f/group__oss__copy__object__result__t.html#gaeb342c550446cbd927698a20f723da50">oss_copy_object_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga1dcbb53c26489ebaec5a2997aad1f7f3">client_copy_object</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/ddb/group__oss__copy__object__request__t.html#ga3432498f6e94439a511218a972182e9e">oss_copy_object_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_copy_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_copy_object_result_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga919f41dc5c7cf6481222849861dc1dac"></a><!-- doxytag: member="oss_client.h::client_copy_object_ext" ref="ga919f41dc5c7cf6481222849861dc1dac" args="(oss_client_t *client, const char *source_bucket_name, const char *source_key, const char *destination_bucket_name, const char *destination_key, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d4f/group__oss__copy__object__result__t.html#gaeb342c550446cbd927698a20f723da50">oss_copy_object_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga919f41dc5c7cf6481222849861dc1dac">client_copy_object_ext</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source_bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>destination_bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>destination_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">source_bucket_name</td><td>被拷贝的Object所在的Bucket的名称 </td></tr>
+    <tr><td class="paramname">source_key</td><td>被拷贝的Object的名称 </td></tr>
+    <tr><td class="paramname">destination_bucket_name</td><td>目标Object所在的Bucket的名称 </td></tr>
+    <tr><td class="paramname">destination_key</td><td>目标Object的名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_copy_object_result_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga0feb96409f1d8d499f6301ce1c730e23"></a><!-- doxytag: member="oss_client.h::client_create_bucket" ref="ga0feb96409f1d8d499f6301ce1c730e23" args="(oss_client_t *client, const char *bucket_name, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d9/df5/group__oss__client__t.html#ga0feb96409f1d8d499f6301ce1c730e23">client_create_bucket</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>创建 Bucket </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] 要创建的Bucket的名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gab8d0395051c00765fed60a45010c4fcf"></a><!-- doxytag: member="oss_client.h::client_delete_bucket" ref="gab8d0395051c00765fed60a45010c4fcf" args="(oss_client_t *client, const char *bucket_name, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d9/df5/group__oss__client__t.html#gab8d0395051c00765fed60a45010c4fcf">client_delete_bucket</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>删除 Bucket </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] 要删除的Bucket的名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gace5b86b60714d92c386b3abf88ad7bbe"></a><!-- doxytag: member="oss_client.h::client_delete_multiple_object" ref="gace5b86b60714d92c386b3abf88ad7bbe" args="(oss_client_t *client, oss_delete_multiple_object_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d3/d7a/group__oss__delete__multiple__object__request__t.html#ga0a5b07cc5a38f31968acc228d0e4cb4c">oss_delete_multiple_object_request_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gace5b86b60714d92c386b3abf88ad7bbe">client_delete_multiple_object</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d3/d7a/group__oss__delete__multiple__object__request__t.html#ga0a5b07cc5a38f31968acc228d0e4cb4c">oss_delete_multiple_object_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>删除指定的多个 OSSObject </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 删除多个Object请求 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">oss_delete_multiple_object_request_t</td><td>结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga94716e90889c88c2957f44a49d99a10b"></a><!-- doxytag: member="oss_client.h::client_delete_object" ref="ga94716e90889c88c2957f44a49d99a10b" args="(oss_client_t *client, const char *bucket_name, const char *key, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d9/df5/group__oss__client__t.html#ga94716e90889c88c2957f44a49d99a10b">client_delete_object</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>删除指定的 OSSObject </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] 要删除Object所在的Bucket的名称 </td></tr>
+    <tr><td class="paramname">key</td><td>[in] 要删除Object的名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gad8285aa6adfec8c2a17ec1aacb588b53"></a><!-- doxytag: member="oss_client.h::client_delete_object_group" ref="gad8285aa6adfec8c2a17ec1aacb588b53" args="(oss_client_t *client, const char *bucket_name, const char *key, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d9/df5/group__oss__client__t.html#gad8285aa6adfec8c2a17ec1aacb588b53">client_delete_object_group</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Delete Object Group 返回 指定Object Group 的 元信息，不返回文件内容。 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] 研删除的Object Group所在的Bucket的名称 </td></tr>
+    <tr><td class="paramname">key</td><td>[in] 要删除的Object Group的名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gaa1a9bf9172235ec17cc3b29c4a3f5bcd"></a><!-- doxytag: member="oss_client.h::client_finalize" ref="gaa1a9bf9172235ec17cc3b29c4a3f5bcd" args="(oss_client_t *client)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd">client_finalize</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>oss_client_t 析构函数 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="pre"><dt><b>前置条件:</b></dt><dd>client 必须使用client_initialize的返回值 </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ga63a790da85e9b5531f584acace6c802f"></a><!-- doxytag: member="oss_client.h::client_generate_presigned_url_with_expiration" ref="ga63a790da85e9b5531f584acace6c802f" args="(oss_client_t *client, const char *bucket_name, const char *key, const char *expiration)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga63a790da85e9b5531f584acace6c802f">client_generate_presigned_url_with_expiration</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>expiration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>生成一个用 HTTP GET 方法访问 OSSObject 的 URL </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] 要访问的Object所在的Bucket名称 </td></tr>
+    <tr><td class="paramname">key</td><td>[in] 要访问的Object的名称 </td></tr>
+    <tr><td class="paramname">expiration</td><td>[in] 过期时间 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>url字符串 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga7ef942f96b83754b7fa9466bd0e079af"></a><!-- doxytag: member="oss_client.h::client_generate_presigned_url_with_method" ref="ga7ef942f96b83754b7fa9466bd0e079af" args="(oss_client_t *client, const char *bucket_name, const char *key, const char *expiration, const char *method)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga7ef942f96b83754b7fa9466bd0e079af">client_generate_presigned_url_with_method</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>expiration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>method</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>生成一个用指定 HTTP 方法访问 OSSObject 的 URL </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] 要访问的Object所在的Bucket名称 </td></tr>
+    <tr><td class="paramname">key</td><td>[in] 要访问的Object的名称 </td></tr>
+    <tr><td class="paramname">expiration</td><td>[in] 过期时间 </td></tr>
+    <tr><td class="paramname">method</td><td>[in] http方法 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>url字符串 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gaba6fad825439fed2aec0743e26a8a3d3"></a><!-- doxytag: member="oss_client.h::client_get_bucket_acl" ref="gaba6fad825439fed2aec0743e26a8a3d3" args="(oss_client_t *client, const char *bucket_name, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gaba6fad825439fed2aec0743e26a8a3d3">client_get_bucket_acl</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回给定 Bucket 的 Access Control List(oss_client_t *client, ACL) </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] 要设置acl的Bucket名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_access_control_list_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gafa9ba0e477167eb764e0e7b9cc859507"></a><!-- doxytag: member="oss_client.h::client_get_compressed_object_to_buffer" ref="gafa9ba0e477167eb764e0e7b9cc859507" args="(oss_client_t *client, oss_get_object_request_t *request, void **output, unsigned int *output_len, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gafa9ba0e477167eb764e0e7b9cc859507">client_get_compressed_object_to_buffer</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>output_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到内存， 并在内存中实时解压缩 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">output</td><td>[in] 要存放Object的内存地址 </td></tr>
+    <tr><td class="paramname">output_len</td><td>[out] output的长度 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gabf0775f91ca8413535e3c87402227e31"></a><!-- doxytag: member="oss_client.h::client_get_compressed_object_to_file" ref="gabf0775f91ca8413535e3c87402227e31" args="(oss_client_t *client, oss_get_object_request_t *request, FILE *file, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gabf0775f91ca8413535e3c87402227e31">client_get_compressed_object_to_file</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到目标文件 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">file</td><td>[in] 要存放Object的文件指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga48f4f21e8c6870df083eabd8b19ce091"></a><!-- doxytag: member="oss_client.h::client_get_endpoint" ref="ga48f4f21e8c6870df083eabd8b19ce091" args="(oss_client_t *client)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga48f4f21e8c6870df083eabd8b19ce091">client_get_endpoint</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回访问的OSS Endpoint </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>服务器的hostname </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gab95e25cca77c3bd53d34116419e532d6"></a><!-- doxytag: member="oss_client.h::client_get_object_group_index" ref="gab95e25cca77c3bd53d34116419e532d6" args="(oss_client_t *client, const char *bucket_name, const char *key, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../db/dce/group__oss__get__object__group__index__result__t.html#gab12164b84f504d75d7a87fb5f95c5d19">oss_get_object_group_index_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gab95e25cca77c3bd53d34116419e532d6">client_get_object_group_index</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get Object Group Index 返回 Object Group 中的 Object List 信息 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] Bucket 的名称 </td></tr>
+    <tr><td class="paramname">key</td><td>[in] Object Group的名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_get_object_group_index_result_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga782a4be8676609b34a38c8b0d4682687"></a><!-- doxytag: member="oss_client.h::client_get_object_group_to_buffer" ref="ga782a4be8676609b34a38c8b0d4682687" args="(oss_client_t *client, oss_get_object_group_request_t *request, void **output, unsigned int *output_len, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga782a4be8676609b34a38c8b0d4682687">client_get_object_group_to_buffer</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga15c4ef4ce5a1060a70ea7d5edbaebf3e">oss_get_object_group_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>output_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get Object Group To Buffer 操作将读取用户指定的Object Group到Buffer中 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_group_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">output</td><td>[out] Buffer的地址 </td></tr>
+    <tr><td class="paramname">output_len</td><td>[out] Buffer的长度 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gab4703b026554af88cd9ad8dc5facad4e"></a><!-- doxytag: member="oss_client.h::client_get_object_group_to_file" ref="gab4703b026554af88cd9ad8dc5facad4e" args="(oss_client_t *client, oss_get_object_group_request_t *request, FILE *file, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gab4703b026554af88cd9ad8dc5facad4e">client_get_object_group_to_file</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga15c4ef4ce5a1060a70ea7d5edbaebf3e">oss_get_object_group_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get Object Group To File 操作将读取用户指定的Object Group到本地文件中 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_group_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">file</td><td>[in] 本地文件的文件指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga59ee0ee283ecf9584c9800373ef5a2f4"></a><!-- doxytag: member="oss_client.h::client_get_object_metadata" ref="ga59ee0ee283ecf9584c9800373ef5a2f4" args="(oss_client_t *client, const char *bucket_name, const char *key, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga59ee0ee283ecf9584c9800373ef5a2f4">client_get_object_metadata</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回 OSSObject 的元数据 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要查询的Object所在的Bucket名称 </td></tr>
+    <tr><td class="paramname">key</td><td>要查询的Object名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gadd5e0b9de089d3d40c9223559b15bd01"></a><!-- doxytag: member="oss_client.h::client_get_object_to_buffer" ref="gadd5e0b9de089d3d40c9223559b15bd01" args="(oss_client_t *client, oss_get_object_request_t *request, void **output, unsigned int *output_len, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gadd5e0b9de089d3d40c9223559b15bd01">client_get_object_to_buffer</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>output_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">output</td><td>[in] 要存放Object的内存地址 </td></tr>
+    <tr><td class="paramname">output_len</td><td>[out] output的长度 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga92b94814dc9c08a68acfcb44c09c030b"></a><!-- doxytag: member="oss_client.h::client_get_object_to_buffer_2nd" ref="ga92b94814dc9c08a68acfcb44c09c030b" args="(oss_client_t *client, oss_get_object_request_t *request, void **output, unsigned int *output_len, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga92b94814dc9c08a68acfcb44c09c030b">client_get_object_to_buffer_2nd</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int *&#160;</td>
+          <td class="paramname"><em>output_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">output</td><td>[in] 要存放Object的内存地址 </td></tr>
+    <tr><td class="paramname">output_len</td><td>[out] output的长度 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga9b2497ab1abf564dff29d44c524751a5"></a><!-- doxytag: member="oss_client.h::client_get_object_to_file" ref="ga9b2497ab1abf564dff29d44c524751a5" args="(oss_client_t *client, oss_get_object_request_t *request, FILE *file, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga9b2497ab1abf564dff29d44c524751a5">client_get_object_to_file</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d7/d44/group__oss__get__object__request__t.html#ga63e07d92418bca7592e8f93236ce68f2">oss_get_object_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>从 OSS 指定的 Bucket 中导出指定的 OSSObject 到目标文件 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">file</td><td>[in] 要存放Object的文件指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga71ec90ffa8e78960784c0fa08d0f9541"></a><!-- doxytag: member="oss_client.h::client_get_object_with_bucket_name" ref="ga71ec90ffa8e78960784c0fa08d0f9541" args="(oss_client_t *client, const char *bucket_name, const char *key, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d21/group__oss__object__t.html#ga5c4da786a37f12b02cbbc23cb5975c90">oss_object_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga71ec90ffa8e78960784c0fa08d0f9541">client_get_object_with_bucket_name</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>从 OSS 指定的 Bucket 中导出 OSSObject </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要导出的Object所在的Bucket名称 </td></tr>
+    <tr><td class="paramname">key</td><td>要导出的Object名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gac8c3870bd348b84cad315a4d192d1fdb"></a><!-- doxytag: member="oss_client.h::client_head_object_group" ref="gac8c3870bd348b84cad315a4d192d1fdb" args="(oss_client_t *client, oss_get_object_group_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gac8c3870bd348b84cad315a4d192d1fdb">client_head_object_group</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga15c4ef4ce5a1060a70ea7d5edbaebf3e">oss_get_object_group_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Head Object Group 返回 指定Object Group 的 元信息，不返回文件内容。 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_get_object_group_request_t结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_metadata_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gac8e10d72fa74fc528e57370eb26a61df"></a><!-- doxytag: member="oss_client.h::client_initialize" ref="gac8e10d72fa74fc528e57370eb26a61df" args="(const char *access_id, const char *access_key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gac8e10d72fa74fc528e57370eb26a61df">client_initialize</a> </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>access_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>access_key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>oss_client_t 的构造函数 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">access_id</td><td>[in] 用户的OSS服务用户名 </td></tr>
+    <tr><td class="paramname">access_key</td><td>[in] 用户的OSS服务密码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个标识该用户身份的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga4728b1e7040fa2af93a0716d116e2364"></a><!-- doxytag: member="oss_client.h::client_initialize_with_endpoint" ref="ga4728b1e7040fa2af93a0716d116e2364" args="(const char *access_id, const char *access_key, const char *endpoint)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364">client_initialize_with_endpoint</a> </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>access_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>access_key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>endpoint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>oss_client_t 带endpoint参数的构造函数 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">access_id</td><td>[in] 用户的OSS服务用户名 </td></tr>
+    <tr><td class="paramname">access_key</td><td>[in] 用户的OSS服务密码 </td></tr>
+    <tr><td class="paramname">endpoint</td><td>[in] 标识hostname </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个标识该用户身份的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga79f3cfa10b7d45103c7a52bff6e9f76d"></a><!-- doxytag: member="oss_client.h::client_initiate_multipart_upload" ref="ga79f3cfa10b7d45103c7a52bff6e9f76d" args="(oss_client_t *client, oss_initiate_multipart_upload_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/d86/group__oss__initiate__multipart__upload__result__t.html#gafe435675c0a3f02b8945431426b4364c">oss_initiate_multipart_upload_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga79f3cfa10b7d45103c7a52bff6e9f76d">client_initiate_multipart_upload</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../db/dd9/group__oss__initiate__multipart__upload__request__t.html#ga71c6a356bdc280814caf5c7b2be643a7">oss_initiate_multipart_upload_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>初始化一个 Multipart 上传事件 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_initiate_multipart_upload_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_initiate_multipart_upload_result_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga259246e9430fb9adc473d6c77b4a792a"></a><!-- doxytag: member="oss_client.h::client_is_bucket_exist" ref="ga259246e9430fb9adc473d6c77b4a792a" args="(oss_client_t *client, const char *bucket_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d9/df5/group__oss__client__t.html#ga259246e9430fb9adc473d6c77b4a792a">client_is_bucket_exist</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>判断给定 Bucket 是否存在 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要查询的Bucket名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>真或假 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>表示存在 </td></tr>
+    <tr><td class="paramname">false</td><td>表示不存在 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gae8cadd850908dd027abcd0660c639be4"></a><!-- doxytag: member="oss_client.h::client_list_buckets" ref="gae8cadd850908dd027abcd0660c639be4" args="(oss_client_t *client, int *buckets_number, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/dc0/group__oss__bucket__t.html#gace35a746803a76c62b51772ff98a9bd7">oss_bucket_t</a>** <a class="el" href="../../d9/df5/group__oss__client__t.html#gae8cadd850908dd027abcd0660c639be4">client_list_buckets</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>buckets_number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回请求者拥有的所有 Bucket 的列表 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">buckets_number</td><td>所有Bucket的总数 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_bucket_t的双重指针，可通过buckets_number来遍历 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga4f3e8c8c56e686e5d8a7cb461c2f625c"></a><!-- doxytag: member="oss_client.h::client_list_multipart_uploads" ref="ga4f3e8c8c56e686e5d8a7cb461c2f625c" args="(oss_client_t *client, oss_list_multipart_uploads_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga4f3e8c8c56e686e5d8a7cb461c2f625c">client_list_multipart_uploads</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/ded/group__oss__list__multipart__uploads__request__t.html#gaef4f92b98c629dad17270751d41453dc">oss_list_multipart_uploads_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>列出所有执行中的 Multipart 上传事件 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_multipart_uploads_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_multipart_upload_listing_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gaa7f1d5cab74ad3ef99fd604b9d76facd"></a><!-- doxytag: member="oss_client.h::client_list_objects" ref="gaa7f1d5cab74ad3ef99fd604b9d76facd" args="(oss_client_t *client, oss_list_objects_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d78/group__oss__object__listing__t.html#gae5dfa8244d84e55938131b5816c6c18a">oss_object_listing_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gaa7f1d5cab74ad3ef99fd604b9d76facd">client_list_objects</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d6/d66/group__oss__list__objects__request__t.html#ga6483a1ad674014be88a24ab095e0f8b8">oss_list_objects_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>列出指定 Bucket 下的 OSSObject </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_objects_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_listing_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga95d436b7bd183a418d752c3cd052979b"></a><!-- doxytag: member="oss_client.h::client_list_objects_with_bucket_name" ref="ga95d436b7bd183a418d752c3cd052979b" args="(oss_client_t *client, const char *bucket_name, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d78/group__oss__object__listing__t.html#gae5dfa8244d84e55938131b5816c6c18a">oss_object_listing_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga95d436b7bd183a418d752c3cd052979b">client_list_objects_with_bucket_name</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>列出指定 Bucket 下的 OSSObject </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要查询的Bucket的名称 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_listing_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gae9768ab399a39f85674ed21a86eab059"></a><!-- doxytag: member="oss_client.h::client_list_objects_with_prefix" ref="gae9768ab399a39f85674ed21a86eab059" args="(oss_client_t *client, const char *bucket_name, const char *prefix, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d78/group__oss__object__listing__t.html#gae5dfa8244d84e55938131b5816c6c18a">oss_object_listing_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gae9768ab399a39f85674ed21a86eab059">client_list_objects_with_prefix</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prefix</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>列出指定 Bucket 下 key 以给定 prefix 开头的 OSSObject </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要查询的Bucket的名称 </td></tr>
+    <tr><td class="paramname">prefix</td><td>设置要查询的Object的前缀 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_object_listing_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gaef32afbd6d84ed137f1526551e094286"></a><!-- doxytag: member="oss_client.h::client_list_parts" ref="gaef32afbd6d84ed137f1526551e094286" args="(oss_client_t *client, oss_list_parts_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d3/def/group__oss__part__listing__t.html#gab35bcd3a362a86728786ad9209891a71">oss_part_listing_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gaef32afbd6d84ed137f1526551e094286">client_list_parts</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>列出 multipart 中上传的所有 part 信息 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_part_listing_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gafe387da8619004fabf71be7ac40e4591"></a><!-- doxytag: member="oss_client.h::client_post_object_group" ref="gafe387da8619004fabf71be7ac40e4591" args="(oss_client_t *client, oss_post_object_group_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/d6d/group__oss__post__object__group__result__t.html#ga077a4de071b1745fab88b0a7225e45a6">oss_post_object_group_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gafe387da8619004fabf71be7ac40e4591">client_post_object_group</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d9/de6/group__oss__post__object__group__request__t.html#ga70a458f413d39df43e7a8bac42221bc2">oss_post_object_group_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Post Object Group 操作将根据用户提供的 Object 信息,在 OSS 服务器端创建出一个新的 Object Group. </p>
+<p><br/>
+ 用户需要将创建该 Object Group 所需的 Object Name, E-tag 以及标识该 Object 在整个 Group 中相对位置的 Part ID 按照规定的 XML 格式发给 OSS, Object 的 E-tag 值可以通过list_object功能获得 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_post_object_group_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_post_object_group_result_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gafd2376a456f79f3e5b82445473ccf1fe"></a><!-- doxytag: member="oss_client.h::client_put_compressed_object_from_buffer" ref="gafd2376a456f79f3e5b82445473ccf1fe" args="(oss_client_t *client, const char *bucket_name, const char *key, oss_object_metadata_t *metadata, void *input, unsigned int input_len, char algorithm, char flag, char level, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d1b/group__oss__put__object__result__t.html#gaf86e66ca429b5601749ac1fc769f0a75">oss_put_object_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gafd2376a456f79f3e5b82445473ccf1fe">client_put_compressed_object_from_buffer</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td>
+          <td class="paramname"><em>metadata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>input_len</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>algorithm</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>flag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>压缩并上传指定的 OSSObject 到 OSS 中指定的 Bucket </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要上传到的Bucket名称 </td></tr>
+    <tr><td class="paramname">key</td><td>要上传到服务器上显示的Object的名称 </td></tr>
+    <tr><td class="paramname">metadata</td><td>标识数据的一些元信息，一个oss_object_metadata_t结构指针 </td></tr>
+    <tr><td class="paramname">input</td><td>要上传数据的缓存区 </td></tr>
+    <tr><td class="paramname">input_len</td><td>要上传数据的长度 </td></tr>
+    <tr><td class="paramname">algorithm</td><td>压缩算法 </td></tr>
+    <tr><td class="paramname">flag</td><td>标志位 </td></tr>
+    <tr><td class="paramname">level</td><td>该压缩算法的压缩等级 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_put_object_result_t结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga929617069ab2d4a1f0260d930e5f595e"></a><!-- doxytag: member="oss_client.h::client_put_object_from_buffer" ref="ga929617069ab2d4a1f0260d930e5f595e" args="(oss_client_t *client, const char *bucket_name, const char *key, void *input, oss_object_metadata_t *metadata, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d1b/group__oss__put__object__result__t.html#gaf86e66ca429b5601749ac1fc769f0a75">oss_put_object_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#ga929617069ab2d4a1f0260d930e5f595e">client_put_object_from_buffer</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td>
+          <td class="paramname"><em>metadata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>上传指定的 OSSObject 到 OSS 中指定的 Bucket </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要上传到的Bucket名称 </td></tr>
+    <tr><td class="paramname">key</td><td>要上传到服务器上显示的Object的名称 </td></tr>
+    <tr><td class="paramname">input</td><td>要上传数据的缓存区 </td></tr>
+    <tr><td class="paramname">metadata</td><td>标识数据的一些元信息，一个oss_object_metadata_t结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_put_object_result_t结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gaca22eacd908d77a7db2bae19e7041cc5"></a><!-- doxytag: member="oss_client.h::client_put_object_from_file" ref="gaca22eacd908d77a7db2bae19e7041cc5" args="(oss_client_t *client, const char *bucket_name, const char *key, void *input, oss_object_metadata_t *metadata, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../da/d1b/group__oss__put__object__result__t.html#gaf86e66ca429b5601749ac1fc769f0a75">oss_put_object_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gaca22eacd908d77a7db2bae19e7041cc5">client_put_object_from_file</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d2/d08/group__oss__object__metadata__t.html#ga6256bf4ce253d5878a6a0952c2d14035">oss_object_metadata_t</a> *&#160;</td>
+          <td class="paramname"><em>metadata</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>上传指定的 OSSObject 到 OSS 中指定的 Bucket </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要上传到的Bucket名称 </td></tr>
+    <tr><td class="paramname">key</td><td>要上传到服务器上显示的Object的名称 </td></tr>
+    <tr><td class="paramname">input</td><td>要上传的文件指针 </td></tr>
+    <tr><td class="paramname">metadata</td><td>标识数据的一些元信息，一个oss_object_metadata_t结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_put_object_result_t结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ga5a884b026b710145c7ad08409540808b"></a><!-- doxytag: member="oss_client.h::client_set_bucket_acl" ref="ga5a884b026b710145c7ad08409540808b" args="(oss_client_t *client, const char *bucket_name, const char *acl, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../d9/df5/group__oss__client__t.html#ga5a884b026b710145c7ad08409540808b">client_set_bucket_acl</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>bucket_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>acl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置指定 Bucket 的 Access Control List(oss_client_t *client, ACL) </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>要设置权限的Bucket的名称 </td></tr>
+    <tr><td class="paramname">acl</td><td>要设置的权限（private, public-read, public-read-write中的一个） </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="gad83268d0e71dd2717069b2158b6887ca"></a><!-- doxytag: member="oss_client.h::client_upload_part" ref="gad83268d0e71dd2717069b2158b6887ca" args="(oss_client_t *client, oss_upload_part_request_t *request, unsigned short *retcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/dc8/group__oss__upload__part__result__t.html#gad1454e9e93240f293552cc79782e84f5">oss_upload_part_result_t</a>* <a class="el" href="../../d9/df5/group__oss__client__t.html#gad83268d0e71dd2717069b2158b6887ca">client_upload_part</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada">oss_client_t</a> *&#160;</td>
+          <td class="paramname"><em>client</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d8/da0/group__oss__upload__part__request__t.html#gabcc913e890834d7ac6e4b384f1f563df">oss_upload_part_request_t</a> *&#160;</td>
+          <td class="paramname"><em>request</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned short *&#160;</td>
+          <td class="paramname"><em>retcode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>上传一个分块（Part）到指定的的 Multipart 上传事件中 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">client</td><td>[in] 标识一个oss_client_t的结构指针 </td></tr>
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_upload_part_request_t的结构指针 </td></tr>
+    <tr><td class="paramname">retcode</td><td>[out] 服务器返回的HTTP返回码 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_upload_part_result_t的结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

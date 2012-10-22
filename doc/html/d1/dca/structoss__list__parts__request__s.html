@@ -1,0 +1,564 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_list_parts_request_s结构参考</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li class="current"><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../classes.html"><span>数据结构索引</span></a></li>
+      <li><a href="../../functions.html"><span>数据字段</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d1/dca/structoss__list__parts__request__s.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">数据成员</a>  </div>
+  <div class="headertitle">
+<div class="title">oss_list_parts_request_s结构参考<div class="ingroups"><a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html">oss_list_parts_request_t</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="oss_list_parts_request_s" -->
+<p>包含列出Part的请求参数  
+ <a href="../../d1/dca/structoss__list__parts__request__s.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+数据成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Bucket名称  <a href="#a9c4511a2051789ad75fa5703cf45ed21"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Object名称  <a href="#a5892a9181e6a332f84d27aecd41dcd12"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#aff6042d169ad0e48fefcf54406433074">max_parts</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">表示最大返回多少条记录  <a href="#aff6042d169ad0e48fefcf54406433074"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9bf8400b647393d9ac1acf9d3d222551">part_number_marker</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">表示从哪个Part号码开始获取列表  <a href="#a9bf8400b647393d9ac1acf9d3d222551"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5755e07d2244386fcb4c521cfb09eed6">upload_id</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a725d57c18bd2cbbb0360619ad704acbf">get_bucket_name</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">标识Multipart上传事件的Upload ID  <a href="#a725d57c18bd2cbbb0360619ad704acbf"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a0c5a47f3ecd310abd8260ea9c5964e4f">get_key</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得Object名称  <a href="#a0c5a47f3ecd310abd8260ea9c5964e4f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#ab2fd822ba82f470dba739afae64cdf87">get_max_parts</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得max_parts  <a href="#ab2fd822ba82f470dba739afae64cdf87"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#ab4c8b6ea05b6e2cbd867f9e9a86404a4">get_part_number_marker</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得part_number_marker  <a href="#ab4c8b6ea05b6e2cbd867f9e9a86404a4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a63425dce989c0e19542807394e93cabd">get_upload_id</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得Upload ID  <a href="#a63425dce989c0e19542807394e93cabd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#aa101de17c06435bee86633d271e6a2c0">set_bucket_name</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, const char *<a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Bucket名称  <a href="#aa101de17c06435bee86633d271e6a2c0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a8b616bca0a795ce6d1fbd726bb903534">set_key</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, const char *<a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Object名称  <a href="#a8b616bca0a795ce6d1fbd726bb903534"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a7276d8c051a2d0613fce868ed818be62">set_max_parts</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, unsigned int <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#aff6042d169ad0e48fefcf54406433074">max_parts</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置max_parts  <a href="#a7276d8c051a2d0613fce868ed818be62"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#ac8af65c8d31f0c12ee729fd4c210b377">set_part_number_marker</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, unsigned int <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9bf8400b647393d9ac1acf9d3d222551">part_number_marker</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置part_number_marker  <a href="#ac8af65c8d31f0c12ee729fd4c210b377"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a90f78e2ff274fedc7c935c3fa5e1bbd9">set_upload_id</a> )(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, const char *<a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5755e07d2244386fcb4c521cfb09eed6">upload_id</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Upload ID  <a href="#a90f78e2ff274fedc7c935c3fa5e1bbd9"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>详细描述</h2>
+<div class="textblock"><p>包含列出Part的请求参数 </p>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00043">43</a>行定义。</p>
+</div><hr/><h2>字段文档</h2>
+<a class="anchor" id="a9c4511a2051789ad75fa5703cf45ed21"></a><!-- doxytag: member="oss_list_parts_request_s::bucket_name" ref="a9c4511a2051789ad75fa5703cf45ed21" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Bucket名称 </p>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00044">44</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a725d57c18bd2cbbb0360619ad704acbf"></a><!-- doxytag: member="oss_list_parts_request_s::get_bucket_name" ref="a725d57c18bd2cbbb0360619ad704acbf" args=")(oss_list_parts_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a725d57c18bd2cbbb0360619ad704acbf">get_bucket_name</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>标识Multipart上传事件的Upload ID </p>
+<p>获得Bucket名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Bucket名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00056">56</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a0c5a47f3ecd310abd8260ea9c5964e4f"></a><!-- doxytag: member="oss_list_parts_request_s::get_key" ref="a0c5a47f3ecd310abd8260ea9c5964e4f" args=")(oss_list_parts_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a0c5a47f3ecd310abd8260ea9c5964e4f">get_key</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得Object名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Object名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00064">64</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab2fd822ba82f470dba739afae64cdf87"></a><!-- doxytag: member="oss_list_parts_request_s::get_max_parts" ref="ab2fd822ba82f470dba739afae64cdf87" args=")(oss_list_parts_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#ab2fd822ba82f470dba739afae64cdf87">get_max_parts</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得max_parts </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>max_parts </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">unsigned</td><td>int </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00072">72</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab4c8b6ea05b6e2cbd867f9e9a86404a4"></a><!-- doxytag: member="oss_list_parts_request_s::get_part_number_marker" ref="ab4c8b6ea05b6e2cbd867f9e9a86404a4" args=")(oss_list_parts_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#ab4c8b6ea05b6e2cbd867f9e9a86404a4">get_part_number_marker</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得part_number_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>part_number_marker </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">unsigned</td><td>int </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00080">80</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a63425dce989c0e19542807394e93cabd"></a><!-- doxytag: member="oss_list_parts_request_s::get_upload_id" ref="a63425dce989c0e19542807394e93cabd" args=")(oss_list_parts_request_t *request)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a63425dce989c0e19542807394e93cabd">get_upload_id</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得Upload ID </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Upload ID </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00088">88</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a5892a9181e6a332f84d27aecd41dcd12"></a><!-- doxytag: member="oss_list_parts_request_s::key" ref="a5892a9181e6a332f84d27aecd41dcd12" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Object名称 </p>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00045">45</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aff6042d169ad0e48fefcf54406433074"></a><!-- doxytag: member="oss_list_parts_request_s::max_parts" ref="aff6042d169ad0e48fefcf54406433074" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#aff6042d169ad0e48fefcf54406433074">max_parts</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>表示最大返回多少条记录 </p>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00046">46</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a9bf8400b647393d9ac1acf9d3d222551"></a><!-- doxytag: member="oss_list_parts_request_s::part_number_marker" ref="a9bf8400b647393d9ac1acf9d3d222551" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9bf8400b647393d9ac1acf9d3d222551">part_number_marker</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>表示从哪个Part号码开始获取列表 </p>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00047">47</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aa101de17c06435bee86633d271e6a2c0"></a><!-- doxytag: member="oss_list_parts_request_s::set_bucket_name" ref="aa101de17c06435bee86633d271e6a2c0" args=")(oss_list_parts_request_t *request, const char *bucket_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#aa101de17c06435bee86633d271e6a2c0">set_bucket_name</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, const char *<a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Bucket名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] Bucket名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00096">96</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a8b616bca0a795ce6d1fbd726bb903534"></a><!-- doxytag: member="oss_list_parts_request_s::set_key" ref="a8b616bca0a795ce6d1fbd726bb903534" args=")(oss_list_parts_request_t *request, const char *key)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a8b616bca0a795ce6d1fbd726bb903534">set_key</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, const char *<a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5892a9181e6a332f84d27aecd41dcd12">key</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Object名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+    <tr><td class="paramname">key</td><td>[in] Object名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00105">105</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a7276d8c051a2d0613fce868ed818be62"></a><!-- doxytag: member="oss_list_parts_request_s::set_max_parts" ref="a7276d8c051a2d0613fce868ed818be62" args=")(oss_list_parts_request_t *request, unsigned int max_parts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a7276d8c051a2d0613fce868ed818be62">set_max_parts</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, unsigned int <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#aff6042d169ad0e48fefcf54406433074">max_parts</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置max_parts </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+    <tr><td class="paramname">max_parts</td><td>[in] max_parts </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00114">114</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ac8af65c8d31f0c12ee729fd4c210b377"></a><!-- doxytag: member="oss_list_parts_request_s::set_part_number_marker" ref="ac8af65c8d31f0c12ee729fd4c210b377" args=")(oss_list_parts_request_t *request, unsigned int part_number_marker)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#ac8af65c8d31f0c12ee729fd4c210b377">set_part_number_marker</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, unsigned int <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a9bf8400b647393d9ac1acf9d3d222551">part_number_marker</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置part_number_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+    <tr><td class="paramname">part_number_marker</td><td>[in] part_number_marker </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00123">123</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a90f78e2ff274fedc7c935c3fa5e1bbd9"></a><!-- doxytag: member="oss_list_parts_request_s::set_upload_id" ref="a90f78e2ff274fedc7c935c3fa5e1bbd9" args=")(oss_list_parts_request_t *request, const char *upload_id)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a90f78e2ff274fedc7c935c3fa5e1bbd9">set_upload_id</a>)(<a class="el" href="../../df/d2a/group__oss__list__parts__request__t.html#ga9ec32550180f671c7fe2af5acad68249">oss_list_parts_request_t</a> *request, const char *<a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5755e07d2244386fcb4c521cfb09eed6">upload_id</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Upload ID </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">request</td><td>[in] 标识一个oss_list_parts_request_t结构指针 </td></tr>
+    <tr><td class="paramname">upload_id</td><td>[in] Upload ID </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00132">132</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a5755e07d2244386fcb4c521cfb09eed6"></a><!-- doxytag: member="oss_list_parts_request_s::upload_id" ref="a5755e07d2244386fcb4c521cfb09eed6" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d1/dca/structoss__list__parts__request__s.html#a5755e07d2244386fcb4c521cfb09eed6">upload_id</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>在文件<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a>第<a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html#l00048">48</a>行定义。</p>
+
+</div>
+</div>
+<hr/>该结构的文档由以下文件生成：<ul>
+<li><a class="el" href="../../d5/dd5/oss__list__parts__request_8h_source.html">oss_list_parts_request.h</a></li>
+</ul>
+</div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d1/dca/structoss__list__parts__request__s.html">oss_list_parts_request_s</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

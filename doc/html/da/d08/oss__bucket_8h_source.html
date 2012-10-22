@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_bucket.h源文件</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('da/d08/oss__bucket_8h.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">oss_bucket.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../da/d08/oss__bucket_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =============================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  oss_bucket.h</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  oss_bucket.</span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Company:  ICT ( Institute Of Computing Technology, CAS )</span>
+<a name="l00009"></a>00009 <span class="comment"> *</span>
+<a name="l00010"></a>00010 <span class="comment"> * =============================================================================</span>
+<a name="l00011"></a>00011 <span class="comment"> */</span>
+<a name="l00012"></a>00012 <span class="preprocessor">#ifndef _OSS_BUCKET_H</span>
+<a name="l00013"></a>00013 <span class="preprocessor"></span><span class="preprocessor"># error Never include &lt;ossc/modules/oss_bucket.h&gt; directly, use &lt;ossc/client.h&gt; instead.</span>
+<a name="l00014"></a>00014 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00015"></a>00015 <span class="preprocessor"></span>
+<a name="l00016"></a>00016 <span class="preprocessor">#ifndef OSS_BUCKET_H</span>
+<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">#define OSS_BUCKET_H</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00019"></a>00019 <span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00020"></a>00020 <span class="preprocessor">#include &lt;string.h&gt;</span>
+<a name="l00021"></a>00021 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<a name="l00022"></a>00022 <span class="preprocessor">#include &lt;assert.h&gt;</span>
+<a name="l00023"></a>00023 
+<a name="l00024"></a><a class="code" href="../../da/d08/oss__bucket_8h.html#ae2922a9975660d3be9317272b04895f3">00024</a> <span class="preprocessor">#define _OSS_OWNER_H</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span><span class="preprocessor">#include  &quot;<a class="code" href="../../da/dd8/oss__owner_8h.html">ossc/modules/oss_owner.h</a>&quot;</span>
+<a name="l00026"></a>00026 <span class="preprocessor">#undef _OSS_OWNER_H</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span>
+<a name="l00037"></a><a class="code" href="../../d1/dc0/group__oss__bucket__t.html#gace35a746803a76c62b51772ff98a9bd7">00037</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_s</a> <a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a>;
+<a name="l00038"></a>00038 
+<a name="l00051"></a><a class="code" href="../../db/db9/structoss__bucket__s.html">00051</a> <span class="keyword">struct </span><a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_s</a> {
+<a name="l00052"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#a4660bca8e5ecbe2fe2f6fdad153c4c01">00052</a>         <span class="keywordtype">char</span> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a4660bca8e5ecbe2fe2f6fdad153c4c01" title="Bucket的创建时间">create_date</a>;  
+<a name="l00053"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#a5ac083a645d964373f022d03df4849c8">00053</a>         <span class="keywordtype">char</span> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a5ac083a645d964373f022d03df4849c8" title="Bucket的名称">name</a>;         
+<a name="l00054"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#a389504832e4d361979100f9267479b8a">00054</a>         <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a389504832e4d361979100f9267479b8a" title="Bucket的所有者">owner</a>; 
+<a name="l00062"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#a36a27c8982915327b3f2511b8f776be2">00062</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_create_date)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+<a name="l00063"></a>00063 
+<a name="l00070"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#aab93bd5ed0f03acd55f45b322bf2f0a0">00070</a>         void (*<a class="code" href="../../db/db9/structoss__bucket__s.html#aab93bd5ed0f03acd55f45b322bf2f0a0" title="设置Bucket的创建时间">set_create_date</a>)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a4660bca8e5ecbe2fe2f6fdad153c4c01" title="Bucket的创建时间">create_date</a>);
+<a name="l00071"></a>00071 
+<a name="l00078"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#adaccd9e5dcd9d03330a19a3a2cafdbcd">00078</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_name)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+<a name="l00079"></a>00079 
+<a name="l00086"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#acb2608f931a8981b9374100f4248fd56">00086</a>         void (*<a class="code" href="../../db/db9/structoss__bucket__s.html#acb2608f931a8981b9374100f4248fd56" title="设置Bucket的名称">set_name</a>)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket, <span class="keyword">const</span> <span class="keywordtype">char</span> * <a class="code" href="../../db/db9/structoss__bucket__s.html#a5ac083a645d964373f022d03df4849c8" title="Bucket的名称">name</a>);
+<a name="l00087"></a>00087 
+<a name="l00094"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#afd091299a7dc81b9c76e933792da585f">00094</a>         <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> * (*get_owner)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+<a name="l00095"></a>00095 
+<a name="l00102"></a><a class="code" href="../../db/db9/structoss__bucket__s.html#a3910a919c0b18db622f93aaa293156bc">00102</a>         void (*<a class="code" href="../../db/db9/structoss__bucket__s.html#a3910a919c0b18db622f93aaa293156bc" title="设置Bucket的所有者">set_owner</a>)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket, <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a389504832e4d361979100f9267479b8a" title="Bucket的所有者">owner</a>);
+<a name="l00103"></a>00103 };
+<a name="l00104"></a>00104 
+<a name="l00112"></a>00112 <span class="keyword">extern</span> <a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *
+<a name="l00113"></a>00113 <a class="code" href="../../d1/dc0/group__oss__bucket__t.html#gadef6bc163c155c5722341f1caa081264" title="oss_bucket_t 构造函数">bucket_initialize</a>(<span class="keywordtype">void</span>);
+<a name="l00114"></a>00114 
+<a name="l00122"></a>00122 <span class="keyword">extern</span> <a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *
+<a name="l00123"></a>00123 <a class="code" href="../../d1/dc0/group__oss__bucket__t.html#ga12c8ae235dff026554a03ee3b1712fd9" title="oss_bucket_t 带bucket_name参数的构造函数">bucket_initialize_with_name</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name);
+<a name="l00124"></a>00124 
+<a name="l00131"></a>00131 <span class="keyword">extern</span> <span class="keywordtype">void</span> 
+<a name="l00132"></a>00132 <a class="code" href="../../d1/dc0/group__oss__bucket__t.html#ga0fbde89eb06ceac7562356ee395d69c1" title="oss_bucket_t 析构函数">bucket_finalize</a>(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+<a name="l00133"></a>00133 
+<a name="l00136"></a>00136 <span class="preprocessor">#endif</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../da/d08/oss__bucket_8h.html">oss_bucket.h</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:19 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

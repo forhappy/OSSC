@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_post_object_group_request.h源文件</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d5/d27/oss__post__object__group__request_8h.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">oss_post_object_group_request.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d5/d27/oss__post__object__group__request_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =============================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  oss_post_object_group_request.h</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  oss post object group request.</span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Created:  09/07/2012 03:22:02 PM</span>
+<a name="l00009"></a>00009 <span class="comment"> *</span>
+<a name="l00010"></a>00010 <span class="comment"> *        Company:  ICT ( Institute Of Computing Technology, CAS )</span>
+<a name="l00011"></a>00011 <span class="comment"> *</span>
+<a name="l00012"></a>00012 <span class="comment"> * =============================================================================</span>
+<a name="l00013"></a>00013 <span class="comment"> */</span>
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 <span class="preprocessor">#ifndef _OSS_POST_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor"># error Never include &lt;ossc/modules/oss_post_object_group_request.h&gt; directly,</span>
+<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor"># error use &lt;ossc/client.h&gt; instead.</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00019"></a>00019 <span class="preprocessor"></span>
+<a name="l00020"></a>00020 <span class="preprocessor">#ifndef OSS_POST_OBJECT_GROUP_REQUEST_H </span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span><span class="preprocessor">#define OSS_POST_OBJECT_GROUP_REQUEST_H </span>
+<a name="l00022"></a>00022 <span class="preprocessor"></span><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &lt;stdlib.h&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#include &lt;assert.h&gt;</span>
+<a name="l00025"></a>00025 <span class="preprocessor">#include &lt;string.h&gt;</span>
+<a name="l00026"></a>00026 
+<a name="l00027"></a><a class="code" href="../../d5/d27/oss__post__object__group__request_8h.html#a695863b76901e30c6d9801dac37302f0">00027</a> <span class="preprocessor">#define _OSS_OBJECT_GROUP_ITEM_H</span>
+<a name="l00028"></a>00028 <span class="preprocessor"></span><span class="preprocessor">#include &quot;<a class="code" href="../../d9/d61/oss__object__group__item_8h.html">oss_object_group_item.h</a>&quot;</span>
+<a name="l00029"></a>00029 <span class="preprocessor">#undef _OSS_OBJECT_GROUP_ITEM_H </span>
+<a name="l00030"></a>00030 <span class="preprocessor"></span>
+<a name="l00040"></a><a class="code" href="../../d9/de6/group__oss__post__object__group__request__t.html#ga70a458f413d39df43e7a8bac42221bc2">00040</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_s</a> <a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a>;
+<a name="l00041"></a>00041 
+<a name="l00058"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html">00058</a> <span class="keyword">struct </span><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_s</a> {
+<a name="l00059"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a9c4511a2051789ad75fa5703cf45ed21">00059</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket 名称">bucket_name</a>;      
+<a name="l00060"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a5892a9181e6a332f84d27aecd41dcd12">00060</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a5892a9181e6a332f84d27aecd41dcd12" title="Oject 名称">key</a>;              
+<a name="l00061"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a9c43adaf69381de297f8efd43c1f3ba6">00061</a>         <a class="code" href="../../d3/d88/structoss__object__group__item__s.html" title="post object group 需要提供的 Object 信息">oss_object_group_item_t</a> **<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a9c43adaf69381de297f8efd43c1f3ba6" title="一个或多个 Object 组成的松散的集合">items</a>;  
+<a name="l00062"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a3a64f8c9a18bb477f271520df691955c">00062</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a3a64f8c9a18bb477f271520df691955c" title="一个或多个 Object 组成的松散的集合的数目">itemnums</a>;        
+<a name="l00070"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#ab144355905b9358e26ab16000c15b5b2">00070</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_bucket_name)(<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request);
+<a name="l00071"></a>00071 
+<a name="l00078"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a9e3ba890ccd63b960fd338578dce9fec">00078</a>         void (*<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a9e3ba890ccd63b960fd338578dce9fec" title="设置 Bucket 名称">set_bucket_name</a>)(<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request,
+<a name="l00079"></a>00079                         <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket 名称">bucket_name</a>);
+<a name="l00080"></a>00080 
+<a name="l00087"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a442fd812e59a7d3c5818d975f0b87b6b">00087</a>         <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_key)(<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request);
+<a name="l00088"></a>00088 
+<a name="l00095"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a8e21283450a4329ca6730abae25290a9">00095</a>         void (*<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a8e21283450a4329ca6730abae25290a9" title="设置Object 名称">set_key</a>)(<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request,
+<a name="l00096"></a>00096                         <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a5892a9181e6a332f84d27aecd41dcd12" title="Oject 名称">key</a>);
+<a name="l00097"></a>00097 
+<a name="l00106"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a694d6d30a0d2bb90a1d54fa6b9975199">00106</a>         <a class="code" href="../../d3/d88/structoss__object__group__item__s.html" title="post object group 需要提供的 Object 信息">oss_object_group_item_t</a> ** (*get_items)(<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request,
+<a name="l00107"></a>00107                         <span class="keywordtype">int</span> *<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a3a64f8c9a18bb477f271520df691955c" title="一个或多个 Object 组成的松散的集合的数目">itemnums</a>);
+<a name="l00108"></a>00108 
+<a name="l00115"></a><a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a4d75155cd8934ec19fd7cec9fb21b841">00115</a>         void (*<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a4d75155cd8934ec19fd7cec9fb21b841" title="设置一个或多个 Object 组成的松散的集合">set_items</a>)(<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request,
+<a name="l00116"></a>00116                         <a class="code" href="../../d3/d88/structoss__object__group__item__s.html" title="post object group 需要提供的 Object 信息">oss_object_group_item_t</a> **item, <span class="keywordtype">int</span> <a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html#a3a64f8c9a18bb477f271520df691955c" title="一个或多个 Object 组成的松散的集合的数目">itemnums</a>);
+<a name="l00117"></a>00117         
+<a name="l00118"></a>00118 };
+<a name="l00119"></a>00119 
+<a name="l00127"></a>00127 <span class="keyword">extern</span> <a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *
+<a name="l00128"></a>00128 <a class="code" href="../../d9/de6/group__oss__post__object__group__request__t.html#gae9ea99e7480dd0a8068314f9077e8abc" title="oss_post_object_group_request_t 构造函数">post_object_group_request_initialize</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name, <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00129"></a>00129                 <a class="code" href="../../d3/d88/structoss__object__group__item__s.html" title="post object group 需要提供的 Object 信息">oss_object_group_item_t</a> **items, <span class="keywordtype">int</span> itemnums);
+<a name="l00130"></a>00130 
+<a name="l00137"></a>00137 <span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="../../d9/de6/group__oss__post__object__group__request__t.html#gab43a4229cc5470de0e103251addaaa18" title="oss_post_object_group_request_t 析构函数">post_object_group_request_finalize</a>(<a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request);
+<a name="l00139"></a>00139 <span class="preprocessor">#endif // OSS_POST_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00140"></a>00140 <span class="preprocessor"></span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d5/d27/oss__post__object__group__request_8h.html">oss_post_object_group_request.h</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:19 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

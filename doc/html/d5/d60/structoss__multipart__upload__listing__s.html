@@ -1,0 +1,1093 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_multipart_upload_listing_s结构参考</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li class="current"><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../classes.html"><span>数据结构索引</span></a></li>
+      <li><a href="../../functions.html"><span>数据字段</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d5/d60/structoss__multipart__upload__listing__s.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">数据成员</a>  </div>
+  <div class="headertitle">
+<div class="title">oss_multipart_upload_listing_s结构参考<div class="ingroups"><a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html">oss_multipart_upload_listing_t</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="oss_multipart_upload_listing_s" -->
+<p>包含Multipart上传事件的列表  
+ <a href="../../d5/d60/structoss__multipart__upload__listing__s.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+数据成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Bucket名称  <a href="#a9c4511a2051789ad75fa5703cf45ed21"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a5778249dd48b248e815625b870959263">common_prefixs</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">包含指定的前缀且第一次出现 delimiter 字符之间的object  <a href="#a5778249dd48b248e815625b870959263"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1d6d472b172f90e3ea8e6cac44e80f06">_counts_common_prefixs</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">common_prefixs的个数  <a href="#a1d6d472b172f90e3ea8e6cac44e80f06"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ac3935db78c081e8d5cfd4efb5e300990">key_marker</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">标识表示从哪里返回列表  <a href="#ac3935db78c081e8d5cfd4efb5e300990"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a249bdee5a20b4f71785b36df45166dc8">upload_id_marker</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">标识表示从哪里返回列表  <a href="#a249bdee5a20b4f71785b36df45166dc8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#adc3e84c5bb3af9da8c363f21cb30f059">next_key_marker</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">标识返回列表到哪里终止  <a href="#adc3e84c5bb3af9da8c363f21cb30f059"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a6d9fee711a4c2c7dc96319617d60f211">next_upload_id_marker</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">标识返回列表到哪里终止  <a href="#a6d9fee711a4c2c7dc96319617d60f211"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a361e534c03ad9863876e1d3376a99682">max_uploads</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回 Multipart Uploads 事件的最大数目  <a href="#a361e534c03ad9863876e1d3376a99682"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/db7/group__oss__multipart__upload__t.html#gac74c20be2a7fdf2c542b57a8cf853803">oss_multipart_upload_t</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a25dde6b1e2d989bc61c1f922702b97c2">multipart_uploads</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">各个multipart upload 的信息  <a href="#a25dde6b1e2d989bc61c1f922702b97c2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ae8fe0da4d37df987b3a7f459ff5dae8f">_counts_multipart_uploads</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">multipart upload 的个数  <a href="#ae8fe0da4d37df987b3a7f459ff5dae8f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a">is_truncated</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">标识是否还有其他multipart upload  <a href="#a1e674fc6a14ee6045f40f62aa480b27a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#aac0782d159773b2ffc74276d33b81d3c">delimiter</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">分隔符  <a href="#aac0782d159773b2ffc74276d33b81d3c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f">prefix</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">前缀  <a href="#ad2849cf781a4db22cc1b31eaaee50a4f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#aa32dc949975b946e55e39e785bae0b8a">get_bucket_name</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得Bucket名称  <a href="#aa32dc949975b946e55e39e785bae0b8a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a44ec76b09a52ec52b3bb93b701c29f2c">set_bucket_name</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置Bucket名称  <a href="#a44ec76b09a52ec52b3bb93b701c29f2c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a73ea1e039488ae6df73de46d51c9c4fb">get_key_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得key_marker  <a href="#a73ea1e039488ae6df73de46d51c9c4fb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ad7cb900a76b86534fefbe2cb5e88e215">set_key_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ac3935db78c081e8d5cfd4efb5e300990">key_marker</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置key_marker  <a href="#ad7cb900a76b86534fefbe2cb5e88e215"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a026458ddad45b064bfd5ba0208553285">get_upload_id_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得upload_id_marker  <a href="#a026458ddad45b064bfd5ba0208553285"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a7af524440788b2a8b7fb5980fbddb319">set_upload_id_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a249bdee5a20b4f71785b36df45166dc8">upload_id_marker</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置upload_id_marker  <a href="#a7af524440788b2a8b7fb5980fbddb319"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a93898bca7230a3e2b2404f86eb0f2020">get_next_key_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得next_key_marker  <a href="#a93898bca7230a3e2b2404f86eb0f2020"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a006e8246388a9a48781ac4a1d6addf7e">set_next_key_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#adc3e84c5bb3af9da8c363f21cb30f059">next_key_marker</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置next_key_marker  <a href="#a006e8246388a9a48781ac4a1d6addf7e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1daf714d4eccb8fc60965cc8c33d67f0">get_next_upload_id_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得next_upload_id_marker  <a href="#a1daf714d4eccb8fc60965cc8c33d67f0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a919a6638c0624477efd0a7514b3fa3aa">set_next_upload_id_marker</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a6d9fee711a4c2c7dc96319617d60f211">next_upload_id_marker</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置next_upload_id_marker  <a href="#a919a6638c0624477efd0a7514b3fa3aa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ab953c131d09aa5c91982daa460b5a85b">get_max_uploads</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得max_uploads  <a href="#ab953c131d09aa5c91982daa460b5a85b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a242e6b647ede3ebc342bf68c6b2da8cc">set_max_uploads</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a361e534c03ad9863876e1d3376a99682">max_uploads</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置max_uploads  <a href="#a242e6b647ede3ebc342bf68c6b2da8cc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a7859468209001e8de5c24e8b4667ccf9">get_is_truncated</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得is_truncated  <a href="#a7859468209001e8de5c24e8b4667ccf9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a939e30383d87daf4b9aa4550fbef88f5">set_is_truncated</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, bool <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a">is_truncated</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置is_truncated  <a href="#a939e30383d87daf4b9aa4550fbef88f5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/db7/group__oss__multipart__upload__t.html#gac74c20be2a7fdf2c542b57a8cf853803">oss_multipart_upload_t</a> **(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a13057a5dcd4eea030cd97b7ba0f7d875">get_multipart_uploads</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, unsigned int *counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得各个multipart upload 的信息  <a href="#a13057a5dcd4eea030cd97b7ba0f7d875"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a54109a58808001edfa6a0f1a6ed5ed39">set_multipart_uploads</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, <a class="el" href="../../de/db7/group__oss__multipart__upload__t.html#gac74c20be2a7fdf2c542b57a8cf853803">oss_multipart_upload_t</a> **<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a25dde6b1e2d989bc61c1f922702b97c2">multipart_uploads</a>, unsigned int counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置各个multipart upload 的信息  <a href="#a54109a58808001edfa6a0f1a6ed5ed39"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char **(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a5c4e2c9bc029e3d447a265c7272f569c">get_common_prefixs</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, unsigned int *counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得common_prefixs  <a href="#a5c4e2c9bc029e3d447a265c7272f569c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a52fbbb5fdf9dae1ce1763a5550f06416">set_common_prefixs</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char **<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a5778249dd48b248e815625b870959263">common_prefixs</a>, unsigned int counts)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置common_prefixs  <a href="#a52fbbb5fdf9dae1ce1763a5550f06416"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a417c47b171a3b786bc4b02fe8cb59db8">get_delimiter</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得分隔符  <a href="#a417c47b171a3b786bc4b02fe8cb59db8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a96cd7a87e80cebc127550dfc479e1051">set_delimiter</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#aac0782d159773b2ffc74276d33b81d3c">delimiter</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置分隔符  <a href="#a96cd7a87e80cebc127550dfc479e1051"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a49c5bd6f2fcabaa81eae939c922aa211">get_prefix</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">获得前缀  <a href="#a49c5bd6f2fcabaa81eae939c922aa211"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a113cc1b24fbdcdacaaada5c569251ed2">set_prefix</a> )(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f">prefix</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置前缀  <a href="#a113cc1b24fbdcdacaaada5c569251ed2"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>详细描述</h2>
+<div class="textblock"><p>包含Multipart上传事件的列表 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00048">48</a>行定义。</p>
+</div><hr/><h2>字段文档</h2>
+<a class="anchor" id="a1d6d472b172f90e3ea8e6cac44e80f06"></a><!-- doxytag: member="oss_multipart_upload_listing_s::_counts_common_prefixs" ref="a1d6d472b172f90e3ea8e6cac44e80f06" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1d6d472b172f90e3ea8e6cac44e80f06">_counts_common_prefixs</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>common_prefixs的个数 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00051">51</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ae8fe0da4d37df987b3a7f459ff5dae8f"></a><!-- doxytag: member="oss_multipart_upload_listing_s::_counts_multipart_uploads" ref="ae8fe0da4d37df987b3a7f459ff5dae8f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ae8fe0da4d37df987b3a7f459ff5dae8f">_counts_multipart_uploads</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>multipart upload 的个数 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00060">60</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a9c4511a2051789ad75fa5703cf45ed21"></a><!-- doxytag: member="oss_multipart_upload_listing_s::bucket_name" ref="a9c4511a2051789ad75fa5703cf45ed21" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Bucket名称 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00049">49</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a5778249dd48b248e815625b870959263"></a><!-- doxytag: member="oss_multipart_upload_listing_s::common_prefixs" ref="a5778249dd48b248e815625b870959263" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char** <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a5778249dd48b248e815625b870959263">common_prefixs</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>包含指定的前缀且第一次出现 delimiter 字符之间的object </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00050">50</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aac0782d159773b2ffc74276d33b81d3c"></a><!-- doxytag: member="oss_multipart_upload_listing_s::delimiter" ref="aac0782d159773b2ffc74276d33b81d3c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#aac0782d159773b2ffc74276d33b81d3c">delimiter</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>分隔符 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00063">63</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="aa32dc949975b946e55e39e785bae0b8a"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_bucket_name" ref="aa32dc949975b946e55e39e785bae0b8a" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#aa32dc949975b946e55e39e785bae0b8a">get_bucket_name</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得Bucket名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Bucket名称 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00072">72</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a5c4e2c9bc029e3d447a265c7272f569c"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_common_prefixs" ref="a5c4e2c9bc029e3d447a265c7272f569c" args=")(oss_multipart_upload_listing_t *listing, unsigned int *counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char**(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a5c4e2c9bc029e3d447a265c7272f569c">get_common_prefixs</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, unsigned int *counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得common_prefixs </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">counts</td><td>[out] common_prefixs的个数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>const char ** </dd></dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00206">206</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a417c47b171a3b786bc4b02fe8cb59db8"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_delimiter" ref="a417c47b171a3b786bc4b02fe8cb59db8" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a417c47b171a3b786bc4b02fe8cb59db8">get_delimiter</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得分隔符 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>分隔符 </dd>
+<dd>
+const char * </dd></dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00226">226</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a7859468209001e8de5c24e8b4667ccf9"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_is_truncated" ref="a7859468209001e8de5c24e8b4667ccf9" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a7859468209001e8de5c24e8b4667ccf9">get_is_truncated</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得is_truncated </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>is_truncated </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">bool</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00168">168</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a73ea1e039488ae6df73de46d51c9c4fb"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_key_marker" ref="a73ea1e039488ae6df73de46d51c9c4fb" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a73ea1e039488ae6df73de46d51c9c4fb">get_key_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得key_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>key_marker </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00088">88</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab953c131d09aa5c91982daa460b5a85b"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_max_uploads" ref="ab953c131d09aa5c91982daa460b5a85b" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ab953c131d09aa5c91982daa460b5a85b">get_max_uploads</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得max_uploads </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>Multipart Uploads 事件的最大数目 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00152">152</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a13057a5dcd4eea030cd97b7ba0f7d875"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_multipart_uploads" ref="a13057a5dcd4eea030cd97b7ba0f7d875" args=")(oss_multipart_upload_listing_t *listing, unsigned int *counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/db7/group__oss__multipart__upload__t.html#gac74c20be2a7fdf2c542b57a8cf853803">oss_multipart_upload_t</a>**(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a13057a5dcd4eea030cd97b7ba0f7d875">get_multipart_uploads</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, unsigned int *counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得各个multipart upload 的信息 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">counts</td><td>[out] 所有multipart upload 的信息的数目 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_multipart_upload_t结构指针 </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>标识成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>标识失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00186">186</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a93898bca7230a3e2b2404f86eb0f2020"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_next_key_marker" ref="a93898bca7230a3e2b2404f86eb0f2020" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a93898bca7230a3e2b2404f86eb0f2020">get_next_key_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得next_key_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>next_key_marker </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00120">120</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a1daf714d4eccb8fc60965cc8c33d67f0"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_next_upload_id_marker" ref="a1daf714d4eccb8fc60965cc8c33d67f0" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1daf714d4eccb8fc60965cc8c33d67f0">get_next_upload_id_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得next_upload_id_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>next_upload_id_marker </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00136">136</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a49c5bd6f2fcabaa81eae939c922aa211"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_prefix" ref="a49c5bd6f2fcabaa81eae939c922aa211" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a49c5bd6f2fcabaa81eae939c922aa211">get_prefix</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得前缀 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>前缀 </dd>
+<dd>
+const char * </dd></dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00242">242</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a026458ddad45b064bfd5ba0208553285"></a><!-- doxytag: member="oss_multipart_upload_listing_s::get_upload_id_marker" ref="a026458ddad45b064bfd5ba0208553285" args=")(oss_multipart_upload_listing_t *listing)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a026458ddad45b064bfd5ba0208553285">get_upload_id_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>获得upload_id_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>upload_id_marker </dd></dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00104">104</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a1e674fc6a14ee6045f40f62aa480b27a"></a><!-- doxytag: member="oss_multipart_upload_listing_s::is_truncated" ref="a1e674fc6a14ee6045f40f62aa480b27a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a">is_truncated</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>标识是否还有其他multipart upload </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00062">62</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ac3935db78c081e8d5cfd4efb5e300990"></a><!-- doxytag: member="oss_multipart_upload_listing_s::key_marker" ref="ac3935db78c081e8d5cfd4efb5e300990" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ac3935db78c081e8d5cfd4efb5e300990">key_marker</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>标识表示从哪里返回列表 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00053">53</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a361e534c03ad9863876e1d3376a99682"></a><!-- doxytag: member="oss_multipart_upload_listing_s::max_uploads" ref="a361e534c03ad9863876e1d3376a99682" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a361e534c03ad9863876e1d3376a99682">max_uploads</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回 Multipart Uploads 事件的最大数目 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00057">57</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a25dde6b1e2d989bc61c1f922702b97c2"></a><!-- doxytag: member="oss_multipart_upload_listing_s::multipart_uploads" ref="a25dde6b1e2d989bc61c1f922702b97c2" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/db7/group__oss__multipart__upload__t.html#gac74c20be2a7fdf2c542b57a8cf853803">oss_multipart_upload_t</a>** <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a25dde6b1e2d989bc61c1f922702b97c2">multipart_uploads</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>各个multipart upload 的信息 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00059">59</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="adc3e84c5bb3af9da8c363f21cb30f059"></a><!-- doxytag: member="oss_multipart_upload_listing_s::next_key_marker" ref="adc3e84c5bb3af9da8c363f21cb30f059" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#adc3e84c5bb3af9da8c363f21cb30f059">next_key_marker</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>标识返回列表到哪里终止 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00055">55</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a6d9fee711a4c2c7dc96319617d60f211"></a><!-- doxytag: member="oss_multipart_upload_listing_s::next_upload_id_marker" ref="a6d9fee711a4c2c7dc96319617d60f211" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a6d9fee711a4c2c7dc96319617d60f211">next_upload_id_marker</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>标识返回列表到哪里终止 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00056">56</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2849cf781a4db22cc1b31eaaee50a4f"></a><!-- doxytag: member="oss_multipart_upload_listing_s::prefix" ref="ad2849cf781a4db22cc1b31eaaee50a4f" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f">prefix</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>前缀 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00064">64</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a44ec76b09a52ec52b3bb93b701c29f2c"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_bucket_name" ref="a44ec76b09a52ec52b3bb93b701c29f2c" args=")(oss_multipart_upload_listing_t *listing, const char *bucket_name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a44ec76b09a52ec52b3bb93b701c29f2c">set_bucket_name</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21">bucket_name</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置Bucket名称 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">bucket_name</td><td>[in] Bucket名称 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00080">80</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a52fbbb5fdf9dae1ce1763a5550f06416"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_common_prefixs" ref="a52fbbb5fdf9dae1ce1763a5550f06416" args=")(oss_multipart_upload_listing_t *listing, const char **common_prefixs, unsigned int counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a52fbbb5fdf9dae1ce1763a5550f06416">set_common_prefixs</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char **<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a5778249dd48b248e815625b870959263">common_prefixs</a>, unsigned int counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置common_prefixs </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">common_prefixs</td><td>[in] common_prefixs </td></tr>
+    <tr><td class="paramname">counts</td><td>[in] common_prefixs的个数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00216">216</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a96cd7a87e80cebc127550dfc479e1051"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_delimiter" ref="a96cd7a87e80cebc127550dfc479e1051" args=")(oss_multipart_upload_listing_t *listing, const char *delimiter)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a96cd7a87e80cebc127550dfc479e1051">set_delimiter</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#aac0782d159773b2ffc74276d33b81d3c">delimiter</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置分隔符 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">delimiter</td><td>[in] 分隔符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00234">234</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a939e30383d87daf4b9aa4550fbef88f5"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_is_truncated" ref="a939e30383d87daf4b9aa4550fbef88f5" args=")(oss_multipart_upload_listing_t *listing, bool is_truncated)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a939e30383d87daf4b9aa4550fbef88f5">set_is_truncated</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, bool <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a">is_truncated</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置is_truncated </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">is_truncated</td><td>[in] 标识是否还有其他multipart upload </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00176">176</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ad7cb900a76b86534fefbe2cb5e88e215"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_key_marker" ref="ad7cb900a76b86534fefbe2cb5e88e215" args=")(oss_multipart_upload_listing_t *listing, const char *key_marker)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ad7cb900a76b86534fefbe2cb5e88e215">set_key_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ac3935db78c081e8d5cfd4efb5e300990">key_marker</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置key_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">key_marker</td><td>[in] 标识表示从哪里返回列表 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00096">96</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a242e6b647ede3ebc342bf68c6b2da8cc"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_max_uploads" ref="a242e6b647ede3ebc342bf68c6b2da8cc" args=")(oss_multipart_upload_listing_t *listing, const char *max_uploads)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a242e6b647ede3ebc342bf68c6b2da8cc">set_max_uploads</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a361e534c03ad9863876e1d3376a99682">max_uploads</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置max_uploads </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">max_uploads</td><td>[in] Multipart Uploads 事件的最大数目 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00160">160</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a54109a58808001edfa6a0f1a6ed5ed39"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_multipart_uploads" ref="a54109a58808001edfa6a0f1a6ed5ed39" args=")(oss_multipart_upload_listing_t *listing, oss_multipart_upload_t **multipart_uploads, unsigned int counts)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a54109a58808001edfa6a0f1a6ed5ed39">set_multipart_uploads</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, <a class="el" href="../../de/db7/group__oss__multipart__upload__t.html#gac74c20be2a7fdf2c542b57a8cf853803">oss_multipart_upload_t</a> **<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a25dde6b1e2d989bc61c1f922702b97c2">multipart_uploads</a>, unsigned int counts)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置各个multipart upload 的信息 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">multipart_uploads</td><td>[in] 各个multipart upload 的信息 </td></tr>
+    <tr><td class="paramname">counts</td><td>[in] 所有multipart upload 的信息的数目 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00196">196</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a006e8246388a9a48781ac4a1d6addf7e"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_next_key_marker" ref="a006e8246388a9a48781ac4a1d6addf7e" args=")(oss_multipart_upload_listing_t *listing, const char *next_key_marker)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a006e8246388a9a48781ac4a1d6addf7e">set_next_key_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#adc3e84c5bb3af9da8c363f21cb30f059">next_key_marker</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置next_key_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">next_key_marker</td><td>[in] 标识返回列表到哪里终止 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00128">128</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a919a6638c0624477efd0a7514b3fa3aa"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_next_upload_id_marker" ref="a919a6638c0624477efd0a7514b3fa3aa" args=")(oss_multipart_upload_listing_t *listing, const char *next_upload_id_marker)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a919a6638c0624477efd0a7514b3fa3aa">set_next_upload_id_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a6d9fee711a4c2c7dc96319617d60f211">next_upload_id_marker</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置next_upload_id_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">next_upload_id_marker</td><td>[in] 标识返回列表到哪里终止 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00144">144</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a113cc1b24fbdcdacaaada5c569251ed2"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_prefix" ref="a113cc1b24fbdcdacaaada5c569251ed2" args=")(oss_multipart_upload_listing_t *listing, const char *prefix)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a113cc1b24fbdcdacaaada5c569251ed2">set_prefix</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f">prefix</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置前缀 </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">prefix</td><td>[in] 前缀 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00250">250</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a7af524440788b2a8b7fb5980fbddb319"></a><!-- doxytag: member="oss_multipart_upload_listing_s::set_upload_id_marker" ref="a7af524440788b2a8b7fb5980fbddb319" args=")(oss_multipart_upload_listing_t *listing, const char *upload_id_marker)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a7af524440788b2a8b7fb5980fbddb319">set_upload_id_marker</a>)(<a class="el" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#ga7559695d73e47ff537404e1efaa9d479">oss_multipart_upload_listing_t</a> *listing, const char *<a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a249bdee5a20b4f71785b36df45166dc8">upload_id_marker</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置upload_id_marker </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">listing</td><td>[in] 标识一个oss_multipart_upload_listing_t结构指针 </td></tr>
+    <tr><td class="paramname">upload_id_marker</td><td>[in] 标识表示从哪里返回列表 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00112">112</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a249bdee5a20b4f71785b36df45166dc8"></a><!-- doxytag: member="oss_multipart_upload_listing_s::upload_id_marker" ref="a249bdee5a20b4f71785b36df45166dc8" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a249bdee5a20b4f71785b36df45166dc8">upload_id_marker</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>标识表示从哪里返回列表 </p>
+
+<p>在文件<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a>第<a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html#l00054">54</a>行定义。</p>
+
+</div>
+</div>
+<hr/>该结构的文档由以下文件生成：<ul>
+<li><a class="el" href="../../d9/d9d/oss__multipart__upload__listing_8h_source.html">oss_multipart_upload_listing.h</a></li>
+</ul>
+</div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d5/d60/structoss__multipart__upload__listing__s.html">oss_multipart_upload_listing_s</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

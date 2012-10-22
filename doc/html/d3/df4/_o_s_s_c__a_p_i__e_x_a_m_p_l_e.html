@@ -1,0 +1,1504 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: OSSC API 使用示例</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d3/df4/_o_s_s_c__a_p_i__e_x_a_m_p_l_e.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">OSSC API 使用示例 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="attention"><dt><b>注意:</b></dt><dd>最新示例代码位于 example 目录中，如果需要测试示例代码， 请编译example中的例子（亲，默认已经编译好了，你可以直接去 build/example 的各个子目录中找到可执行文件啦:-)）</dd></dl>
+<h2><a class="anchor" id="Bucket操作"></a>
+Bucket操作</h2>
+<h3><a class="anchor" id="创建Bucket"></a>
+创建Bucket</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//为用户创建一个bucket</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#ga0feb96409f1d8d499f6301ce1c730e23" title="创建 Bucket">client_create_bucket</a>(client, bucket_name, &amp;retcode);
+        printf(<span class="stringliteral">&quot;create_bucket result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == OK) {
+                printf(<span class="stringliteral">&quot;create bucket successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="获取Bucket的ACL信息"></a>
+获取Bucket的ACL信息</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//获得指定bucket的访问权限</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;xbucket_example&quot;</span>;    <span class="comment">//设置bucket_name</span>
+ 
+        <a class="code" href="../../d7/d47/structoss__access__control__list__s.html" title="表示OSS的访问控制列表（Access Control List, ACL), 包含了一组为指定被授权者(Grantee)分配特定权限(Permission)的集合">oss_access_control_list_t</a> *acl = 
+                <a class="code" href="../../d9/df5/group__oss__client__t.html#gaba6fad825439fed2aec0743e26a8a3d3" title="返回给定 Bucket 的 Access Control List(oss_client_t *client, ACL)">client_get_bucket_acl</a>(client, bucket_name, &amp;retcode);
+        <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> *owner = NULL;
+        printf(<span class="stringliteral">&quot;get_bucket_acl result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                printf(<span class="stringliteral">&quot;get_bucket_acl successfully.\n&quot;</span>);
+                owner = acl-&gt;<a class="code" href="../../d7/d47/structoss__access__control__list__s.html#a8f4f2fa7dd9f8ec85c05d6f285fe0113" title="返回所有者 Owner">get_owner</a>(acl);
+                printf(<span class="stringliteral">&quot;grant = %s\nid = %s\ndisplay_name = %s\n&quot;</span>, 
+                                acl-&gt;<a class="code" href="../../d7/d47/structoss__access__control__list__s.html#a0ee0ddee74feeac0cceb8dac28b54bc1" title="授权信息">grant</a>,
+                                owner-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#aecb3b0d045ada529257a2fbf8f829599" title="所有者的ID">id</a>,
+                                owner-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#a4b3dc854913a2dc6d39a8f54f82a01da" title="所有者的显示名称">display_name</a>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+        <span class="keywordflow">if</span>(owner != NULL) {
+                <a class="code" href="../../de/db9/group__oss__owner__t.html#ga509adfb57d3aaf2a1fd4193e25d8ca57" title="oss_owner_t析构函数">owner_finalize</a>(owner);
+        }
+        <span class="keywordflow">if</span>(acl != NULL) {
+                <a class="code" href="../../d2/d4c/group__oss__access__control__list__t.html#ga196fe8f221ce6db310d9feb70fc471a2" title="oss_access_control_list_t 析构函数">access_control_list_finalize</a>(acl);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="设置Bucket的ACL"></a>
+设置Bucket的ACL</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//设置指定bucket的访问权限</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;&quot;</span>;    <span class="comment">//设置bucket_name</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *acl = <span class="stringliteral">&quot;&quot;</span>;            <span class="comment">//设置bucket的访问权限（private，public-read，public-read-write中的一个）</span>
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#ga5a884b026b710145c7ad08409540808b" title="设置指定 Bucket 的 Access Control List(oss_client_t *client, ACL)">client_set_bucket_acl</a>(client, bucket_name, acl, &amp;retcode);
+        printf(<span class="stringliteral">&quot;set_bucket_acl result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                printf(<span class="stringliteral">&quot;set bucket acl successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="列举Bucket下的Object"></a>
+列举Bucket下的Object</h3>
+<h4><a class="anchor" id="按名称返回请求者指定Bucket的所有Object"></a>
+按名称返回请求者指定Bucket的所有Object</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//返回请求者指定Bucket下的所有Object的列表</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keywordtype">int</span> i;
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;
+ 
+        <a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *object_listing = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga95d436b7bd183a418d752c3cd052979b" title="列出指定 Bucket 下的 OSSObject">client_list_objects_with_bucket_name</a>(client, bucket_name, &amp;retcode);
+        printf(<span class="stringliteral">&quot;list_objects_with_bucket_name result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                printf(<span class="stringliteral">&quot;list_objects_with_bucket_name successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;bucket_name = %s\nnext_marker = %s\nprefix = %s\nmarker = %s\nmax_keys = %d\ndelimiter = %s\nis_truncated = %d\n&quot;</span>, 
+                                object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket名称">bucket_name</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a77302ae8ca02ef6fca6f39dfc961a061" title="如果因为 max-keys 的设定无法一次完成 listing,返回结果会附加一个NextMarker">next_marker</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f" title="前缀">prefix</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aee481970ba654213bf28035c508259bc" title="标识表示从哪里返回列表">marker</a>,
+                                object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a3cd30021306af3e4fc23061b86f8ab21" title="返回 object 的最大数">max_keys</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aac0782d159773b2ffc74276d33b81d3c" title="分隔符">delimiter</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a" title="标识是否有未显示的Object">is_truncated</a>);
+                <span class="keywordflow">for</span>(i = 0; i &lt; object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#af095c68bc6123af7787610110d2940e4" title="Object的数目">_counts_summaries</a>; i++) {
+                        printf(<span class="stringliteral">&quot;****************************************************************\n&quot;</span>);
+                        printf(<span class="stringliteral">&quot;object [%d] : \n&quot;</span>, i);
+                        printf(<span class="stringliteral">&quot;type = %s\netag = %s\nkey = %s\nlast_modified = %s\nsize = %ld\nstorage_class = %s\nid = %s\ndisplay_name = %s\n&quot;</span>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a23506fc4821ab6d9671f3e6222591a96" title="Object的类别">type</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#ae96fbf2bcf0833cd225f57b894f35fc8" title="Object的etag.">etag</a>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a5892a9181e6a332f84d27aecd41dcd12" title="Object的名称">key</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a99d1353a783d112bf698109c33c15e7a" title="Object上次修改的时间">last_modified</a>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a37363161b41c4165b98cba7abc7a9d95" title="Object的大小">size</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#afad849df9a7cfeba4abd9e511683a2ff" title="Object的存储类别">storage_class</a>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a389504832e4d361979100f9267479b8a" title="Object的所有者">owner</a>-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#aecb3b0d045ada529257a2fbf8f829599" title="所有者的ID">id</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a389504832e4d361979100f9267479b8a" title="Object的所有者">owner</a>-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#a4b3dc854913a2dc6d39a8f54f82a01da" title="所有者的显示名称">display_name</a>);
+                }
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="keywordflow">if</span>(object_listing != NULL) {
+                <span class="keywordflow">if</span>(object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a> != NULL) {
+                        <span class="keywordflow">for</span>(i = 0; i &lt; object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#af095c68bc6123af7787610110d2940e4" title="Object的数目">_counts_summaries</a>; i++) {
+                                <a class="code" href="../../de/db9/group__oss__owner__t.html#ga509adfb57d3aaf2a1fd4193e25d8ca57" title="oss_owner_t析构函数">owner_finalize</a>((object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>)[i]-&gt;owner);
+                                <a class="code" href="../../df/de1/group__oss__object__summary__t.html#gae1f598e4a6a139d6bd5f7ef9c971def0" title="oss_object_summary_t析构函数">object_summary_finalize</a>((object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>)[i]);
+                        }
+                        free(object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>);
+                }
+                <a class="code" href="../../da/d78/group__oss__object__listing__t.html#ga5cd86e5fc45ef72d6c68a1e4d82e4d22" title="oss_object_listing_t析构函数">object_listing_finalize</a>(object_listing);
+        }
+ 
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h4><a class="anchor" id="按请求参数返回请求者指定Bucket下的所有Object列表"></a>
+按请求参数返回请求者指定Bucket下的所有Object列表</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//返回请求者指定Bucket下的所有Object的列表</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keywordtype">int</span> i;
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="comment">// 构造 request 参数 </span>
+        <a class="code" href="../../de/d9a/structoss__list__objects__request__s.html" title="包含获取object列表的请求信息">oss_list_objects_request_t</a> *request = <a class="code" href="../../d6/d66/group__oss__list__objects__request__t.html#gab26b149fc96b1e1339cfe5ecfb34914e" title="oss_list_objects_request_t构造函数">list_objects_request_initialize</a>();
+        request-&gt;<a class="code" href="../../de/d9a/structoss__list__objects__request__s.html#aa361f541385bd7b158debae09366983f" title="设置Bucket名称">set_bucket_name</a>(request, <span class="stringliteral">&quot;bucket_example&quot;</span>);
+        request-&gt;<a class="code" href="../../de/d9a/structoss__list__objects__request__s.html#a141f28bbf452ca828272e6304b330124" title="设置前缀">set_prefix</a>(request,<span class="stringliteral">&quot;fun/&quot;</span>);          <span class="comment">//设置prefix</span>
+        request-&gt;<a class="code" href="../../de/d9a/structoss__list__objects__request__s.html#a2d25d2198bedfdfa2eb5b2478bfeb176" title="设置分隔符">set_delimiter</a>(request, <span class="stringliteral">&quot;/&quot;</span>);      <span class="comment">//设置delimiter</span>
+        request-&gt;<a class="code" href="../../de/d9a/structoss__list__objects__request__s.html#a4755cae0ced1ed8a96513a7bd34abf99" title="设置max_keys">set_max_keys</a>(request, 100);      <span class="comment">//设置max_keys</span>
+        request-&gt;<a class="code" href="../../de/d9a/structoss__list__objects__request__s.html#abc5ac54e8011d7e6c6f2e5915a98fb48" title="设置marker">set_marker</a>(request, <span class="stringliteral">&quot;t&quot;</span>);         <span class="comment">//设置marker</span>
+ 
+ 
+        <a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *object_listing = <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa7f1d5cab74ad3ef99fd604b9d76facd" title="列出指定 Bucket 下的 OSSObject">client_list_objects</a>(client, request, &amp;retcode);
+        printf(<span class="stringliteral">&quot;list_objects_with_request result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                printf(<span class="stringliteral">&quot;list_objects_with_request successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;bucket_name = %s\nnext_marker = %s\nprefix = %s\nmarker = %s\nmax_keys = %d\ndelimiter = %s\nis_truncated = %d\n&quot;</span>, 
+                                object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket名称">bucket_name</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a77302ae8ca02ef6fca6f39dfc961a061" title="如果因为 max-keys 的设定无法一次完成 listing,返回结果会附加一个NextMarker">next_marker</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#ad2849cf781a4db22cc1b31eaaee50a4f" title="前缀">prefix</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aee481970ba654213bf28035c508259bc" title="标识表示从哪里返回列表">marker</a>,
+                                object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a3cd30021306af3e4fc23061b86f8ab21" title="返回 object 的最大数">max_keys</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aac0782d159773b2ffc74276d33b81d3c" title="分隔符">delimiter</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a1e674fc6a14ee6045f40f62aa480b27a" title="标识是否有未显示的Object">is_truncated</a>);
+                <span class="keywordflow">for</span>(i = 0; i &lt; object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#af095c68bc6123af7787610110d2940e4" title="Object的数目">_counts_summaries</a>; i++) {
+                        printf(<span class="stringliteral">&quot;****************************************************************\n&quot;</span>);
+                        printf(<span class="stringliteral">&quot;object [%d] : \n&quot;</span>, i);
+                        printf(<span class="stringliteral">&quot;type = %s\netag = %s\nkey = %s\nlast_modified = %s\nsize = %ld\nstorage_class = %s\nid = %s\ndisplay_name = %s\n&quot;</span>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a23506fc4821ab6d9671f3e6222591a96" title="Object的类别">type</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#ae96fbf2bcf0833cd225f57b894f35fc8" title="Object的etag.">etag</a>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a5892a9181e6a332f84d27aecd41dcd12" title="Object的名称">key</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a99d1353a783d112bf698109c33c15e7a" title="Object上次修改的时间">last_modified</a>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a37363161b41c4165b98cba7abc7a9d95" title="Object的大小">size</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#afad849df9a7cfeba4abd9e511683a2ff" title="Object的存储类别">storage_class</a>,
+                                        object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a389504832e4d361979100f9267479b8a" title="Object的所有者">owner</a>-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#aecb3b0d045ada529257a2fbf8f829599" title="所有者的ID">id</a>, object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>[i]-&gt;<a class="code" href="../../df/d44/structoss__object__summary__s.html#a389504832e4d361979100f9267479b8a" title="Object的所有者">owner</a>-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#a4b3dc854913a2dc6d39a8f54f82a01da" title="所有者的显示名称">display_name</a>);
+                }
+                printf(<span class="stringliteral">&quot;=============================================================\n&quot;</span>);
+                <span class="keywordflow">for</span>(i = 0; i &lt; object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a7e595ce8833f237b60ee0ef22f3b7c91" title="common_prefixes的数目">_counts_common_prefixes</a>; i++) {
+                        printf(<span class="stringliteral">&quot;common_prefix = %s\n&quot;</span>, (object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#a8fc0681d7265cb78145181206a267572" title="名字包含指定的前缀且第一次出现 delimiter 字符之间的 object">common_prefixes</a>)[i]);
+                }
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">//释放空间 </span>
+        <span class="keywordflow">if</span>(object_listing != NULL) {
+                <span class="keywordflow">if</span>(object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a> != NULL) {
+                        <span class="keywordflow">for</span>(i = 0; i &lt; object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#af095c68bc6123af7787610110d2940e4" title="Object的数目">_counts_summaries</a>; i++) {
+                                <a class="code" href="../../de/db9/group__oss__owner__t.html#ga509adfb57d3aaf2a1fd4193e25d8ca57" title="oss_owner_t析构函数">owner_finalize</a>((object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>)[i]-&gt;owner);
+                                <a class="code" href="../../df/de1/group__oss__object__summary__t.html#gae1f598e4a6a139d6bd5f7ef9c971def0" title="oss_object_summary_t析构函数">object_summary_finalize</a>((object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>)[i]);
+                        }
+                        free(object_listing-&gt;<a class="code" href="../../d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3" title="所有的Object信息">summaries</a>);
+                }
+                <a class="code" href="../../da/d78/group__oss__object__listing__t.html#ga5cd86e5fc45ef72d6c68a1e4d82e4d22" title="oss_object_listing_t析构函数">object_listing_finalize</a>(object_listing);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="获取所有的Bucket"></a>
+获取所有的Bucket</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+
+ <span class="comment">// 返回请求者拥有的所有Bucket的列表</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <span class="keywordtype">int</span> buckets_number;             <span class="comment">//保存buckets的数目</span>
+        <span class="keywordtype">int</span> i;
+        <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> *owner = NULL;
+        <a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> **buckets = <a class="code" href="../../d9/df5/group__oss__client__t.html#gae8cadd850908dd027abcd0660c639be4" title="返回请求者拥有的所有 Bucket 的列表">client_list_buckets</a>(client, &amp;buckets_number, &amp;retcode);
+        printf(<span class="stringliteral">&quot;list buckets result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == 0) {
+                printf(<span class="stringliteral">&quot;list buckets successfully.\n&quot;</span>);
+                <span class="keywordflow">if</span>(buckets_number != 0) {
+                        <span class="keywordflow">for</span>(i = 0; i &lt; buckets_number; i++) {
+                                printf(<span class="stringliteral">&quot;***********************************************************************\n&quot;</span>);
+                                printf(<span class="stringliteral">&quot;bucket [%d] : \n&quot;</span>, i);
+                                printf(<span class="stringliteral">&quot;name = %s\tcreate_date = %s\n&quot;</span>, buckets[i]-&gt;get_name(buckets[i]), buckets[i]-&gt;get_create_date(buckets[i]));
+                                owner = buckets[i]-&gt;<a class="code" href="../../db/db9/structoss__bucket__s.html#afd091299a7dc81b9c76e933792da585f" title="返回Bucket的所有者">get_owner</a>(buckets[i]);
+                                printf(<span class="stringliteral">&quot;id = %s\tdisplay_name = %s\n&quot;</span>, owner-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#a350cd905df8a66767cb7be86f84ab6d4" title="获得所有者的ID">get_id</a>(owner), owner-&gt;<a class="code" href="../../d2/de4/structoss__owner__s.html#a99c7149bf682e1d865b8d9d3578dc73f" title="获得所有者的显示名称">get_display_name</a>(owner));
+                        }
+                } <span class="keywordflow">else</span> {
+                        printf(<span class="stringliteral">&quot;empty bucket list.\n&quot;</span>);
+                }
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">// 释放空间 </span>
+        <span class="keywordflow">if</span>(buckets != NULL) {
+                <span class="keywordflow">for</span>(i = 0; i &lt; buckets_number; i++) {
+                        <span class="keywordflow">if</span>(buckets[i] != NULL) {
+                                <a class="code" href="../../d1/dc0/group__oss__bucket__t.html#ga0fbde89eb06ceac7562356ee395d69c1" title="oss_bucket_t 析构函数">bucket_finalize</a>(buckets[i]);
+                        }
+                }
+                free(buckets);
+        }
+        <span class="keywordflow">if</span>(owner != NULL) {
+                <a class="code" href="../../de/db9/group__oss__owner__t.html#ga509adfb57d3aaf2a1fd4193e25d8ca57" title="oss_owner_t析构函数">owner_finalize</a>(owner);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="删除Bucket"></a>
+删除Bucket</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">// 为用户删除一个bucket</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gab8d0395051c00765fed60a45010c4fcf" title="删除 Bucket">client_delete_bucket</a>(client, bucket_name, &amp;retcode);
+        printf(<span class="stringliteral">&quot;delete_bucket result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == NO_CONTENT) {
+                printf(<span class="stringliteral">&quot;delete bucket successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h2><a class="anchor" id="Object操作"></a>
+Object操作</h2>
+<h3><a class="anchor" id="上传Object"></a>
+上传Object</h3>
+<h4><a class="anchor" id="从文件上传Ojbect至OSS服务器"></a>
+从文件上传Ojbect至OSS服务器</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 将本地文件上传到云服务器上 </span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucketexample&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;put-ojbect.data&quot;</span>;      <span class="comment">//设置上传key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *local_file  = <span class="stringliteral">&quot;proactor.pdf&quot;</span>;         <span class="comment">//设置需要上传的文件</span>
+ 
+        FILE *fp = fopen(local_file, <span class="stringliteral">&quot;r&quot;</span>);
+        <span class="keywordflow">if</span> (fp == NULL) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in opening file %s\n&quot;</span>, local_file);
+                <span class="keywordflow">return</span> -1;
+        }
+ 
+        <span class="keywordtype">size_t</span> file_len = oss_get_file_size(fp);
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+<span class="preprocessor"> #if 1</span>
+<span class="preprocessor"></span>        <span class="comment">// 初始化元信息，并设置相关属性 </span>
+        <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata = <a class="code" href="../../d2/d08/group__oss__object__metadata__t.html#ga2225ebea2328d99d9e8c1fe6e2a36595" title="oss_object_metadata_t构造函数">object_metadata_initialize</a>(); 
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a16c10494ef53757df8552b22c3209c2e" title="设置Content-Length请求头，表示Object内容的大小">set_content_length</a>(metadata, file_len);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ae0f98e418a6a443881054ffe8db76e9c" title="获取Content-Type请求头，表示Object内容的类型，为标准的MIME类型">set_content_type</a>(metadata, <span class="stringliteral">&quot;application/octet-stream&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ac398180704d49a9a463a92e05be4a4c7" title="设置Cache-Control请求头，表示用户指定的HTTP请求/回复链的缓存行为">set_cache_control</a>(metadata, <span class="stringliteral">&quot;no-cache&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ad8dce0c597f043f46d4a66f7f43e26ba" title="设置Content-Encoding请求头，表示Object内容的编码方式">set_content_encoding</a>(metadata, <span class="stringliteral">&quot;utf-8&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#af358d204a43c6a9bd464059e280411b3" title="设置Content-Disposition请求头，表示MIME用户代理如何显示附加的文件">set_content_disposition</a>(metadata, <span class="stringliteral">&quot;attachment;&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a90133c75be5c1cdbb5e69d857df26a08" title="设置Expires请求头">set_expiration_time</a>(metadata, <span class="stringliteral">&quot;Thu, 13 Sep 2012 21:08:42 GMT&quot;</span>);
+        <span class="comment">// 将本地文件上传到云服务器上 </span>
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaca22eacd908d77a7db2bae19e7041cc5" title="上传指定的 OSSObject 到 OSS 中指定的 Bucket">client_put_object_from_file</a>(client, bucket_name, key, fp, metadata, &amp;retcode);
+<span class="preprocessor"> #else </span>
+<span class="preprocessor"></span>        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaca22eacd908d77a7db2bae19e7041cc5" title="上传指定的 OSSObject 到 OSS 中指定的 Bucket">client_put_object_from_file</a>(client, bucket_name, key, fp, NULL, &amp;retcode);
+<span class="preprocessor"> #endif</span>
+<span class="preprocessor"></span>        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;Put object from file successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        fclose(fp);
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h4><a class="anchor" id="从内存块上传Ojbect至OSS服务器"></a>
+从内存块上传Ojbect至OSS服务器</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 将内存中的内容上传至云服务器中 </span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;put-ojbect.data&quot;</span>;      <span class="comment">//设置上传key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *local_file  = <span class="stringliteral">&quot;proactor.pdf&quot;</span>;         <span class="comment">//设置需要上传的文件</span>
+        <span class="keywordtype">size_t</span> retsize = 0; <span class="comment">// 读取文件时的返回值</span>
+ 
+        FILE *fp = fopen(local_file, <span class="stringliteral">&quot;r&quot;</span>);
+        <span class="keywordflow">if</span> (fp == NULL) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in opening file %s\n&quot;</span>, local_file);
+                <span class="keywordflow">return</span> -1;
+        }
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keywordtype">size_t</span> file_len = oss_get_file_size(fp);
+ 
+        <span class="keywordtype">char</span> *buffer = (<span class="keywordtype">char</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * file_len + 1);
+ 
+        memset(buffer, <span class="charliteral">&#39;\0&#39;</span>, file_len + 1);
+        retsize = fread(buffer, 1, file_len, fp);
+ 
+        <span class="keywordflow">if</span> (retsize &lt; 0) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in reading file %s.\n&quot;</span>, local_file);
+                <span class="keywordflow">return</span> -1;
+        }
+ 
+        <span class="comment">// 初始化元信息，并设置相关属性 </span>
+        <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata = <a class="code" href="../../d2/d08/group__oss__object__metadata__t.html#ga2225ebea2328d99d9e8c1fe6e2a36595" title="oss_object_metadata_t构造函数">object_metadata_initialize</a>(); 
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a16c10494ef53757df8552b22c3209c2e" title="设置Content-Length请求头，表示Object内容的大小">set_content_length</a>(metadata, file_len);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ae0f98e418a6a443881054ffe8db76e9c" title="获取Content-Type请求头，表示Object内容的类型，为标准的MIME类型">set_content_type</a>(metadata, <span class="stringliteral">&quot;application/octet-stream&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ac398180704d49a9a463a92e05be4a4c7" title="设置Cache-Control请求头，表示用户指定的HTTP请求/回复链的缓存行为">set_cache_control</a>(metadata, <span class="stringliteral">&quot;no-cache&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ad8dce0c597f043f46d4a66f7f43e26ba" title="设置Content-Encoding请求头，表示Object内容的编码方式">set_content_encoding</a>(metadata, <span class="stringliteral">&quot;utf-8&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#af358d204a43c6a9bd464059e280411b3" title="设置Content-Disposition请求头，表示MIME用户代理如何显示附加的文件">set_content_disposition</a>(metadata, <span class="stringliteral">&quot;attachment;&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a90133c75be5c1cdbb5e69d857df26a08" title="设置Expires请求头">set_expiration_time</a>(metadata, <span class="stringliteral">&quot;Thu, 13 Sep 2012 21:08:42 GMT&quot;</span>);
+ 
+        <span class="comment">// 将内存中的内容上传至云服务器中 </span>
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#ga929617069ab2d4a1f0260d930e5f595e" title="上传指定的 OSSObject 到 OSS 中指定的 Bucket">client_put_object_from_buffer</a>(client, bucket_name, key, buffer, metadata, &amp;retcode);
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;put object from file successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        fclose(fp);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="获取Object"></a>
+获取Object</h3>
+<h4><a class="anchor" id="获取Object到内存中"></a>
+获取Object到内存中</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 将远程服务器上的文件下载到内存中 </span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;get-ojbect.data&quot;</span>;      <span class="comment">//设置下载 key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *local_file  = <span class="stringliteral">&quot;local-file.data&quot;</span>;         <span class="comment">//设置需要保存到本地的文件名</span>
+        <span class="keywordtype">size_t</span> file_len = -1; 
+        <span class="keywordtype">void</span> *buffer = NULL; <span class="comment">// 存放文件内容的缓冲区首指针 </span>
+ 
+        FILE *fp = fopen(local_file, <span class="stringliteral">&quot;w&quot;</span>);
+        <span class="keywordflow">if</span> (fp == NULL) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in opening file %s\n&quot;</span>, local_file);
+                <span class="keywordflow">return</span> -1;
+        }
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../dc/d2c/structoss__get__object__request__s.html" title="指定从OSS下载Object的请求参数">oss_get_object_request_t</a> *request = <a class="code" href="../../d7/d44/group__oss__get__object__request__t.html#ga66ff828c66917415730ec9e955574f61" title="oss_get_object_request_t构造函数">get_object_request_initialize</a>(bucket_name, key);
+        <span class="comment">// request-&gt;set_range(request, 0, 2 * 1024);</span>
+ 
+        <span class="comment">// 将远程服务器上的文件下载到内存中 </span>
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gadd5e0b9de089d3d40c9223559b15bd01" title="从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存">client_get_object_to_buffer</a>(client, request, &amp;buffer, &amp;file_len, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                fwrite(buffer, file_len, 1, fp);
+                printf(<span class="stringliteral">&quot;Get object to file successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;File length: %d\n&quot;</span>, file_len);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        fclose(fp);
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h4><a class="anchor" id="获取Object到文件中"></a>
+获取Object到文件中</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 下载云服务器中的文件至本地文件 </span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;get-ojbect.data&quot;</span>;      <span class="comment">//设置需要下载的key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *local_file  = <span class="stringliteral">&quot;local-file.data&quot;</span>;         <span class="comment">//设置需要下载的本地文件名，可以和key同名</span>
+ 
+        FILE *fp = fopen(local_file, <span class="stringliteral">&quot;w&quot;</span>);
+        <span class="keywordflow">if</span> (fp == NULL) {
+                fprintf(stderr, <span class="stringliteral">&quot;error in opening file %s\n&quot;</span>, local_file);
+                <span class="keywordflow">return</span> -1;
+        }
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../dc/d2c/structoss__get__object__request__s.html" title="指定从OSS下载Object的请求参数">oss_get_object_request_t</a> *request = <a class="code" href="../../d7/d44/group__oss__get__object__request__t.html#ga66ff828c66917415730ec9e955574f61" title="oss_get_object_request_t构造函数">get_object_request_initialize</a>(bucket_name, key);
+        <span class="comment">// request-&gt;set_range(request, 0, 2 * 1024 * 1024);</span>
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#ga9b2497ab1abf564dff29d44c524751a5" title="从 OSS 指定的 Bucket 中导出指定的 OSSObject 到目标文件">client_get_object_to_file</a>(client, request, fp, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;Get object to file successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        fclose(fp);
+ 
+        <span class="keywordflow">return</span> 0;
+ 
+ }
+</pre></div><h3><a class="anchor" id="拷贝Object"></a>
+拷贝Object</h3>
+<h4><a class="anchor" id="通过指定拷贝请求来完成拷贝Object"></a>
+通过指定拷贝请求来完成拷贝Object</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ <span class="comment">// Object 拷贝操作</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *source_bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *destination_bucket_name = <span class="stringliteral">&quot;bucketname002&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *source_key = <span class="stringliteral">&quot;put.png&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *destination_key = <span class="stringliteral">&quot;PUT.png&quot;</span>;
+
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+
+        <a class="code" href="../../da/dfb/structoss__copy__object__request__s.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求参数">oss_copy_object_request_t</a> *request = <a class="code" href="../../df/ddb/group__oss__copy__object__request__t.html#gae9e3285a0be6afef896e2ceed7620136" title="oss_copy_object_request_t 构造函数">copy_object_request_initialize</a>(
+                source_bucket_name, source_key,
+                destination_bucket_name, destination_key);
+
+        request-&gt;<a class="code" href="../../da/dfb/structoss__copy__object__request__s.html#a578aa526725173b70caeb74b5c141a13" title="设置modified_since_constraints时间">set_modified_since_constraints</a>(request, <span class="stringliteral">&quot;Wed, 12 Sep 2012 12:06:55 GMT&quot;</span>);
+
+        <a class="code" href="../../d4/d4a/structoss__copy__object__result__s.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求结果">oss_copy_object_result_t</a> *result = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga1dcbb53c26489ebaec5a2997aad1f7f3" title="拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object">client_copy_object</a>(client, request, &amp;retcode);
+
+        <span class="keywordflow">if</span> (result != NULL) {
+                printf(<span class="stringliteral">&quot;ETag: %s&quot;</span>, result-&gt;<a class="code" href="../../d4/d4a/structoss__copy__object__result__s.html#ac055a3ba88ba1f7c528e2639d52d04e9" title="获得新Object的ETag值">get_etag</a>(result));
+                printf(<span class="stringliteral">&quot;LastModified: %s\n&quot;</span>, result-&gt;<a class="code" href="../../d4/d4a/structoss__copy__object__result__s.html#a306e2c701955b68f69b04a6f302f894a" title="获得新Object的最后修改时间">get_last_modified</a>(result));
+        }
+
+        <span class="keywordflow">if</span> (retcode == OK) {
+        printf(<span class="stringliteral">&quot;Copy object successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+        retinfo = oss_get_error_message_from_retcode(retcode);
+        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ }
+</pre></div><h4><a class="anchor" id="直接指定源和目的BucketName与Key拷贝Object"></a>
+直接指定源和目的BucketName与Key拷贝Object</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// Object 拷贝操作 </span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *source_bucket_name = <span class="stringliteral">&quot;bucketname001&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *destination_bucket_name = <span class="stringliteral">&quot;bucketname002&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *source_key = <span class="stringliteral">&quot;put.png&quot;</span>;
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *destination_key = <span class="stringliteral">&quot;PUT.png&quot;</span>;
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#ga919f41dc5c7cf6481222849861dc1dac" title="拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object">client_copy_object_ext</a>(client, source_bucket_name, source_key,
+                        destination_bucket_name, destination_key, NULL);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;Copy object successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ }
+</pre></div> <h3><a class="anchor" id="获取Object元信息"></a>
+获取Object元信息</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">// 设置用户 Access ID</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 获取Object的元信息</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;get-ojbect.data&quot;</span>;      <span class="comment">//设置key</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata =
+                <a class="code" href="../../d9/df5/group__oss__client__t.html#ga59ee0ee283ecf9584c9800373ef5a2f4" title="返回 OSSObject 的元数据">client_get_object_metadata</a>(client, bucket_name, key, &amp;retcode);
+
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;ETag: %s\n&quot;</span>, metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#adb40938def73de6a2807b9a06513128d" title="获取一个值表示与Object相关的hex编码的128位MD5摘要">get_etag</a>(metadata));
+                printf(<span class="stringliteral">&quot;Content-Type: %s\n&quot;</span>, metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#abffc43133dd15f480de01f7df418190d" title="获取Content-Type请求头，表示Object内容的类型，为标准的MIME类型">get_content_type</a>(metadata));
+                printf(<span class="stringliteral">&quot;Content-Length: %ld\n&quot;</span>, metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a6a2b673bf1c724cff2b4e16471481d0f" title="获取Content-Length请求头，表示Object内容的大小">get_content_length</a>(metadata));
+                printf(<span class="stringliteral">&quot;Last-Modified: %s\n&quot;</span>, metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a5549dd0bd5a5c71e655eb86083bb3453" title="获取Last-Modified请求头的值，表示Object最后一次修改的时间">get_last_modified</a>(metadata));
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ }
+</pre></div><h3><a class="anchor" id="删除Object"></a>
+删除Object</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">//设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 删除Object</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;delete-ojbect.data&quot;</span>;      <span class="comment">//设置key</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#ga94716e90889c88c2957f44a49d99a10b" title="删除指定的 OSSObject">client_delete_object</a>(client, bucket_name, key, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;Delete object successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ }
+</pre></div><h3><a class="anchor" id="一次性删除多个Object"></a>
+一次性删除多个Object</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdlib.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; <span class="comment">// 设置用户 Access ID </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 设置需要删除的Object </span>
+ <span class="keyword">const</span> <span class="keywordtype">char</span> *keys[] = {
+        <span class="stringliteral">&quot;putxxx-test.pdf&quot;</span>,
+        <span class="stringliteral">&quot;ccan.tar.bz2&quot;</span>,
+        <span class="stringliteral">&quot;ncurseass-5.9.tar.gz&quot;</span>,
+        <span class="stringliteral">&quot;nmon_linsdfux_14g.tar.gz&quot;</span>
+ };
+ 
+ <span class="comment">// 删除Object</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d4/dd3/structoss__delete__multiple__object__request__s.html" title="删除指定Bucket的多个Object">oss_delete_multiple_object_request_t</a> *request = 
+                <a class="code" href="../../d3/d7a/group__oss__delete__multiple__object__request__t.html#gaf8c4e3b6fca951c65f5dc608740fbdcc" title="oss_delete_multiple_object_request_t 构造函数">delete_multiple_object_request_initialize</a>(bucket_name, keys, 4, <span class="keyword">false</span>); <span class="comment">// 同时删除 4 个对象Object</span>
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gace5b86b60714d92c386b3abf88ad7bbe" title="删除指定的多个 OSSObject">client_delete_multiple_object</a>(client, request, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;Delete object successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ }
+</pre></div><h2><a class="anchor" id="Multipart"></a>
+Multipart Upload操作</h2>
+<h3><a class="anchor" id="初始化Multipart-Upload操作"></a>
+初始化Multipart-Upload操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 初始化Multipart Upload操作</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;multipart-upload.data&quot;</span>;      <span class="comment">//设置key</span>
+ 
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+ 
+<span class="preprocessor"> #if 1 // 设置带元信息的Multipart Upload 上传请求 </span>
+<span class="preprocessor"></span> 
+        <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata = <a class="code" href="../../d2/d08/group__oss__object__metadata__t.html#ga2225ebea2328d99d9e8c1fe6e2a36595" title="oss_object_metadata_t构造函数">object_metadata_initialize</a>();
+ 
+        <span class="comment">// 设置上传对象的元信息 </span>
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ac398180704d49a9a463a92e05be4a4c7" title="设置Cache-Control请求头，表示用户指定的HTTP请求/回复链的缓存行为">set_cache_control</a>(metadata, <span class="stringliteral">&quot;no-cache&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#ad8dce0c597f043f46d4a66f7f43e26ba" title="设置Content-Encoding请求头，表示Object内容的编码方式">set_content_encoding</a>(metadata, <span class="stringliteral">&quot;utf-8&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#af358d204a43c6a9bd464059e280411b3" title="设置Content-Disposition请求头，表示MIME用户代理如何显示附加的文件">set_content_disposition</a>(metadata, <span class="stringliteral">&quot;attachment;&quot;</span>);
+        metadata-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a90133c75be5c1cdbb5e69d857df26a08" title="设置Expires请求头">set_expiration_time</a>(metadata, <span class="stringliteral">&quot;Thu, 15 Sep 2012 21:08:42 GMT&quot;</span>);
+ 
+        <a class="code" href="../../d7/d38/structoss__initiate__multipart__upload__request__s.html" title="包含初始化一个Multipart上传事件的请求参数">oss_initiate_multipart_upload_request_t</a> *request = 
+                <a class="code" href="../../db/dd9/group__oss__initiate__multipart__upload__request__t.html#gae21dd6a0e7e923a74e7c34cf916df22d" title="oss_initiate_multipart_upload_request_t带元信息的构造函数">initiate_multipart_upload_request_initialize_with_metadata</a>(bucket_name, key, metadata);
+<span class="preprocessor"> #else // 不带元信息的Multipart Upload上传请求 </span>
+<span class="preprocessor"></span>        <a class="code" href="../../d7/d38/structoss__initiate__multipart__upload__request__s.html" title="包含初始化一个Multipart上传事件的请求参数">oss_initiate_multipart_upload_request_t</a> *request = 
+                <a class="code" href="../../db/dd9/group__oss__initiate__multipart__upload__request__t.html#gaf10fdb2081ea115ad10dc82fce73a8ec" title="oss_initiate_multipart_upload_request_t构造函数">initiate_multipart_upload_request_initialize</a>(bucket_name, key, NULL);
+<span class="preprocessor"> #endif</span>
+<span class="preprocessor"></span> 
+ 
+        <a class="code" href="../../d4/ded/structoss__initiate__multipart__upload__result__s.html" title="包含初始化一个Multipart上传事件的结果参数">oss_initiate_multipart_upload_result_t</a> *result =
+                <a class="code" href="../../d9/df5/group__oss__client__t.html#ga79f3cfa10b7d45103c7a52bff6e9f76d" title="初始化一个 Multipart 上传事件">client_initiate_multipart_upload</a>(client, request, &amp;retcode);
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, result-&gt;<a class="code" href="../../d4/ded/structoss__initiate__multipart__upload__result__s.html#a2e4208dc50056c4d640b5e758dd65d21" title="获得Upload ID">get_upload_id</a>(result));
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ 
+        <span class="keywordflow">return</span> 0;
+ 
+ }
+</pre></div> <h3><a class="anchor" id="上传Part"></a>
+上传Part</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 上传 Part 操作，本例演示了如果使用上传Part操作来上传一个文件，</span>
+ <span class="comment">// 适合上传大文件，但是如果想多线程断点续传，请在Unix/Linux下使用</span>
+ <span class="comment">// OSSC 的 extra 子程序库中的 client_extra_put_object()函数。</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;multipart-upload.data&quot;</span>;      <span class="comment">//设置key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *upload_id = <span class="stringliteral">&quot;&quot;</span>; <span class="comment">// TODO: 设置upload id，此upload id由initiate multipart upload 操作返回 </span>
+ 
+        FILE *fp= fopen(<span class="stringliteral">&quot;neo4j-community.tar.gz&quot;</span>, <span class="stringliteral">&quot;r&quot;</span>); <span class="comment">// 需要通过multipart upload上传的文件 </span>
+        <span class="keywordtype">size_t</span> file_len = oss_get_file_size(fp); <span class="comment">// 获取文件大小 </span>
+        
+        <span class="keywordtype">char</span> *buffer = (<span class="keywordtype">char</span> *)malloc(<span class="keyword">sizeof</span>(<span class="keywordtype">char</span>) * file_len + 1);
+        memset(buffer, <span class="charliteral">&#39;\0&#39;</span>, file_len + 1);
+        <span class="comment">// 一次性读入该文件所有内容，为简单起见，不对fread返回值做错误处理 </span>
+        fread(buffer, 1, file_len, fp); 
+        <span class="keyword">const</span> <span class="keywordtype">int</span> single_request_len = 8 * 1024 * 1024; <span class="comment">// 每个Part的大小 </span>
+        <span class="keywordtype">int</span> requests_num = file_len / single_request_len; <span class="comment">// 需要多少次上传 </span>
+        <span class="keywordtype">int</span> current_part_number = 0; <span class="comment">// 当前上传的 Part Number </span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request = <a class="code" href="../../d8/da0/group__oss__upload__part__request__t.html#gad174cb7ec0de3bc7818f58726bd8c442" title="oss_upload_part_request_t 构造函数">upload_part_request_initialize</a>();
+        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af159fc3d3e9e40c9eb840ea72ac3b037" title="设置Bucket名称">set_bucket_name</a>(request, bucket_name);
+        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a0e9f53a142080f80401789d5b9363670" title="设置OSSObject key">set_key</a>(request, key);
+        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#afb0942d1179c3c9882bdb0fd4daaac6d" title="设置标识Multipart上传事件的Upload ID">set_upload_id</a>(request, upload_id);
+ 
+        <span class="keywordflow">for</span> (current_part_number = 0; current_part_number &lt; requests_num + 1; current_part_number++) {
+                <span class="comment">// 除了最后一块的其他块，最小为 5MB，此处设置单个Part为single_request_len = 8MB </span>
+                <span class="keywordflow">if</span> (current_part_number &lt; requests_num) { 
+                        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a7adc525796b060b2236e6270ab807fc4" title="设置上传分块（Part）的标识号码（Part Number）">set_part_number</a>(request, current_part_number + 1);
+                        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af63b3515f03e2ab711cddd3f9a7a6076" title="设置包含上传分块内容的数据流">set_input_stream</a>(request,
+                                        buffer + current_part_number * single_request_len, single_request_len);
+                        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5a855b94cc896b5935ac44558eee5904" title="设置返回分块（Part）数据的字节数">set_part_size</a>(request, single_request_len);
+ 
+                        <span class="comment">// 上传Part </span>
+                        <a class="code" href="../../d2/de4/structoss__upload__part__result__s.html" title="包含向OSS上传Multipart分块（Part）的结果信息">oss_upload_part_result_t</a> *result = <a class="code" href="../../d9/df5/group__oss__client__t.html#gad83268d0e71dd2717069b2158b6887ca" title="上传一个分块（Part）到指定的的 Multipart 上传事件中">client_upload_part</a>(client, request, &amp;retcode);
+ 
+                        <span class="keywordflow">if</span> (retcode == OK) { <span class="comment">// 打印返回信息，包括 Part Number 和 ETag 值 </span>
+                                printf(<span class="stringliteral">&quot;PartNumber:%d, ETag:%s\n&quot;</span>, result-&gt;<a class="code" href="../../d2/de4/structoss__upload__part__result__s.html#a0bc10db6841c4581e962d846d32c42e0" title="返回分块（Part）标识号">get_part_number</a>(result), result-&gt;<a class="code" href="../../d2/de4/structoss__upload__part__result__s.html#a876000f6027a496a4a9e4e34429c4361" title="获得OSS生成的ETag值">get_etag</a>(result));
+                        } <span class="keywordflow">else</span> { <span class="comment">// 打印出错信息 </span>
+                                retinfo = oss_get_error_message_from_retcode(retcode);
+                                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+                        }
+                        <span class="comment">// 最好此时释放 result 空间 </span>
+                        <a class="code" href="../../d1/dc8/group__oss__upload__part__result__t.html#ga49c9386797edcac343f44b3552f2793e" title="oss_upload_part_result_t 析构函数">upload_part_result_finalize</a>(result);
+                } <span class="keywordflow">else</span> { <span class="comment">// 最后一块，可以小于5MB </span>
+                        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a7adc525796b060b2236e6270ab807fc4" title="设置上传分块（Part）的标识号码（Part Number）">set_part_number</a>(request, current_part_number + 1);
+                        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#af63b3515f03e2ab711cddd3f9a7a6076" title="设置包含上传分块内容的数据流">set_input_stream</a>(request,
+                                        buffer + current_part_number *single_request_len,
+                                        file_len - single_request_len * current_part_number);
+                        request-&gt;<a class="code" href="../../d1/d04/structoss__upload__part__request__s.html#a5a855b94cc896b5935ac44558eee5904" title="设置返回分块（Part）数据的字节数">set_part_size</a>(request, file_len - single_request_len * current_part_number);
+ 
+                        <span class="comment">// 上传Part </span>
+                        <a class="code" href="../../d2/de4/structoss__upload__part__result__s.html" title="包含向OSS上传Multipart分块（Part）的结果信息">oss_upload_part_result_t</a> *result = <a class="code" href="../../d9/df5/group__oss__client__t.html#gad83268d0e71dd2717069b2158b6887ca" title="上传一个分块（Part）到指定的的 Multipart 上传事件中">client_upload_part</a>(client, request, &amp;retcode);
+                        
+                        <span class="keywordflow">if</span> (retcode == OK) { <span class="comment">// 打印返回信息，包括 Part Number 和 ETag 值 </span>
+                                printf(<span class="stringliteral">&quot;PartNumber:%d, ETag:%s\n&quot;</span>, result-&gt;<a class="code" href="../../d2/de4/structoss__upload__part__result__s.html#a0bc10db6841c4581e962d846d32c42e0" title="返回分块（Part）标识号">get_part_number</a>(result), result-&gt;<a class="code" href="../../d2/de4/structoss__upload__part__result__s.html#a876000f6027a496a4a9e4e34429c4361" title="获得OSS生成的ETag值">get_etag</a>(result));
+                        } <span class="keywordflow">else</span> { <span class="comment">// 打印出错信息 </span>
+                                retinfo = oss_get_error_message_from_retcode(retcode);
+                                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+                        }
+                        <span class="comment">// 最好及时释放 result 空间，否则回造成内存泄漏 </span>
+                        <a class="code" href="../../d1/dc8/group__oss__upload__part__result__t.html#ga49c9386797edcac343f44b3552f2793e" title="oss_upload_part_result_t 析构函数">upload_part_result_finalize</a>(result);
+                }
+        }
+        free(buffer);
+        <a class="code" href="../../d8/da0/group__oss__upload__part__request__t.html#gaefdd8ce50a5b76c6ed73bec57c6e85f1" title="oss_upload_part_request_t 析构函数">upload_part_request_finalize</a>(request);
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        fclose(fp);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="完成Multipart-Upload"></a>
+完成Multipart-Upload</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ 
+ <span class="comment">// TODO: 此处设置你从 Upload Part 步骤中获取的 ETag 值</span>
+ <span class="keyword">const</span> <span class="keywordtype">char</span> *etags[] = {
+        <span class="stringliteral">&quot;ETag001&quot;</span>,
+        <span class="stringliteral">&quot;ETag002&quot;</span>,
+        <span class="stringliteral">&quot;...&quot;</span>,
+        <span class="stringliteral">&quot;ETag00n&quot;</span>
+ };
+ 
+ <span class="comment">// 完成一个Multipart Upload操作</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;multipart-upload.data&quot;</span>;      <span class="comment">//设置key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *upload_id = <span class="stringliteral">&quot;&quot;</span>; <span class="comment">// TODO:此处设置你需要终止的 Upload ID </span>
+ 
+        <span class="keywordtype">size_t</span> parts = <span class="keyword">sizeof</span>(etags) / <span class="keyword">sizeof</span>(<span class="keywordtype">char</span> *);
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d1/d53/structoss__part__etag__s.html" title="包含Multipart上传的Part的返回结果信息">oss_part_etag_t</a> **part_etag = (<a class="code" href="../../d1/d53/structoss__part__etag__s.html" title="包含Multipart上传的Part的返回结果信息">oss_part_etag_t</a> **)malloc(<span class="keyword">sizeof</span>(<a class="code" href="../../d1/d53/structoss__part__etag__s.html" title="包含Multipart上传的Part的返回结果信息">oss_part_etag_t</a> *) * parts);
+        <span class="keywordtype">int</span> i = 0;
+        <span class="keywordflow">for</span> (; i &lt; parts; i++) {
+ 
+                *(part_etag + i) = <a class="code" href="../../db/d87/group__oss__part__etag__t.html#gabafc502992f1b00a25cb78de403056ff" title="oss_part_etag_t构造函数">part_etag_initialize</a>(i + 1, etags[i]);
+        }
+ 
+        <a class="code" href="../../d1/d06/structoss__complete__multipart__upload__request__s.html" title="包含完成一个Multipart上传事件的请求参数">oss_complete_multipart_upload_request_t</a> *request = 
+                <a class="code" href="../../d4/d25/group__oss__complete__multipart__upload__request__t.html#gaabfb14624c7de464bcb94044342f091c" title="oss_complete_multipart_upload_request_t 构造函数">complete_multipart_upload_request_initialize</a>(bucket_name, key, upload_id, part_etag, parts);
+ 
+        <span class="comment">// 完成一次Multipart Upload上传操作 </span>
+        <a class="code" href="../../d6/d69/structoss__complete__multipart__upload__result__s.html" title="包含完成一个Multipart上传事件的返回结果">oss_complete_multipart_upload_result_t</a> *result = 
+                <a class="code" href="../../d9/df5/group__oss__client__t.html#ga1168c7130724c93de0b59d20d1d5610d" title="完成一个 Multipart 上传事件">client_complete_multipart_upload</a>(client, request, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;Complete multipart upload successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;ETag: %s\n&quot;</span>, result-&gt;<a class="code" href="../../d6/d69/structoss__complete__multipart__upload__result__s.html#a05d784a048172876a45e0bdcf9f6517c" title="获得Object的MD5值">get_etag</a>(result));
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+        <a class="code" href="../../d4/d25/group__oss__complete__multipart__upload__request__t.html#gaa9cb2bdc53b132326de931c660877156" title="oss_complete_multipart_upload_request_t 析构函数">complete_multipart_upload_request_finalize</a>(request);
+        <a class="code" href="../../d0/dfa/group__oss__complete__multipart__upload__result__t.html#ga9cefca54fa105c23c299f73fcba2ad49" title="oss_complete_multipart_upload_result_t 析构函数">complete_multipart_upload_result_finalize</a>(result);
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ 
+        <span class="keywordflow">return</span> 0;
+ 
+ }
+</pre></div> <h3><a class="anchor" id="终止一个Multipart-Upload操作"></a>
+终止一个Multipart-Upload操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 终止一个Multipart Upload操作</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;multipart-upload.data&quot;</span>;      <span class="comment">//设置key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *upload_id = <span class="stringliteral">&quot;&quot;</span>; <span class="comment">// TODO:此处设置你需要终止的 Upload ID </span>
+ 
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../dc/dc9/structoss__abort__multipart__upload__request__s.html" title="oss_abort_multipart_upload_request_t 包含终止一个 Multipart 上传事件的请求参数">oss_abort_multipart_upload_request_t</a> *request = 
+                <a class="code" href="../../dd/dba/group__oss__abort__multipart__upload__request__t.html#ga02cc5821b70534fb2faaac07a63276a7" title="abort_multipart_upload_request_t 构造函数">abort_multipart_upload_request_initialize</a>(bucket_name, key, upload_id);
+        
+        <span class="comment">// 终止一个Multipart Upload操作</span>
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa2fa80e558338b2a2ce05df33b33cb58" title="终止一个 Multipart 上传事件">client_abort_multipart_upload</a>(client, request, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                printf(<span class="stringliteral">&quot;Abort multipart upload successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <a class="code" href="../../dd/dba/group__oss__abort__multipart__upload__request__t.html#ga936ec48c42ac3de89b1dc5ec628e6aa5" title="abort_multipart_upload_request_t 析构函数">abort_multipart_upload_request_finalize</a>(request);
+ 
+        <span class="keywordflow">return</span> 0;
+ 
+ }
+</pre></div><h3><a class="anchor" id="列出所有正在进行的Multipart-Uploads操作"></a>
+列出所有正在进行的Multipart-Uploads操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; <span class="comment">// 设置用户的 Access Key </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 列出所有的Multipart Upload操作</span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d9/d78/structoss__list__multipart__uploads__request__s.html" title="包含列出所有执行中Multipart上传事件的请求参数">oss_list_multipart_uploads_request_t</a> *request = 
+                <a class="code" href="../../d9/ded/group__oss__list__multipart__uploads__request__t.html#ga98fa1b7323a38700f70e85bc6229b01c" title="oss_list_multipart_uploads_request_t构造函数">list_multipart_uploads_request_initialize</a>(bucket_name);
+ 
+        <a class="code" href="../../d5/d60/structoss__multipart__upload__listing__s.html" title="包含Multipart上传事件的列表">oss_multipart_upload_listing_t</a> *listing = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4f3e8c8c56e686e5d8a7cb461c2f625c" title="列出所有执行中的 Multipart 上传事件">client_list_multipart_uploads</a>(client, request, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+ 
+                printf(<span class="stringliteral">&quot;BUCKET NAME: %s\n&quot;</span>, listing-&gt;<a class="code" href="../../d5/d60/structoss__multipart__upload__listing__s.html#aa32dc949975b946e55e39e785bae0b8a" title="获得Bucket名称">get_bucket_name</a>(listing));
+ 
+                <span class="keywordtype">size_t</span> upload_counts = 0;
+                <span class="keywordtype">int</span> i = 0;
+ 
+                <a class="code" href="../../de/dc5/structoss__multipart__upload__s.html" title="multipart upload的信息">oss_multipart_upload_t</a> **uploads = listing-&gt;<a class="code" href="../../d5/d60/structoss__multipart__upload__listing__s.html#a13057a5dcd4eea030cd97b7ba0f7d875" title="获得各个multipart upload 的信息">get_multipart_uploads</a>(listing, &amp;upload_counts);
+                <span class="keywordflow">for</span> (i = 0; i &lt; upload_counts; i++) {
+                        printf(<span class="stringliteral">&quot;***********************************CONTENT %d*******************************\n&quot;</span>, i + 1);
+                        printf(<span class="stringliteral">&quot;KEY: %s\n&quot;</span>, (*(uploads + i))-&gt;get_key(*(uploads + i)));
+                        printf(<span class="stringliteral">&quot;UPLOAD ID: %s\n&quot;</span>, (*(uploads + i))-&gt;get_upload_id(*(uploads + i)));
+                        printf(<span class="stringliteral">&quot;STORAGE CLASS: %s\n&quot;</span>, (*(uploads + i))-&gt;get_storage_class(*(uploads + i)));
+                        printf(<span class="stringliteral">&quot;INITIATED: %s\n&quot;</span>, (*(uploads + i))-&gt;get_initiated(*(uploads + i)));
+                }
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/ded/group__oss__list__multipart__uploads__request__t.html#ga756d8fe1b3bc54ac28788eeac1baad7c" title="oss_list_multipart_uploads_request_t析构函数">list_multipart_uploads_request_finalize</a>(request);
+        <a class="code" href="../../dd/dbe/group__oss__multipart__upload__listing__t.html#gad99b94c7e6803d933ec64e0ee69888a9" title="oss_multipart_upload_listing_t析构函数">multipart_upload_listing_finalize</a>(listing);
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h3><a class="anchor" id="列出一个Multipart-Upload的所有已上传的parts"></a>
+列出一个Multipart-Upload的所有已上传的parts</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id  = <span class="stringliteral">&quot;ACSGmv8fkV1TDO9L&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;BedoWbsJe2&quot;</span>; 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint   = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置 hostname</span>
+ 
+ <span class="comment">// 列出一次Multipart Upload操作已经上传的所有Parts </span>
+ <span class="keywordtype">int</span> main()
+ {
+ 
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode = -1;                    <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo = NULL;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key         = <span class="stringliteral">&quot;multipart-upload.data&quot;</span>;      <span class="comment">//设置key</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *upload_id   = <span class="stringliteral">&quot;&quot;</span>; <span class="comment">// TODO: 此处设置Upload ID </span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+ 
+        <a class="code" href="../../d1/dca/structoss__list__parts__request__s.html" title="包含列出Part的请求参数">oss_list_parts_request_t</a> *request = 
+                <a class="code" href="../../df/d2a/group__oss__list__parts__request__t.html#ga109635eb2d46759b0f6fa58b4362e3fd" title="oss_list_parts_request_t构造函数">list_parts_request_initialize</a>(bucket_name, key, upload_id);
+ 
+        <a class="code" href="../../db/d7d/structoss__part__listing__s.html" title="包含Multipart上传Part的表示">oss_part_listing_t</a> *listing = <a class="code" href="../../d9/df5/group__oss__client__t.html#gaef32afbd6d84ed137f1526551e094286" title="列出 multipart 中上传的所有 part 信息">client_list_parts</a>(client, request, &amp;retcode);
+ 
+        <span class="keywordflow">if</span> (retcode == OK) {
+                <span class="keywordtype">int</span> part_counts = 0;
+                <span class="keywordtype">int</span> i = 0;
+                <a class="code" href="../../de/dc7/structoss__part__summary__s.html" title="包含通过Multipart上传模式上传的Part的摘要信息">oss_part_summary_t</a> **parts = listing-&gt;<a class="code" href="../../db/d7d/structoss__part__listing__s.html#a48f108a57ebb6be297283de992ae62ae" title="获得PartSummary的列表">get_parts</a>(listing, &amp;part_counts);
+ 
+                <span class="keywordflow">for</span> (i = 0; i &lt; part_counts; i++) {
+                        printf(<span class="stringliteral">&quot;********************************** CONTENT %d*******************************\n&quot;</span>, i + 1);
+                        printf(<span class="stringliteral">&quot;ETAG: %s\n&quot;</span>, (*(parts + i))-&gt;get_etag(*(parts + i)));
+                        printf(<span class="stringliteral">&quot;LAST_MODIFIED: %s\n&quot;</span>, (*(parts + i))-&gt;get_last_modified(*(parts + i)));
+                        printf(<span class="stringliteral">&quot;PARTNUMBER: %d\n&quot;</span>, (<span class="keywordtype">int</span>)(*(parts + i))-&gt;get_part_number(*(parts + i)));
+                        printf(<span class="stringliteral">&quot;SIZE: %d\n&quot;</span>, (<span class="keywordtype">int</span>)(*(parts + i))-&gt;get_size(*(parts + i)));
+                }
+        } <span class="keywordflow">else</span> {
+                        retinfo = oss_get_error_message_from_retcode(retcode);
+                        printf(<span class="stringliteral">&quot;%s\n&quot;</span>, retinfo);
+        }
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <a class="code" href="../../df/d2a/group__oss__list__parts__request__t.html#ga6a383cfd1d43df600410ba3d8475ee45" title="oss_list_parts_request_t析构函数">list_parts_request_finalize</a>(request);
+        <a class="code" href="../../d3/def/group__oss__part__listing__t.html#ga8d164cffcc8ee2c2d0e52ab3b33ff5d7" title="oss_part_listing_t析构函数">part_listing_finalize</a>(listing);
+ 
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h2><a class="anchor" id="Object"></a>
+Group 操作</h2>
+<h3><a class="anchor" id="Post"></a>
+Post Object Group 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//设置要组合的Objects的etag值 </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *etags[] = {
+        <span class="comment">//&quot;6F395BF16882D154CCB448806EA8C47D&quot;,</span>
+        <span class="comment">//&quot;321F048D6C898398F3168545F6CE8551&quot;,</span>
+        <span class="comment">//&quot;249697174471EEE73202E9214B037E08&quot;,</span>
+        <span class="comment">//&quot;B78E7B470FA41AA5478CFB0EDFF7B2E6&quot;,</span>
+        <span class="comment">//&quot;E0CA28D194BC790EF3C6236231D033A7&quot;</span>
+ };
+ 
+ <span class="comment">//设置要组合的Objects的name </span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *partname[] = {
+        <span class="comment">//&quot;a.txt&quot;,</span>
+        <span class="comment">//&quot;b.txt&quot;,</span>
+        <span class="comment">//&quot;c.txt&quot;,</span>
+        <span class="comment">//&quot;d.txt&quot;,</span>
+        <span class="comment">//&quot;e.txt&quot;</span>
+ };
+ 
+ <span class="comment">// Post Object Group 操作将根据用户提供的 Object 信息,在 OSS 服务器端创建出一个新的 Object Group。</span>
+ <span class="comment">//用户需要将创建该 Object Group 所需的 Object Name, E-tag 以及标识该 Object 在整个 Group 中相对位置的 Part ID</span>
+ <span class="comment">// 按照规定的 XML 格式发给 OSS, Object 的 E-tag 值可以通过list_object功能获得。</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;a_empty_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        <span class="keywordtype">int</span> i;
+        <span class="keywordtype">int</span> n = <span class="keyword">sizeof</span>(partname)/<span class="keyword">sizeof</span>(<span class="keywordtype">char</span> *);
+        <span class="comment">// 构造各个Object的etag，name，ID到part_item </span>
+        <a class="code" href="../../d3/d88/structoss__object__group__item__s.html" title="post object group 需要提供的 Object 信息">oss_object_group_item_t</a> **part_item = 
+                (<a class="code" href="../../d3/d88/structoss__object__group__item__s.html" title="post object group 需要提供的 Object 信息">oss_object_group_item_t</a> **)malloc(<span class="keyword">sizeof</span>(<a class="code" href="../../d3/d88/structoss__object__group__item__s.html" title="post object group 需要提供的 Object 信息">oss_object_group_item_t</a> *) * n);
+        <span class="keywordflow">for</span> (i = 0; i &lt; n; i++) {
+                *(part_item + i) = <a class="code" href="../../d9/d45/group__oss__object__group__item__t.html#ga4918e3600604a7c3eed7b11cfe993be7" title="oss_object_group_item_t构造函数">object_group_item_initialize</a>(etags[i], partname[i], i + 1);
+        }
+        <a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request = 
+                <a class="code" href="../../d9/de6/group__oss__post__object__group__request__t.html#gae9ea99e7480dd0a8068314f9077e8abc" title="oss_post_object_group_request_t 构造函数">post_object_group_request_initialize</a>(bucket_name, key, part_item, n);
+        <a class="code" href="../../de/d68/structoss__post__object__group__result__s.html" title="创建对象组（Object Group）返回的结果">oss_post_object_group_result_t</a> *post_result = <a class="code" href="../../d9/df5/group__oss__client__t.html#gafe387da8619004fabf71be7ac40e4591" title="Post Object Group 操作将根据用户提供的 Object 信息,在 OSS 服务器端创建出一个新的 Object Group.">client_post_object_group</a>(client, request, &amp;retcode);
+ 
+        printf(<span class="stringliteral">&quot;post_obejct_group result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == OK) {
+                printf(<span class="stringliteral">&quot;post_object_group successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;bucket_name = %s\nkey = %s\netag = %s\nsize = %u\n&quot;</span>, 
+                                post_result-&gt;<a class="code" href="../../de/d68/structoss__post__object__group__result__s.html#a9c4511a2051789ad75fa5703cf45ed21" title="Bucket名称">bucket_name</a>, post_result-&gt;<a class="code" href="../../de/d68/structoss__post__object__group__result__s.html#a5892a9181e6a332f84d27aecd41dcd12" title="Object名称">key</a>,
+                                post_result-&gt;<a class="code" href="../../de/d68/structoss__post__object__group__result__s.html#ae96fbf2bcf0833cd225f57b894f35fc8" title="Object的etag值">etag</a>, post_result-&gt;<a class="code" href="../../de/d68/structoss__post__object__group__result__s.html#aac913b3a1f6ef005d66bf7a84428773e" title="Object的大小">size</a>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">// 释放空间</span>
+        <span class="keywordflow">if</span>(part_item != NULL) {
+                <span class="keywordflow">for</span>(i = 0; i &lt; n; i++) {
+                        <span class="keywordflow">if</span>(part_item[i] != NULL) {
+                                <a class="code" href="../../d9/d45/group__oss__object__group__item__t.html#ga8d157d388cc3f4470f2df448fab012d6" title="oss_object_group_item_t析构函数">object_group_item_finalize</a>(part_item[i]);
+                        }
+                }
+                free(part_item);
+        }
+        <span class="keywordflow">if</span>(request != NULL) {
+                <a class="code" href="../../d9/de6/group__oss__post__object__group__request__t.html#gab43a4229cc5470de0e103251addaaa18" title="oss_post_object_group_request_t 析构函数">post_object_group_request_finalize</a>(request);
+        }
+        <span class="keywordflow">if</span>(post_result) {
+                <a class="code" href="../../df/d6d/group__oss__post__object__group__result__t.html#gad5ce9621c091aa8c0b322c7ca03a4f8f" title="oss_post_object_group_result_t析构函数">post_object_group_result_finalize</a>(post_result);
+        }
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Get01"></a>
+Get Object Group 操作</h3>
+<h4><a class="anchor" id="获取Object-Group到内存"></a>
+获取Object-Group到内存</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//读取用户指定的Object group到buffer </span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;a_empty_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        <span class="keywordtype">char</span> *buffer;
+        <span class="keywordtype">size_t</span> buf_len;
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <a class="code" href="../../de/d4e/structoss__get__object__group__request__s.html" title="指定从OSS下载Object group的请求参数">oss_get_object_group_request_t</a> *request = 
+                <a class="code" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga0d7355f383f49573d06303d102851b2e" title="oss_get_object_group_request_t构造函数">get_object_group_request_initialize</a>(bucket_name, key);
+        <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *result = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga782a4be8676609b34a38c8b0d4682687" title="Get Object Group To Buffer 操作将读取用户指定的Object Group到Buffer中">client_get_object_group_to_buffer</a>(client, request, (<span class="keywordtype">void</span> **)&amp;buffer, &amp;buf_len, &amp;retcode);
+ 
+        printf(<span class="stringliteral">&quot;get_obejct_group_to_buffer result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == OK) {
+                printf(<span class="stringliteral">&quot;get_object_group_to_buffer successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;etag = %s\nlast_modified = %s\ncontent_type = %s\ncontent_length = %ld\n&quot;</span>, 
+                                result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#adb40938def73de6a2807b9a06513128d" title="获取一个值表示与Object相关的hex编码的128位MD5摘要">get_etag</a>(result), result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a5549dd0bd5a5c71e655eb86083bb3453" title="获取Last-Modified请求头的值，表示Object最后一次修改的时间">get_last_modified</a>(result),
+                                result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#abffc43133dd15f480de01f7df418190d" title="获取Content-Type请求头，表示Object内容的类型，为标准的MIME类型">get_content_type</a>(result), result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a6a2b673bf1c724cff2b4e16471481d0f" title="获取Content-Length请求头，表示Object内容的大小">get_content_length</a>(result));
+                printf(<span class="stringliteral">&quot;buffer = \n%s\n&quot;</span>, buffer);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">// 释放空间 </span>
+        <span class="keywordflow">if</span>(buffer != NULL) {
+                free(buffer);
+                buffer = NULL;
+        }
+        <span class="keywordflow">if</span>(request != NULL) {
+                <a class="code" href="../../d8/d13/group__oss__get__object__group__request__t.html#gae85d93447cb99de9ba4147030272398a" title="oss_get_object_group_request_t析构函数">get_object_group_request_finalize</a>(request);
+        }
+        <span class="keywordflow">if</span>(result) {
+                <a class="code" href="../../d2/d08/group__oss__object__metadata__t.html#ga5a8e8ba70553856bc6686ced0f62923b" title="oss_object_metadata_t析构函数">object_metadata_finalize</a>(result);
+        }
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> <h4><a class="anchor" id="获取Object-Group至本地文件"></a>
+获取Object-Group至本地文件</h4>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">// 读取用户指定的Object group到本地文件 </span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;a_empty_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        FILE *fp = NULL;
+        <span class="keywordflow">if</span>((fp = fopen(<span class="stringliteral">&quot;get_object_group&quot;</span>, <span class="stringliteral">&quot;w+&quot;</span>)) == NULL) {
+                printf(<span class="stringliteral">&quot;open file failed.\n&quot;</span>);
+                <span class="keywordflow">return</span> -1;
+        }
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <a class="code" href="../../de/d4e/structoss__get__object__group__request__s.html" title="指定从OSS下载Object group的请求参数">oss_get_object_group_request_t</a> *request = 
+                <a class="code" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga0d7355f383f49573d06303d102851b2e" title="oss_get_object_group_request_t构造函数">get_object_group_request_initialize</a>(bucket_name, key);
+        <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *result = <a class="code" href="../../d9/df5/group__oss__client__t.html#gab4703b026554af88cd9ad8dc5facad4e" title="Get Object Group To File 操作将读取用户指定的Object Group到本地文件中">client_get_object_group_to_file</a>(client, request, fp, &amp;retcode);
+ 
+        printf(<span class="stringliteral">&quot;get_obejct_group_to_file result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == OK) {
+                printf(<span class="stringliteral">&quot;get_object_group_to_file successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;etag = %s\nlast_modified = %s\ncontent_type = %s\ncontent_length = %ld\n&quot;</span>, 
+                                result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#adb40938def73de6a2807b9a06513128d" title="获取一个值表示与Object相关的hex编码的128位MD5摘要">get_etag</a>(result), result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a5549dd0bd5a5c71e655eb86083bb3453" title="获取Last-Modified请求头的值，表示Object最后一次修改的时间">get_last_modified</a>(result),
+                                result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#abffc43133dd15f480de01f7df418190d" title="获取Content-Type请求头，表示Object内容的类型，为标准的MIME类型">get_content_type</a>(result), result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a6a2b673bf1c724cff2b4e16471481d0f" title="获取Content-Length请求头，表示Object内容的大小">get_content_length</a>(result));
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">// 释放空间 </span>
+        <span class="keywordflow">if</span>(request != NULL) {
+                <a class="code" href="../../d8/d13/group__oss__get__object__group__request__t.html#gae85d93447cb99de9ba4147030272398a" title="oss_get_object_group_request_t析构函数">get_object_group_request_finalize</a>(request);
+        }
+        <span class="keywordflow">if</span>(result) {
+                <a class="code" href="../../d2/d08/group__oss__object__metadata__t.html#ga5a8e8ba70553856bc6686ced0f62923b" title="oss_object_metadata_t析构函数">object_metadata_finalize</a>(result);
+        }
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Get02"></a>
+Get Object Group Index 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">// 返回 Object Group 中的 Object List 信息</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;a_empty_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+        <span class="keywordtype">int</span> i;
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html" title="用于返回 Object Group 中的 Object List 信息">oss_get_object_group_index_result_t</a> *result = <a class="code" href="../../d9/df5/group__oss__client__t.html#gab95e25cca77c3bd53d34116419e532d6" title="Get Object Group Index 返回 Object Group 中的 Object List 信息">client_get_object_group_index</a>(client, bucket_name, key, &amp;retcode);
+ 
+        printf(<span class="stringliteral">&quot;get_obejct_group_index result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == OK) {
+                printf(<span class="stringliteral">&quot;get_object_group_index successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;bucket_name = %s\nkey = %s\netag = %s\nfile_length = %u\n&quot;</span>, 
+                                result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#a32baccdf57451f8fb04177cb1c343445" title="获得Bucket名称">get_bucket_name</a>(result), result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ae18ae26463f5b4f0201508228bded8ea" title="获得Object名称">get_key</a>(result),
+                                result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ac846edffa7742f2f09a6f8869879921a" title="获得Object的MD5值">get_etag</a>(result), result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ada3c1b73ab5a3b169c96d9329040825a" title="获得Object的文件长度">get_file_length</a>(result));
+                printf(<span class="stringliteral">&quot;============================================\n&quot;</span>);
+
+                <span class="keywordflow">for</span>(i = 0; i &lt; result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#acc77b0d64ed7d3bb199fba2446d2949a" title="object group中的多个object列表的个数">part_number</a>; i++) {
+                        printf(<span class="stringliteral">&quot;part [%d] :\n&quot;</span>, i);
+                        printf(<span class="stringliteral">&quot;etag = %s\npart_name = %s\npart_number = %d\npart_size = %u\n&quot;</span>, 
+                                        (result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ab6052b1d399aaebd0a1b12dc1e155455" title="object group中的多个object列表">group</a>)[i]-&gt;etag, (result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ab6052b1d399aaebd0a1b12dc1e155455" title="object group中的多个object列表">group</a>)[i]-&gt;part_name,
+                                        (result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ab6052b1d399aaebd0a1b12dc1e155455" title="object group中的多个object列表">group</a>)[i]-&gt;part_number, (result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ab6052b1d399aaebd0a1b12dc1e155455" title="object group中的多个object列表">group</a>)[i]-&gt;part_size);
+                        printf(<span class="stringliteral">&quot;*****************************************\n&quot;</span>);
+                }
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">// 释放空间 </span>
+        <span class="keywordflow">if</span>(result != NULL) {
+                <span class="keywordflow">if</span>(result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ab6052b1d399aaebd0a1b12dc1e155455" title="object group中的多个object列表">group</a> != NULL) {
+                        <span class="keywordflow">for</span>(i = 0; i &lt; result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#acc77b0d64ed7d3bb199fba2446d2949a" title="object group中的多个object列表的个数">part_number</a>; i++) {
+                                <a class="code" href="../../d6/d9e/group__oss__multipart__object__group__t.html#ga4d9bf6e7ac626f56f46c4d85dba31d37" title="oss_multipart_object_group_t析构函数">multipart_object_group_finalize</a>((result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ab6052b1d399aaebd0a1b12dc1e155455" title="object group中的多个object列表">group</a>)[i]);
+                        }
+                        free(result-&gt;<a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html#ab6052b1d399aaebd0a1b12dc1e155455" title="object group中的多个object列表">group</a>);
+                }
+                <a class="code" href="../../db/dce/group__oss__get__object__group__index__result__t.html#gaa6a302b3456024afcf63384c9bd10d12" title="oss_get_object_group_index_result_t析构函数">get_object_group_index_result_finalize</a>(result);
+        }
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+         <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Head"></a>
+Head Object Group 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">// Head Object Group 返回用户指定的 Object Group 信息, 不返回文件内容。</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+ 
+        <a class="code" href="../../de/d4e/structoss__get__object__group__request__s.html" title="指定从OSS下载Object group的请求参数">oss_get_object_group_request_t</a> *request = <a class="code" href="../../d8/d13/group__oss__get__object__group__request__t.html#ga0d7355f383f49573d06303d102851b2e" title="oss_get_object_group_request_t构造函数">get_object_group_request_initialize</a>(bucket_name, key);
+        request-&gt;<a class="code" href="../../de/d4e/structoss__get__object__group__request__s.html#ac870529e7bc091a2f412cea11b1b1816" title="设置modified_since_constraint时间">set_modified_since_constraint</a>(request, <span class="stringliteral">&quot;Sat, 20 Sep 2012 23:23:23 GMT&quot;</span>);
+        <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *result = <a class="code" href="../../d9/df5/group__oss__client__t.html#gac8c3870bd348b84cad315a4d192d1fdb" title="Head Object Group 返回 指定Object Group 的 元信息，不返回文件内容。">client_head_object_group</a>(client, request, &amp;retcode);
+ 
+        printf(<span class="stringliteral">&quot;head_obejct_group result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == OK) {
+                printf(<span class="stringliteral">&quot;head_object_group successfully.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;content-length = %ld\ncontent-type = %s\nlast-modified = %s\n&quot;</span>,
+                                result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a6a2b673bf1c724cff2b4e16471481d0f" title="获取Content-Length请求头，表示Object内容的大小">get_content_length</a>(result),
+                                result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#abffc43133dd15f480de01f7df418190d" title="获取Content-Type请求头，表示Object内容的类型，为标准的MIME类型">get_content_type</a>(result),
+                                result-&gt;<a class="code" href="../../d5/d38/structoss__object__metadata__s.html#a5549dd0bd5a5c71e655eb86083bb3453" title="获取Last-Modified请求头的值，表示Object最后一次修改的时间">get_last_modified</a>(result));
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">// 释放空间 </span>
+        <span class="keywordflow">if</span>(request != NULL) {
+                <a class="code" href="../../d8/d13/group__oss__get__object__group__request__t.html#gae85d93447cb99de9ba4147030272398a" title="oss_get_object_group_request_t析构函数">get_object_group_request_finalize</a>(request);
+        }
+        <span class="keywordflow">if</span>(result) {
+                <a class="code" href="../../d2/d08/group__oss__object__metadata__t.html#ga5a8e8ba70553856bc6686ced0f62923b" title="oss_object_metadata_t析构函数">object_metadata_finalize</a>(result);
+        }
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div><h3><a class="anchor" id="Delete"></a>
+Delete Object Group 操作</h3>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;stdio.h&gt;</span>
+ 
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id = <span class="stringliteral">&quot;ACSfLOiddaOzejOP&quot;</span>;   <span class="comment">//设置用户帐号</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key = <span class="stringliteral">&quot;MUltNpuYqE&quot;</span>;  <span class="comment">//设置用户密码</span>
+ <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint = <span class="stringliteral">&quot;storage.aliyun.com&quot;</span>;    <span class="comment">//设置hostname</span>
+ 
+ <span class="comment">//Delete Object Group 删除用户指定的 Object Group 信息</span>
+ <span class="keywordtype">int</span> main()
+ {
+        <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> retcode;                 <span class="comment">//保存服务器http返回码的解析结果;</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *retinfo;            <span class="comment">//保存通过retcode获得的错误信息</span>
+ 
+        <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client = <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(access_id, access_key, endpoint);
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name = <span class="stringliteral">&quot;bucket_example&quot;</span>;       <span class="comment">//设置bucket_name</span>
+        <span class="keyword">const</span> <span class="keywordtype">char</span> *key = <span class="stringliteral">&quot;a_group_file.dat&quot;</span>;             <span class="comment">//设置object group的名称</span>
+ 
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gad8285aa6adfec8c2a17ec1aacb588b53" title="Delete Object Group 返回 指定Object Group 的 元信息，不返回文件内容。">client_delete_object_group</a>(client, bucket_name, key, &amp;retcode);
+ 
+        printf(<span class="stringliteral">&quot;delete_obejct_group result:\n\n&quot;</span>);
+        <span class="keywordflow">if</span>(retcode == NO_CONTENT) {
+                printf(<span class="stringliteral">&quot;delete_object_group successfully.\n&quot;</span>);
+        } <span class="keywordflow">else</span> {
+                retinfo = oss_get_error_message_from_retcode(retcode);
+                printf(<span class="stringliteral">&quot;error = %s\n&quot;</span>, retinfo);
+        }
+ 
+        <span class="comment">//释放空间 </span>
+        <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(client);
+        <span class="keywordflow">return</span> 0;
+ }
+</pre></div> </div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../index.html">OSSC 开发者手册</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

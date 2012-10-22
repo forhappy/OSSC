@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: OSSC实现原理</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d5/db2/_o_s_s_c__i_n_t_e_r_n_a_l.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">OSSC实现原理 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h2><a class="anchor" id="概述"></a>
+概述</h2>
+<p>OSSC（OSS-C-SDK）完全采用C语言开发，所有代码（头文件 + 实现文件 + 测试文件）合计约 2.2 万行，我们在 OSSC 中实现了类似面向对象的调用方式，<br/>
+ 因此熟悉 OSS Java调用方式的开发者可以在很短的时间内掌握 OSS C SDK的使用。</p>
+<h2><a class="anchor" id="代码目录结构"></a>
+代码目录结构</h2>
+<div class="fragment"><pre class="fragment"> .
+ ├── AUTHORS
+ ├── CMakeLists.txt
+ ├── config.h.cmake.in
+ ├── doc
+ │   └── doxygen
+ ├── include
+ │   ├── ossc
+ │   └── ossc-config.h
+ ├── LICENSE.txt
+ ├── README.txt
+ ├── src
+ │   ├── CMakeLists.txt
+ │   ├── core
+ │   ├── extra
+ │   ├── lib
+ │   ├── modules
+ │   └── util
+ ├── test
+</pre></div><p>OSSC 采用 CMake 管理项目构建过程，源码主要存放在 src 中，头文件在存放在 include 中，其中 include 目录结构如下： </p>
+<div class="fragment"><pre class="fragment"> ├── ossc
+ │   ├── client.h
+ │   ├── modules
+ │   ├── oss_constants.h
+ │   ├── oss_curl_callback.h
+ │   ├── oss_extra.h
+ │   ├── oss_helper.h
+ │   └── util
+ └── ossc-config.h
+</pre></div><p> 如编码规范一节所述，modules目录主要存放了各个类（即 C 语言中结构 struct）的头文件，你不应该直接包含include这些头文件，因为modules下的头文件开始都包含了以下语句（各个头文件可能不同）： </p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #ifndef _OSS_PART_LISTING_H</span>
+<span class="preprocessor"></span><span class="preprocessor"> # error Never include &lt;ossc/modules/oss_part_listing.h&gt; directly,</span>
+<span class="preprocessor"></span><span class="preprocessor"> # error use &lt;ossc/client.h&gt; instead.</span>
+<span class="preprocessor"> #endif</span>
+</pre></div><p>如果你想使用 OSSC 的 API，你可以只包含 ossc/client.h文件即可，为了保险起见，你应该尽量包含 ossc/oss_helper.h 或 ossc/oss_extra.h（依赖pthread，仅在Unix/Linux下有效），ossc/util/oss_common.h 如下代码所示：</p>
+<div class="fragment"><pre class="fragment"><span class="preprocessor"> #include &lt;ossc/client.h&gt;</span>
+<span class="preprocessor"> #include &lt;ossc/oss_extra.h&gt;</span> <span class="comment">// 多线程断点上传大文件功能，由于依赖pthread线程库，所以目前仅在Unix/Linux中可以使用。</span>
+</pre></div><dl class="attention"><dt><b>注意:</b></dt><dd>其中 ossc/oss_extra.h 里面包含了多线程断点上传大文件功能，由于依赖pthread线程库，所以目前仅在Unix/Linux中可以使用。</dd></dl>
+<p>另外，src 目录结构如下： </p>
+<div class="fragment"><pre class="fragment"> .
+ ├── CMakeLists.txt
+ ├── core
+ ├── extra
+ ├── lib
+ ├── modules
+ └── util
+</pre></div><ul>
+<li>CMakeLists.txt: 该目录的CMake脚本;</li>
+<li>core: OSSC 的核心代码，包含 Bucket，Object，Multipart Upload，Object Group 四类主要功能的实现及其辅助函数；</li>
+<li>extra: extra 库的核心实现，包括多线程断点续传和文件夹上传同步和下载同步的功能；</li>
+<li>lib: OSSC 的依赖库，包括 md5，hmac-sha1，sha1，base64和其他压缩库(LZ4, LZO)等功能；</li>
+<li>modules: OSSC 各个结构实现代码；</li>
+<li>util: OSSC 的工具函数，包括压缩库，签名验证函数，时间，字符串，XML解析等功能</li>
+</ul>
+<h2><a class="anchor" id="对象实现"></a>
+对象实现</h2>
+<p>OSSC 采用面向对象的方式构造每个结构（可以称之为类），每个对象对外只有初始化函数和析构函数，其他函数均采用函数指针方式调用， 所以一个典型的对象声明方式如下： </p>
+<div class="fragment"><pre class="fragment">  <span class="comment">//  Bucket是OSS上的命名空间 \n</span>
+  <span class="comment">//  Bucket名在整个 OSS 中具有全局唯一性,且不能修改；</span>
+  <span class="comment">//  存储在OSS上的每个Object必须都包含在某个Bucket中。</span>
+  <span class="comment">//  一个应用，例如图片分享网站，可以对应一个或多个 Bucket。</span>
+  <span class="comment">//  一个用户最多可创建 10 个Bucket, 但每个Bucket中存放的Object的数量和大小总和没有限制,</span>
+  <span class="comment">//  用户不需要考虑数据的可扩展性。\n</span>
+  <span class="comment">//  Bucket 命名规范</span>
+  <span class="comment">//  - 只能包括小写字母，数字，下划线（_）和短横线（-）</span>
+  <span class="comment">//  - 必须以小写字母或者数字开头</span>
+  <span class="comment">//  - 长度必须在 3-255 字节之间</span>
+
+ <span class="keyword">struct </span><a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_s</a> {
+        <span class="keywordtype">char</span> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a4660bca8e5ecbe2fe2f6fdad153c4c01" title="Bucket的创建时间">create_date</a>;  <span class="comment">//&lt; Bucket的创建时间</span>
+        <span class="keywordtype">char</span> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a5ac083a645d964373f022d03df4849c8" title="Bucket的名称">name</a>;         <span class="comment">//&lt; Bucket的名称 </span>
+        <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a389504832e4d361979100f9267479b8a" title="Bucket的所有者">owner</a>; <span class="comment">//&lt; Bucket的所有者 </span>
+
+        <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_create_date)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+
+        void (*<a class="code" href="../../db/db9/structoss__bucket__s.html#aab93bd5ed0f03acd55f45b322bf2f0a0" title="设置Bucket的创建时间">set_create_date</a>)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket, <span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a4660bca8e5ecbe2fe2f6fdad153c4c01" title="Bucket的创建时间">create_date</a>);
+
+        <span class="keyword">const</span> <span class="keywordtype">char</span> * (*get_name)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+
+        void (*<a class="code" href="../../db/db9/structoss__bucket__s.html#acb2608f931a8981b9374100f4248fd56" title="设置Bucket的名称">set_name</a>)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket, <span class="keyword">const</span> <span class="keywordtype">char</span> * <a class="code" href="../../db/db9/structoss__bucket__s.html#a5ac083a645d964373f022d03df4849c8" title="Bucket的名称">name</a>);
+        
+        <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> * (*get_owner)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+
+        void (*<a class="code" href="../../db/db9/structoss__bucket__s.html#a3910a919c0b18db622f93aaa293156bc" title="设置Bucket的所有者">set_owner</a>)(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket, <a class="code" href="../../d2/de4/structoss__owner__s.html" title="表示OSS Bucket的所有者">oss_owner_t</a> *<a class="code" href="../../db/db9/structoss__bucket__s.html#a389504832e4d361979100f9267479b8a" title="Bucket的所有者">owner</a>);
+ };
+ 
+ <span class="comment">//  </span>
+ <span class="comment">// oss_bucket_t 构造函数</span>
+ <span class="comment">// @return 返回一个标识Bucket的结构指针</span>
+ <span class="comment">// @note 用户不需要句柄后要调用相应的finalize函数释放空间</span>
+ <span class="comment">// @retval 非空 表示成功</span>
+ <span class="comment">// @retval NULL 表示失败</span>
+ 
+ <span class="keyword">extern</span> <a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *
+ <a class="code" href="../../d1/dc0/group__oss__bucket__t.html#gadef6bc163c155c5722341f1caa081264" title="oss_bucket_t 构造函数">bucket_initialize</a>(<span class="keywordtype">void</span>);
+ 
+ <span class="comment">//  </span>
+ <span class="comment">// oss_bucket_t 带bucket_name参数的构造函数</span>
+ <span class="comment">// @return 返回一个标识Bucket的结构指针</span>
+ <span class="comment">// @note 用户不需要句柄后要调用相应的finalize函数释放空间</span>
+ <span class="comment">// @retval 非空 表示成功</span>
+ <span class="comment">// @retval NULL 表示失败</span>
+ <span class="comment">//  </span>
+ <span class="keyword">extern</span> <a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *
+ <a class="code" href="../../d1/dc0/group__oss__bucket__t.html#ga12c8ae235dff026554a03ee3b1712fd9" title="oss_bucket_t 带bucket_name参数的构造函数">bucket_initialize_with_name</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name);
+ 
+ <span class="comment">// </span>
+ <span class="comment">// oss_bucket_t 析构函数</span>
+ <span class="comment">// @param bucket [in] 标识一个ACL的结构指针</span>
+ <span class="comment">// @retval void</span>
+ <span class="comment">// @pre bucket 必须使用bucket_initialize的返回值</span>
+ <span class="comment">// </span>
+ <span class="keyword">extern</span> <span class="keywordtype">void</span> 
+ <a class="code" href="../../d1/dc0/group__oss__bucket__t.html#ga0fbde89eb06ceac7562356ee395d69c1" title="oss_bucket_t 析构函数">bucket_finalize</a>(<a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> *bucket);
+</pre></div><h2><a class="anchor" id="签名验证"></a>
+签名验证</h2>
+<p>OSSC签名验证步骤遵循OSS标准签名验证方式，具体方式详见《OSS开放接口规范》</p>
+<h2><a class="anchor" id="请求处理"></a>
+请求处理</h2>
+<p>我们使用 libcurl 发送请求并接受返回结果。libcurl 可以灵活处理多种网络协议，对于HTTP协议来说， 也可以灵活地生成请求方式和请求头部。OSSC的HTTP请求处理的核心代码位于src/core中， 因此具体方式可以参见src/core/client_object_operation.c或相关的实现文件。</p>
+<h2><a class="anchor" id="返回结果解析与处理"></a>
+返回结果解析与处理</h2>
+<p>由于返回结果可能是包含错误信息的XML格式文件，另外OSSC使用C开发，需要重复制造轮子，但是我们并没有使用类似expat， libxml2等“重量级”的库，而是选择了超轻量级的CCAN的ttxml库（http://ccodearchive.net/info/ttxml.html,一个xml文件只读库， 源码仅仅300行左右），我们并对它进行了适当的改造，所以返回结果解析与处理比较完整，详细实现请参考 src/util/ttxml和相关文件。</p>
+<h2><a class="anchor" id="压缩文件格式描述"></a>
+压缩文件格式描述</h2>
+<p>为了减少用户海量文件对OSS存储造成的压力，同时降低对网络带宽等有限资源的使用， OSSC 采用当前流行的实时压缩算法设计了一种针对阿里云存储服务的可扩展压缩文件格式。</p>
+<h3><a class="anchor" id="为什么采用压缩文件上传"></a>
+为什么采用压缩文件上传</h3>
+<p>我们的实验也证明，该压缩文件格式由于支持多种实时压缩算法，因此可以在采用合理的压缩算法的情况下， 既保证用户不会损失很长的压缩时间，同时也有效减少用户上传文件大小20%-70%, 另外用户可以在压缩速度和压缩比之间进行取舍，该策略带来的好处是降低了OSS和用户双方的存储压力和网络带宽压力</p>
+<p>经过进一步的实验我们发现，其实压缩过程时间损失完全可以由压缩后文件变小更利于上传而带来的网络传输时间减小而弥补， 某些时候后者带来的好处远远大于前者。</p>
+<p>以LZ4压缩算法网站给出的数据(<a href="http://code.google.com/p/lz4/">http://code.google.com/p/lz4/</a>)，假设采用LZ4(r59)，压缩速率为 330MB/s，用户采用100M光纤上传1G的文件， 不采用压缩将需要 1024 MB / 12.5MB = 81.92s,如果采用压缩方式上传，压缩所用时间为3秒(当然还需要考虑文件从磁盘读入到内存的时间)，压缩后500M，此时文件上传仅需40秒的时间，因此压缩方式上传只需要 3 + 40 = 43秒， 同时也大大减少了存储空间，可以说是一举两得。</p>
+<div class="fragment"><pre class="fragment">        Single Thread, Core 2 Duo @3GHz
+
+      Name        Ratio    C.speed    D.speed
+ LZ4 (r59)        2.084    330        915
+ LZO 2.05 1x_1    2.038    311        480
+ QuickLZ 1.5-1    2.233    257        277
+ Snappy 1.0.5     2.024    227        729
+ LZF              2.076    197        465
+ FastLZ           2.030    195        420
+ zlib 1.2.5 -1    2.728    39         195
+ LZ4 HC (r66)     2.712    18         1020
+ zlib 1.2.5-6     3.095    14         210
+</pre></div><h3><a class="anchor" id="OSSC采用的压缩格式简介"></a>
+OSSC采用的压缩格式简介</h3>
+<div class="fragment"><pre class="fragment"> +---+---+---+---+---+---+---+---+
+ |<span class="stringliteral">&quot;O&quot;</span>|<span class="stringliteral">&quot;S&quot;</span>|<span class="stringliteral">&quot;S&quot;</span>|<span class="stringliteral">&quot;C&quot;</span>| V | A | F | L |   <span class="stringliteral">&quot;OSSC&quot;</span>: Magic Number;
+ +---+---+---+---+---+---+---+---+        V: Compressed File Version, Current Version 0x1
+ |           MD5[00-07]          |        A: Compression Algorithm, 0x1(LZ4), 0x2(LZO), ...
+ +---+---+---+---+---+---+---+---+        F: Flag, 0x1:Integrity Check, ...
+ |           MD5[08-15]          |        L: Header Length, Max Value 255
+ +---+---+---+---+---+---+---+---+ Optional: Optional Header, Not Used In Version 0x1
+ |       Optional(4 Bytes)       |
+ +---+---+---+---+---+---+---+---+--+                                                 
+ | Block  Length |               |  |                                                 
+ +---------------+               |  \                                                 
+ |                               |   X(Compressed Data Block 1)                       
+ |      Compressed Data          |  /                                                 
+ |                               |  |                                                 
+ +----------------+--------------+--+                                                 
+ | Block  Length  |              |  |                                                 
+ +----------------+              |  \                                                 
+ |                               |   X(Compressed Data Block 2)                       
+ |      Compressed Data          |  /                                                 
+ |                               |  |                                                 
+ +-------------------------------+--+                                                 
+ |                               |  |                                                 
+ |         Compressed            |  \                                                 
+ |            Data               |   X(Compressed Data Block 3 ~ (n - 1))             
+ |           Blocks              |  /                                                 
+ |                               |  |                                                 
+ +-------------------------------+--+                                                 
+ | Block  Length |               |  |                                                 
+ +---------------+               |  \                                                 
+ |                               |   X(Compressed Data Block n)                       
+ |      Compressed Data          |  /                                                 
+ |                               |  |                                                 
+ +-------------------------------+--+   
+</pre></div> <h3><a class="anchor" id="压缩文件解析"></a>
+压缩文件解析</h3>
+<ul>
+<li>OSSC: OSSC压缩文件起始的4个字节是魔数字符串"OSSC"，用来识别该文件是否是OSSC的压缩文件格式</li>
+<li>V: Version，1个字节，压缩文件格式的版本号，目前为0x1</li>
+<li>A: Algorithm，1个字节，标识压缩文件采用的算法，目前支持LZ4,LZO两种</li>
+<li>F: Flag，1个字节，标志位，取值为0x1时需要计算原始数据的MD5，同时在解压时进行完整性验证，取值为其他时待定</li>
+<li>L: Length，1个字节，标识头部长度，所以头部最大长度为255字节</li>
+<li>MD5: 原始数据的MD5值，在解压缩时进行完整性校验</li>
+<li>Optional: 可选数据项，目前版本0x1该项没有被利用 </li>
+</ul>
+</div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../index.html">OSSC 开发者手册</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+var structoss__object__metadata__s =
+[
+    [ "add_default_metadata", "d5/d38/structoss__object__metadata__s.html#adf9e46ac210c2857935347a0fb633db0", null ],
+    [ "add_user_metadata", "d5/d38/structoss__object__metadata__s.html#a1dfc8cab52c863caddec61a719002a49", null ],
+    [ "get_cache_control", "d5/d38/structoss__object__metadata__s.html#abdc0f0b73bc015f15409f07714cbbb4e", null ],
+    [ "get_content_disposition", "d5/d38/structoss__object__metadata__s.html#a3e460bd81ee12b99a5a84f88a3f7fe30", null ],
+    [ "get_content_encoding", "d5/d38/structoss__object__metadata__s.html#a43dbf5fe96fc3e32fc6c41fde36b93e6", null ],
+    [ "get_content_length", "d5/d38/structoss__object__metadata__s.html#a6a2b673bf1c724cff2b4e16471481d0f", null ],
+    [ "get_content_type", "d5/d38/structoss__object__metadata__s.html#abffc43133dd15f480de01f7df418190d", null ],
+    [ "get_etag", "d5/d38/structoss__object__metadata__s.html#adb40938def73de6a2807b9a06513128d", null ],
+    [ "get_expiration_time", "d5/d38/structoss__object__metadata__s.html#a3444c2d775c703a36356f0422391c26b", null ],
+    [ "get_last_modified", "d5/d38/structoss__object__metadata__s.html#a5549dd0bd5a5c71e655eb86083bb3453", null ],
+    [ "get_raw_metadata", "d5/d38/structoss__object__metadata__s.html#af8f0f55ad318abac5f82756cab7824e3", null ],
+    [ "get_user_metadata", "d5/d38/structoss__object__metadata__s.html#ad5bde22d2c76096671f5b59ad367a4de", null ],
+    [ "metadata", "d5/d38/structoss__object__metadata__s.html#aed35c4af736c95848996eee1a03978e4", null ],
+    [ "set_cache_control", "d5/d38/structoss__object__metadata__s.html#ac398180704d49a9a463a92e05be4a4c7", null ],
+    [ "set_content_disposition", "d5/d38/structoss__object__metadata__s.html#af358d204a43c6a9bd464059e280411b3", null ],
+    [ "set_content_encoding", "d5/d38/structoss__object__metadata__s.html#ad8dce0c597f043f46d4a66f7f43e26ba", null ],
+    [ "set_content_length", "d5/d38/structoss__object__metadata__s.html#a16c10494ef53757df8552b22c3209c2e", null ],
+    [ "set_content_type", "d5/d38/structoss__object__metadata__s.html#ae0f98e418a6a443881054ffe8db76e9c", null ],
+    [ "set_etag", "d5/d38/structoss__object__metadata__s.html#a1305ec607fc31d4929065b4d3421e559", null ],
+    [ "set_expiration_time", "d5/d38/structoss__object__metadata__s.html#a90133c75be5c1cdbb5e69d857df26a08", null ],
+    [ "set_header", "d5/d38/structoss__object__metadata__s.html#ae047e10c2964b89a2c93952541100392", null ],
+    [ "set_last_modified", "d5/d38/structoss__object__metadata__s.html#a2815d71a3e78364c5cc83166c88d45bd", null ],
+    [ "set_user_metadata", "d5/d38/structoss__object__metadata__s.html#a5909591e4fa92ecac9c7f1d4248a10af", null ],
+    [ "user_metadata", "d5/d38/structoss__object__metadata__s.html#ab48b022cea1a4ad827306c5e1826d3c2", null ]
+];

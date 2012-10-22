@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: 数据字段</title>
+
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li class="current"><a href="annotated.html"><span>数据结构</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>数据结构</span></a></li>
+      <li><a href="classes.html"><span>数据结构索引</span></a></li>
+      <li class="current"><a href="functions.html"><span>数据字段</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li class="current"><a href="functions.html"><span>全部</span></a></li>
+      <li><a href="functions_vars.html"><span>变量</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="functions.html#index__"><span>_</span></a></li>
+      <li><a href="functions_0x61.html#index_a"><span>a</span></a></li>
+      <li><a href="functions_0x62.html#index_b"><span>b</span></a></li>
+      <li><a href="functions_0x63.html#index_c"><span>c</span></a></li>
+      <li><a href="functions_0x64.html#index_d"><span>d</span></a></li>
+      <li><a href="functions_0x65.html#index_e"><span>e</span></a></li>
+      <li><a href="functions_0x66.html#index_f"><span>f</span></a></li>
+      <li><a href="functions_0x67.html#index_g"><span>g</span></a></li>
+      <li><a href="functions_0x68.html#index_h"><span>h</span></a></li>
+      <li><a href="functions_0x69.html#index_i"><span>i</span></a></li>
+      <li><a href="functions_0x6b.html#index_k"><span>k</span></a></li>
+      <li><a href="functions_0x6c.html#index_l"><span>l</span></a></li>
+      <li><a href="functions_0x6d.html#index_m"><span>m</span></a></li>
+      <li><a href="functions_0x6e.html#index_n"><span>n</span></a></li>
+      <li><a href="functions_0x6f.html#index_o"><span>o</span></a></li>
+      <li><a href="functions_0x70.html#index_p"><span>p</span></a></li>
+      <li><a href="functions_0x72.html#index_r"><span>r</span></a></li>
+      <li class="current"><a href="functions_0x73.html#index_s"><span>s</span></a></li>
+      <li><a href="functions_0x74.html#index_t"><span>t</span></a></li>
+      <li><a href="functions_0x75.html#index_u"><span>u</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('functions_0x73.html','');
+</script>
+<div id="doc-content">
+<div class="contents">
+<div class="textblock">这里列出所有结构和联合的成员，附带所在结构／联合的文档的链接：</div>
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>send_buffer
+: <a class="el" href="db/d00/structcurl__request__param__s.html#a1a69ab56a701418ab38dee93f28fbaf8">curl_request_param_s</a>
+</li>
+<li>set_bucket_name
+: <a class="el" href="dc/dc9/structoss__abort__multipart__upload__request__s.html#a069f345c0319aff80b6da05369c1b8ff">oss_abort_multipart_upload_request_s</a>
+, <a class="el" href="d6/d69/structoss__complete__multipart__upload__result__s.html#aeab9716225cf71a4c7b72a33048a5bf0">oss_complete_multipart_upload_result_s</a>
+, <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#a6330911e17d5941fbf1a8d72e818981c">oss_get_object_group_request_s</a>
+, <a class="el" href="d7/df5/structoss__object__s.html#a60252cb33e79d4c9c58f3d1281fd6ed6">oss_object_s</a>
+, <a class="el" href="d8/d42/structoss__object__listing__s.html#a68653b2c9e09bee6d3d1a0b48fd69360">oss_object_listing_s</a>
+, <a class="el" href="dc/d2c/structoss__get__object__request__s.html#a6bee15fe5aae2492ee562f593734f6c6">oss_get_object_request_s</a>
+, <a class="el" href="db/d7d/structoss__part__listing__s.html#a3ef9c5698dd9502fbd20d4c8070c7bce">oss_part_listing_s</a>
+, <a class="el" href="d1/deb/structoss__post__object__group__request__s.html#a9e3ba890ccd63b960fd338578dce9fec">oss_post_object_group_request_s</a>
+, <a class="el" href="d4/dd3/structoss__delete__multiple__object__request__s.html#a67aae369544145f9a17055d77f867a0f">oss_delete_multiple_object_request_s</a>
+, <a class="el" href="d7/d38/structoss__initiate__multipart__upload__request__s.html#a2081d965bb45b8b6058d8c433497cfb6">oss_initiate_multipart_upload_request_s</a>
+, <a class="el" href="de/d68/structoss__post__object__group__result__s.html#ac28da9878070b3b453e0c7758b328c5f">oss_post_object_group_result_s</a>
+, <a class="el" href="d1/d04/structoss__upload__part__request__s.html#af159fc3d3e9e40c9eb840ea72ac3b037">oss_upload_part_request_s</a>
+, <a class="el" href="d4/ded/structoss__initiate__multipart__upload__result__s.html#ab0fb6d145ab9c29909fc81712f7ade3d">oss_initiate_multipart_upload_result_s</a>
+, <a class="el" href="d1/d06/structoss__complete__multipart__upload__request__s.html#a732952b8e224f9a7395bdd883adbd335">oss_complete_multipart_upload_request_s</a>
+, <a class="el" href="db/dcc/structoss__generate__presigned__url__request__s.html#a9f8a9260f5f9afb3de35e8774d1c9d0f">oss_generate_presigned_url_request_s</a>
+, <a class="el" href="d9/d78/structoss__list__multipart__uploads__request__s.html#a8c505ec34fd09cbbf4fea5f25687bedc">oss_list_multipart_uploads_request_s</a>
+, <a class="el" href="de/d9a/structoss__list__objects__request__s.html#aa361f541385bd7b158debae09366983f">oss_list_objects_request_s</a>
+, <a class="el" href="dc/d93/structoss__get__object__group__index__result__s.html#a54ef3f4c618818b9db0de08333061a72">oss_get_object_group_index_result_s</a>
+, <a class="el" href="d1/dca/structoss__list__parts__request__s.html#aa101de17c06435bee86633d271e6a2c0">oss_list_parts_request_s</a>
+, <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a44ec76b09a52ec52b3bb93b701c29f2c">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_cache_control
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#ac398180704d49a9a463a92e05be4a4c7">oss_object_metadata_s</a>
+, <a class="el" href="dc/d86/structoss__response__header__overrides__s.html#aa11cf51b77df7afc28ccbc97f3ecdc0a">oss_response_header_overrides_s</a>
+</li>
+<li>set_common_prefixes
+: <a class="el" href="d8/d42/structoss__object__listing__s.html#ae2ddb74fd02f6e98d5a867cdc7d19062">oss_object_listing_s</a>
+</li>
+<li>set_common_prefixs
+: <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a52fbbb5fdf9dae1ce1763a5550f06416">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_content_disposition
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#af358d204a43c6a9bd464059e280411b3">oss_object_metadata_s</a>
+, <a class="el" href="dc/d86/structoss__response__header__overrides__s.html#ad364752b9f1baa0c2d86aebe0de27fa5">oss_response_header_overrides_s</a>
+</li>
+<li>set_content_encoding
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#ad8dce0c597f043f46d4a66f7f43e26ba">oss_object_metadata_s</a>
+, <a class="el" href="dc/d86/structoss__response__header__overrides__s.html#a7d6d5273f393ae7802d9ac903149eddc">oss_response_header_overrides_s</a>
+</li>
+<li>set_content_language
+: <a class="el" href="dc/d86/structoss__response__header__overrides__s.html#a1e120471f150bc4f4048b13d8094dd58">oss_response_header_overrides_s</a>
+</li>
+<li>set_content_length
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#a16c10494ef53757df8552b22c3209c2e">oss_object_metadata_s</a>
+</li>
+<li>set_content_type
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#ae0f98e418a6a443881054ffe8db76e9c">oss_object_metadata_s</a>
+, <a class="el" href="dc/d86/structoss__response__header__overrides__s.html#a64fc7dce0b7053b31727891112029234">oss_response_header_overrides_s</a>
+</li>
+<li>set_create_date
+: <a class="el" href="db/db9/structoss__bucket__s.html#aab93bd5ed0f03acd55f45b322bf2f0a0">oss_bucket_s</a>
+</li>
+<li>set_delimiter
+: <a class="el" href="d9/d78/structoss__list__multipart__uploads__request__s.html#ab015711c745f50d7e53c8b7437fbd567">oss_list_multipart_uploads_request_s</a>
+, <a class="el" href="de/d9a/structoss__list__objects__request__s.html#a2d25d2198bedfdfa2eb5b2478bfeb176">oss_list_objects_request_s</a>
+, <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a96cd7a87e80cebc127550dfc479e1051">oss_multipart_upload_listing_s</a>
+, <a class="el" href="d8/d42/structoss__object__listing__s.html#af2c38e99b694b0e43917d37c8998fc1d">oss_object_listing_s</a>
+</li>
+<li>set_destination_bucket_name
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#aaf6232ae6d3fb35f47b3393a226b8283">oss_copy_object_request_s</a>
+</li>
+<li>set_destination_key
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#ac0e072cf4945697249aa8ea802836e19">oss_copy_object_request_s</a>
+</li>
+<li>set_display_name
+: <a class="el" href="d2/de4/structoss__owner__s.html#a00f6bcac4c8d6e54650a6339d383b567">oss_owner_s</a>
+</li>
+<li>set_etag
+: <a class="el" href="d6/d69/structoss__complete__multipart__upload__result__s.html#a098ef27f52a336314afbfd99fe3d9ae1">oss_complete_multipart_upload_result_s</a>
+, <a class="el" href="d4/d4a/structoss__copy__object__result__s.html#a2b3ef5b085df41b6490ab860f53d2721">oss_copy_object_result_s</a>
+, <a class="el" href="dc/d93/structoss__get__object__group__index__result__s.html#a4bf45afaaefd3aa8c4836f3a31338cb2">oss_get_object_group_index_result_s</a>
+, <a class="el" href="d1/d0d/structoss__multipart__object__group__s.html#a3dc4211d199da4044aebf9dca24999d2">oss_multipart_object_group_s</a>
+, <a class="el" href="d3/d88/structoss__object__group__item__s.html#a0b26cdaaec8504ad023cdce3411bdfbe">oss_object_group_item_s</a>
+, <a class="el" href="d5/d38/structoss__object__metadata__s.html#a1305ec607fc31d4929065b4d3421e559">oss_object_metadata_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#a25b99b9d2561feb39abe3b2a311aca57">oss_object_summary_s</a>
+, <a class="el" href="d1/d53/structoss__part__etag__s.html#a4db10096e84d8e83ca1684ab6a539a51">oss_part_etag_s</a>
+, <a class="el" href="de/dc7/structoss__part__summary__s.html#a5cdcf2c689123688badddb29f7dfeb04">oss_part_summary_s</a>
+, <a class="el" href="de/d68/structoss__post__object__group__result__s.html#a04714abe91bc12eb2595b236f55e77de">oss_post_object_group_result_s</a>
+, <a class="el" href="de/d52/structoss__put__object__result__s.html#a40cb94d429d252c0c622c9c8b1052d3e">oss_put_object_result_s</a>
+, <a class="el" href="d2/de4/structoss__upload__part__result__s.html#a1bdbe14fa5e61ef9f30183cbcd437725">oss_upload_part_result_s</a>
+</li>
+<li>set_expiration
+: <a class="el" href="db/dcc/structoss__generate__presigned__url__request__s.html#a35d672efb7404b719e5a45ac9d371d73">oss_generate_presigned_url_request_s</a>
+</li>
+<li>set_expiration_time
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#a90133c75be5c1cdbb5e69d857df26a08">oss_object_metadata_s</a>
+</li>
+<li>set_expires
+: <a class="el" href="dc/d86/structoss__response__header__overrides__s.html#a36c4449b1afdf9daa86010ab9ae5148f">oss_response_header_overrides_s</a>
+</li>
+<li>set_file_length
+: <a class="el" href="dc/d93/structoss__get__object__group__index__result__s.html#a142a32b9f5566797b44e933c10fdb555">oss_get_object_group_index_result_s</a>
+</li>
+<li>set_grant
+: <a class="el" href="d7/d47/structoss__access__control__list__s.html#ab44515b54822b6a48de809b0051bfbbe">oss_access_control_list_s</a>
+</li>
+<li>set_group
+: <a class="el" href="dc/d93/structoss__get__object__group__index__result__s.html#acbf93009237a8de8a657cc34cb00f683">oss_get_object_group_index_result_s</a>
+</li>
+<li>set_header
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#ae047e10c2964b89a2c93952541100392">oss_object_metadata_s</a>
+</li>
+<li>set_id
+: <a class="el" href="d2/de4/structoss__owner__s.html#a822fb38e00696ba6789fdf0245e00267">oss_owner_s</a>
+</li>
+<li>set_identifier
+: <a class="el" href="db/d19/structoss__grant__s.html#af9faa8f526aaf9821e719e08e76ef386">oss_grant_s</a>
+</li>
+<li>set_initiated
+: <a class="el" href="de/dc5/structoss__multipart__upload__s.html#a36c8bbb8e5574e67b3ac4b1b8551230a">oss_multipart_upload_s</a>
+</li>
+<li>set_initiator
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#a3c311d190da32817eec0d91bc4982411">oss_part_listing_s</a>
+</li>
+<li>set_input_stream
+: <a class="el" href="d1/d04/structoss__upload__part__request__s.html#af63b3515f03e2ab711cddd3f9a7a6076">oss_upload_part_request_s</a>
+</li>
+<li>set_is_truncated
+: <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a939e30383d87daf4b9aa4550fbef88f5">oss_multipart_upload_listing_s</a>
+, <a class="el" href="d8/d42/structoss__object__listing__s.html#a04aa31bbbdec19fa052e79638b6c8138">oss_object_listing_s</a>
+, <a class="el" href="db/d7d/structoss__part__listing__s.html#ac3b53a68851e61716b404ad621e91d7a">oss_part_listing_s</a>
+</li>
+<li>set_items
+: <a class="el" href="d1/deb/structoss__post__object__group__request__s.html#a4d75155cd8934ec19fd7cec9fb21b841">oss_post_object_group_request_s</a>
+</li>
+<li>set_key
+: <a class="el" href="dc/dc9/structoss__abort__multipart__upload__request__s.html#ab2582b1866a9901a5bd9e5738ba22973">oss_abort_multipart_upload_request_s</a>
+, <a class="el" href="d1/d06/structoss__complete__multipart__upload__request__s.html#ae5b16c8fbdd72eb26c10fa0bb6eba6f6">oss_complete_multipart_upload_request_s</a>
+, <a class="el" href="d6/d69/structoss__complete__multipart__upload__result__s.html#ae57dec38cf3c4d90587846ee46a7cc70">oss_complete_multipart_upload_result_s</a>
+, <a class="el" href="db/dcc/structoss__generate__presigned__url__request__s.html#a358e8c98d7773a69dae21ab9cc8a2bda">oss_generate_presigned_url_request_s</a>
+, <a class="el" href="dc/d93/structoss__get__object__group__index__result__s.html#a21168989665c3f8dfbf4a472ed0e93b0">oss_get_object_group_index_result_s</a>
+, <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#ad348462469cd9bb05016ce6382a6ef43">oss_get_object_group_request_s</a>
+, <a class="el" href="dc/d2c/structoss__get__object__request__s.html#a5338c3b76fb9ddeab3e535e158b8d24a">oss_get_object_request_s</a>
+, <a class="el" href="d7/d38/structoss__initiate__multipart__upload__request__s.html#a96e8c959e5ab760bf3d9f7b4b91186a5">oss_initiate_multipart_upload_request_s</a>
+, <a class="el" href="d4/ded/structoss__initiate__multipart__upload__result__s.html#a4de741b3bbeb9f3dcb1119eed662cb85">oss_initiate_multipart_upload_result_s</a>
+, <a class="el" href="d1/dca/structoss__list__parts__request__s.html#a8b616bca0a795ce6d1fbd726bb903534">oss_list_parts_request_s</a>
+, <a class="el" href="de/dc5/structoss__multipart__upload__s.html#a86549aa8901c466f8093a06a9ec75eaa">oss_multipart_upload_s</a>
+, <a class="el" href="d7/df5/structoss__object__s.html#a593cbae626491c1ace4fbe2d8c1a1e4d">oss_object_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#a39695ce1bf713d91b3cbda3406e63f16">oss_object_summary_s</a>
+, <a class="el" href="db/d7d/structoss__part__listing__s.html#a3b8e8352b7480f7107b26af2f44e0e79">oss_part_listing_s</a>
+, <a class="el" href="d1/deb/structoss__post__object__group__request__s.html#a8e21283450a4329ca6730abae25290a9">oss_post_object_group_request_s</a>
+, <a class="el" href="de/d68/structoss__post__object__group__result__s.html#abda286cb6818af5ed69812ebd7ef64b1">oss_post_object_group_result_s</a>
+, <a class="el" href="d1/d04/structoss__upload__part__request__s.html#a0e9f53a142080f80401789d5b9363670">oss_upload_part_request_s</a>
+</li>
+<li>set_key_marker
+: <a class="el" href="d9/d78/structoss__list__multipart__uploads__request__s.html#a16c4cd89aa9f1355488d9d2c939a1679">oss_list_multipart_uploads_request_s</a>
+, <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#ad7cb900a76b86534fefbe2cb5e88e215">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_keys
+: <a class="el" href="d4/dd3/structoss__delete__multiple__object__request__s.html#a4f2da8731a169cd927c9ff50e27f3935">oss_delete_multiple_object_request_s</a>
+</li>
+<li>set_last_modified
+: <a class="el" href="d4/d4a/structoss__copy__object__result__s.html#a91feec3d1bc661065a250310c2d92719">oss_copy_object_result_s</a>
+, <a class="el" href="d5/d38/structoss__object__metadata__s.html#a2815d71a3e78364c5cc83166c88d45bd">oss_object_metadata_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#a0c0b83d5be943a3d8dc039741a0afc86">oss_object_summary_s</a>
+, <a class="el" href="de/dc7/structoss__part__summary__s.html#a6811743b256d64ea2c8ea43e579d559a">oss_part_summary_s</a>
+</li>
+<li>set_location
+: <a class="el" href="d6/d69/structoss__complete__multipart__upload__result__s.html#af7bd46a61fc479af90f8770e8a7a8fcf">oss_complete_multipart_upload_result_s</a>
+</li>
+<li>set_marker
+: <a class="el" href="de/d9a/structoss__list__objects__request__s.html#abc5ac54e8011d7e6c6f2e5915a98fb48">oss_list_objects_request_s</a>
+, <a class="el" href="d8/d42/structoss__object__listing__s.html#a4b8b39c397c8d193912858258cb58d28">oss_object_listing_s</a>
+</li>
+<li>set_matching_etag_constraints
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#a77c07dd1f7ca5c49e626cfc5ea9a2479">oss_copy_object_request_s</a>
+, <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#a30bb34e21101ad1c61f10a0f7d62aa95">oss_get_object_group_request_s</a>
+, <a class="el" href="dc/d2c/structoss__get__object__request__s.html#a0c6df78ced87b431ad2b7ca612f8ed6a">oss_get_object_request_s</a>
+</li>
+<li>set_max_keys
+: <a class="el" href="de/d9a/structoss__list__objects__request__s.html#a4755cae0ced1ed8a96513a7bd34abf99">oss_list_objects_request_s</a>
+, <a class="el" href="d8/d42/structoss__object__listing__s.html#aec49535e7e86efcaa1b29c17206973cf">oss_object_listing_s</a>
+</li>
+<li>set_max_parts
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#ac15985774d8599fdea34d8309d9046a4">oss_part_listing_s</a>
+, <a class="el" href="d1/dca/structoss__list__parts__request__s.html#a7276d8c051a2d0613fce868ed818be62">oss_list_parts_request_s</a>
+</li>
+<li>set_max_uploads
+: <a class="el" href="d9/d78/structoss__list__multipart__uploads__request__s.html#a7037728d6a18facf79b38abdea49530b">oss_list_multipart_uploads_request_s</a>
+, <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a242e6b647ede3ebc342bf68c6b2da8cc">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_md5_digest
+: <a class="el" href="d1/d04/structoss__upload__part__request__s.html#af2c2a4a3f11ca4b60799a65febee5e54">oss_upload_part_request_s</a>
+</li>
+<li>set_method
+: <a class="el" href="db/dcc/structoss__generate__presigned__url__request__s.html#a12ff740dd40f776fd5d73e6a95d84ada">oss_generate_presigned_url_request_s</a>
+</li>
+<li>set_mode
+: <a class="el" href="d4/dd3/structoss__delete__multiple__object__request__s.html#a3ecf9963b237c2ba1670000331887903">oss_delete_multiple_object_request_s</a>
+</li>
+<li>set_modified_since_constraint
+: <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#ac870529e7bc091a2f412cea11b1b1816">oss_get_object_group_request_s</a>
+, <a class="el" href="dc/d2c/structoss__get__object__request__s.html#a78472864d7946d001754251fac49babe">oss_get_object_request_s</a>
+</li>
+<li>set_modified_since_constraints
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#a578aa526725173b70caeb74b5c141a13">oss_copy_object_request_s</a>
+</li>
+<li>set_multipart_uploads
+: <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a54109a58808001edfa6a0f1a6ed5ed39">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_name
+: <a class="el" href="db/db9/structoss__bucket__s.html#acb2608f931a8981b9374100f4248fd56">oss_bucket_s</a>
+</li>
+<li>set_new_object_metadata
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#a86b39570289c28d63ee51b22cf6838f4">oss_copy_object_request_s</a>
+</li>
+<li>set_next_key_marker
+: <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a006e8246388a9a48781ac4a1d6addf7e">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_next_marker
+: <a class="el" href="d8/d42/structoss__object__listing__s.html#a34e9415a942561ea9a87698097755baf">oss_object_listing_s</a>
+</li>
+<li>set_next_part_number_marker
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#a99a43d073723890ff17153184fc53fc1">oss_part_listing_s</a>
+</li>
+<li>set_next_upload_id_marker
+: <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a919a6638c0624477efd0a7514b3fa3aa">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_no_matching_etag_constraints
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#ae39315c9bf4c9b01a0aee017fe6b9e9b">oss_copy_object_request_s</a>
+, <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#a100bc244135d1f55b6cb2a9d2ed1cdb2">oss_get_object_group_request_s</a>
+, <a class="el" href="dc/d2c/structoss__get__object__request__s.html#a5561b81071a0f7117756cd0d0c9eae8d">oss_get_object_request_s</a>
+</li>
+<li>set_object_content
+: <a class="el" href="d7/df5/structoss__object__s.html#a2650da251194b62c456c4cbe46a89331">oss_object_s</a>
+</li>
+<li>set_object_metadata
+: <a class="el" href="d7/d38/structoss__initiate__multipart__upload__request__s.html#a0c1acdaa8850fbcee64f83c7ffccfcc6">oss_initiate_multipart_upload_request_s</a>
+, <a class="el" href="d7/df5/structoss__object__s.html#a599286af7e986c9c412ab8ab115e8ebd">oss_object_s</a>
+</li>
+<li>set_owner
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#a3ed6a3d0403a0b986eb31ebc99c381d8">oss_part_listing_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#a981acd86cc61d00acbec80b87f25c718">oss_object_summary_s</a>
+, <a class="el" href="d7/d47/structoss__access__control__list__s.html#a98e38c0852b1ae36db90bf8a71892d6c">oss_access_control_list_s</a>
+, <a class="el" href="db/db9/structoss__bucket__s.html#a3910a919c0b18db622f93aaa293156bc">oss_bucket_s</a>
+</li>
+<li>set_part_etags
+: <a class="el" href="d1/d06/structoss__complete__multipart__upload__request__s.html#ac28fe2b916452bfbd3a36cc3b1b8f869">oss_complete_multipart_upload_request_s</a>
+</li>
+<li>set_part_name
+: <a class="el" href="d1/d0d/structoss__multipart__object__group__s.html#a18bc6991bfbff0ed583fafcbda4af231">oss_multipart_object_group_s</a>
+, <a class="el" href="d3/d88/structoss__object__group__item__s.html#a10226177cd014fb970b1b41ee5512944">oss_object_group_item_s</a>
+</li>
+<li>set_part_number
+: <a class="el" href="d1/d0d/structoss__multipart__object__group__s.html#ae3a81c0c78739df8fda0578055450122">oss_multipart_object_group_s</a>
+, <a class="el" href="d1/d04/structoss__upload__part__request__s.html#a7adc525796b060b2236e6270ab807fc4">oss_upload_part_request_s</a>
+, <a class="el" href="d2/de4/structoss__upload__part__result__s.html#ab52714be4f34bf10804057cd02136e4c">oss_upload_part_result_s</a>
+, <a class="el" href="de/dc7/structoss__part__summary__s.html#a8f335facafe96f8b4edc6fb901aad2dd">oss_part_summary_s</a>
+, <a class="el" href="d1/d53/structoss__part__etag__s.html#aa2086b946821c2aa8f14b414b5175bb8">oss_part_etag_s</a>
+, <a class="el" href="d3/d88/structoss__object__group__item__s.html#a187e510513de7574d12c05613041b4f8">oss_object_group_item_s</a>
+</li>
+<li>set_part_number_marker
+: <a class="el" href="d1/dca/structoss__list__parts__request__s.html#ac8af65c8d31f0c12ee729fd4c210b377">oss_list_parts_request_s</a>
+, <a class="el" href="db/d7d/structoss__part__listing__s.html#ae226660c4fef38e39d605e09a21879f4">oss_part_listing_s</a>
+</li>
+<li>set_part_size
+: <a class="el" href="d1/d0d/structoss__multipart__object__group__s.html#a13c300cdcffedab43150d94edbc278d3">oss_multipart_object_group_s</a>
+, <a class="el" href="d1/d04/structoss__upload__part__request__s.html#a5a855b94cc896b5935ac44558eee5904">oss_upload_part_request_s</a>
+</li>
+<li>set_parts
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#a318ac16780db3001171ef2e98208b4f8">oss_part_listing_s</a>
+</li>
+<li>set_permission
+: <a class="el" href="db/d19/structoss__grant__s.html#aea398169ea67b224353bb00aea093b4b">oss_grant_s</a>
+</li>
+<li>set_prefix
+: <a class="el" href="d9/d78/structoss__list__multipart__uploads__request__s.html#a71dd7b93857fe386cd1bee24a289d293">oss_list_multipart_uploads_request_s</a>
+, <a class="el" href="d8/d42/structoss__object__listing__s.html#ae67d20c5cae2231dc6bafa748ce107d2">oss_object_listing_s</a>
+, <a class="el" href="de/d9a/structoss__list__objects__request__s.html#a141f28bbf452ca828272e6304b330124">oss_list_objects_request_s</a>
+, <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a113cc1b24fbdcdacaaada5c569251ed2">oss_multipart_upload_listing_s</a>
+</li>
+<li>set_range
+: <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#a69ad1c9274d22f3ee6d473054cf06bfb">oss_get_object_group_request_s</a>
+, <a class="el" href="dc/d2c/structoss__get__object__request__s.html#a7d8c0285578cad38e3167399f852f63f">oss_get_object_request_s</a>
+</li>
+<li>set_response_headers
+: <a class="el" href="dc/d2c/structoss__get__object__request__s.html#a6ace451a9d5fa90f6fad31eb95bed64a">oss_get_object_request_s</a>
+, <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#acfefe8e10689f0f88ba8beee87c823e7">oss_get_object_group_request_s</a>
+, <a class="el" href="db/dcc/structoss__generate__presigned__url__request__s.html#a340831357350c70d12d083c93dcc0257">oss_generate_presigned_url_request_s</a>
+</li>
+<li>set_size
+: <a class="el" href="de/d68/structoss__post__object__group__result__s.html#aea0df965b627c111ffc3ac25bd3d6a07">oss_post_object_group_result_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#a43cba08f503e155ada85cce7e87d5b94">oss_object_summary_s</a>
+, <a class="el" href="de/dc7/structoss__part__summary__s.html#a89d78fda2865227c61c68b9f809a5205">oss_part_summary_s</a>
+</li>
+<li>set_source_bucket_name
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#a621ecc3856e778959274bbab3e374e89">oss_copy_object_request_s</a>
+</li>
+<li>set_source_key
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#a9a0514f5c4f04cc850551bc9c8956c45">oss_copy_object_request_s</a>
+</li>
+<li>set_storage_class
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#a25cddaaeaf3403817c2d4342c71526e5">oss_part_listing_s</a>
+, <a class="el" href="de/dc5/structoss__multipart__upload__s.html#ae74db0568e38458d0d0649076d5abd56">oss_multipart_upload_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#a894afa988e7a51b55fb51fe48b72faa0">oss_object_summary_s</a>
+</li>
+<li>set_type
+: <a class="el" href="df/d44/structoss__object__summary__s.html#a161009dc78fc7c402224e91905b07c06">oss_object_summary_s</a>
+</li>
+<li>set_unmodified_since_constraint
+: <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#a6b359204099a8b1977a316ac586c587f">oss_get_object_group_request_s</a>
+, <a class="el" href="dc/d2c/structoss__get__object__request__s.html#add79979ec31cc52f7e8c84db146422e3">oss_get_object_request_s</a>
+</li>
+<li>set_unmodified_since_constraints
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#a4e20daccabfd4da59caae33907e2cb5b">oss_copy_object_request_s</a>
+</li>
+<li>set_upload_id
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#a9318ed8544bf7a3ed4a4dc567eff2472">oss_part_listing_s</a>
+, <a class="el" href="dc/dc9/structoss__abort__multipart__upload__request__s.html#a3ae400a08cbb4e52105faa9eb7672420">oss_abort_multipart_upload_request_s</a>
+, <a class="el" href="d4/ded/structoss__initiate__multipart__upload__result__s.html#a2eba2c0960b560fa91c573035f0bc54f">oss_initiate_multipart_upload_result_s</a>
+, <a class="el" href="d1/d06/structoss__complete__multipart__upload__request__s.html#ad35ad8365f7025d8f57872da2bda8857">oss_complete_multipart_upload_request_s</a>
+, <a class="el" href="d1/d04/structoss__upload__part__request__s.html#afb0942d1179c3c9882bdb0fd4daaac6d">oss_upload_part_request_s</a>
+, <a class="el" href="de/dc5/structoss__multipart__upload__s.html#af1bf7c56d1c883c1c8abbf925da6e014">oss_multipart_upload_s</a>
+, <a class="el" href="d1/dca/structoss__list__parts__request__s.html#a90f78e2ff274fedc7c935c3fa5e1bbd9">oss_list_parts_request_s</a>
+</li>
+<li>set_upload_id_marker
+: <a class="el" href="d5/d60/structoss__multipart__upload__listing__s.html#a7af524440788b2a8b7fb5980fbddb319">oss_multipart_upload_listing_s</a>
+, <a class="el" href="d9/d78/structoss__list__multipart__uploads__request__s.html#a740e9124166eea018df1d65d71b9765c">oss_list_multipart_uploads_request_s</a>
+</li>
+<li>set_user_metadata
+: <a class="el" href="d5/d38/structoss__object__metadata__s.html#a5909591e4fa92ecac9c7f1d4248a10af">oss_object_metadata_s</a>
+, <a class="el" href="db/dcc/structoss__generate__presigned__url__request__s.html#a72cef94e30fc363331ffc174d0da2ae1">oss_generate_presigned_url_request_s</a>
+</li>
+<li>size
+: <a class="el" href="de/dc7/structoss__part__summary__s.html#a37363161b41c4165b98cba7abc7a9d95">oss_part_summary_s</a>
+, <a class="el" href="de/d68/structoss__post__object__group__result__s.html#aac913b3a1f6ef005d66bf7a84428773e">oss_post_object_group_result_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#a37363161b41c4165b98cba7abc7a9d95">oss_object_summary_s</a>
+</li>
+<li>source_bucket_name
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#abbb9a19b88b899dd1ee6b8a41864691d">oss_copy_object_request_s</a>
+</li>
+<li>source_key
+: <a class="el" href="da/dfb/structoss__copy__object__request__s.html#a4587e7e40981b3814e6cfe77ed7b96c6">oss_copy_object_request_s</a>
+</li>
+<li>start
+: <a class="el" href="dc/d2c/structoss__get__object__request__s.html#ac452537b6646180ccdf7beba12c1b331">oss_get_object_request_s</a>
+, <a class="el" href="de/d4e/structoss__get__object__group__request__s.html#ac452537b6646180ccdf7beba12c1b331">oss_get_object_group_request_s</a>
+</li>
+<li>storage_class
+: <a class="el" href="db/d7d/structoss__part__listing__s.html#afad849df9a7cfeba4abd9e511683a2ff">oss_part_listing_s</a>
+, <a class="el" href="de/dc5/structoss__multipart__upload__s.html#afad849df9a7cfeba4abd9e511683a2ff">oss_multipart_upload_s</a>
+, <a class="el" href="df/d44/structoss__object__summary__s.html#afad849df9a7cfeba4abd9e511683a2ff">oss_object_summary_s</a>
+</li>
+<li>summaries
+: <a class="el" href="d8/d42/structoss__object__listing__s.html#aade82a5c4985b09d8dc2ffa01049bee3">oss_object_listing_s</a>
+</li>
+</ul>
+</div><!-- contents -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div>
+  <div id="nav-path" class="navpath">
+    <ul>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:21 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

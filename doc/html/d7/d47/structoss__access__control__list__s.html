@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_access_control_list_s结构参考</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li class="current"><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li><a href="../../classes.html"><span>数据结构索引</span></a></li>
+      <li><a href="../../functions.html"><span>数据字段</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d7/d47/structoss__access__control__list__s.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">数据成员</a>  </div>
+  <div class="headertitle">
+<div class="title">oss_access_control_list_s结构参考<div class="ingroups"><a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html">oss_access_control_list_t</a></div></div>  </div>
+</div><!--header-->
+<div class="contents">
+<!-- doxytag: class="oss_access_control_list_s" -->
+<p>表示OSS的访问控制列表（Access Control List, ACL), 包含了一组为指定被授权者(Grantee)分配特定权限(Permission)的集合  
+ <a href="../../d7/d47/structoss__access__control__list__s.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr><td colspan="2"><h2><a name="pub-attribs"></a>
+数据成员</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/db9/group__oss__owner__t.html#gad3ec196d6aca9552130e1bbf5265ba73">oss_owner_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a389504832e4d361979100f9267479b8a">owner</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Bucket 所有者  <a href="#a389504832e4d361979100f9267479b8a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a0ee0ddee74feeac0cceb8dac28b54bc1">grant</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">授权信息  <a href="#a0ee0ddee74feeac0cceb8dac28b54bc1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/db9/group__oss__owner__t.html#gad3ec196d6aca9552130e1bbf5265ba73">oss_owner_t</a> *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a8f4f2fa7dd9f8ec85c05d6f285fe0113">get_owner</a> )(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回所有者 Owner  <a href="#a8f4f2fa7dd9f8ec85c05d6f285fe0113"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a98e38c0852b1ae36db90bf8a71892d6c">set_owner</a> )(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl, <a class="el" href="../../de/db9/group__oss__owner__t.html#gad3ec196d6aca9552130e1bbf5265ba73">oss_owner_t</a> *<a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a389504832e4d361979100f9267479b8a">owner</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置所有者Owner  <a href="#a98e38c0852b1ae36db90bf8a71892d6c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char *(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a81799937e37327ce2c795a0725eac2ea">get_grant</a> )(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">返回该AccessControlList中包含的所有授权信息Grant  <a href="#a81799937e37327ce2c795a0725eac2ea"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d47/structoss__access__control__list__s.html#ab44515b54822b6a48de809b0051bfbbe">set_grant</a> )(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl, const char *<a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a0ee0ddee74feeac0cceb8dac28b54bc1">grant</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">设置所有授权信息Grant  <a href="#ab44515b54822b6a48de809b0051bfbbe"></a><br/></td></tr>
+</table>
+<hr/><a name="details" id="details"></a><h2>详细描述</h2>
+<div class="textblock"><p>表示OSS的访问控制列表（Access Control List, ACL), 包含了一组为指定被授权者(Grantee)分配特定权限(Permission)的集合 </p>
+
+<p>在文件<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>第<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html#l00050">50</a>行定义。</p>
+</div><hr/><h2>字段文档</h2>
+<a class="anchor" id="a81799937e37327ce2c795a0725eac2ea"></a><!-- doxytag: member="oss_access_control_list_s::get_grant" ref="a81799937e37327ce2c795a0725eac2ea" args=")(oss_access_control_list_t *acl)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char*(* <a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a81799937e37327ce2c795a0725eac2ea">get_grant</a>)(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回该AccessControlList中包含的所有授权信息Grant </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">acl</td><td>[in] 标识一个oss_access_control_list_t 指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">const</td><td>char * </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>AccessControlList中包含的所有授权信息Grant </dd></dl>
+
+<p>在文件<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>第<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html#l00081">81</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a8f4f2fa7dd9f8ec85c05d6f285fe0113"></a><!-- doxytag: member="oss_access_control_list_s::get_owner" ref="a8f4f2fa7dd9f8ec85c05d6f285fe0113" args=")(oss_access_control_list_t *acl)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/db9/group__oss__owner__t.html#gad3ec196d6aca9552130e1bbf5265ba73">oss_owner_t</a>*(* <a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a8f4f2fa7dd9f8ec85c05d6f285fe0113">get_owner</a>)(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>返回所有者 Owner </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">acl</td><td>[in] 标识一个oss_access_control_list_t 指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">非空</td><td>表示成功 </td></tr>
+    <tr><td class="paramname">NULL</td><td>表示失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>返回:</b></dt><dd>返回一个oss_owner_t结构指针 </dd></dl>
+
+<p>在文件<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>第<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html#l00063">63</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a0ee0ddee74feeac0cceb8dac28b54bc1"></a><!-- doxytag: member="oss_access_control_list_s::grant" ref="a0ee0ddee74feeac0cceb8dac28b54bc1" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* <a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a0ee0ddee74feeac0cceb8dac28b54bc1">grant</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>授权信息 </p>
+
+<p>在文件<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>第<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html#l00054">54</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a389504832e4d361979100f9267479b8a"></a><!-- doxytag: member="oss_access_control_list_s::owner" ref="a389504832e4d361979100f9267479b8a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../de/db9/group__oss__owner__t.html#gad3ec196d6aca9552130e1bbf5265ba73">oss_owner_t</a>* <a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a389504832e4d361979100f9267479b8a">owner</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Bucket 所有者 </p>
+
+<p>在文件<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>第<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html#l00051">51</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="ab44515b54822b6a48de809b0051bfbbe"></a><!-- doxytag: member="oss_access_control_list_s::set_grant" ref="ab44515b54822b6a48de809b0051bfbbe" args=")(oss_access_control_list_t *acl, const char *grant)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d7/d47/structoss__access__control__list__s.html#ab44515b54822b6a48de809b0051bfbbe">set_grant</a>)(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl, const char *<a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a0ee0ddee74feeac0cceb8dac28b54bc1">grant</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置所有授权信息Grant </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">acl</td><td>[in] 标识一个oss_access_control_list_t 指针 </td></tr>
+    <tr><td class="paramname">grant</td><td>[in] 所有授权信息内容 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>第<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html#l00090">90</a>行定义。</p>
+
+</div>
+</div>
+<a class="anchor" id="a98e38c0852b1ae36db90bf8a71892d6c"></a><!-- doxytag: member="oss_access_control_list_s::set_owner" ref="a98e38c0852b1ae36db90bf8a71892d6c" args=")(oss_access_control_list_t *acl, oss_owner_t *owner)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void(* <a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a98e38c0852b1ae36db90bf8a71892d6c">set_owner</a>)(<a class="el" href="../../d2/d4c/group__oss__access__control__list__t.html#gac5f0d691531316b81e162036511e5309">oss_access_control_list_t</a> *acl, <a class="el" href="../../de/db9/group__oss__owner__t.html#gad3ec196d6aca9552130e1bbf5265ba73">oss_owner_t</a> *<a class="el" href="../../d7/d47/structoss__access__control__list__s.html#a389504832e4d361979100f9267479b8a">owner</a>)</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>设置所有者Owner </p>
+<dl class="params"><dt><b>参数:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">acl</td><td>[in] 标识一个oss_access_control_list_t 指针 </td></tr>
+    <tr><td class="paramname">owner</td><td>[in] 所有者Owner结构 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>返回值:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">void</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a>第<a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html#l00072">72</a>行定义。</p>
+
+</div>
+</div>
+<hr/>该结构的文档由以下文件生成：<ul>
+<li><a class="el" href="../../da/d7a/oss__access__control__list_8h_source.html">oss_access_control_list.h</a></li>
+</ul>
+</div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d7/d47/structoss__access__control__list__s.html">oss_access_control_list_s</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:20 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>

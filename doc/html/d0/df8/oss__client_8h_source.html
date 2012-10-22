@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<title>OSSC: oss_client.h源文件</title>
+
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+
+</head>
+<body>
+<div id="top"><!-- do not remove this div! -->
+
+
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  
+  <td id="projectlogo"><img alt="Logo" src="../../OSSC-logo.png"/></td>
+  
+  
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">OSSC
+   &#160;<span id="projectnumber">0.1.5</span>
+   </div>
+   <div id="projectbrief">Aliyun Open Storage Service C SDK</div>
+  </td>
+  
+  
+  
+ </tr>
+ </tbody>
+</table>
+</div>
+
+<!-- 制作者 Doxygen 1.7.6.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="../../index.html"><span>首页</span></a></li>
+      <li><a href="../../modules.html"><span>模块</span></a></li>
+      <li><a href="../../annotated.html"><span>数据结构</span></a></li>
+      <li class="current"><a href="../../files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="../../search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="../../search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="../../files.html"><span>文件列表</span></a></li>
+      <li><a href="../../globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+</div>
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+  initNavTree('d0/df8/oss__client_8h.html','../../');
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">oss_client.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d0/df8/oss__client_8h.html">浏览该文件的文档。</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="comment">/*</span>
+<a name="l00002"></a>00002 <span class="comment"> * =============================================================================</span>
+<a name="l00003"></a>00003 <span class="comment"> *</span>
+<a name="l00004"></a>00004 <span class="comment"> *       Filename:  oss_client.h</span>
+<a name="l00005"></a>00005 <span class="comment"> *</span>
+<a name="l00006"></a>00006 <span class="comment"> *    Description:  oss client.</span>
+<a name="l00007"></a>00007 <span class="comment"> *</span>
+<a name="l00008"></a>00008 <span class="comment"> *        Created:  09/03/2012 09:16:21 PM</span>
+<a name="l00009"></a>00009 <span class="comment"> *</span>
+<a name="l00010"></a>00010 <span class="comment"> *        Company:  ICT ( Institute Of Computing Technology, CAS )</span>
+<a name="l00011"></a>00011 <span class="comment"> *</span>
+<a name="l00012"></a>00012 <span class="comment"> * =============================================================================</span>
+<a name="l00013"></a>00013 <span class="comment"> */</span>
+<a name="l00014"></a>00014 
+<a name="l00015"></a>00015 <span class="preprocessor">#ifndef _OSS_CLIENT_H</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="preprocessor"># error Never include &lt;ossc/modules/oss_client.h&gt; directly, use &lt;ossc/client.h&gt; instead.</span>
+<a name="l00017"></a>00017 <span class="preprocessor"></span><span class="preprocessor">#endif</span>
+<a name="l00018"></a>00018 <span class="preprocessor"></span>
+<a name="l00019"></a>00019 <span class="preprocessor">#ifndef OSS_CLIENT_H</span>
+<a name="l00020"></a>00020 <span class="preprocessor"></span><span class="preprocessor">#define OSS_CLIENT_H</span>
+<a name="l00021"></a>00021 <span class="preprocessor"></span>
+<a name="l00022"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a7e3d14e18ccd7df5ba6adc93fb799513">00022</a> <span class="preprocessor">#define _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00023"></a>00023 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d7/ded/oss__abort__multipart__upload__request_8h.html">ossc/modules/oss_abort_multipart_upload_request.h</a>&gt;</span>
+<a name="l00024"></a>00024 <span class="preprocessor">#undef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00025"></a>00025 <span class="preprocessor"></span>
+<a name="l00026"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a33ff7d86d3547ef1d43509fda09c365e">00026</a> <span class="preprocessor">#define _OSS_ACCESS_CONTROL_LIST_H</span>
+<a name="l00027"></a>00027 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/d7a/oss__access__control__list_8h.html">ossc/modules/oss_access_control_list.h</a>&gt;</span>
+<a name="l00028"></a>00028 <span class="preprocessor">#undef _oss_access_control_list_h</span>
+<a name="l00029"></a>00029 <span class="preprocessor"></span>
+<a name="l00030"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a212d0e944f01fa017815808a507f2099">00030</a> <span class="preprocessor">#define _OSS_BUCKET_H</span>
+<a name="l00031"></a>00031 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/d08/oss__bucket_8h.html">ossc/modules/oss_bucket.h</a>&gt;</span>
+<a name="l00032"></a>00032 <span class="preprocessor">#undef _OSS_BUCKET_H</span>
+<a name="l00033"></a>00033 <span class="preprocessor"></span>
+<a name="l00034"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a0874f11bef6b10601fd194a1d8ca1470">00034</a> <span class="preprocessor">#define _OSS_CLIENT_H</span>
+<a name="l00035"></a>00035 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/df8/oss__client_8h.html">ossc/modules/oss_client.h</a>&gt;</span>
+<a name="l00036"></a>00036 <span class="preprocessor">#undef _OSS_CLIENT_H</span>
+<a name="l00037"></a>00037 <span class="preprocessor"></span>
+<a name="l00038"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aa7b8d5d001f61325f7f4bd8c46c73a9d">00038</a> <span class="preprocessor">#define _OSS_COMPLETE_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00039"></a>00039 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../dd/dae/oss__complete__multipart__upload__request_8h.html">ossc/modules/oss_complete_multipart_upload_request.h</a>&gt;</span>
+<a name="l00040"></a>00040 <span class="preprocessor">#undef _oss_complete_multipart_upload_request_h</span>
+<a name="l00041"></a>00041 <span class="preprocessor"></span>
+<a name="l00042"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a396853ce7fc17768d8c70835b20ac12c">00042</a> <span class="preprocessor">#define _OSS_COMPLETE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00043"></a>00043 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d5a/oss__complete__multipart__upload__result_8h.html">ossc/modules/oss_complete_multipart_upload_result.h</a>&gt;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#undef _OSS_COMPLETE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00045"></a>00045 <span class="preprocessor"></span>
+<a name="l00046"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aa0eee74e4dd58f60aa2d55537e98afce">00046</a> <span class="preprocessor">#define _OSS_COPY_OBJECT_REQUEST_H</span>
+<a name="l00047"></a>00047 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d6/dce/oss__copy__object__request_8h.html">ossc/modules/oss_copy_object_request.h</a>&gt;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#undef _OSS_COPY_OBJECT_REQUEST_H</span>
+<a name="l00049"></a>00049 <span class="preprocessor"></span>
+<a name="l00050"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a2edc0e7442837871839f23d7f3f6247e">00050</a> <span class="preprocessor">#define _OSS_COPY_OBJECT_RESULT_H</span>
+<a name="l00051"></a>00051 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d1/d1d/oss__copy__object__result_8h.html">ossc/modules/oss_copy_object_result.h</a>&gt;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#undef _OSS_COPY_OBJECT_RESULT_H</span>
+<a name="l00053"></a>00053 <span class="preprocessor"></span>
+<a name="l00054"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aea954908af454f521245aabf5d15a9f9">00054</a> <span class="preprocessor">#define _OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H</span>
+<a name="l00055"></a>00055 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d39/oss__delete__multiple__object__request_8h.html">ossc/modules/oss_delete_multiple_object_request.h</a>&gt;</span>
+<a name="l00056"></a>00056 <span class="preprocessor">#undef _OSS_DELETE_MULTIPLE_OBJECT_REQUEST_H</span>
+<a name="l00057"></a>00057 <span class="preprocessor"></span>
+<a name="l00058"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ad4f07899c80bf66eb0c18ec7d3931a4e">00058</a> <span class="preprocessor">#define _OSS_GENERATE_PRESIGNED_URL_REQUEST_H</span>
+<a name="l00059"></a>00059 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/d6e/oss__generate__presigned__url__request_8h.html">ossc/modules/oss_generate_presigned_url_request.h</a>&gt;</span>
+<a name="l00060"></a>00060 <span class="preprocessor">#undef _OSS_GENERATE_PRESIGNED_URL_REQUEST_H</span>
+<a name="l00061"></a>00061 <span class="preprocessor"></span>
+<a name="l00062"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ace791d0607a5f6d2bd6d18a9606199d5">00062</a> <span class="preprocessor">#define _OSS_GET_OBJECT_GROUP_INDEX_RESULT_H</span>
+<a name="l00063"></a>00063 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d6c/oss__get__object__group__index__result_8h.html">ossc/modules/oss_get_object_group_index_result.h</a>&gt;</span>
+<a name="l00064"></a>00064 <span class="preprocessor">#undef _OSS_GET_OBJECT_GROUP_INDEX_RESULT_H</span>
+<a name="l00065"></a>00065 <span class="preprocessor"></span>
+<a name="l00066"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a2565ba06c9544532a7e71abcb09fae43">00066</a> <span class="preprocessor">#define _OSS_GET_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00067"></a>00067 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../de/d97/oss__get__object__group__request_8h.html">ossc/modules/oss_get_object_group_request.h</a>&gt;</span>
+<a name="l00068"></a>00068 <span class="preprocessor">#undef _OSS_GET_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00069"></a>00069 <span class="preprocessor"></span>
+<a name="l00070"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a92ee73158d777bd007d842b661aecd60">00070</a> <span class="preprocessor">#define _OSS_GET_OBJECT_REQUEST_H</span>
+<a name="l00071"></a>00071 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d9e/oss__get__object__request_8h.html">ossc/modules/oss_get_object_request.h</a>&gt;</span>
+<a name="l00072"></a>00072 <span class="preprocessor">#undef _OSS_GET_OBJECT_REQUEST_H</span>
+<a name="l00073"></a>00073 <span class="preprocessor"></span>
+<a name="l00074"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ae1c91fd87cedfddb072dad0d05a3fac3">00074</a> <span class="preprocessor">#define _OSS_GRANT_H</span>
+<a name="l00075"></a>00075 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d64/oss__grant_8h.html">ossc/modules/oss_grant.h</a>&gt;</span>
+<a name="l00076"></a>00076 <span class="preprocessor">#undef _OSS_GRANT_H</span>
+<a name="l00077"></a>00077 <span class="preprocessor"></span>
+<a name="l00078"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a7052dde25446aeb686dab8d0df1d7ec0">00078</a> <span class="preprocessor">#define _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00079"></a>00079 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../db/d9d/oss__initiate__multipart__upload__request_8h.html">ossc/modules/oss_initiate_multipart_upload_request.h</a>&gt;</span>
+<a name="l00080"></a>00080 <span class="preprocessor">#undef _OSS_INITIATE_MULTIPART_UPLOAD_REQUEST_H</span>
+<a name="l00081"></a>00081 <span class="preprocessor"></span>
+<a name="l00082"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a21c151e20b7e9ee2bc92022009e0c78c">00082</a> <span class="preprocessor">#define _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00083"></a>00083 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d3/dd8/oss__initiate__multipart__upload__result_8h.html">ossc/modules/oss_initiate_multipart_upload_result.h</a>&gt;</span>
+<a name="l00084"></a>00084 <span class="preprocessor">#undef _OSS_INITIATE_MULTIPART_UPLOAD_RESULT_H</span>
+<a name="l00085"></a>00085 <span class="preprocessor"></span>
+<a name="l00086"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a9011251cbd37c52374e52e57da6c4759">00086</a> <span class="preprocessor">#define _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H</span>
+<a name="l00087"></a>00087 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/df4/oss__list__multipart__uploads__request_8h.html">ossc/modules/oss_list_multipart_uploads_request.h</a>&gt;</span>
+<a name="l00088"></a>00088 <span class="preprocessor">#undef _OSS_LIST_MULTIPART_UPLOADS_REQUEST_H</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span>
+<a name="l00090"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ac4887ad752fe41910156e4ce37b9bbb3">00090</a> <span class="preprocessor">#define _OSS_LIST_OBJECTS_REQUEST_H</span>
+<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../df/d74/oss__list__objects__request_8h.html">ossc/modules/oss_list_objects_request.h</a>&gt;</span>
+<a name="l00092"></a>00092 <span class="preprocessor">#undef _OSS_LIST_OBJECTS_REQUEST_H</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span>
+<a name="l00094"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a3f1e4074cf15dda9f26c7822fa3d509f">00094</a> <span class="preprocessor">#define _OSS_LIST_PARTS_REQUEST_H</span>
+<a name="l00095"></a>00095 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/dd5/oss__list__parts__request_8h.html">ossc/modules/oss_list_parts_request.h</a>&gt;</span>
+<a name="l00096"></a>00096 <span class="preprocessor">#undef _OSS_LIST_OBJECTS_REQUEST_H</span>
+<a name="l00097"></a>00097 <span class="preprocessor"></span>
+<a name="l00098"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a9d8f01ea6e291a864649c6bdbca48f1c">00098</a> <span class="preprocessor">#define _OSS_MULTIPART_OBJECT_GROUP_H</span>
+<a name="l00099"></a>00099 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d8f/oss__multipart__object__group_8h.html">ossc/modules/oss_multipart_object_group.h</a>&gt;</span>
+<a name="l00100"></a>00100 <span class="preprocessor">#undef _OSS_MULTIPART_OBJECT_GROUP_H</span>
+<a name="l00101"></a>00101 <span class="preprocessor"></span>
+<a name="l00102"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a5c6af0331168bdb7c93141d17c9b2882">00102</a> <span class="preprocessor">#define _OSS_MULTIPART_UPLOAD_H</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../df/d5c/oss__multipart__upload_8h.html">ossc/modules/oss_multipart_upload.h</a>&gt;</span>
+<a name="l00104"></a>00104 <span class="preprocessor">#undef _OSS_MULTIPART_UPLOAD_H</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span>
+<a name="l00106"></a><a class="code" href="../../d0/df8/oss__client_8h.html#aa86d2ddca4d57c106489a76ee88461df">00106</a> <span class="preprocessor">#define _OSS_MULTIPART_UPLOAD_LISTING_H</span>
+<a name="l00107"></a>00107 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/d9d/oss__multipart__upload__listing_8h.html">ossc/modules/oss_multipart_upload_listing.h</a>&gt;</span>
+<a name="l00108"></a>00108 <span class="preprocessor">#undef _OSS_MULTIPART_UPLOAD_LISTING_H</span>
+<a name="l00109"></a>00109 <span class="preprocessor"></span>
+<a name="l00110"></a>00110 <span class="preprocessor">#define _OSS_OBJECT_H</span>
+<a name="l00111"></a>00111 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d4/d24/oss__object_8h.html">ossc/modules/oss_object.h</a>&gt;</span>
+<a name="l00112"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a28000b977821e0a9bd04f321bffa865a">00112</a> <span class="preprocessor">#define _OSS_OBJECT_H</span>
+<a name="l00113"></a>00113 <span class="preprocessor"></span>
+<a name="l00114"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a695863b76901e30c6d9801dac37302f0">00114</a> <span class="preprocessor">#define _OSS_OBJECT_GROUP_ITEM_H</span>
+<a name="l00115"></a>00115 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d9/d61/oss__object__group__item_8h.html">ossc/modules/oss_object_group_item.h</a>&gt;</span>
+<a name="l00116"></a>00116 <span class="preprocessor">#undef _OSS_OBJECT_GROUP_ITEM_H</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span>
+<a name="l00118"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a926ff1ad9c593ece4cf090fa62b3e76e">00118</a> <span class="preprocessor">#define _OSS_OBJECT_LISTING_H</span>
+<a name="l00119"></a>00119 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d1/d7d/oss__object__listing_8h.html">ossc/modules/oss_object_listing.h</a>&gt;</span>
+<a name="l00120"></a>00120 <span class="preprocessor">#undef _OSS_OBJECT_LISTING_H</span>
+<a name="l00121"></a>00121 <span class="preprocessor"></span>
+<a name="l00122"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a72a0a141e87e531876bcacee82bfa8de">00122</a> <span class="preprocessor">#define _OSS_OBJECT_METADATA_H</span>
+<a name="l00123"></a>00123 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d9c/oss__object__metadata_8h.html">ossc/modules/oss_object_metadata.h</a>&gt;</span>
+<a name="l00124"></a>00124 <span class="preprocessor">#undef _OSS_OBJECT_METADATA_H</span>
+<a name="l00125"></a>00125 <span class="preprocessor"></span>
+<a name="l00126"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a3ab21828f1741db61fd73baa775f66f2">00126</a> <span class="preprocessor">#define _OSS_OBJECT_SUMMARY_H</span>
+<a name="l00127"></a>00127 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d55/oss__object__summary_8h.html">ossc/modules/oss_object_summary.h</a>&gt;</span>
+<a name="l00128"></a>00128 <span class="preprocessor">#undef _OSS_OBJECT_SUMMARY_H</span>
+<a name="l00129"></a>00129 <span class="preprocessor"></span>
+<a name="l00130"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ae2922a9975660d3be9317272b04895f3">00130</a> <span class="preprocessor">#define _OSS_OWNER_H</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../da/dd8/oss__owner_8h.html">ossc/modules/oss_owner.h</a>&gt;</span>
+<a name="l00132"></a>00132 <span class="preprocessor">#undef _OSS_OWNER_H</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span>
+<a name="l00134"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ab2580b8c78bff3bf12c9fed1126b0418">00134</a> <span class="preprocessor">#define _OSS_PART_ETAG_H</span>
+<a name="l00135"></a>00135 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../db/d37/oss__part__etag_8h.html">ossc/modules/oss_part_etag.h</a>&gt;</span>
+<a name="l00136"></a>00136 <span class="preprocessor">#undef _OSS_PART_ETAG_H</span>
+<a name="l00137"></a>00137 <span class="preprocessor"></span>
+<a name="l00138"></a><a class="code" href="../../d0/df8/oss__client_8h.html#af2bd778896433dc68c9a2f4744f6c5ba">00138</a> <span class="preprocessor">#define _OSS_PART_LISTING_H</span>
+<a name="l00139"></a>00139 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d0/d70/oss__part__listing_8h.html">ossc/modules/oss_part_listing.h</a>&gt;</span>
+<a name="l00140"></a>00140 <span class="preprocessor">#undef _OSS_PART_LISTING_H</span>
+<a name="l00141"></a>00141 <span class="preprocessor"></span>
+<a name="l00142"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ac91f7b23e1becd42dc1f38a39f3e89ce">00142</a> <span class="preprocessor">#define _OSS_PART_SUMMARY_H</span>
+<a name="l00143"></a>00143 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d7/dff/oss__part__summary_8h.html">ossc/modules/oss_part_summary.h</a>&gt;</span>
+<a name="l00144"></a>00144 <span class="preprocessor">#undef _OSS_PART_SUMMARY_H</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span>
+<a name="l00146"></a><a class="code" href="../../d0/df8/oss__client_8h.html#ae405b06af449b8ee81278598fc554a0e">00146</a> <span class="preprocessor">#define _OSS_POST_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00147"></a>00147 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d27/oss__post__object__group__request_8h.html">ossc/modules/oss_post_object_group_request.h</a>&gt;</span>
+<a name="l00148"></a>00148 <span class="preprocessor">#undef _OSS_POST_OBJECT_GROUP_REQUEST_H</span>
+<a name="l00149"></a>00149 <span class="preprocessor"></span>
+<a name="l00150"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a3611a528246abccd71f76944e04da954">00150</a> <span class="preprocessor">#define _OSS_POST_OBJECT_GROUP_RESULT_H</span>
+<a name="l00151"></a>00151 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../dc/d36/oss__post__object__group__result_8h.html">ossc/modules/oss_post_object_group_result.h</a>&gt;</span>
+<a name="l00152"></a>00152 <span class="preprocessor">#undef _OSS_POST_OBJECT_GROUP_RESULT_H</span>
+<a name="l00153"></a>00153 <span class="preprocessor"></span>
+<a name="l00154"></a><a class="code" href="../../d0/df8/oss__client_8h.html#abdd6f05269429a5ccdd93127f8000467">00154</a> <span class="preprocessor">#define _OSS_PUT_OBJECT_RESULT_H</span>
+<a name="l00155"></a>00155 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d5/d45/oss__put__object__result_8h.html">ossc/modules/oss_put_object_result.h</a>&gt;</span>
+<a name="l00156"></a>00156 <span class="preprocessor">#undef _OSS_PUT_OBJECT_RESULT_H</span>
+<a name="l00157"></a>00157 <span class="preprocessor"></span>
+<a name="l00158"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a4a9f34efd1f78f30e27bca353e893259">00158</a> <span class="preprocessor">#define _OSS_RESPONSE_HEADER_OVERRIDES_H</span>
+<a name="l00159"></a>00159 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d6/dec/oss__response__header__overrides_8h.html">ossc/modules/oss_response_header_overrides.h</a>&gt;</span>
+<a name="l00160"></a>00160 <span class="preprocessor">#undef _OSS_RESPONSE_HEADER_OVERRIDES_H</span>
+<a name="l00161"></a>00161 <span class="preprocessor"></span>
+<a name="l00162"></a><a class="code" href="../../d0/df8/oss__client_8h.html#acfc68804a552b8279db056f19deb2fb7">00162</a> <span class="preprocessor">#define _OSS_UPLOAD_PART_REQUEST_H</span>
+<a name="l00163"></a>00163 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../db/d71/oss__upload__part__request_8h.html">ossc/modules/oss_upload_part_request.h</a>&gt;</span>
+<a name="l00164"></a>00164 <span class="preprocessor">#undef _OSS_UPLOAD_PART_REQUEST_H</span>
+<a name="l00165"></a>00165 <span class="preprocessor"></span>
+<a name="l00166"></a><a class="code" href="../../d0/df8/oss__client_8h.html#a2a3e9824a3e7c48fbe62fd8b48249314">00166</a> <span class="preprocessor">#define _OSS_UPLOAD_PART_RESULT_H</span>
+<a name="l00167"></a>00167 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="../../d2/d10/oss__upload__part__result_8h.html">ossc/modules/oss_upload_part_result.h</a>&gt;</span>
+<a name="l00168"></a>00168 <span class="preprocessor">#undef _OSS_UPLOAD_PART_RESULT_H</span>
+<a name="l00169"></a>00169 <span class="preprocessor"></span>
+<a name="l00170"></a>00170 <span class="preprocessor">#include &lt;ossc/util/oss_ttxml.h&gt;</span>
+<a name="l00171"></a>00171 <span class="preprocessor">#include &lt;ossc/util/oss_tstring.h&gt;</span>
+<a name="l00172"></a>00172 
+<a name="l00186"></a><a class="code" href="../../de/da5/structoss__client__s.html">00186</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_s</a> {
+<a name="l00187"></a><a class="code" href="../../de/da5/structoss__client__s.html#a6d2d1c31529bee906473fcabaffff34f">00187</a>         <span class="keywordtype">char</span> *<a class="code" href="../../de/da5/structoss__client__s.html#a6d2d1c31529bee906473fcabaffff34f" title="hostname">endpoint</a>;       
+<a name="l00188"></a><a class="code" href="../../de/da5/structoss__client__s.html#a33c6d88cd03f42ab258dc2da344409b2">00188</a>         <span class="keywordtype">char</span> *<a class="code" href="../../de/da5/structoss__client__s.html#a33c6d88cd03f42ab258dc2da344409b2" title="用户的OSS服务用户名">access_id</a>;      
+<a name="l00189"></a><a class="code" href="../../de/da5/structoss__client__s.html#ad6f7717505e9a68b5f55d3bed7105898">00189</a>         <span class="keywordtype">char</span> *<a class="code" href="../../de/da5/structoss__client__s.html#ad6f7717505e9a68b5f55d3bed7105898" title="用户的OSS服务密码">access_key</a>;     
+<a name="l00190"></a>00190 }<a class="code" href="../../d9/df5/group__oss__client__t.html#gaa929b4afc96e6e518346bd86fac4dada" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a>;
+<a name="l00191"></a>00191 
+<a name="l00196"></a><a class="code" href="../../d9/df5/group__oss__client__t.html#ga6a9a1725090d69d07c185065ea5733af">00196</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../db/d00/structcurl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_s</a> <a class="code" href="../../db/d00/structcurl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_t</a>;
+<a name="l00197"></a>00197 
+<a name="l00201"></a><a class="code" href="../../d6/d3a/structparam__buffer__s.html">00201</a> <span class="keyword">struct </span><a class="code" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_s</a> {
+<a name="l00202"></a><a class="code" href="../../d6/d3a/structparam__buffer__s.html#a935adc2e417a61d7eb6f04efb18ba031">00202</a>         <span class="keywordtype">char</span> *<a class="code" href="../../d6/d3a/structparam__buffer__s.html#a935adc2e417a61d7eb6f04efb18ba031" title="缓冲区首指针">ptr</a>; 
+<a name="l00203"></a><a class="code" href="../../d6/d3a/structparam__buffer__s.html#aa065f30aa9f5f9a42132c82c787ee70b">00203</a>         FILE *<a class="code" href="../../d6/d3a/structparam__buffer__s.html#aa065f30aa9f5f9a42132c82c787ee70b" title="文件指针">fp</a>; 
+<a name="l00204"></a><a class="code" href="../../d6/d3a/structparam__buffer__s.html#a05374b750b0fc472c34ee61e6f028bba">00204</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d6/d3a/structparam__buffer__s.html#a05374b750b0fc472c34ee61e6f028bba">left</a>; 
+<a name="l00205"></a><a class="code" href="../../d6/d3a/structparam__buffer__s.html#a44ac4c6a3693f3d2fa34a50428e42237">00205</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d6/d3a/structparam__buffer__s.html#a44ac4c6a3693f3d2fa34a50428e42237" title="缓冲区剩余大小">allocated</a>; 
+<a name="l00206"></a><a class="code" href="../../d6/d3a/structparam__buffer__s.html#ad5035e9ddbe5118f0f35c4db612d13c2">00206</a>         <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> <a class="code" href="../../d6/d3a/structparam__buffer__s.html#ad5035e9ddbe5118f0f35c4db612d13c2" title="缓冲区总大小">code</a>; 
+<a name="l00207"></a>00207 };
+<a name="l00208"></a>00208 
+<a name="l00213"></a><a class="code" href="../../d9/df5/group__oss__client__t.html#ga57ad693a63378607448a616cb07565a8">00213</a> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_s</a> <a class="code" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a>;
+<a name="l00214"></a>00214 
+<a name="l00218"></a><a class="code" href="../../db/d00/structcurl__request__param__s.html">00218</a> <span class="keyword">struct </span><a class="code" href="../../db/d00/structcurl__request__param__s.html" title="http请求与接受的buffer总体结构">curl_request_param_s</a> {
+<a name="l00219"></a><a class="code" href="../../db/d00/structcurl__request__param__s.html#a1a69ab56a701418ab38dee93f28fbaf8">00219</a>         <a class="code" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a> *<a class="code" href="../../db/d00/structcurl__request__param__s.html#a1a69ab56a701418ab38dee93f28fbaf8" title="send buffer">send_buffer</a>; 
+<a name="l00220"></a><a class="code" href="../../db/d00/structcurl__request__param__s.html#aad5dd320d7f482117198cbebd4172161">00220</a>         <a class="code" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a> *<a class="code" href="../../db/d00/structcurl__request__param__s.html#aad5dd320d7f482117198cbebd4172161" title="receive buffer">recv_buffer</a>; 
+<a name="l00221"></a><a class="code" href="../../db/d00/structcurl__request__param__s.html#a1719e0ec2247af9fe6b5d09dad20ae3f">00221</a>         <a class="code" href="../../d6/d3a/structparam__buffer__s.html" title="param_buffer_t中buffer的内容">param_buffer_t</a> *<a class="code" href="../../db/d00/structcurl__request__param__s.html#a1719e0ec2247af9fe6b5d09dad20ae3f" title="header buffer">header_buffer</a>; 
+<a name="l00222"></a>00222 };
+<a name="l00223"></a>00223 
+<a name="l00232"></a>00232 <span class="keyword">extern</span> <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *
+<a name="l00233"></a>00233 <a class="code" href="../../d9/df5/group__oss__client__t.html#gac8e10d72fa74fc528e57370eb26a61df" title="oss_client_t 的构造函数">client_initialize</a>(
+<a name="l00234"></a>00234                 <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id,
+<a name="l00235"></a>00235                 <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key);
+<a name="l00236"></a>00236 
+<a name="l00246"></a>00246 <span class="keyword">extern</span> <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *
+<a name="l00247"></a>00247 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4728b1e7040fa2af93a0716d116e2364" title="oss_client_t 带endpoint参数的构造函数">client_initialize_with_endpoint</a>(
+<a name="l00248"></a>00248                 <span class="keyword">const</span> <span class="keywordtype">char</span> *access_id,
+<a name="l00249"></a>00249                 <span class="keyword">const</span> <span class="keywordtype">char</span> *access_key,
+<a name="l00250"></a>00250                 <span class="keyword">const</span> <span class="keywordtype">char</span> *endpoint);
+<a name="l00251"></a>00251 
+<a name="l00258"></a>00258 <span class="keyword">extern</span> <span class="keywordtype">void</span> 
+<a name="l00259"></a>00259 <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa1a9bf9172235ec17cc3b29c4a3f5bcd" title="oss_client_t 析构函数">client_finalize</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client);
+<a name="l00260"></a>00260 
+<a name="l00268"></a>00268 <span class="keyword">extern</span> <span class="keywordtype">void</span>
+<a name="l00269"></a>00269 <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa2fa80e558338b2a2ce05df33b33cb58" title="终止一个 Multipart 上传事件">client_abort_multipart_upload</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00270"></a>00270                 <a class="code" href="../../dc/dc9/structoss__abort__multipart__upload__request__s.html" title="oss_abort_multipart_upload_request_t 包含终止一个 Multipart 上传事件的请求参数">oss_abort_multipart_upload_request_t</a> *request,
+<a name="l00271"></a>00271                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00272"></a>00272 
+<a name="l00282"></a>00282 <span class="keyword">extern</span> <a class="code" href="../../d6/d69/structoss__complete__multipart__upload__result__s.html" title="包含完成一个Multipart上传事件的返回结果">oss_complete_multipart_upload_result_t</a> *
+<a name="l00283"></a>00283 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga1168c7130724c93de0b59d20d1d5610d" title="完成一个 Multipart 上传事件">client_complete_multipart_upload</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00284"></a>00284                 <a class="code" href="../../d1/d06/structoss__complete__multipart__upload__request__s.html" title="包含完成一个Multipart上传事件的请求参数">oss_complete_multipart_upload_request_t</a> *request,
+<a name="l00285"></a>00285                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00286"></a>00286 
+<a name="l00296"></a>00296 <span class="keyword">extern</span> <a class="code" href="../../d4/d4a/structoss__copy__object__result__s.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求结果">oss_copy_object_result_t</a> *
+<a name="l00297"></a>00297 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga1dcbb53c26489ebaec5a2997aad1f7f3" title="拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object">client_copy_object</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00298"></a>00298                 <a class="code" href="../../da/dfb/structoss__copy__object__request__s.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求参数">oss_copy_object_request_t</a> *request,
+<a name="l00299"></a>00299                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00300"></a>00300 
+<a name="l00313"></a>00313 <span class="keyword">extern</span> <a class="code" href="../../d4/d4a/structoss__copy__object__result__s.html" title="拷贝一个在OSS上已经存在的Object成另外一个Object的请求结果">oss_copy_object_result_t</a> *
+<a name="l00314"></a>00314 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga919f41dc5c7cf6481222849861dc1dac" title="拷贝一个在 OSS 上已经存在的 Object 成另外一个 Object">client_copy_object_ext</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00315"></a>00315                 <span class="keyword">const</span> <span class="keywordtype">char</span> *source_bucket_name,
+<a name="l00316"></a>00316                 <span class="keyword">const</span> <span class="keywordtype">char</span> *source_key,
+<a name="l00317"></a>00317                 <span class="keyword">const</span> <span class="keywordtype">char</span> *destination_bucket_name,
+<a name="l00318"></a>00318                 <span class="keyword">const</span> <span class="keywordtype">char</span> *destination_key,
+<a name="l00319"></a>00319                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00320"></a>00320 
+<a name="l00328"></a>00328 <span class="keyword">extern</span> <span class="keywordtype">void</span>
+<a name="l00329"></a>00329 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga0feb96409f1d8d499f6301ce1c730e23" title="创建 Bucket">client_create_bucket</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00330"></a>00330                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00331"></a>00331                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00332"></a>00332 
+<a name="l00340"></a>00340 <span class="keyword">extern</span> <span class="keywordtype">void</span> 
+<a name="l00341"></a>00341 <a class="code" href="../../d9/df5/group__oss__client__t.html#gab8d0395051c00765fed60a45010c4fcf" title="删除 Bucket">client_delete_bucket</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00342"></a>00342                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00343"></a>00343                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00344"></a>00344 
+<a name="l00353"></a>00353 <span class="keyword">extern</span> <span class="keywordtype">void</span>
+<a name="l00354"></a>00354 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga94716e90889c88c2957f44a49d99a10b" title="删除指定的 OSSObject">client_delete_object</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00355"></a>00355                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00356"></a>00356                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00357"></a>00357                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00358"></a>00358 
+<a name="l00366"></a>00366 <a class="code" href="../../d4/dd3/structoss__delete__multiple__object__request__s.html" title="删除指定Bucket的多个Object">oss_delete_multiple_object_request_t</a>*
+<a name="l00367"></a>00367 <a class="code" href="../../d9/df5/group__oss__client__t.html#gace5b86b60714d92c386b3abf88ad7bbe" title="删除指定的多个 OSSObject">client_delete_multiple_object</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00368"></a>00368                 <a class="code" href="../../d4/dd3/structoss__delete__multiple__object__request__s.html" title="删除指定Bucket的多个Object">oss_delete_multiple_object_request_t</a> *request,
+<a name="l00369"></a>00369                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00370"></a>00370 
+<a name="l00371"></a>00371 <span class="preprocessor">#if 0</span>
+<a name="l00372"></a>00372 <span class="preprocessor"></span>
+<a name="l00381"></a>00381 <span class="keyword">extern</span> <span class="keywordtype">char</span> *
+<a name="l00382"></a>00382 client_generate_presigned_url(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00383"></a>00383                 <a class="code" href="../../db/dcc/structoss__generate__presigned__url__request__s.html" title="生成带有签名信息的URL的请求">oss_generate_presigned_url_request_t</a> *request);
+<a name="l00384"></a>00384 <span class="preprocessor">#endif</span>
+<a name="l00385"></a>00385 <span class="preprocessor"></span>
+<a name="l00396"></a>00396 <span class="keyword">extern</span> <span class="keywordtype">char</span> *
+<a name="l00397"></a>00397 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga63a790da85e9b5531f584acace6c802f" title="生成一个用 HTTP GET 方法访问 OSSObject 的 URL">client_generate_presigned_url_with_expiration</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00398"></a>00398                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00399"></a>00399                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00400"></a>00400                 <span class="keyword">const</span> <span class="keywordtype">char</span> *expiration);
+<a name="l00401"></a>00401 
+<a name="l00413"></a>00413 <span class="keyword">extern</span> <span class="keywordtype">char</span> *
+<a name="l00414"></a>00414 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga7ef942f96b83754b7fa9466bd0e079af" title="生成一个用指定 HTTP 方法访问 OSSObject 的 URL">client_generate_presigned_url_with_method</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00415"></a>00415                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00416"></a>00416                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00417"></a>00417                 <span class="keyword">const</span> <span class="keywordtype">char</span> *expiration,
+<a name="l00418"></a>00418                 <span class="keyword">const</span> <span class="keywordtype">char</span> *method);
+<a name="l00419"></a>00419 
+<a name="l00429"></a>00429 <span class="keyword">extern</span> <a class="code" href="../../d7/d47/structoss__access__control__list__s.html" title="表示OSS的访问控制列表（Access Control List, ACL), 包含了一组为指定被授权者(Grantee)分配特定权限(Permission)的集合">oss_access_control_list_t</a> *
+<a name="l00430"></a>00430 <a class="code" href="../../d9/df5/group__oss__client__t.html#gaba6fad825439fed2aec0743e26a8a3d3" title="返回给定 Bucket 的 Access Control List(oss_client_t *client, ACL)">client_get_bucket_acl</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00431"></a>00431                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00432"></a>00432                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00433"></a>00433 
+<a name="l00441"></a>00441 <span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *
+<a name="l00442"></a>00442 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga48f4f21e8c6870df083eabd8b19ce091" title="返回访问的OSS Endpoint">client_get_endpoint</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client);
+<a name="l00443"></a>00443 
+<a name="l00455"></a>00455 <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00456"></a>00456 <a class="code" href="../../d9/df5/group__oss__client__t.html#gadd5e0b9de089d3d40c9223559b15bd01" title="从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存">client_get_object_to_buffer</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00457"></a>00457                 <a class="code" href="../../dc/d2c/structoss__get__object__request__s.html" title="指定从OSS下载Object的请求参数">oss_get_object_request_t</a> *request,
+<a name="l00458"></a>00458                 <span class="keywordtype">void</span> **output,
+<a name="l00459"></a>00459                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *output_len,
+<a name="l00460"></a>00460                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00461"></a>00461 
+<a name="l00473"></a>00473 <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00474"></a>00474 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga92b94814dc9c08a68acfcb44c09c030b" title="从 OSS 指定的 Bucket 中导出指定的 OSSObject 到内存">client_get_object_to_buffer_2nd</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00475"></a>00475                 <a class="code" href="../../dc/d2c/structoss__get__object__request__s.html" title="指定从OSS下载Object的请求参数">oss_get_object_request_t</a> *request,
+<a name="l00476"></a>00476                 <span class="keywordtype">void</span> **output,
+<a name="l00477"></a>00477                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *output_len,
+<a name="l00478"></a>00478                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00491"></a>00491 <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00492"></a>00492 <a class="code" href="../../d9/df5/group__oss__client__t.html#gafa9ba0e477167eb764e0e7b9cc859507" title="从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到内存， 并在内存中实时解压缩">client_get_compressed_object_to_buffer</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00493"></a>00493                 <a class="code" href="../../dc/d2c/structoss__get__object__request__s.html" title="指定从OSS下载Object的请求参数">oss_get_object_request_t</a> *request,
+<a name="l00494"></a>00494                 <span class="keywordtype">void</span> **output,
+<a name="l00495"></a>00495                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *output_len,
+<a name="l00496"></a>00496                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00497"></a>00497 
+<a name="l00508"></a>00508 <span class="keyword">extern</span> <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00509"></a>00509 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga9b2497ab1abf564dff29d44c524751a5" title="从 OSS 指定的 Bucket 中导出指定的 OSSObject 到目标文件">client_get_object_to_file</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00510"></a>00510                 <a class="code" href="../../dc/d2c/structoss__get__object__request__s.html" title="指定从OSS下载Object的请求参数">oss_get_object_request_t</a> *request,
+<a name="l00511"></a>00511                 FILE *file,
+<a name="l00512"></a>00512                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00513"></a>00513 
+<a name="l00524"></a>00524 <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00525"></a>00525 <a class="code" href="../../d9/df5/group__oss__client__t.html#gabf0775f91ca8413535e3c87402227e31" title="从 OSS 指定的 Bucket 中导出指定的压缩 OSSObject 到目标文件">client_get_compressed_object_to_file</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00526"></a>00526                 <a class="code" href="../../dc/d2c/structoss__get__object__request__s.html" title="指定从OSS下载Object的请求参数">oss_get_object_request_t</a> *request,
+<a name="l00527"></a>00527                 FILE *file,
+<a name="l00528"></a>00528                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00529"></a>00529 
+<a name="l00540"></a>00540 <span class="keyword">extern</span> <a class="code" href="../../d7/df5/structoss__object__s.html" title="表示OSS中的Object ">oss_object_t</a> *
+<a name="l00541"></a>00541 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga71ec90ffa8e78960784c0fa08d0f9541" title="从 OSS 指定的 Bucket 中导出 OSSObject">client_get_object_with_bucket_name</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00542"></a>00542                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00543"></a>00543                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00544"></a>00544                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00545"></a>00545 
+<a name="l00556"></a>00556 <span class="keyword">extern</span> <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00557"></a>00557 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga59ee0ee283ecf9584c9800373ef5a2f4" title="返回 OSSObject 的元数据">client_get_object_metadata</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00558"></a>00558                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00559"></a>00559                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00560"></a>00560                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00570"></a>00570 <span class="keyword">extern</span> <a class="code" href="../../d4/ded/structoss__initiate__multipart__upload__result__s.html" title="包含初始化一个Multipart上传事件的结果参数">oss_initiate_multipart_upload_result_t</a> *
+<a name="l00571"></a>00571 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga79f3cfa10b7d45103c7a52bff6e9f76d" title="初始化一个 Multipart 上传事件">client_initiate_multipart_upload</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00572"></a>00572                 <a class="code" href="../../d7/d38/structoss__initiate__multipart__upload__request__s.html" title="包含初始化一个Multipart上传事件的请求参数">oss_initiate_multipart_upload_request_t</a> *request,
+<a name="l00573"></a>00573                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00574"></a>00574 
+<a name="l00575"></a>00575 
+<a name="l00584"></a>00584 <span class="keyword">extern</span> <span class="keywordtype">bool</span>
+<a name="l00585"></a>00585 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga259246e9430fb9adc473d6c77b4a792a" title="判断给定 Bucket 是否存在">client_is_bucket_exist</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00586"></a>00586                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name);
+<a name="l00587"></a>00587 
+<a name="l00597"></a>00597 <span class="keyword">extern</span> <a class="code" href="../../db/db9/structoss__bucket__s.html" title="Bucket是OSS上的命名空间   Bucket名在整个 OSS 中具有全局唯一性,且不能修改； 存储在OSS上的每个Object必须都包含在某个Bucket中。 一个应用，例如图片分享网站，可以对应...">oss_bucket_t</a> **
+<a name="l00598"></a>00598 <a class="code" href="../../d9/df5/group__oss__client__t.html#gae8cadd850908dd027abcd0660c639be4" title="返回请求者拥有的所有 Bucket 的列表">client_list_buckets</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00599"></a>00599                 <span class="keywordtype">int</span> *buckets_number,
+<a name="l00600"></a>00600                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00601"></a>00601 
+<a name="l00611"></a>00611 <span class="keyword">extern</span> <a class="code" href="../../d5/d60/structoss__multipart__upload__listing__s.html" title="包含Multipart上传事件的列表">oss_multipart_upload_listing_t</a> *
+<a name="l00612"></a>00612 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga4f3e8c8c56e686e5d8a7cb461c2f625c" title="列出所有执行中的 Multipart 上传事件">client_list_multipart_uploads</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00613"></a>00613                 <a class="code" href="../../d9/d78/structoss__list__multipart__uploads__request__s.html" title="包含列出所有执行中Multipart上传事件的请求参数">oss_list_multipart_uploads_request_t</a> *request,
+<a name="l00614"></a>00614                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00615"></a>00615 
+<a name="l00625"></a>00625 <span class="keyword">extern</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *
+<a name="l00626"></a>00626 <a class="code" href="../../d9/df5/group__oss__client__t.html#gaa7f1d5cab74ad3ef99fd604b9d76facd" title="列出指定 Bucket 下的 OSSObject">client_list_objects</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00627"></a>00627                 <a class="code" href="../../de/d9a/structoss__list__objects__request__s.html" title="包含获取object列表的请求信息">oss_list_objects_request_t</a> *request,
+<a name="l00628"></a>00628                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00629"></a>00629 
+<a name="l00639"></a>00639 <span class="keyword">extern</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *
+<a name="l00640"></a>00640 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga95d436b7bd183a418d752c3cd052979b" title="列出指定 Bucket 下的 OSSObject">client_list_objects_with_bucket_name</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00641"></a>00641                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00642"></a>00642                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00643"></a>00643 
+<a name="l00654"></a>00654 <span class="keyword">extern</span> <a class="code" href="../../d8/d42/structoss__object__listing__s.html" title="一个Bucket中所有的Object信息">oss_object_listing_t</a> *
+<a name="l00655"></a>00655 <a class="code" href="../../d9/df5/group__oss__client__t.html#gae9768ab399a39f85674ed21a86eab059" title="列出指定 Bucket 下 key 以给定 prefix 开头的 OSSObject">client_list_objects_with_prefix</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00656"></a>00656                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00657"></a>00657                 <span class="keyword">const</span> <span class="keywordtype">char</span> *prefix,
+<a name="l00658"></a>00658                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00659"></a>00659 
+<a name="l00669"></a>00669 <span class="keyword">extern</span> <a class="code" href="../../db/d7d/structoss__part__listing__s.html" title="包含Multipart上传Part的表示">oss_part_listing_t</a> *
+<a name="l00670"></a>00670 <a class="code" href="../../d9/df5/group__oss__client__t.html#gaef32afbd6d84ed137f1526551e094286" title="列出 multipart 中上传的所有 part 信息">client_list_parts</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00671"></a>00671                 <a class="code" href="../../d1/dca/structoss__list__parts__request__s.html" title="包含列出Part的请求参数">oss_list_parts_request_t</a> *request,
+<a name="l00672"></a>00672                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00673"></a>00673 
+<a name="l00686"></a>00686 <span class="keyword">extern</span> <a class="code" href="../../de/d52/structoss__put__object__result__s.html" title="上传object操作的返回结果">oss_put_object_result_t</a> *
+<a name="l00687"></a>00687 <a class="code" href="../../d9/df5/group__oss__client__t.html#gaca22eacd908d77a7db2bae19e7041cc5" title="上传指定的 OSSObject 到 OSS 中指定的 Bucket">client_put_object_from_file</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00688"></a>00688                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00689"></a>00689                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00690"></a>00690                 <span class="keywordtype">void</span> *input,
+<a name="l00691"></a>00691                 <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata,
+<a name="l00692"></a>00692                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00693"></a>00693 
+<a name="l00706"></a>00706 <span class="keyword">extern</span> <a class="code" href="../../de/d52/structoss__put__object__result__s.html" title="上传object操作的返回结果">oss_put_object_result_t</a> *
+<a name="l00707"></a>00707 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga929617069ab2d4a1f0260d930e5f595e" title="上传指定的 OSSObject 到 OSS 中指定的 Bucket">client_put_object_from_buffer</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00708"></a>00708                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00709"></a>00709                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00710"></a>00710                 <span class="keywordtype">void</span> *input,
+<a name="l00711"></a>00711                 <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata,
+<a name="l00712"></a>00712                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00713"></a>00713 
+<a name="l00731"></a>00731 <span class="keyword">extern</span> <a class="code" href="../../de/d52/structoss__put__object__result__s.html" title="上传object操作的返回结果">oss_put_object_result_t</a> *
+<a name="l00732"></a>00732 <a class="code" href="../../d9/df5/group__oss__client__t.html#gafd2376a456f79f3e5b82445473ccf1fe" title="压缩并上传指定的 OSSObject 到 OSS 中指定的 Bucket">client_put_compressed_object_from_buffer</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00733"></a>00733                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00734"></a>00734                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00735"></a>00735                 <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *metadata,
+<a name="l00736"></a>00736                 <span class="keywordtype">void</span> *input, 
+<a name="l00737"></a>00737                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> input_len,
+<a name="l00738"></a>00738                 <span class="keywordtype">char</span> algorithm,
+<a name="l00739"></a>00739                 <span class="keywordtype">char</span> flag,
+<a name="l00740"></a>00740                 <span class="keywordtype">char</span> level,
+<a name="l00741"></a>00741                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00742"></a>00742 
+<a name="l00751"></a>00751 <span class="keyword">extern</span> <span class="keywordtype">void</span>
+<a name="l00752"></a>00752 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga5a884b026b710145c7ad08409540808b" title="设置指定 Bucket 的 Access Control List(oss_client_t *client, ACL)">client_set_bucket_acl</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00753"></a>00753                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00754"></a>00754                 <span class="keyword">const</span> <span class="keywordtype">char</span> *acl,
+<a name="l00755"></a>00755                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00756"></a>00756 
+<a name="l00766"></a>00766 <span class="keyword">extern</span> <a class="code" href="../../d2/de4/structoss__upload__part__result__s.html" title="包含向OSS上传Multipart分块（Part）的结果信息">oss_upload_part_result_t</a> *
+<a name="l00767"></a>00767 <a class="code" href="../../d9/df5/group__oss__client__t.html#gad83268d0e71dd2717069b2158b6887ca" title="上传一个分块（Part）到指定的的 Multipart 上传事件中">client_upload_part</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00768"></a>00768                 <a class="code" href="../../d1/d04/structoss__upload__part__request__s.html" title="包含上传Multipart分块（Part）参数">oss_upload_part_request_t</a> *request,
+<a name="l00769"></a>00769                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00770"></a>00770 
+<a name="l00782"></a>00782 <span class="keyword">extern</span> <a class="code" href="../../de/d68/structoss__post__object__group__result__s.html" title="创建对象组（Object Group）返回的结果">oss_post_object_group_result_t</a> *
+<a name="l00783"></a>00783 <a class="code" href="../../d9/df5/group__oss__client__t.html#gafe387da8619004fabf71be7ac40e4591" title="Post Object Group 操作将根据用户提供的 Object 信息,在 OSS 服务器端创建出一个新的 Object Group.">client_post_object_group</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00784"></a>00784                 <a class="code" href="../../d1/deb/structoss__post__object__group__request__s.html" title="Object Group 是由一个或多个 Object 组成的松散的集合,它的数据长度是其 所属 Object 的数据长度的总和。用户可以指定在同一个 Bucket 下的一个或多个Object...">oss_post_object_group_request_t</a> *request,
+<a name="l00785"></a>00785                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00786"></a>00786 
+<a name="l00797"></a>00797 <span class="keyword">extern</span> <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00798"></a>00798 <a class="code" href="../../d9/df5/group__oss__client__t.html#gab4703b026554af88cd9ad8dc5facad4e" title="Get Object Group To File 操作将读取用户指定的Object Group到本地文件中">client_get_object_group_to_file</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00799"></a>00799                 <a class="code" href="../../de/d4e/structoss__get__object__group__request__s.html" title="指定从OSS下载Object group的请求参数">oss_get_object_group_request_t</a> *request,
+<a name="l00800"></a>00800                 FILE *file,
+<a name="l00801"></a>00801                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00802"></a>00802 
+<a name="l00814"></a>00814 <span class="keyword">extern</span> <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00815"></a>00815 <a class="code" href="../../d9/df5/group__oss__client__t.html#ga782a4be8676609b34a38c8b0d4682687" title="Get Object Group To Buffer 操作将读取用户指定的Object Group到Buffer中">client_get_object_group_to_buffer</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00816"></a>00816                 <a class="code" href="../../de/d4e/structoss__get__object__group__request__s.html" title="指定从OSS下载Object group的请求参数">oss_get_object_group_request_t</a> *request,
+<a name="l00817"></a>00817                 <span class="keywordtype">void</span> **output,
+<a name="l00818"></a>00818                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> *output_len,
+<a name="l00819"></a>00819                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00820"></a>00820 
+<a name="l00831"></a>00831 <span class="keyword">extern</span> <a class="code" href="../../dc/d93/structoss__get__object__group__index__result__s.html" title="用于返回 Object Group 中的 Object List 信息">oss_get_object_group_index_result_t</a> *
+<a name="l00832"></a>00832 <a class="code" href="../../d9/df5/group__oss__client__t.html#gab95e25cca77c3bd53d34116419e532d6" title="Get Object Group Index 返回 Object Group 中的 Object List 信息">client_get_object_group_index</a>(
+<a name="l00833"></a>00833                 <a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00834"></a>00834                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00835"></a>00835                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00836"></a>00836                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00837"></a>00837 
+<a name="l00847"></a>00847 <span class="keyword">extern</span> <a class="code" href="../../d5/d38/structoss__object__metadata__s.html" title="OSS中Object的元数据.">oss_object_metadata_t</a> *
+<a name="l00848"></a>00848 <a class="code" href="../../d9/df5/group__oss__client__t.html#gac8c3870bd348b84cad315a4d192d1fdb" title="Head Object Group 返回 指定Object Group 的 元信息，不返回文件内容。">client_head_object_group</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00849"></a>00849                 <a class="code" href="../../de/d4e/structoss__get__object__group__request__s.html" title="指定从OSS下载Object group的请求参数">oss_get_object_group_request_t</a> *request,
+<a name="l00850"></a>00850                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00851"></a>00851 
+<a name="l00860"></a>00860 <span class="keyword">extern</span> <span class="keywordtype">void</span> 
+<a name="l00861"></a>00861 <a class="code" href="../../d9/df5/group__oss__client__t.html#gad8285aa6adfec8c2a17ec1aacb588b53" title="Delete Object Group 返回 指定Object Group 的 元信息，不返回文件内容。">client_delete_object_group</a>(<a class="code" href="../../de/da5/structoss__client__s.html" title="访问阿里云开放存储服务（Open Storage Service， OSS）的入口。 阿里云存储服务（Open Storage Service，简称OSS），是阿里云对外提供的海量， 安全，低成本， 高...">oss_client_t</a> *client,
+<a name="l00862"></a>00862                 <span class="keyword">const</span> <span class="keywordtype">char</span> *bucket_name,
+<a name="l00863"></a>00863                 <span class="keyword">const</span> <span class="keywordtype">char</span> *key,
+<a name="l00864"></a>00864                 <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> *retcode);
+<a name="l00865"></a>00865 
+<a name="l00866"></a>00866 
+<a name="l00869"></a>00869 <span class="preprocessor">#endif // OSS_CLIENT_H</span>
+</pre></div></div><!-- contents -->
+</div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>全部</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>数据结构</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>文件</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>函数</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>变量</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>类型定义</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>宏定义</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+  <div id="nav-path" class="navpath">
+    <ul>
+      <li class="navelem"><a class="el" href="../../d0/df8/oss__client_8h.html">oss_client.h</a>      </li>
+
+    <li class="footer">Generated at 2012年十月2日 星期二 22:35:19 for OSSC by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
+   </ul>
+ </div>
+
+
+</body>
+</html>
