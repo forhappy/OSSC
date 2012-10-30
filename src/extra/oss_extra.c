@@ -323,6 +323,7 @@ _extra_complete_multipart_upload(oss_client_t *client, const char *bucket_name,
 	struct dirent *entry = NULL;
 	int parts = 0;
 	dir = opendir(upload_metadir);
+	if (retcode != NULL) *retcode = -1;
 	while((entry = readdir(dir)) != NULL) {
 		if ((entry->d_name)[0] != '.' 
 				&& strncmp(entry->d_name, "ID", 2) != 0) {
@@ -346,8 +347,7 @@ _extra_complete_multipart_upload(oss_client_t *client, const char *bucket_name,
 			char etag_orig[48] = {0};
 			char etag[48] = {0};
 			int j= 0, k = 0;
-			unsigned int dummy = fread(etag_orig, 48, 1, fp);
-			if (dummy < 1) return;
+			fread(etag_orig, 48, 1, fp);
 			for (j = 0; j < strlen(etag_orig); j++) {
 				if (etag_orig[j] != '"') {
 					etag[k] = etag_orig[j];
@@ -463,6 +463,7 @@ client_extra_put_object(oss_client_t *client,
 	pthread_t worker_monitor;
 	extra_worker_monitor_param_t *worker_monitor_param = NULL;
 	unsigned int read_file_sz = 0;
+	if (retcode != NULL) *retcode = -1;
 
 	FILE *fp = fopen(local_file, "r");
 	if (fp == NULL) {

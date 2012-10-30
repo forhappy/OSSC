@@ -22,11 +22,11 @@ int main()
 	unsigned short retcode = -1;			//保存服务器http返回码的解析结果;
 	const char *retinfo = NULL;            //保存通过retcode获得的错误信息
 
-	const char *bucket_name = "bucketexample";       //设置bucket_name
-	const char *key         = "multipart-upload.data";      //设置key
+	const char *bucket_name = "bucketname100";       //设置bucket_name
+	const char *key         = "upload-mt.data";      //设置key
 
 	 /* TODO: 此处设置Upload ID */
-	const char *upload_id = "0004CD3FD5EC689289BF40CEED39CF60"; 
+	const char *upload_id = "0004CD40021A2577DF517390CCB81DB6"; 
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 
