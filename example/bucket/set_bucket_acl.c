@@ -22,7 +22,7 @@
 
 static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 static const char *access_key = "MUltNpuYqE";  //设置用户密码
-static const char *endpoint = "storage.aliyun.com";    //设置hostname
+static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 
 int main()
 {

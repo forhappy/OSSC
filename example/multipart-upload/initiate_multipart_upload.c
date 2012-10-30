@@ -13,7 +13,7 @@
 
 static const char *access_id  = "ACSGmv8fkV1TDO9L"; /**设置用户 Access ID */
 static const char *access_key = "BedoWbsJe2"; /** 设置用户的 Access Key */
-static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 
 /* 初始化Multipart Upload操作*/
 int main()
@@ -34,10 +34,11 @@ int main()
 	oss_object_metadata_t *metadata = object_metadata_initialize();
 
 	/* 设置上传对象的元信息 */
+	metadata->set_content_type(metadata, "application/octet-stream");
 	metadata->set_cache_control(metadata, "no-cache");
 	metadata->set_content_encoding(metadata, "utf-8");
 	metadata->set_content_disposition(metadata, "attachment;");
-	metadata->set_expiration_time(metadata, "Thu, 15 Sep 2012 21:08:42 GMT");
+	metadata->set_expiration_time(metadata, "Thu, 31 Oct 2012 21:08:42 GMT");
 
 	oss_initiate_multipart_upload_request_t *request = 
 		initiate_multipart_upload_request_initialize_with_metadata(bucket_name, key, metadata);

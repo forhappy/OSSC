@@ -539,7 +539,7 @@ client_initiate_multipart_upload(oss_client_t *client,
 	curl_slist_free_all(http_headers);
 
 	oss_map_delete(default_headers);
-	oss_map_delete(user_headers);
+	// oss_map_delete(user_headers);
 
 	if (now != NULL) free(now);
 	if (sign != NULL) free(sign);

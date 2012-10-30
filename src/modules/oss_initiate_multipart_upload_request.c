@@ -215,9 +215,10 @@ initiate_multipart_upload_request_finalize(
 		request->key = NULL;
 	}
 
+	/**we didn't free request->object_metadata for purpose.*/
 	if (request->object_metadata != NULL) {
-		free(request->object_metadata);
-		request->object_metadata = NULL;
+		// free(request->object_metadata);
+		// request->object_metadata = NULL;
 	}
 
 	free(request);

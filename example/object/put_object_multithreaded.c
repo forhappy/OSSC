@@ -17,7 +17,7 @@
 
 static const char *access_id  = "ACSGmv8fkV1TDO9L"; /**设置用户 Access ID */
 static const char *access_key = "BedoWbsJe2"; /** 设置用户的 Access Key */
-static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 
 /* 多线程断点续传，将本地大文件(> 5M)上传至云服务器中 */
 int main()
@@ -25,9 +25,9 @@ int main()
 	unsigned short retcode = -1;
 	const char *retinfo = NULL;
 
-	const char *bucket_name = "bucketexample";
+	const char *bucket_name = "bucketname100";
 	const char *key = "upload-mt.data";
-	const char *local_file = "mysql-5.5.27-linux2.6-x86_64.tar.gz";
+	const char *local_file = "memsqlbin_amd64.tar.gz";
 	//const char *local_file = "mysql-5.1.52.tar.gz";
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);

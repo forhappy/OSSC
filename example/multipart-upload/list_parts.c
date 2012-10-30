@@ -13,7 +13,7 @@
 
 static const char *access_id  = "ACSGmv8fkV1TDO9L"; /**设置用户 Access ID */
 static const char *access_key = "BedoWbsJe2"; /** 设置用户的 Access Key */
-static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 
 /* 列出一次Multipart Upload操作已经上传的所有Parts */
 int main()
@@ -26,7 +26,7 @@ int main()
 	const char *key         = "multipart-upload.data";      //设置key
 
 	 /* TODO: 此处设置Upload ID */
-	const char *upload_id = "0004CB0D72FB6328EC8EF60A3717BE90"; 
+	const char *upload_id = "0004CD3FD5EC689289BF40CEED39CF60"; 
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 

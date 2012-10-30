@@ -13,14 +13,14 @@
 
 static const char *access_id  = "ACSGmv8fkV1TDO9L"; /**设置用户 Access ID */
 static const char *access_key = "BedoWbsJe2"; /** 设置用户的 Access Key */
-static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 
 
 /* TODO: 此处设置你从 Upload Part 步骤中获取的 ETag 值*/
 const char *etags[] = {
-	"7C9EE23B43ABA3108DE146CC92D50FAF",
-	"ADCF605A94B33267BCB1B0F5A8599BAC",
-	"4966A72870743052AA700D4D3528E2B1"
+	"0763E8BDF4004356D84D5F1D050FA700",
+	"6ADB5930E0A25A27F3919A697AC164AE",
+	"5C129F57803C4EB9FCACF16EDE924F08"
 };
 
 /* 完成一个Multipart Upload操作*/
@@ -34,7 +34,7 @@ int main()
 	const char *key         = "multipart-upload.data";      //设置key
 
 	/* TODO:此处设置你需要终止的 Upload ID */
-	const char *upload_id = "0004CA5F502B4C6AEE20E8B4ED6E2002"; 
+	const char *upload_id = "0004CD3FD5EC689289BF40CEED39CF60"; 
 
 	unsigned int parts = sizeof(etags) / sizeof(char *);
 

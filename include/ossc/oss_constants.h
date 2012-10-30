@@ -100,8 +100,8 @@ typedef enum _OSS_PERMISSION {
 	READ
 }OSS_PERMISSION;
 
-#define DEFAULT_OSS_HOST            "storage.aliyun.com"
-#define VERSION                     "0.1.4"
+#define DEFAULT_OSS_HOST            "oss.aliyuncs.com"
+#define VERSION                     "0.1.6"
 #define NAME                        "OSS-C-SDK"
 
 #define OSS_BUCKET                  "bucket"

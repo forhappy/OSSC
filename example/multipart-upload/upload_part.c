@@ -13,7 +13,7 @@
 
 static const char *access_id  = "ACSGmv8fkV1TDO9L"; /**设置用户 Access ID */
 static const char *access_key = "BedoWbsJe2"; /** 设置用户的 Access Key */
-static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 
 /* 上传 Part 操作，本例演示了如果使用上传Part操作来上传一个文件，
  * 适合上传大文件，但是如果想多线程断点续传，请在Unix/Linux下使用
@@ -28,7 +28,7 @@ int main()
 	const char *key         = "multipart-upload.data";      //设置key
 
 	/* TODO: 设置upload id，此upload id由initiate multipart upload 操作返回 */
-	const char *upload_id = "0004CA5FAC0DD11BFCEE7E76679BD09D"; 
+	const char *upload_id = "0004CD3FD5EC689289BF40CEED39CF60"; 
 
 	FILE *fp= fopen("mysql-5.1.52.tar.gz", "r"); /* 需要通过multipart upload上传的文件 */
 	if (fp == NULL) {

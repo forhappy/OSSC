@@ -732,7 +732,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; //设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 多线程断点续传，将本地大文件(> 5M)上传至云服务器中 
 * int main()
@@ -767,7 +767,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * int main()
 * {
@@ -790,7 +790,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * int main()
 * {
@@ -818,7 +818,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //为用户创建一个bucket
 * int main()
@@ -850,7 +850,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //获得指定bucket的访问权限
 * int main()
@@ -894,7 +894,7 @@
 * 
 * static const char *access_id = "";   //设置用户帐号
 * static const char *access_key = "";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //设置指定bucket的访问权限
 * int main()
@@ -929,7 +929,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //返回请求者指定Bucket下的所有Object的列表
 * int main()
@@ -985,7 +985,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //返回请求者指定Bucket下的所有Object的列表
 * int main()
@@ -1055,7 +1055,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 *
 * // 返回请求者拥有的所有Bucket的列表
 * int main()
@@ -1115,7 +1115,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * // 为用户删除一个bucket
 * int main()
@@ -1150,7 +1150,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 将本地文件上传到云服务器上 
 * int main()
@@ -1205,7 +1205,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 将内存中的内容上传至云服务器中 
 * int main()
@@ -1270,7 +1270,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; //设置用户 Access ID
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 将远程服务器上的文件下载到内存中 
 * int main()
@@ -1321,7 +1321,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 下载云服务器中的文件至本地文件 
 * int main()
@@ -1370,7 +1370,7 @@
 *
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * // Object 拷贝操作
 * int main()
 * {
@@ -1414,7 +1414,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; //设置用户 Access ID
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // Object 拷贝操作 
 * int main()
@@ -1450,7 +1450,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; // 设置用户 Access ID
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 获取Object的元信息
 * int main()
@@ -1490,7 +1490,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; //设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 删除Object
 * int main()
@@ -1525,7 +1525,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; // 设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 设置需要删除的Object 
 * const char *keys[] = {
@@ -1570,7 +1570,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 初始化Multipart Upload操作
 * int main()
@@ -1624,7 +1624,7 @@
 * #include <ossc/client.h>
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 上传 Part 操作，本例演示了如果使用上传Part操作来上传一个文件，
 * // 适合上传大文件，但是如果想多线程断点续传，请在Unix/Linux下使用
@@ -1709,7 +1709,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * 
 * // TODO: 此处设置你从 Upload Part 步骤中获取的 ETag 值
@@ -1770,7 +1770,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 终止一个Multipart Upload操作
 * int main()
@@ -1814,7 +1814,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; // 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 列出所有的Multipart Upload操作
 * int main()
@@ -1865,7 +1865,7 @@
 * 
 * static const char *access_id  = "ACSGmv8fkV1TDO9L"; ///设置用户 Access ID 
 * static const char *access_key = "BedoWbsJe2"; /// 设置用户的 Access Key 
-* static const char *endpoint   = "storage.aliyun.com";    //设置 hostname
+* static const char *endpoint   = "oss.aliyuncs.com";    //设置 hostname
 * 
 * // 列出一次Multipart Upload操作已经上传的所有Parts 
 * int main()
@@ -1918,7 +1918,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //设置要组合的Objects的etag值 
 * static const char *etags[] = {
@@ -2000,7 +2000,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //读取用户指定的Object group到buffer 
 * int main()
@@ -2052,7 +2052,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * // 读取用户指定的Object group到本地文件 
 * int main()
@@ -2103,7 +2103,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * // 返回 Object Group 中的 Object List 信息
 * int main()
@@ -2160,7 +2160,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * // Head Object Group 返回用户指定的 Object Group 信息, 不返回文件内容。
 * int main()
@@ -2207,7 +2207,7 @@
 * 
 * static const char *access_id = "ACSfLOiddaOzejOP";   //设置用户帐号
 * static const char *access_key = "MUltNpuYqE";  //设置用户密码
-* static const char *endpoint = "storage.aliyun.com";    //设置hostname
+* static const char *endpoint = "oss.aliyuncs.com";    //设置hostname
 * 
 * //Delete Object Group 删除用户指定的 Object Group 信息
 * int main()

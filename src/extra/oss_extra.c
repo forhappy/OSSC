@@ -735,11 +735,6 @@ client_extra_put_object(oss_client_t *client,
 	free(upload_metadir);
 }
 
-
-
-
-
-
 bool
 _is_folder(const char *path)
 {
