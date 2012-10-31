@@ -103,6 +103,12 @@ oss_free_user_data(curl_request_param_t *user_data)
 }
 
 const char *
+oss_why(unsigned short retcode)
+{
+	return oss_get_error_message_from_retcode(retcode);
+}
+
+const char *
 oss_get_error_message_from_retcode(unsigned short retcode)
 {
 	if (retcode == OK) {
