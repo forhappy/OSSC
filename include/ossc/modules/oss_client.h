@@ -741,6 +741,33 @@ client_put_compressed_object_from_buffer(oss_client_t *client,
 		unsigned short *retcode);
 
 /**
+ * 压缩并上传指定的 OSSObject 到 OSS 中指定的 Bucket
+ * @param client [in] 标识一个oss_client_t的结构指针
+ * @param bucket_name 要上传到的Bucket名称
+ * @param key 要上传到服务器上显示的Object的名称
+ * @param metadata 标识数据的一些元信息，一个oss_object_metadata_t结构指针
+ * @param input 文件指针
+ * @param input_len 要上传数据的长度
+ * @param algorithm 压缩算法
+ * @param flag 标志位
+ * @param level 该压缩算法的压缩等级
+ * @param retcode [out] 服务器返回的HTTP返回码
+ * @return 返回一个oss_put_object_result_t结构指针
+ * @retval 非空 表示成功
+ * @retval NULL 表示失败
+ */
+oss_put_object_result_t *
+client_put_compressed_object_from_file(oss_client_t *client,
+		const char *bucket_name,
+		const char *key,
+		oss_object_metadata_t *metadata,
+		void *input, /**< 文件指针 */
+		char algorithm,
+		char flag,
+		char level,
+		unsigned short *retcode);
+
+/**
  * 设置指定 Bucket 的 Access Control List(oss_client_t *client, ACL)
  * @param client [in] 标识一个oss_client_t的结构指针
  * @param bucket_name 要设置权限的Bucket的名称

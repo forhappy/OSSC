@@ -768,17 +768,20 @@ _sync_upload(oss_object_listing_t *object_listing,
 		if((dirp->d_name)[0] == '.') {
 			continue;
 		}
-		char full_path[100];
+		char full_path[512];
 		sprintf(full_path, "%s/%s", dir, dirp->d_name);
 		if(_is_folder(full_path)) {
 			_sync_upload(object_listing, full_path, client, bucket_name);
 		} else {
 			FILE *fp = fopen(full_path, "r");
 			char *etag = oss_get_file_md5_digest_2nd(full_path);
+			char tmp_etag[64];
+			sprintf(tmp_etag, "\"%s\"", etag);
+			free(etag);
 			for(i = 0; i < object_listing->_counts_summaries; i++) {
-				_delete_etag_quotation((object_listing->summaries)[i]->etag);
-				(object_listing->summaries)[i]->etag ++;
-				if((strcasecmp(etag, (object_listing->summaries)[i]->etag) == 0) &&
+				//_delete_etag_quotation((object_listing->summaries)[i]->etag);
+				//(object_listing->summaries)[i]->etag ++;
+				if((strcasecmp(tmp_etag, (object_listing->summaries)[i]->etag) == 0) &&
 						(strcmp(dirp->d_name, (object_listing->summaries)[i]->key) == 0)) {
 					break;
 				}
@@ -839,7 +842,7 @@ _get_dir_file_number(char *dir, int *file_number)
 		if((dirp->d_name)[0] == '.') {
 			continue;
 		}
-		char full_path[100];
+		char full_path[512];
 		sprintf(full_path, "%s/%s", dir, dirp->d_name);
 		if(_is_folder(full_path)) {
 			_get_dir_file_number(full_path, file_number);

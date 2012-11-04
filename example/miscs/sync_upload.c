@@ -23,7 +23,7 @@ int main()
 
 	oss_client_t *client = client_initialize_with_endpoint(access_id, access_key, endpoint);
 	const char *bucket_name = "qqaazz";       //设置bucket_name
-	if(oss_sync_upload(client, "/home/wangwei/Documents/upload_test/", bucket_name) == 0) {
+	if(oss_sync_upload(client, "./sync_test/", bucket_name) == 0) {
 		printf("sync_upload success.\n");
 	} else {
 		printf("sync_upload failed.\n");

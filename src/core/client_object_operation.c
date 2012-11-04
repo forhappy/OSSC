@@ -320,7 +320,7 @@ client_put_object_from_file(oss_client_t *client,
 
 	unsigned int bucket_name_len = strlen(bucket_name);
 	unsigned int key_len = strlen(key);
-	char *resource = (char *)malloc(sizeof(char) * bucket_name_len + 16);
+	char *resource = (char *)malloc(sizeof(char) * (bucket_name_len + key_len + 16));
 	char *url = (char *)malloc(sizeof(char) * 
 			(bucket_name_len + key_len + strlen(client->endpoint) + 8 ));
 
