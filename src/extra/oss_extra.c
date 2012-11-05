@@ -386,6 +386,7 @@ do_upload_part(job_t *job_data)
 
 	/* 上传文件块 */
 	oss_upload_part_result_t *result = _oss_extra_upload_part(param->client, request, NULL);
+	if (result == NULL) return;
 
 	sprintf(fnbuf, "%s/%d", param->metadir, result->get_part_number(result));
 	unsigned int fnbuf_len = strlen(fnbuf);

@@ -91,7 +91,9 @@ typedef enum _OSS_ERROR_CODE {
 	/* 文件过大 */
 	FILE_TOO_LARGE,
 	/* IO 错误 */
-	IO_ERROR
+	IO_ERROR,
+	/* 网络连接错误 */
+	NETWORK_NOT_AVAILABLE	
 
 }OSS_ERROR_CODE;
 

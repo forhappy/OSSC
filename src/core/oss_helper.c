@@ -183,6 +183,8 @@ oss_get_error_message_from_retcode(unsigned short retcode)
 		return "FileTooLarge";
 	} else if(retcode == IO_ERROR) {
 		return "IOError";
+	} else if(retcode == NETWORK_NOT_AVAILABLE) {
+		return "NetworkNotAvailable";
 	} else {
 		return "UnknowError";
 	}
@@ -193,6 +195,7 @@ oss_get_retcode_from_response(const char *response)
 {
 	unsigned short ret;
 	assert(response != NULL);
+	if (strlen(response) == 0) return NETWORK_NOT_AVAILABLE;
 	XmlNode *xml, *code_tag;
 	char *retinfo;
 	unsigned int response_len = strlen(response); 
