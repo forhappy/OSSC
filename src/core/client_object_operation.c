@@ -703,7 +703,7 @@ client_get_object_to_file(oss_client_t *client,
 	
 	char header_if_modified_since[64] = {0};
 	char header_if_unmodified_since[64] = {0};
-	char header_range[32] = {0};
+	char header_range[64] = {0};
 	
 	long start = 0; /**< Range 起始字节位置*/
 	long length = 0; /**< Range 长度*/
@@ -867,7 +867,7 @@ client_get_object_to_buffer(oss_client_t *client,
 	
 	char header_if_modified_since[64] = {0};
 	char header_if_unmodified_since[64] = {0};
-	char header_range[32] = {0};	
+	char header_range[64] = {0};	
 
 	oss_map_t *default_headers = oss_map_new(16);
 	now = (char *)oss_get_gmt_time();
@@ -1008,7 +1008,7 @@ client_get_object_to_buffer_2nd(oss_client_t *client,
 	
 	char header_if_modified_since[64] = {0};
 	char header_if_unmodified_since[64] = {0};
-	char header_range[32] = {0};	
+	char header_range[64] = {0};	
 
 	oss_map_t *default_headers = oss_map_new(16);
 
